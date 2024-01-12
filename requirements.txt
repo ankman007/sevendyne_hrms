@@ -3,7 +3,7 @@ Django==3.2.12
 django-autocomplete-light==3.8.1
 django-phonenumber-field==5.2.0
 phonenumbers==8.13.27
-pillow==10.2.0
+pillow==7.2.0  # Use a version compatible with Python 3.7
 six==1.16.0
 sqlparse==0.4.2
 typing-extensions==4.9.0
