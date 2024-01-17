@@ -8,8 +8,8 @@ from main import views as general_views
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('',include(('user.urls','user'),namespace='user')),
-    # path('',general_views.app,name='app'),
+    path('app/',include(('user.urls','user'),namespace='user')),
+    path('',general_views.home_hrms,name='home_hrms'),
     path('app/hrms/dashboard/',general_views.hrms_dashboard,name='hrms_dashboard'),
     path('app/sevendyne/dashboard/',general_views.admin_dashboard,name='sevendyne_dashboard'),
     path('app/main/',include(('main.urls','main'),namespace='main')),

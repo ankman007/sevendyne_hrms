@@ -38,6 +38,10 @@ from hrms.models import HrmsClient
 #     return HttpResponseRedirect(reverse('main:create_company'))
     # return HttpResponseRedirect(reverse('dashboard'))
 
+
+def home_hrms(request):
+    return render(request, "home/index.html")
+
 @login_required
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 @company_required
