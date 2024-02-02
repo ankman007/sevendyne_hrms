@@ -7,6 +7,7 @@ urlpatterns = [
     path("", views.home_hrms, name="home_hrms"),
     path("hrms/dashboard/", views.hrms_dashboard, name="hrms_dashboard"),
     path("admin/dashboard/", views.admin_dashboard, name="admin_dashboard"),
+    path("employee/dashboard/", views.employee_dashboard, name="employee_dashboard"),
 
 	# path('state-autocomplete/',StateAutocomplete.as_view(),name='state_autocomplete'),
     # path('get_states/', views.get_states, name='get_states'),
