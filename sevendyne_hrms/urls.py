@@ -17,6 +17,7 @@ urlpatterns = [
     path('app/candidate/',include(('candidate.urls','candidate'),namespace='candidate')),
     path('app/employee/',include(('employee.urls','employee'),namespace='employee')),
     path('app/client/',include(('client.urls','client'),namespace='client')),
+    path('app/job/',include(('job.urls','job'),namespace='job')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

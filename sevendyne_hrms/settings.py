@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'candidate',
     'client',
     'employee',
-    'payroll'
+    'payroll',
+    'job'
 ]
 
 MIDDLEWARE = [
