@@ -461,7 +461,7 @@
 							<li class="submenu">
 								<a href="#"><i class="la la-rocket"></i> <span> Leave Management</span> <span class="menu-arrow"></span></a>
 								<ul>
-									<li><a href="{% url 'employee:create_leave' %}">Leave Request</a></li>
+									<li><a href="{% url 'employee:leaves' %}">Leave Request</a></li>
 									<li><a href="#">Leave Status</a></li>
 									{% comment %} <li><a href="#">Task Board</a></li> {% endcomment %}
 								</ul>
@@ -1224,8 +1224,8 @@
 		<!-- Bootstrap Core JS -->
         <script src="{%static 'assets/js/bootstrap.bundle.min.js'%}"></script>
 		<!-- Datetimepicker JS -->
-		<script src="{%static 'assets/js/moment.min.js' %}"></script>
-		<script src="{%static 'assets/js/bootstrap-datetimepicker.min.js'%}"></script>
+		{% comment %} <script src="{%static 'assets/js/moment.min.js' %}"></script>
+		<script src="{%static 'assets/js/bootstrap-datetimepicker.min.js'%}"></script> {% endcomment %}
 		<!-- Slimscroll JS -->
 		<script src="{%static 'assets/js/jquery.slimscroll.min.js'%}"></script>
 		

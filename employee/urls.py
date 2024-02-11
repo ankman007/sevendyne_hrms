@@ -33,5 +33,6 @@ urlpatterns = [
     re_path(r'^delete-leave/(?P<pk>.*)/$', views.delete_leave, name='delete_leave'),    
     re_path(r'^leave/(?P<pk>.*)/$', views.leave, name='leave'),
    
+    path('ajax_load_remaining_days', views.ajax_load_remaining_days, name='ajax_load_remaining_days')
 ]
 

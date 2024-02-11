@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core.paginator import Paginator
 from employee import models
 from employee.forms import DepartmentForm, DesignationForm, EmployeeForm, LeaveForm, LeaveTypeForm
@@ -786,27 +786,36 @@ def delete_leave_type(request,pk):
 # Leave crud starts here
 @login_required
 def create_leave(request):
-    current_company = get_current_company(request)
-    print("current comapny",current_company)
+    employee = get_object_or_404(Employee, user=request.user)
+    company = employee.company
     if request.method == 'POST':
         print("leave type post request")
         form = LeaveForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            days = form.cleaned_data['days']
+            startdate = form.cleaned_data['startdate']
+            enddate = form.cleaned_data['enddate']
+            leavetype = form.cleaned_data['leavetype']
+            reason = form.cleaned_data['reason']
+            leave_days = form.cleaned_data['leave_days']
+            remaining_days = form.cleaned_data['remaining_days']
             auto_id = get_auto_id(Leave)
             a_id = get_a_id(Leave,request)
-            company = current_company
+            company = company
             creator = request.user
             updator = request.user
-
-            if not Leave.objects.filter(name=name,company=current_company,is_deleted=False).exists():
-                Leave(                    
-                    name = name,
-                    days = days,
+            print("leave type", leave_type)
+            print("leave_days",leave_days)
+            if int(leave_days)<=int(remaining_days):
+                Leave( 
+                    startdate = startdate,
+                    enddate = enddate,                   
+                    leavetype = leavetype,
+                    reason = reason,
+                    leave_days = leave_days,
                     auto_id = auto_id,
                     a_id = a_id,
-                    company =company,
+                    company = company,
+                    employee = employee,
                     creator = creator,
                     updator = updator
                 ).save()
@@ -822,8 +831,8 @@ def create_leave(request):
                 response_data = {
                     "status": "false",
                     "stable": "true",
-                    "title": "Already exists",
-                    "message": "Leave already exists",                        
+                    "title": "Can't apply for these much leave days",
+                    "message": "Leave days is greater than the remaining days",                        
                 }
                 print("status inside", response_data["status"])
             print("status outside", response_data["status"])
@@ -839,27 +848,45 @@ def create_leave(request):
         return HttpResponse(json.dumps(response_data), content_type='application/json')
     else:
         form = LeaveForm()
-        # to find approved leave days
-        employees = Employee.objects.all()
-
-        for employee in employees:
-            approved_leave_days = Leave.objects.filter(employee=employee, is_approved=True)
-            print(f"Approved leave days for {employee}: {approved_leave_days}")
         context = {
             "title": "Create Leave",
-            'approved_leave_days': approved_leave_days,
             "form": form,
             "redirect": "true",
             "create":True
         }
         return render(request, 'leave/leaves.html', context)
+    
+def ajax_load_remaining_days(request):
+    employee = get_object_or_404(Employee, user=request.user)
+    company = employee.company
+    print("company",company)
+    leavetype = request.GET.get('leavetype')
+    print("leave type ",leavetype)
+    name = leavetype
+    print("leave name", name)
+    approved_leave_days_count = Leave.objects.filter(company=company,employee=employee, leavetype__name=name, is_approved=True).count()
+    print("approved_leave_days_count",approved_leave_days_count)
+    if LeaveType.objects.filter(name=name,company=company,is_deleted=False).exists():
+        # leavetypes  = LeaveType.objects.filter(is_deleted=False,name=name,company=company)
+        leavetype = get_object_or_404(LeaveType, is_deleted=False,name=name,company=company)
+        leavetype_days = leavetype.days
+        print("leavetype_days",leavetype_days)
+        data = leavetype_days - approved_leave_days_count
+        print("data - remaining days",data)
+    else:
+        print("leave type not found")
+        data="Data Not Found"
+    context = {
+        'data' : data
+    }
+    return render(request,'employee/ajax_load_remaining_days.html',context)
 
 
 @login_required
-@company_required
 def leaves(request):
     current_company = get_current_company(request)
     leaves = Leave.objects.filter(company=current_company,is_deleted=False)
+    print("leaves",leaves)
     paginator = Paginator(leaves,1000000000000)
     page_number = request.GET.get('page')
     leaves = paginator.get_page(page_number)

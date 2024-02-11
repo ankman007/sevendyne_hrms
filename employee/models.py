@@ -95,6 +95,7 @@ class Leave(BaseModel):
     enddate = models.DateField(verbose_name=_('To'), help_text='coming back on ...', null=True, blank=False)
     leavetype = models.ForeignKey("employee.LeaveType", on_delete=models.CASCADE, limit_choices_to={'is_deleted': False})
     reason = models.CharField(verbose_name=_('Leave Reason'), max_length=255, help_text='add additional information for leave', null=True, blank=True)
+    leave_days = models.PositiveIntegerField(_("Number of Leave Days"))
     status = models.CharField(max_length=12, default='pending')  # pending, approved, rejected, cancelled
     is_approved = models.BooleanField(default=False)  
     is_deleted = models.BooleanField(default=False)

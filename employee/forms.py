@@ -147,7 +147,6 @@ class LeaveTypeForm(forms.ModelForm):
 
 
 class LeaveForm(forms.ModelForm):
-    leave_days = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly', 'class': 'form-control'}))
     remaining_days = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly', 'class': 'form-control'}))
     
     class Meta:
@@ -155,7 +154,9 @@ class LeaveForm(forms.ModelForm):
         exclude = ['creator', 'updator', 'auto_id','a_id','company','is_deleted','employee','is_approved','status'] 
         widgets = {
             'reason': TextInput(attrs={'class': 'form-control', 'placeholder': 'Reason for leave'}),
-            'leavetype': Select(attrs={'class': 'required form-control'}),'startdate' : DateInput(attrs={'class' : 'datetimepicker form-control'}),
+            'leave_days': TextInput(attrs={'readonly': 'readonly','class': 'form-control'}),
+            'leavetype': Select(attrs={'class': 'required form-control'}),
+            'startdate' : DateInput(attrs={'class' : 'datetimepicker form-control'}),
             'enddate' : DateInput(attrs={'class' : 'datetimepicker form-control'}),
             'startdate' : DateInput(attrs={'class' : 'datetimepicker form-control'}),
         }
