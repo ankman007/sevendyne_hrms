@@ -5,9 +5,6 @@
 - sudo apt update
 - sudo apt install python3 python3-pip python3-venv git
 - source venv/bin/activate (on Windows use "venv\Scripts\activate")
-
-**Install Django & Libjpeg**
-
 - pip install django
 - sudo apt-get install libjpeg-dev
 - pip install -r requirements.txt
