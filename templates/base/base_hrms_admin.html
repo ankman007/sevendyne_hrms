@@ -381,7 +381,7 @@
 										<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
 										<ul>
 											<li><a href="employees.html">All Employees</a></li>
-											<li><a href="holidays.html">Holidays</a></li>
+											{% comment %} <li><a href="holidays.html">Holidays</a></li> {% endcomment %}
 											{% comment %} <li><a href="leaves.html">Leaves (Admin) <span class="badge rounded-pill bg-primary float-end">1</span></a></li>
 											<li><a href="leaves-employee.html">Leaves (Employee)</a></li> {% endcomment %}
 											<li><a href="{% url 'employee:leave_types' %}">Leave Settings</a></li>
@@ -751,7 +751,7 @@
 											<li><a href="{% url 'employee:leave_approvals' %}">Leave Approval</a></li>
 											{% comment %} <li><a href="{% url 'employee:leave_requests' %}">Leave Request</a></li> {% endcomment %}
 											{% comment %} <li><a href="{% url 'employee:leave_approval' %}">Leave Approval</a></li> {% endcomment %}
-											<li><a href="#">Leave Report</a></li>
+											{% comment %} <li><a href="#">Leave Report</a></li> {% endcomment %}
 										</ul>		
 									</li>
 									{% comment %} <li><a href="leaves-employee.html">Leaves (Employee)</a></li>

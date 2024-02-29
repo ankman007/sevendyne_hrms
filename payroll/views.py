@@ -1,5 +1,6 @@
 import datetime
 import json
+from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -708,96 +709,173 @@ def create_salary(request):
         }
         
         return render(request, 'payroll/salary.html', context)
-
+    
 def process_salary_data(request):
     print("process salary data request in views")
     current_company = get_current_company(request)
-    # print("current company", current_company)
-    # print("current_company.id ",current_company.id )
     form_data = request.POST.dict() 
 
     print("form data/post dict is ", form_data)
-    # Access data from the request.POST dictionary
-    # form_data = request.POST.get('formData')  # Get formData
     employee_id = request.POST.get('employee')  # Get employee
-    # net_salary = request.POST.get('net_salary')  # Get net_salary
-    
-    # print("form_data",form_data)
-    # print("employee id",employee_id)
-    # print("net_salary",net_salary)
-
-    # employee_id = form_data.pop('employee')  # Remove employee from form_data and get its value
-    # net_salary = form_data.pop('net_salary')  # Remove net_salary from form_data and get its value
-
     
     # Retrieve the Employee instance corresponding to the employee_id
     employee = Employee.objects.get(id=employee_id)
-    # print("employee",employee)
-    salarydata = SalaryData.objects.filter(company=current_company,employee=employee,is_deleted=False)
-    print("salarydata",salarydata)
-    # if  not SalaryData.objects.filter(company=current_company,employee=employee,is_deleted=False).exists():
-
-    # Create an instance of SalaryData with dynamically created fields
-    salary_data_instance = SalaryData.create_dynamic_fields(current_company,form_data)
-    print("salary_data_instance after creating dynamic field",salary_data_instance)
-
-     # Print all the dynamically created fields
-    # dynamic_fields = salary_data_instance.get_dynamic_fields()
-    # print("dynamic fields",dynamic_fields)
-    # for field in dynamic_fields:
-    #     print(f"{field.verbose_name}: {getattr(salary_data_instance, field.name)}")
-
-
-    # Set the employee attribute of the instance
-    # salary_data_instance.employee = employee
-    # print("salary_data_instance.employee",salary_data_instance.employee)
-    # salary_data_instance.salary = salary
-    # Set the net_salary attribute of the instance
-    # salary_data_instance.net_salary = net_salary
-    # print("salary_data_instance.net_salary",salary_data_instance.net_salary)
+    print("employee", employee)
     
-    # Set the company attribute of the instance
-    # salary_data_instance.company = current_company
-    # print("salary_data_instance.company",salary_data_instance.company)  
-    # Save the instance to the database
+    salary_data_instance, created = SalaryData.objects.get_or_create(
+        company=current_company,
+        employee=employee,
+        is_deleted=False
+    )
+    print("salarydata", salary_data_instance)
+
+    # Update dynamic fields
+    for key, value in form_data.items():
+        if key not in ["employee", "net_salary"]:
+            field_name = key.split('[')[-1][:-1]  # Extract field name from "formData[Field_Name]"
+            setattr(salary_data_instance, field_name, value)
+            salary_data_instance.dynamic_field_names.add(field_name)
+            print("salary_data_instance.dynamic_field_names before save", salary_data_instance.dynamic_field_names)
+    
     salary_data_instance.save()
-    print("salary_data_instance",salary_data_instance)
-        
+    print("salary_data_instance.dynamic_field_names after save", salary_data_instance.dynamic_field_names)
+    
+    dynamic_fields = salary_data_instance.get_dynamic_fields()
+    print("dynamic fields", dynamic_fields)
+
     return JsonResponse({'success': True})
-# except Exception as e:
-#     return JsonResponse({'success': False, 'error': str(e)})
-    # else:
-    #     print("Salary already exists for this employee")
-    #     return JsonResponse({'success': False, 'error': 'Salary already exists for this employee'})
+
+# def process_salary_data(request):
+#     print("process salary data request in views")
+#     current_company = get_current_company(request)
+#     form_data = request.POST.dict() 
+
+#     print("form data/post dict is ", form_data)
+#     employee_id = request.POST.get('employee')  # Get employee
+#     # net_salary = request.POST.get('net_salary')  # Get net_salary
+    
+#     # print("form_data",form_data)
+#     # print("employee id",employee_id)
+#     # print("net_salary",net_salary)
+
+#     # employee_id = form_data.pop('employee')  # Remove employee from form_data and get its value
+#     # net_salary = form_data.pop('net_salary')  # Remove net_salary from form_data and get its value
+
+    
+#     # Retrieve the Employee instance corresponding to the employee_id
+#     employee = Employee.objects.get(id=employee_id)
+#     print("employee",employee)
+#     if SalaryData.objects.filter(company=current_company,employee=employee,is_deleted=False).exists():
+#         salary_data_instance = SalaryData.objects.get(company=current_company,employee=employee,is_deleted=False)
+#         print("salarydata", salary_data_instance)
+#     # if  not SalaryData.objects.filter(company=current_company,employee=employee,is_deleted=False).exists():
+#     if salary_data_instance:
+#         # If an instance already exists, update its dynamic fields
+#         for key, value in form_data.items():
+#             if key not in ["employee", "net_salary"]:
+#                 field_name = key.split('[')[-1][:-1]  # Extract field name from "formData[Field_Name]"
+#                 setattr(salary_data_instance, field_name, value)
+#                 salary_data_instance.dynamic_field_names.add(field_name)
+#                 print("salary_data_instance.dynamic_field_names before save",salary_data_instance.dynamic_field_names)
+#         salary_data_instance.save()
+#         print("salary_data_instance.dynamic_field_names after save",salary_data_instance.dynamic_field_names)
+#         # print("salary_data_instance.get_dynamic_fields after save ",salary_data_instance.get_dynamic_fields)            
+#     else:
+#         # If no instance exists, create a new one
+#         salary_data_instance = SalaryData.create_dynamic_fields(current_company, form_data)
+#         # Add the dynamic field names to the instance
+#         salary_data_instance.dynamic_field_names = set([key.split('[')[-1][:-1] for key in form_data.keys() if key not in ["employee", "net_salary"]])
+#         salary_data_instance.save()
+#         print("salary_data_instance.dynamic_field_names after save",salary_data_instance.dynamic_field_names)
+
+#     dynamic_field = salary_data_instance.get_dynamic_fields()
+#     print("dynamic field get in views ",dynamic_field)
+#     return JsonResponse({'success': True})
+# # except Exception as e:
+# #     return JsonResponse({'success': False, 'error': str(e)})
+#     # else:
+#     #     print("Salary already exists for this employee")
+#     #     return JsonResponse({'success': False, 'error': 'Salary already exists for this employee'})
 @login_required
 @company_required
 def payslip(request,pk):
     print("payslip request in views got")
     current_company = get_current_company(request)
     salary_data = get_object_or_404(SalaryData.objects.filter(company=current_company,is_deleted=False,employee__id=pk))
-    print("salary datas",salary_data)
+    print("salary data of employee",salary_data)
+    # Get all field names of the SalaryData model
+    all_field_names = [field.name for field in SalaryData._meta.get_fields()]
+    print("all_field_names",all_field_names)
+    # Get the values of all fields for the instance
+    all_field_values = model_to_dict(salary_data)
+    print("all_field_values",all_field_values)
+    # Combine field names and values into a dictionary
+    fields_data = dict(zip(all_field_names, all_field_values.values()))
+    print("fields_data",fields_data)
+
+    dynamic_fields = salary_data.get_dynamic_fields()
+    print("dynamic_fields", dynamic_fields)
+    
+    # Get dynamic fields and their values
+    dynamic_field_names = salary_data.dynamic_field_names
+    print("dynamic_field names", dynamic_field_names)
+    salarydata = SalaryData.objects.all()
+
+    # Iterate over each SalaryData object in the queryset
+    for data in salarydata:
+        # Retrieve all regular fields of the current SalaryData object
+        regular_fields = [(field.name, getattr(data, field.name)) for field in data._meta.fields]
+        
+        # Retrieve all dynamic fields of the current SalaryData object
+        dynamic_fields = [(field_name, getattr(data, field_name)) for field_name in data.dynamic_field_names]
+        print("dynamic_fields",dynamic_fields)
+        # Combine regular and dynamic fields
+        all_fields = regular_fields + dynamic_fields
+
+        # Print the fields
+        for field_name, field_value in all_fields:
+            print(f"{field_name}: {field_value}")
+
+
+    # # Combine dynamic field names and their values into a dictionary
+    # dynamic_fields_data = {field: getattr(salary_data, field) for field in dynamic_fields}
+    # print("dynamic_fields_data", dynamic_fields_data)
+
+    # # Retrieve dynamic fields
+    # dynamic_fields = salary_data.dynamic_field_names
+    # print("dynamic_fields",dynamic_fields)
+    # dynamic_field_data = {field: getattr(salary_data, field) for field in dynamic_fields}
+    # print("dynamic_field_data",dynamic_field_data)
+    # print("dynamic_fields",dynamic_fields)
+    # dynamic_fields_data = {}
+    # for field in dynamic_fields:
+    #     dynamic_fields_data[field.verbose_name] = getattr(salary_data, field.name)
+
+    # print("dynamic_fields_data",dynamic_fields_data)
+
 
     # Iterate through each SalaryData instance
     # for salary_data in salary_datas:
         # Print the fields and their values for the current instance
     # Print the dynamic fields and their values for the salary_data instance
-    dynamic_fields = {}  # Dictionary to store dynamic field values
-    print("salary_data.get_dynamic_fields()",salary_data.get_dynamic_fields())
-    # Iterate through each dynamic field of the salary_data instance
-    for field in salary_data.get_dynamic_fields():
-        # Use getattr to access the value of each dynamic field
-        field_value = getattr(salary_data, field.name)
-        # Add the field name and value to the dynamic_fields dictionary
-        dynamic_fields[field.name] = field_value
-
-        # Add a separator for better readability between instances
-        print("=" * 20)
-    instance = get_object_or_404(SalaryData.objects.filter(employee__pk=pk,company=current_company,is_deleted=False))
+    # dynamic_fields = {}  # Dictionary to store dynamic field values
+    # print("salary_data.get_dynamic_fields()",salary_data.get_dynamic_fields())
+    # # Iterate through each dynamic field of the salary_data instance
+    # for field in salary_data.get_dynamic_fields():
+    #     # Use getattr to access the value of each dynamic field
+    #     field_value = getattr(salary_data, field.name)
+    #     # Add the field name and value to the dynamic_fields dictionary
+    #     dynamic_fields[field.name] = field_value
+    #     print("dynamic fields in pay slip",dynamic_fields)
+    #     # Add a separator for better readability between instances
+    #     print("=" * 20)
+    # instance = get_object_or_404(SalaryData.objects.filter(employee__pk=pk,company=current_company,is_deleted=False))
 
     context = {
         'salary_data':salary_data,
+        'fields_data':fields_data,
         'dynamic_fields': dynamic_fields, 
-        'instance': instance,
+        # 'instance': instance,
         'title': 'Pay Slip',
 
     }

@@ -87,7 +87,18 @@ class SalaryData(models.Model):
 
         
     def get_dynamic_fields(self):
-        return [field for field in self._meta.get_fields() if not field.name.startswith('_') and field.name in self.dynamic_field_names]
+        # Create a dictionary to store field names and their values
+        dynamic_fields = {}
+        print("self.dynamic_field_names",self.dynamic_field_names)
+        for field_name in self.dynamic_field_names:
+            print("dynamic field name model ",field_name)
+            # Get the value of the field using getattr
+            field_value = getattr(self, field_name, None)
+            print("dynamic field value model ",field_value)
+            dynamic_fields[field_name] = field_value
+
+        print("dynamic fields model",dynamic_fields)
+        return dynamic_fields
 
     
     @classmethod
@@ -100,9 +111,11 @@ class SalaryData(models.Model):
         existing_salary_data = SalaryData.objects.filter(company=company, employee=employee, is_deleted=False).first()
 
         if existing_salary_data:
+            print("model -existing salary data")
             # If an instance already exists, update its dynamic fields and return it
             instance = existing_salary_data
         else:
+            print("model-not existing salary data")
             # If no instance exists, create a new one
             instance = cls(company=company, employee=employee)
 
@@ -111,14 +124,22 @@ class SalaryData(models.Model):
             if key not in ["employee", "net_salary"]:
                 field_name = key.split('[')[-1][:-1]  # Extracts field name from "formData[Field_Name]"
                 setattr(instance, field_name, value)
-                instance.dynamic_field_names.add(field_name)
-                print("instance.dynamic_field_names",instance.dynamic_field_names)
+                print("model - instance ",instance)
+                # instance.dynamic_field_names.add(field_name)
+                # print("instance.dynamic_field_names",instance.dynamic_field_names)
         # Set the net_salary attribute of the instance
-        net_salary = data.get('net_salary')
-        instance.net_salary = net_salary
+        # net_salary = data.get('net_salary')
+        # instance.net_salary = net_salary
 
         # Save the instance to the database
+        # instance.save()
+
+        # Update dynamic_field_names attribute
+        instance.dynamic_field_names = set([key.split('[')[-1][:-1] for key in data.keys() if key not in ["employee", "net_salary"]])
+        print("model - instance.dynamic_field_names",instance.dynamic_field_names)
+        print("model - instance.get_dynamic_fields",instance.get_dynamic_fields)
         instance.save()
+
 
         return instance
 

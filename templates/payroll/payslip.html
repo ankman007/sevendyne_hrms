@@ -31,22 +31,43 @@
         <thead>
             <tr>
                 <th>Date</th>
+			
+				{% comment %} {% for field_name in fields_data.items %}
+					<th><li><strong>{{ field_name }}:</strong> </li></th>
+				{% endfor %}
                 <!-- Add other table headers as needed -->
                 {% for field_name, field_value in dynamic_fields.items %}
 					<p>{{ field_name }}</p>
-				{% endfor %}
+				{% endfor %} {% endcomment %}
             </tr>
         </thead>
         <tbody>
 			<tr>
 				<td>{{ salary_data.date }}</td>
+				{% comment %} {% for field_value in fields_data.items %}
+					<li><strong>{{ field_value }}:</strong></li>
+				{% endfor %}
 				<!-- Add other table cells for displaying salary data -->
 				{% for field_name, field_value in dynamic_fields.items %}
 					<p>{{ field_value }}</p>
-				{% endfor %}
+				{% endfor %} {% endcomment %}
 			</tr>
+			<h1>All Fields</h1>
+		
         </tbody>
     </table>
+	<h2>Static Fields</h2>
+	<ul>
+		{% for field_name, field_value in fields_data.items %}
+			<li><strong>{{ field_name }}:</strong> {{ field_value }}</li>
+		{% endfor %}
+	</ul>
+	<h2>Dynamic Fields</h2>
+	<ul>
+		{% for field, value in dynamic_fields.items %}
+			<li>{{ field }}: {{ value }}</li>
+		{% endfor %}
+	</ul>
 	<!-- /Page Header -->
 </div>
 <!-- /Page Content -->

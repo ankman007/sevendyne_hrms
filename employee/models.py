@@ -50,12 +50,12 @@ class Designation(BaseModel):
 class Employee(BaseModel):  
     company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False}) 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    firstname = models.CharField(_('Firstname'),max_length=125,blank=False)
-    lastname = models.CharField(_('Lastname'),max_length=125,blank=False)
+    firstname = models.CharField(_('Firstname'),max_length=125)
+    lastname = models.CharField(_('Lastname'),max_length=125)
     username = models.CharField(max_length=254)    
     password = models.CharField(max_length=100)
     email = models.EmailField(_("Email"),unique=True)
-    phone = PhoneNumberField(_("Phone Number"))
+    phone = models.CharField(_('Phone'),max_length=125)
     address = models.TextField(_("Address"),null=True, blank=True)
     client_company = models.ForeignKey("client.Client",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False}) #client company foreign key
     department =  models.ForeignKey("employee.Department",verbose_name =_('Department'),on_delete=models.CASCADE,limit_choices_to={'is_deleted': False})
