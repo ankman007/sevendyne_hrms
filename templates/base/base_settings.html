@@ -12,7 +12,7 @@
         <title>HRMS admin template</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{%static 'assets/img/favicon.png'%}">
+        <link rel="shortcut icon" type="image/x-icon" href="{%static 'assets/img/logo_svd.png'%}">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{%static 'assets/css/bootstrap.min.css'%}">
@@ -335,9 +335,9 @@
 								<a href="{% url 'main:hrms_dashboard' %}"><i class="la la-home"></i> <span>Back to Home</span></a>
 							</li>
 							<li class="menu-title">Settings</li>
-							<li> 
+							{% comment %} <li> 
 								<a href="settings.html"><i class="la la-building"></i> <span>Company Settings</span></a>
-							</li>
+							</li> {% endcomment %}
 							{% comment %} <li class="active"> 
 								<a href="localization.html"><i class="la la-clock-o"></i> <span>Localization</span></a>
 							</li> {% endcomment %}

@@ -83,14 +83,26 @@ class SalaryData(models.Model):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # if not self.pk:
-        self.dynamic_field_names = set()
+        self.dynamic_field_names = ''
+
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        # Save dynamic_field_names
+        self.save_dynamic_field_names()
+
+    def save_dynamic_field_names(self):
+        # Convert the set to a comma-separated string and save it
+        self.dynamic_field_names_str = ','.join(self.dynamic_field_names)
+        self.save(update_fields=['dynamic_field_names_str'])
 
         
     def get_dynamic_fields(self):
         # Create a dictionary to store field names and their values
         dynamic_fields = {}
         print("self.dynamic_field_names",self.dynamic_field_names)
-        for field_name in self.dynamic_field_names:
+        dynamic_field_names = list(self.dynamic_field_names)
+        for field_name in dynamic_field_names:
             print("dynamic field name model ",field_name)
             # Get the value of the field using getattr
             field_value = getattr(self, field_name, None)
@@ -125,59 +137,15 @@ class SalaryData(models.Model):
                 field_name = key.split('[')[-1][:-1]  # Extracts field name from "formData[Field_Name]"
                 setattr(instance, field_name, value)
                 print("model - instance ",instance)
-                # instance.dynamic_field_names.add(field_name)
-                # print("instance.dynamic_field_names",instance.dynamic_field_names)
-        # Set the net_salary attribute of the instance
-        # net_salary = data.get('net_salary')
-        # instance.net_salary = net_salary
-
-        # Save the instance to the database
-        # instance.save()
 
         # Update dynamic_field_names attribute
-        instance.dynamic_field_names = set([key.split('[')[-1][:-1] for key in data.keys() if key not in ["employee", "net_salary"]])
+        instance.dynamic_field_names = ','.join({key.split('[')[-1][:-1] for key in data.keys() if key not in ["employee", "net_salary"]})
+
         print("model - instance.dynamic_field_names",instance.dynamic_field_names)
         print("model - instance.get_dynamic_fields",instance.get_dynamic_fields)
         instance.save()
 
-
         return instance
-
-    # @classmethod
-    # def create_dynamic_fields(cls, company, data):
-    #     instance = cls()
-    #     print("instance",instance)
-    #     # valid_field_names = set()
-    #     # print("valid field names in set()",valid_field_names)
-    #     for key, value in data.items():
-    #         # Skip keys named "employee" and "net_salary"
-    #         if key not in ["employee", "net_salary"]:
-    #             # Extract the field name from the key
-    #             field_name = key.split('[')[-1][:-1]  # Extracts field name from "formData[Field_Name]"
-                
-    #             setattr(instance, field_name, value)
-    #             instance.dynamic_field_names.add(field_name)
-    #             print("instance.dynamic_field_names",instance.dynamic_field_names)
-                
-    #         # valid_field_names.add(field_name)
-    #         # print("valid field names after",valid_field_names)
-    #         # if field_name in valid_field_names:
-    #         #     print(f"Setting attribute: {field_name} -> {value}")
-    #         #     setattr(instance, field_name, value)
-    #         # else:
-    #         #     print(f"Ignoring attribute: {key} (not a valid field name)")            
-    #     # Retrieve the Employee instance corresponding to the employee_id
-    #     employee_id = data.get('employee')
-    #     employee = Employee.objects.get(id=employee_id)
-    #     instance.employee = employee
-    #     instance.company=company
-    #     net_salary = data.get('net_salary')
-    #     instance.salary=net_salary
-    #     instance.save()  
-    #     # Print the instance along with its attributes
-    #     print("Instance with attributes:", instance.__dict__)
-    #     # print("instance")
-    #     return instance
     
     def __str__(self):
         return f"SalaryData object (ID: {self.pk})"

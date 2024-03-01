@@ -7,7 +7,7 @@
         <title>Sevendyne HR</title>
 
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets_home/img/01.png' %}">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/logo_svd.png' %}">
 
         <!-- Animate CSS -->
         <link rel="stylesheet" href="{% static 'assets_home/css/aos.css' %}">
@@ -42,7 +42,7 @@
                                 <i class="fas fa-times"></i>
                             </a>
                         </div>
-                        <ul class="main-nav bg-trans">
+                        {% comment %} <ul class="main-nav bg-trans">
                             <li>
                                 <a href="#features">Features</a>
                             </li>
@@ -57,7 +57,7 @@
                             </li>
                             <li>
                                 <a href="#contact">Contact us</a>
-                            </li>
+                            </li> {% endcomment %}
                         </ul>
                         <div class="try-free link mobile-head-menu">
                             <a class="btn btn-primary response-head-menu" href="#" target="_blank"  role="button">Try It Free</a>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-list">
+                        {% comment %} <div class="menu-list">
                             <div class="right-header d-flex justify-content-center">
                                 <nav class="land-menu">
                                     <ul>
@@ -90,7 +90,7 @@
                                     </ul>
                                 </nav>
                             </div>
-                        </div>
+                        </div> {% endcomment %}
                         <div class="home-buy-button">
                             <div class="buy-btns">
                                 <a href="{% url 'user:user_login' %}" target="_blank"  class="btn btn-buy">Login </a>
@@ -273,7 +273,7 @@
         <!--/ Features Section List-->
         
         <!-- Pricing slider-->
-        <div class="build-feature">
+        <div class="build-feature mb-5">
             <div class="pricing-top-left-vector"><img src="{% static 'assets_home/img/vector/pricing-left-vector.png' %}" alt="img"></div>
             <div class="pricing-top-right-vector"><img src="{% static 'assets_home/img/vector/dotted-vector.png' %}" alt="img"></div>
             <div class="pricing-top-left-bottom-vector"><img src="{% static 'assets_home/img/vector/pricing-slider-bottom.png' %}" alt="img"></div>
@@ -944,12 +944,12 @@
 		<!-- /Subscribe -->
 
         <!-- Footer-->
-        <footer class="footer-second">
+        <footer class="footer-second ">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-lg-6">
                         <div class="copy-rights-second">
-                            <p>Copyrights © 2023. All Rights Reserved By Sevendyne</p>
+                            <p>Copyrights © 2024. All Rights Reserved By Sevendyne</p>
                         </div>
                     </div>
                     <div class="col-lg-6">

@@ -10,7 +10,7 @@
         <title>Login - Sevendyne HRMS</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/logo_svd.png' %}">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
@@ -39,13 +39,19 @@
 				<div class="container">
 				
 					<!-- Account Logo -->
-					<div class="account-logo">
-						<a href="admin-dashboard.html"><img src="{% static 'assets/img/01.png' %}" alt="Dreamguy's Technologies"></a>
-					</div>
+					{% comment %} <div class="account-logo">
+						<a href="#"><img src="{% static 'assets/img/01.png' %}" alt="Dreamguy's Technologies" style="width:21%"></a>
+					</div> {% endcomment %}
 					<!-- /Account Logo -->
 					
 					<div class="account-box">
 						<div class="account-wrapper">
+							<!-- Account Logo -->
+							<div class="account-logo">
+								<a href="#"><img src="{% static 'assets/img/01.png' %}" alt="Dreamguy's Technologies" style="width:71%"></a>
+							</div>
+							<!-- /Account Logo -->
+							
 							<h3 class="account-title">Login</h3>
 							<p class="account-subtitle">Access to our dashboard</p>
 							
@@ -82,7 +88,7 @@
 								</div>
 								<p style="font-size:smaller">Contact technical@sevendyne.com for username and password</p>          
 								<div class="input-block mb-4 text-center">
-									<button class="btn btn-primary account-btn" type="submit">Login</button>
+									<button class="btn btn-primary account-btn" type="submit" style="background: linear-gradient(275.55deg, #50a5d5 0%, #3164b8 100%)">Login</button>
 								</div>
 								{% comment %} <div class="account-footer">
 									<p>Don't have an account yet? <a href="register.html">Register</a></p>

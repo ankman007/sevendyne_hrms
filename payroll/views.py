@@ -739,8 +739,8 @@ def process_salary_data(request):
     
     salary_data_instance.save()
     print("salary_data_instance.dynamic_field_names after save", salary_data_instance.dynamic_field_names)
-    
-    dynamic_fields = salary_data_instance.get_dynamic_fields()
+    salary_data = SalaryData.objects.get(company=current_company,employee=employee,is_deleted=False)
+    dynamic_fields = salary_data.get_dynamic_fields()
     print("dynamic fields", dynamic_fields)
 
     return JsonResponse({'success': True})
@@ -801,6 +801,7 @@ def process_salary_data(request):
 def payslip(request,pk):
     print("payslip request in views got")
     current_company = get_current_company(request)
+    employee = Employee.objects.get(company=current_company,id=pk)
     salary_data = get_object_or_404(SalaryData.objects.filter(company=current_company,is_deleted=False,employee__id=pk))
     print("salary data of employee",salary_data)
     # Get all field names of the SalaryData model
@@ -872,6 +873,8 @@ def payslip(request,pk):
     # instance = get_object_or_404(SalaryData.objects.filter(employee__pk=pk,company=current_company,is_deleted=False))
 
     context = {
+        'company':current_company,
+        'employee':employee,
         'salary_data':salary_data,
         'fields_data':fields_data,
         'dynamic_fields': dynamic_fields, 
