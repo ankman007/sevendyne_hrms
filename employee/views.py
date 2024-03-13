@@ -435,7 +435,8 @@ def create_employee(request):
             employeeid = form.cleaned_data['employeeid']
             department = form.cleaned_data['department']
             designation = form.cleaned_data['designation']
-            joindate = form.cleaned_data['joindate']            
+            joindate = form.cleaned_data['joindate']
+            photo = form.cleaned_data['photo']            
             auto_id = get_auto_id(Employee)
             a_id = get_a_id(Employee,request)
             company =current_company
@@ -475,6 +476,7 @@ def create_employee(request):
                     designation = designation,
                     employeeid = employeeid,
                     joindate = joindate,
+                    photo = photo,
                     auto_id = auto_id,
                     a_id = a_id,
                     company =company,
@@ -961,11 +963,57 @@ def leave_approvals(request):
     page_number = request.GET.get('page')
     leaves = paginator.get_page(page_number)
     leavetypes = LeaveType.objects.filter(company=current_company,is_deleted=False)
-    # print("leavetypes",leavetypes)
+   
+    # Get today's date
+    today = datetime.date.today()
+    # Count the number of employees marked as present today for the current company
+    today_presents = AttendanceRegister.objects.filter(
+        company=current_company,
+        date=today,
+        status='present',
+        is_deleted=False
+    ).count()
+
+    # Get the total number of employees in the current company
+    total_employees = Employee.objects.filter(
+        company=current_company,
+        is_deleted=False
+    ).count()
+
+    # Planned leaves (approved leave requests for today)
+    planned_leaves = Leave.objects.filter(
+        company=current_company,
+        startdate__lte=today,
+        enddate__gte=today,
+        is_approved=True,
+        is_deleted=False
+    ).count()
+
+    # Unplanned leaves (absences today without an approved leave request)
+    total_absent = AttendanceRegister.objects.filter(
+        company=current_company,
+        date=today,
+        status='absent',
+        is_deleted=False
+    ).count()
+    unplanned_leaves = total_absent - planned_leaves
+
+    # Pending leave requests
+    pending_requests = Leave.objects.filter(
+        company=current_company,
+        status='pending',
+        is_deleted=False
+    ).count()
+
     context = {
         'leaves': leaves,
         "title": 'Leaves',
         'leavetypes': leavetypes, 
+        'today_presents': today_presents,
+        'total_employees': total_employees,
+        'planned_leaves': planned_leaves,
+        'unplanned_leaves': unplanned_leaves,
+        'pending_requests': pending_requests
     }
     return render(request, "leave/leaves-approval.html", context)
 

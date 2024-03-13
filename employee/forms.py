@@ -106,7 +106,8 @@ class EmployeeForm(forms.ModelForm):
             'department': Select(attrs={'class': 'required form-control'}),
             'designation': Select(attrs={'class': 'required form-control'}),
             'employeeid': TextInput(attrs={'class': 'required form-control', 'placeholder': 'Enter employee id'}),
-            'joindate' : DateInput(attrs={'class' : 'datetimepicker form-control'})
+            'joindate' : DateInput(attrs={'class' : 'datetimepicker form-control'}),
+            'photo': forms.FileInput()
         }
         error_messages = {
             'phone': {

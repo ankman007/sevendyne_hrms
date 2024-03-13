@@ -14,8 +14,8 @@ class Client(BaseModel):
     address = models.TextField(_("Address"),null=True, blank=True)
     company_name = models.CharField(_('Client Company Name'),max_length=255) #client company foreign key
     clientid = models.CharField(_('Client ID'),max_length=255,null=True,blank=True)
-    
-    is_deleted = models.BooleanField(_('Is This Employee Deleted ?'),help_text='button to toggle employee deleted and undelete',default=False)
+    photo = models.ImageField(_("Photo"), upload_to='client_photos/', null=True, blank=True)
+    is_deleted = models.BooleanField(_('Is This Client Deleted ?'),help_text='button to toggle employee deleted and undelete',default=False)
    
     class Meta:
         verbose_name = _('Client')

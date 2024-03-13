@@ -28,6 +28,7 @@ def create_client(request):
             address = form.cleaned_data['address']
             company_name = form.cleaned_data['company_name']
             clientid = form.cleaned_data['clientid']
+            photo = form.cleaned_data['photo']
             auto_id = get_auto_id(Client)
             a_id = get_a_id(Client,request)
             company =current_company
@@ -43,6 +44,7 @@ def create_client(request):
                     address = address,
                     company_name = company_name,
                     clientid = clientid,
+                    photo = photo,
                     auto_id =auto_id,
                     a_id = a_id,
                     company = company,

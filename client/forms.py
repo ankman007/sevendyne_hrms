@@ -1,6 +1,6 @@
 from datetime import date
 from django import forms
-from django.forms.widgets import TextInput, URLInput, ClearableFileInput
+from django.forms.widgets import TextInput, URLInput, ClearableFileInput, FileInput
 from django.utils.translation import gettext_lazy as _
 from client.models import Client
 
@@ -20,7 +20,8 @@ class ClientForm(forms.ModelForm):
             'phone': TextInput(attrs={'class': 'required form-control', 'placeholder': 'Enter phone number'}),
             'address': TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter address'}),
             'company_name': TextInput(attrs={'class': 'required form-control', 'placeholder': 'Enter company name'}),
-            'clientid': TextInput(attrs={'class': 'required form-control', 'placeholder': 'Enter client id'})
+            'clientid': TextInput(attrs={'class': 'required form-control', 'placeholder': 'Enter client id'}),
+            'photo': FileInput()
         }
         error_messages = {
             'firstname' : {

@@ -63,7 +63,11 @@
 		<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3 d-flex">
 			<div class="profile-widget w-100">
 				<div class="profile-img">
-					<a href="#" class="avatar"><img src="{%static 'assets/img/profiles/avatar-19.jpg'%}" alt="User Image"></a>
+					{% if client.photo %}
+						<img src="{{ client.photo.url }}" alt="{{ client.firstname }}'s profile photo">
+					{% else %}
+						<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
+					{% endif %}
 				</div>
 				<div class="dropdown profile-action">
 					<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -207,6 +211,12 @@
 							<div class="input-block mb-3">
 								<label class="col-form-label">Email <span class="text-danger">*</span></label>
 								<input class="form-control floating" name="email" type="email">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="input-block mb-6">
+								<label class="col-form-label">Photo<span class="text-danger">*</span></label>
+								<input class="form-control floating" name="photo" type="file" accept="image/*">
 							</div>
 						</div>
 						<div class="col-md-6">  

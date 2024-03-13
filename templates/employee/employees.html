@@ -64,7 +64,13 @@
 		<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
 			<div class="profile-widget">
 				<div class="profile-img">
-					<a href="{% url 'employee:employee' pk=employee.pk %}" class="avatar"><img src="{%static 'assets/img/profiles/avatar-02.jpg'%}" alt="User Image"></a>
+					<a href="{% url 'employee:employee' pk=employee.pk %}" class="avatar">
+						{% if employee.photo %}
+							<img src="{{ employee.photo.url }}" alt="{{ employee.firstname }}'s profile photo">
+						{% else %}
+							<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
+						{% endif %}
+					</a>						
 				</div>
 				<div class="dropdown profile-action">
 					<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -282,6 +288,15 @@
 								{{ form.phone }}
 								{% if form.phone.errors %}
 								<span class="error">{{ form.phone.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="input-block mb-6">
+								<label class="col-form-label">Photo<span class="text-danger">*</span></label>
+								{{ form.photo }}
+								{% if form.photo.errors %}
+								<span class="error">{{ form.photo.errors.0 }}</span>
 								{% endif %}
 							</div>
 						</div>
