@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-			
 <!-- Page Content -->
 <div class="content container-fluid">
 
@@ -10,223 +9,226 @@
 	<div class="page-header">
 		<div class="row align-items-center">
 			<div class="col">
-				<h3 class="page-title">Employee</h3>
+				<h3 class="page-title">Jobs</h3>
 				<ul class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{% url 'main:hrms_dashboard' %}">Dashboard</a></li>
-					<li class="breadcrumb-item active">Employee</li>
+					<li class="breadcrumb-item active">Jobs</li>
 				</ul>
 			</div>
 			<div class="col-auto float-end ms-auto">
-				<a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_employee"><i class="fa-solid fa-plus"></i> Add Employee</a>
+				<a href="#" class="btn add-btn" onclick="loadCreateJobForm()" data-bs-toggle="modal" data-bs-target="#add_job"><i class="fa-solid fa-plus"></i> Add Job</a>
 				<div class="view-icons">
-					<a href="{% url 'employee:employees' %}" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
-					<a href="{% url 'employee:employees_list' %}" class="list-view btn btn-link active"><i class="fa-solid fa-bars"></i></a>
+					<a href="{% url 'job:jobs' %}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+					{% comment %} <a href="{% url 'job:jobs_list' %}" class="list-view btn btn-link"><i class="fa-solid fa-bars"></i></a> {% endcomment %}
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- /Page Header -->
 	
-	<!-- Search Filter -->
-	<form action="" method="GET">
-		<div class="row filter-row">
-			
-			<div class="col-sm-6 col-md-3">  
-				<div class="input-block mb-3 form-focus">
-					<input type="text" class="form-control floating" name="empid">
-					<label class="focus-label">Employee ID</label>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">  
-				<div class="input-block mb-3 form-focus">
-					<input type="text" class="form-control floating" name="emp_name">
-					<label class="focus-label">Employee Name</label>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3"> 
-				<div class="input-block mb-3 form-focus ">
-					<input type="text" class="form-control floating" name="emp_des">					
-					<label class="focus-label">Designation</label>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<div class="d-grid">
-					<button class="btn btn-primary w-100" type="submit">Search</button>
-				</div>  
-			</div>
-		
-		</div>
-	</form>
-	<!-- /Search Filter -->
-	
 	<div class="row">
 		<div class="col-md-12">
 			<div class="table-responsive">
-				<table class="table table-striped custom-table datatable">
+				<table class="table table-striped custom-table mb-0 datatable">
 					<thead>
 						<tr>
-							<th>Name</th>
-							<th>Employee ID</th>
-							<th>Email</th>
-							<th>Mobile</th>
-							<th class="text-nowrap">Join Date</th>
-							<th>Role</th>
-							<th class="text-end no-sort">Action</th>
+							<th>#</th>
+							<th>Job Title</th>
+							<th>Department</th>
+							<th>Start Date</th>
+							<th>Expire Date</th>
+							<th class="text-center">Job Type</th>
+							<th class="text-center">Status</th>
+							<th>Applicants</th>
+							<th class="text-end">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						{% for employee in employees %}
+						{% for job in jobs %}
 						<tr>
-							<td>
-								<h2 class="table-avatar">
-									<a href="{% url 'employee:employee' pk=employee.pk %}" class="avatar">
-										{% if employee.photo %}
-											<img src="{{ employee.photo.url }}" alt="{{ employee.firstname }}'s profile photo">
-										{% else %}
-											<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
-										{% endif %}
+							<td>{{forloop.counter}}</td>
+							<td><a href="job-details.html">{{ job.job_title}}</a></td>
+							<td>{{ job.department }}</td>
+							<td>{{ job.start_date }}</td>
+							<td>{{ job.expired_date }}</td>
+							<td class="text-center">
+								<div class="dropdown action-label">
+									<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="fa-regular fa-circle-dot text-danger"></i> {{ job.job_type }}
 									</a>
-									<a href="{% url 'employee:employee' pk=employee.pk %}">{{ employee.get_full_name }} <span>{{ employee.designation }}</span></a>
-								</h2>
+									{% comment %} <div class="dropdown-menu dropdown-menu-right">
+										<a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-info"></i> Full Time</a>
+										<a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-success"></i> Part Time</a>
+										<a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-danger"></i> Internship</a>
+										<a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-warning"></i> Temporary</a>
+										<a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-warning"></i> Other</a>
+									</div> {% endcomment %}
+								</div>
 							</td>
-							<td>{{ employee.employeeid }}</td>
-							<td>{{ employee.email }}</td>
-							<td>{{ employee.phone }}</td>
-							<td>{{ employee.joindate }}</td>
-							<td>{{ employee.designation }}</td>							
+							<td class="text-center">
+								<div class="dropdown action-label">
+									<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+										<i class="fa-regular fa-circle-dot text-danger"></i> {{ job.status }}
+									</a>
+									{% comment %} <div class="dropdown-menu dropdown-menu-right">
+										<a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-info"></i> Open</a>
+										<a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-success"></i> Closed</a>
+										<a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-danger"></i> Cancelled</a>
+									</div> {% endcomment %}
+								</div>
+							</td>
+							<td><a href="job-applicants.html" class="btn btn-sm btn-primary">- Candidates</a></td>
 							<td class="text-end">
 								<div class="dropdown dropdown-action">
 									<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_employee_{{ employee.id }}"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item remove" data-id="{{ employee.id }}" href="#" data-bs-toggle="modal" data-bs-target="#delete_employee_{{ employee.id }}"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
+										<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_job_{{ job.id }}"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+										<a class="dropdown-item remove" data-id="{{ job.id }}" href="#" data-bs-toggle="modal" data-bs-target="#delete_job_{{ job.id }}"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
 									</div>
 								</div>
 							</td>
 						</tr>
-						<!-- Edit Employee Modal -->
-						<div id="edit_employee_{{ employee.id }}" class="modal custom-modal fade" role="dialog">
+						<!-- Edit Job Modal -->
+						<div id="edit_job_{{ job.id }}" class="modal custom-modal fade" role="dialog">
 							<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+								<button type="button" class="btn-close" data-bs-dismiss="modal">&times;</button>
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title">Edit Employee</h5>
+										<h5 class="modal-title">Edit Job</h5>
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
 									<div class="modal-body">
-										<form id="update_form_{{ employee.id }}" method="POST" action="{% url 'employee:edit_employee' pk=employee.id %}" enctype="multipart/form-data">
+										<form id="update_form_{{ job.id }}" method="POST" action="{% url 'job:edit_job' pk=job.id %}" enctype="multipart/form-data">
 											{% csrf_token %}
 											<div class="row">
-												<div class="col-sm-6">
+												<div class="col-md-6">
 													<div class="input-block mb-3">
-														<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-														<input class="form-control" type="text" name="firstname" value="{{employee.firstname}}">
-													</div>
-												</div>
-												<div class="col-sm-6">
-													<div class="input-block mb-3">
-														<label class="col-form-label">Last Name</label>
-														<input class="form-control" type="text" name="lastname" value="{{employee.lastname}}">
-													</div>
-												</div>
-												<div class="col-sm-6">
-													<div class="input-block mb-3">
-														<label class="col-form-label">Username <span class="text-danger">*</span></label>
-														<input class="form-control" type="text" name="username" value="{{employee.username}}">
-													</div>
-												</div>
-												<div class="col-sm-6">
-													<div class="input-block mb-3">
-														<label class="col-form-label">Email <span class="text-danger">*</span></label>
-														<input class="form-control" type="email" name="email" value="{{employee.email}}">
-													</div>
-												</div>
-												<div class="col-sm-6">
-													<div class="input-block mb-3">
-														<label class="col-form-label">Password</label>
-														<input class="form-control" type="password" name="password" value="{{employee.password}}">
-													</div>
-												</div>
-												{% comment %} <div class="col-sm-6">
-													<div class="input-block mb-3">
-														<label class="col-form-label">Confirm Password</label>
-														<input class="form-control" type="password" name="name" value="{{employee.name}}">
-													</div>
-												</div> {% endcomment %}
-												<div class="col-sm-6">  
-													<div class="input-block mb-3">
-														<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-														<input type="text" readonly class="form-control floating" name="employeeid" value="{{employee.employeeid}}">
-													</div>
-												</div>
-												<div class="col-sm-6">  
-													<div class="input-block mb-3">
-														<label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
-														<div class="cal-icon"><input class="form-control datetimepicker" type="text" name="joindate" value="{{employee.joindate}}"></div>
-													</div>
-												</div>
-												
-												<div class="col-sm-6">
-													<div class="input-block mb-3">
-														<label class="col-form-label">Phone </label>
-														<input class="form-control" type="text" name="phone" value="{{employee.phone}}">
-													</div>
-												</div>
-												<div class="col-sm-6">
-													<div class="input-block mb-3">
-														<label class="col-form-label">Company</label>
-														<select class="form-control" name="client_company">
-															{% for client in clients %}
-																<option value="{{ client.id }}" {% if client.id == employee.client_company.id %} selected {% endif %}>{{ client.company_name }}</option>
-															{% endfor %}
-														</select>
+														<label class="col-form-label">Job Title</label>
+														<input class="form-control" type="text" name="job_title" value="{{ job.job_title}}">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="input-block mb-3">
-														<label class="col-form-label">Department <span class="text-danger">*</span></label>
+														<label class="col-form-label">Department</label>
 														<select class="form-control" name="department">
 															{% for department in departments %}
-																<option value="{{ department.id }}" {% if department.id == employee.department.id %} selected {% endif %}>{{ department.name }}</option>
-															{% endfor %}
-														</select>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="input-block mb-3">
-														<label class="col-form-label">Designation <span class="text-danger">*</span></label>
-														<select class="form-control" name="designation">
-															{% for designation in designations %}
-																<option value="{{ designation.id }}" {% if designation.id == employee.designation.id %} selected {% endif %}>{{ designation.name }}</option>
+																<option value="{{ department.id }}" {% if department.id == job.department.id %} selected {% endif %}>{{ department.name }}</option>
 															{% endfor %}
 														</select>
 													</div>
 												</div>
 											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Job Location</label>
+														<input class="form-control" type="text" name="job_location" value="{{ job.job_location}}">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">No of Vacancies</label>
+														<input class="form-control" type="text" name="no_of_vacancies" value="{{ job.no_of_vacancies}}">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Experience</label>
+														<input class="form-control" type="text" name="experience" value="{{ job.experience}}">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Age</label>
+														<input class="form-control" type="text" name="age" value="{{ job.age}}">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Salary From</label>
+														<input type="text" class="form-control" name="salary_from" value="{{ job.salary_from}}">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Salary To</label>
+														<input type="text" class="form-control" name="salary_to" value="{{ job.salary_to}}">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Job Type</label>
+														<select class="select form-control" name="job_type">
+															{% for choice in job_type_choices %}
+																<option {% if job.job_type == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+															{% endfor %}
+														</select>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Status</label>
+														<select class="select form-control" name="status">
+															{% for choice in status_choices %}
+																<option {% if job.status == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+															{% endfor %}
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Start Date</label>
+														<input type="text" class="form-control datetimepicker" name="start_date" value="{{ job.start_date}}">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Expired Date</label>
+														<input type="text" class="form-control datetimepicker" name="expired_date" value="{{ job.expired_date}}">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Description</label>
+														<textarea class="form-control" name="description" value="{{ job.description}}"></textarea>
+													</div>
+												</div>
+											</div>
 											<div class="submit-section">
-												<button class="btn btn-primary submit-btn" onclick="submitUpdateForm(event, '{{employee.id}}')">Save</button>
+												<button class="btn btn-primary submit-btn" onclick="submitUpdateForm(event, '{{job.id}}')">Save</button>
 											</div>
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- /Edit Employee Modal -->
+						<!-- /Edit Job Modal -->
 
-						<!-- Delete Employee Modal -->
-						<div class="modal custom-modal fade" id="delete_employee_{{ employee.id }}" role="dialog">
+						<!-- Delete Job Modal -->
+						<div class="modal custom-modal fade" id="delete_job_{{ job.id }}" role="dialog">
 							<div class="modal-dialog modal-dialog-centered">
 								<div class="modal-content">
 									<div class="modal-body">
 										<div class="form-header">
-											<h3>Delete Employee</h3>
+											<h3>Delete Job</h3>
 											<p>Are you sure want to delete?</p>
 										</div>
 										<div class="modal-btn delete-action">
 											<div class="row">
 												<div class="col-6">
-													<a href="{% url 'employee:delete_employee' pk=employee.id %}" class="btn btn-primary continue-btn">Delete</a>
+													<a href="{% url 'job:delete_job' pk=job.pk %}" class="btn btn-primary continue-btn">Delete</a>
 												</div>
 												<div class="col-6">
 													<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -237,7 +239,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- /Delete Employee Modal -->
+						<!-- /Delete Job Modal -->
 						{% endfor %}
 					</tbody>
 				</table>
@@ -247,138 +249,150 @@
 </div>
 <!-- /Page Content -->
 
-<!-- Add Employee Modal -->
-<div id="add_employee" class="modal custom-modal fade" role="dialog">
-	<div class="modal-dialog modal-dialog-centered modal-lg">
+<!-- Add Job Modal -->
+<div id="add_job" class="modal custom-modal fade" role="dialog">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Add Employee</h5>
+				<h5 class="modal-title">Add Job</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form id="create_form" method="POST" action="{% url 'employee:create_employee' %}" enctype="multipart/form-data">
+				<form id="create_form" method="POST" action="{% url 'job:create_job' %}" enctype="multipart/form-data">
 					{% csrf_token %}
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-md-6">
 							<div class="input-block mb-3">
-								<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-								{{ form.firstname }}
-								{% if form.firstname.errors %}
-								<span class="error">{{ form.firstname.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-block mb-3">
-								<label class="col-form-label">Last Name<span class="text-danger">*</span></label>
-								{{ form.lastname }}
-								{% if form.lastname.errors %}
-								<span class="error">{{ form.lastname.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-block mb-3">
-								<label class="col-form-label">Email <span class="text-danger">*</span></label>
-								{{ form.email }}
-								{% if form.email.errors %}
-								<span class="error">{{ form.email.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-block mb-3">
-								<label class="col-form-label">Username <span class="text-danger">*</span></label>
-								{{ form.username }}
-								{% if form.username.errors %}
-								<span class="error">{{ form.username.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-block mb-3">
-								<label class="col-form-label">Password<span class="text-danger">*</span></label>
-								{{ form.password }}
-								{% if form.password.errors %}
-								<span class="error">{{ form.password.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-block mb-3">
-								<label class="col-form-label">Phone<span class="text-danger">*</span></label>
-								{{ form.phone }}
-								{% if form.phone.errors %}
-								<span class="error">{{ form.phone.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-block mb-6">
-								<label class="col-form-label">Photo<span class="text-danger">*</span></label>
-								{{ form.photo }}
-								{% if form.photo.errors %}
-								<span class="error">{{ form.photo.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">  
-							<div class="input-block mb-3">
-								<label class="col-form-label">Employee ID </label>
-								{{ form.employeeid }}
-								{% if form.employeeid.errors %}
-								<span class="error">{{ form.employeeid.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">  
-							<div class="input-block mb-3">
-								<label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
-								{{ form.joindate }}
-								{% if form.joindate.errors %}
-								<span class="error">{{ form.joindate.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-block mb-3">
-								<label class="col-form-label">Address <span class="text-danger">*</span></label>
-								{{ form.address }}
-								{% if form.address.errors %}
-								<span class="error">{{ form.address.errors.0 }}</span>
-								{% endif %}
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="input-block mb-3">
-								<label class="col-form-label">Company<span class="text-danger">*</span></label>
-								{{ form.client_company }}
-								{% if form.client_company.errors %}
-								<span class="error">{{ form.client_company.errors.0 }}</span>
+								<label class="col-form-label">Job Title</label>
+								{{ form.job_title }}
+								{% if form.job_title.errors %}
+								<span class="error">{{ form.job_title.errors.0 }}</span>
 								{% endif %}
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="input-block mb-3">
-								<label class="col-form-label">Department <span class="text-danger">*</span></label>
+								<label class="col-form-label">Department</label>
 								{{ form.department }}
 								{% if form.department.errors %}
 								<span class="error">{{ form.department.errors.0 }}</span>
 								{% endif %}
 							</div>
 						</div>
+					</div>
+					<div class="row">
 						<div class="col-md-6">
 							<div class="input-block mb-3">
-								<label class="col-form-label">Designation <span class="text-danger">*</span></label>
-								{{ form.designation }}
-								{% if form.designation.errors %}
-								<span class="error">{{ form.designation.errors.0 }}</span>
+								<label class="col-form-label">Job Location</label>
+								{{ form.job_location }}
+								{% if form.job_location.errors %}
+								<span class="error">{{ form.job_location.errors.0 }}</span>
 								{% endif %}
 							</div>
 						</div>
-					</div>					
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">No of Vacancies</label>
+								{{ form.no_of_vacancies }}
+								{% if form.no_of_vacancies.errors %}
+								<span class="error">{{ form.no_of_vacancies.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Experience</label>
+								{{ form.experience }}
+								{% if form.experience.errors %}
+								<span class="error">{{ form.experience.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Age</label>
+								{{ form.age }}
+								{% if form.age.errors %}
+								<span class="error">{{ form.age.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Salary From</label>
+								{{ form.salary_from }}
+								{% if form.salary_from.errors %}
+								<span class="error">{{ form.salary_from.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Salary To</label>
+								{{ form.salary_to }}
+								{% if form.salary_to.errors %}
+								<span class="error">{{ form.salary_to.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Job Type</label>
+								{{ form.job_type }}
+								{% if form.job_type.errors %}
+								<span class="error">{{ form.job_type.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Status</label>
+								{{ form.status }}
+								{% if form.status.errors %}
+								<span class="error">{{ form.status.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Start Date</label>
+								{{ form.start_date }}
+								{% if form.start_date.errors %}
+								<span class="error">{{ form.start_date.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Expired Date</label>
+								{{ form.expired_date }}
+								{% if form.expired_date.errors %}
+								<span class="error">{{ form.expired_date.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="input-block mb-3">
+								<label class="col-form-label">Description</label>
+								{{ form.description }}
+								{% if form.description.errors %}
+								<span class="error">{{ form.description.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+					</div>
 					<div class="submit-section">
 						<button class="btn btn-primary submit-btn" onclick="submitCreateForm(event)">Submit</button>
 					</div>
@@ -387,7 +401,9 @@
 		</div>
 	</div>
 </div>
-<!-- /Add Employee Modal -->
+<!-- /Add Job Modal -->
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Add JavaScript code to handle form submission and show SweetAlert messages -->
@@ -405,9 +421,8 @@
         });
     });
 		
-	function loadCreateEmployeeForm() {
-        console.log("employee form load called");
-		fetch("{% url 'employee:create_employee' %}")
+	function loadCreateJobForm() {
+		fetch("{% url 'job:create_job' %}")
         .then(response => response.text())
         .then(data => {            
             // Create a temporary element to hold the form HTML
@@ -418,12 +433,12 @@
             var formElement = tempElement.querySelector('#create_form');
 
             // Append the form to the modal body
-            var modalBody = document.querySelector('#add_employee .modal-body');
+            var modalBody = document.querySelector('#add_job .modal-body');
             modalBody.innerHTML = '';
             modalBody.appendChild(formElement);
 
             // Show the modal
-            $('#add_employee').modal('show');
+            $('#add_job').modal('show');
             console.log("modal showed");
         })
         .catch(error => {
@@ -521,10 +536,10 @@
 	}
 	}
 
-	function submitUpdateForm(event,employeeId) {
-	console.log("deapartment id",employeeId)
+	function submitUpdateForm(event,jobId) {
+	console.log("deapartment id",jobId)
 	event.preventDefault();  // Prevent the default form submission behavior
-	var form = document.getElementById('update_form_' + employeeId);
+	var form = document.getElementById('update_form_' + jobId);
 	var formData = new FormData(form);
 
 	fetch(form.action, {
@@ -616,7 +631,7 @@
 	function handleDelete(pk) {
 		Swal.fire({
 			title: "Are you sure?",
-			text: "Once deleted, you will not be able to recover this Employee!",
+			text: "Once deleted, you will not be able to recover this job!",
 			icon: "warning",
 			showCancelButton: true,
 			confirmButtonColor: "#3085d6",
@@ -626,7 +641,7 @@
 		.then((result) => {
 			if (result.isConfirmed) {
 				// If user confirms, send Fetch API request to delete
-				fetch('/app/employee/delete-employee/' + pk + '/', {
+				fetch('/app/job/delete-job/' + pk + '/', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -647,7 +662,7 @@
 					Swal.fire("Error", "An error occurred while processing the request.", "error");
 				});
 			} else {
-				Swal.fire("Employee is safe!");
+				Swal.fire("job is safe!");
 			}
 		});
 	}

@@ -12,8 +12,8 @@ from django.http import HttpResponse, JsonResponse
 from django.core.paginator import Paginator
 from client.models import Client
 from employee import models
-from employee.forms import AttendanceDateForm, AttendanceRegisterForm, DepartmentForm, DesignationForm, EmployeeForm, LeaveForm, LeaveTypeForm
-from employee.models import AttendanceRegister, Department, Designation, Employee, Leave, LeaveType
+from employee.forms import AttendanceDateForm, AttendanceRegisterForm, DepartmentForm, DesignationForm, EmployeeForm, HolidayForm, LeaveForm, LeaveTypeForm
+from employee.models import AttendanceRegister, Department, Designation, Employee, Holiday, Leave, LeaveType
 from main.decorators import company_required
 from main.functions import generate_form_errors, get_a_id, get_auto_id, get_current_company
 
@@ -109,7 +109,6 @@ def edit_department(request, pk):
             data.updator = request.user
             data.date_updated = datetime.datetime.now()
             data.save()
-            print("updated department",data.name)
 
             response_data = {
                 "status": "true",
@@ -172,7 +171,6 @@ def delete_department(request,pk):
         "redirect" : "true",       
         "redirect_url" : reverse('employee:departments')
     }
-    print("status",response_data["status"])
     return HttpResponse(json.dumps(response_data), content_type='application/json')
    
 
@@ -422,7 +420,7 @@ def delete_designation(request,pk):
 def create_employee(request):
     current_company = get_current_company(request)    
     if request.method == 'POST':
-        form = EmployeeForm(request.POST)
+        form = EmployeeForm(request.POST, request.FILES)
         if form.is_valid():
             firstname = form.cleaned_data['firstname']
             lastname = form.cleaned_data['lastname']
@@ -557,6 +555,41 @@ def employees(request):
         "title": 'Employees' 
     }
     return render(request, "employee/employees.html", context)
+
+@login_required
+@company_required
+def employees_list(request):
+    current_company = get_current_company(request)
+    employees = Employee.objects.filter(is_deleted=False,is_blocked=False,company=current_company)
+    
+    empid_query = request.GET.get("empid")
+    if empid_query:
+        employees = employees.filter(Q(employeeid__icontains=empid_query))
+    
+    emp_name_query = request.GET.get("emp_name")
+    if emp_name_query:
+        employees = employees.filter(Q(firstname__icontains=emp_name_query) | Q(lastname__icontains=emp_name_query))
+    
+    emp_des_query = request.GET.get("emp_des")
+    if emp_des_query:
+        employees = employees.filter(Q(designation__name__icontains=emp_des_query))
+    
+    paginator = Paginator(employees,1000000000000)
+    page_number = request.GET.get('page')
+    employees = paginator.get_page(page_number)
+    
+    departments = Department.objects.filter(company=current_company,is_deleted=False)
+    designations = Designation.objects.filter(company=current_company,is_deleted=False)
+    clients = Client.objects.filter(company=current_company,is_deleted=False)
+    # print("clients",clients)
+    context = {
+        'departments': departments,
+        'designations' : designations,
+        "clients" : clients,
+        'employees': employees,
+        "title": 'Employees' 
+    }
+    return render(request, "employee/employees-list.html", context)
 
 
 @login_required
@@ -1592,3 +1625,157 @@ def delete_attendance_register(request,pk):
     }
     return HttpResponse(json.dumps(response_data), content_type='application/javascript')
 
+
+@login_required
+@company_required
+def create_holiday(request):
+    current_company = get_current_company(request)
+    if request.method == 'POST':
+        form = HolidayForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            date = form.cleaned_data['date']
+            auto_id = get_auto_id(Holiday)
+            a_id = get_a_id(Holiday,request)
+            company =current_company
+            creator = request.user
+            updator = request.user
+
+            if not Holiday.objects.filter(name = name,company=company,date=date,is_deleted=False).exists():
+                Holiday(
+                    name = name,
+                    date = date,
+                    auto_id = auto_id,
+                    a_id = a_id,
+                    company =company,
+                    creator = creator,
+                    updator = updator
+
+                ).save()
+                response_data = {
+                    "status": "true",
+                    "title": "Successfully Created",
+                    "message": "Holiday created successfully.",
+                    "redirect": "true",
+                    "redirect_url": reverse('employee:holidays')
+                }
+            else:               
+                response_data = {
+                    "status": "false",
+                    "stable": "true",
+                    "title": "Already exists",
+                    "message": "Holiday already exists",                        
+                }
+        else:
+            message = generate_form_errors(form, formset=False)
+            response_data = {
+                "stable": "true",
+                "status": "form_error",
+                "title": "Form validation error",
+                "message": str(message),               
+            }
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+    else:
+        form = HolidayForm()
+        context = {
+            "title": "Create Holiday",
+            "form": form,
+            "redirect": "true",
+            "create":True
+        }
+        
+        return render(request, 'leave/holidays.html', context)
+
+@login_required
+@company_required
+def holidays(request):
+    current_company = get_current_company(request)
+    holidays = Holiday.objects.filter(company=current_company,is_deleted=False).order_by('date')
+    paginator = Paginator(holidays,1000000000000)
+    page_number = request.GET.get('page')
+    holidays = paginator.get_page(page_number)
+    context = {
+        'holidays': holidays,
+        "title": 'Holidays' 
+    }
+    return render(request, "leave/holidays.html", context)
+
+
+@login_required
+@company_required
+def edit_holiday(request, pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(Holiday.objects.filter(pk=pk, company=current_company, is_deleted=False))    
+    if request.method == "POST":
+        form = HolidayForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.updator = request.user
+            data.date_updated = datetime.datetime.now()
+            data.save()
+
+            response_data = {
+                "status": "true",
+                "redirect" : "true",
+                "title": "Successfully Updated",
+                "message": "Holiday updated successfully.",                
+                "redirect_url": reverse('employee:holidays')
+            }
+
+        else:
+            message = generate_form_errors(form, formset=False)
+
+            response_data = {
+                "stable": "true",
+                "status": "false",
+                "message": str(message),
+                "title": "Form validation error"  
+            }
+
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+    else:
+        form = HolidayForm(instance=instance)
+       
+        context = {
+            "form": form,
+            "instance": instance,
+            "title": "Edit Holiday :" + instance.name,
+            
+            "redirect": "true",
+            "url": reverse('employee:edit_holiday', kwargs={'pk': instance.pk}),
+
+        }
+        return render(request, 'leave/holidays.html', context)
+
+
+@login_required
+@company_required
+def holiday(request,pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(Holiday.objects.filter(pk=pk,company=current_company,is_deleted=False))
+
+    context = {
+        'instance': instance,
+        'title': 'Holiday'
+    }
+    return render(request, "leave/holidays.html", context)
+
+
+@login_required
+@company_required
+def delete_holiday(request,pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(Holiday.objects.filter(pk=pk,company=current_company,is_deleted=False))
+    
+    Holiday.objects.filter(pk=pk).update(is_deleted=True,name=instance.name + "_deleted_" + str(instance.auto_id))
+
+    response_data = {
+        "status" : "true",        
+        "title" : "Successfully Deleted",
+        "message" : "Holiday Successfully Deleted.", 
+        "redirect" : "true",       
+        "redirect_url" : reverse('employee:holidays')
+    }
+    return HttpResponse(json.dumps(response_data), content_type='application/json')
+   

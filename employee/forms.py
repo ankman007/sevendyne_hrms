@@ -3,7 +3,7 @@ import datetime
 from django import forms
 from django.forms.widgets import TextInput, Select,URLInput, ClearableFileInput
 from django.utils.translation import gettext_lazy as _
-from employee.models import AttendanceRegister, Department, Designation, Employee, Leave, LeaveType
+from employee.models import AttendanceRegister, Department, Designation, Employee, Holiday, Leave, LeaveType
 
 
 class DateInput(forms.DateInput):
@@ -254,5 +254,23 @@ class AttendanceDateForm(forms.ModelForm):
         error_messages = {
             'date' : {
                 'required' : ("date field is required."),
+            }
+        }
+
+
+class HolidayForm(forms.ModelForm):
+    class Meta:
+        model = Holiday
+        exclude = ['creator', 'updator', 'auto_id','a_id','company','is_deleted'] 
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'required form-control ', 'placeholder': 'Name'}),
+            'date' : DateInput(attrs={'class' : 'datetimepicker form-control'})         
+        }
+        error_messages = {
+            'name': {
+                'required': _("Name field is required."),
+            },
+            'date': {
+                'required': _("Date field is required."),
             }
         }

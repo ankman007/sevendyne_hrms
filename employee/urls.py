@@ -17,6 +17,7 @@ urlpatterns = [
     
     path('employee/create/', views.create_employee, name='create_employee'),
     path("employees/", views.employees, name="employees"),
+    path("employees-list/", views.employees_list, name="employees_list"),
     re_path(r'^employee/edit/(?P<pk>.*)/$', views.edit_employee, name='edit_employee'),
     re_path(r'^delete-employee/(?P<pk>.*)/$', views.delete_employee, name='delete_employee'),    
     re_path(r'^employee/(?P<pk>.*)/$', views.employee, name='employee'),
@@ -44,8 +45,13 @@ urlpatterns = [
     path('attendance-register/create/', views.create_attendance_register, name='create_attendance_register'), 
     path('attendance-register/', views.attendance_register, name='attendance_register'), 
     re_path(r'^attendance-register/edit/(?P<pk>.*)/$', views.edit_attendance_register, name='edit_attendance_register'),    
-    re_path(r'^delete-attendance-register/(?P<pk>.*)/$', views.delete_attendance_register, name='delete_attendance_register')
+    re_path(r'^delete-attendance-register/(?P<pk>.*)/$', views.delete_attendance_register, name='delete_attendance_register'),
     
-   
+    path('holiday/create/', views.create_holiday, name='create_holiday'),
+    path("holidays/", views.holidays, name='holidays'),
+    re_path(r'^holiday/edit/(?P<pk>.*)/$', views.edit_holiday, name='edit_holiday'),
+    re_path(r'^delete-holiday/(?P<pk>.*)/$', views.delete_holiday, name='delete_holiday'),    
+    re_path(r'^holiday/(?P<pk>.*)/$', views.holiday, name='holiday'),
+    
 ]
 

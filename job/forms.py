@@ -1,0 +1,42 @@
+from django import forms
+from django.forms.widgets import TextInput, Select,URLInput, ClearableFileInput
+from job.models import Job
+from datetime import date
+from django.utils.translation import gettext_lazy as _
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+    value = date.today() 
+
+
+
+class JobForm(forms.ModelForm):
+    class Meta:
+        model = Job
+        exclude = ['creator', 'updator', 'auto_id','a_id','company','is_deleted'] 
+        widgets = {
+            'job_title': forms.TextInput(attrs={'class': 'required form-control ', 'placeholder': 'Job Title'}),
+            'department': forms.Select(attrs={'class': 'required form-control ', 'placeholder': 'Department'}),
+            'job_location': forms.TextInput(attrs={'class': 'required form-control ', 'placeholder': 'Job Location'}),
+            'no_of_vacancies': forms.TextInput(attrs={'class': 'required form-control ', 'placeholder': 'No of Vacancies'}),
+            'experience': forms.TextInput(attrs={'class': 'required form-control ', 'placeholder': 'Experience'}),  
+            'age': forms.TextInput(attrs={'class': 'required form-control', 'placeholder': 'Age'}),
+            'salary_from': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Salary From'}),
+            'salary_to': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Salary To'}),
+            'job_type': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Job Type'}),
+            'status': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Status'}),
+            'start_date': DateInput(attrs={'class': 'form-control datetimepicker', 'placeholder': 'Start Date'}),
+            'expired_date': DateInput(attrs={'class': 'form-control datetimepicker', 'placeholder': 'Expired Date'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'})
+        }
+        error_messages = {
+            'job_title': {
+                'required': _("Job Title field is required."),
+            },
+            'job_type': {
+                'required': _("Job Type field is required."),
+            },
+            'status': {
+                'required': _("Status field is required."),
+            }
+        }

@@ -525,7 +525,7 @@
 	});
 	}
 
-	function CreateDynamicFieldsPayslip() {
+	{% comment %} function CreateDynamicFieldsPayslip() {
 		// Make an AJAX request to the URL
 		$.ajax({
 			url: "{% url 'create_dynamic_payslip_fields' %}", // Replace with your actual URL or use a variable to store the URL
@@ -541,7 +541,7 @@
 				console.error("Error creating dynamic fields for payslip:", error);
 			}
 		});
-	}
+	} {% endcomment %}
 	
 	function showSweetAlert(message, status, redirectUrl) {
 	console.log('showSweetAlert called');

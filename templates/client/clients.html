@@ -13,15 +13,16 @@
 			<div class="col">
 				<h3 class="page-title">Clients</h3>
 				<ul class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin-dashboard.html">Dashboard</a></li>
+					<li class="breadcrumb-item"><a href="{% url 'main:hrms_dashboard' %}">Dashboard</a></li>
 					<li class="breadcrumb-item active">Clients</li>
 				</ul>
 			</div>
 			<div class="col-auto float-end ms-auto">
 				<a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_client"><i class="fa-solid fa-plus"></i> Add Client</a>
 				<div class="view-icons">
-					<a href="#" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-					<a href="#" class="list-view btn btn-link"><i class="fa-solid fa-bars"></i></a>
+				<div class="view-icons">
+					<a href="{% url 'client:clients' %}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+					<a href="{% url 'client:clients_list' %}" class="list-view btn btn-link"><i class="fa-solid fa-bars"></i></a>
 				</div>
 			</div>
 		</div>
@@ -63,6 +64,7 @@
 		<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3 d-flex">
 			<div class="profile-widget w-100">
 				<div class="profile-img">
+					<a href="{% url 'client:client' pk=client.pk %}" class="avatar">
 					{% if client.photo %}
 						<img src="{{ client.photo.url }}" alt="{{ client.firstname }}'s profile photo">
 					{% else %}
