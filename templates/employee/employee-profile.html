@@ -11,7 +11,7 @@
 			<div class="col-sm-12">
 				<h3 class="page-title">Profile</h3>
 				<ul class="breadcrumb">
-					<li class="breadcrumb-item"><a href="admin-dashboard.html">Dashboard</a></li>
+					<li class="breadcrumb-item"><a href="{% url 'main:hrms_dashboard' %}">Dashboard</a></li>
 					<li class="breadcrumb-item active">Profile</li>
 				</ul>
 			</div>
@@ -26,7 +26,13 @@
 					<div class="profile-view">
 						<div class="profile-img-wrap">
 							<div class="profile-img">
-								<a href="#"><img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="User Image"></a>
+								<a href="{% url 'employee:employee' pk=employee.pk %}" class="avatar">
+									{% if employee.photo %}
+										<img src="{{ employee.photo.url }}" alt="{{ employee.firstname }}'s profile photo">
+									{% else %}
+										<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
+									{% endif %}
+								</a>						
 							</div>
 						</div>
 						<div class="profile-basic">

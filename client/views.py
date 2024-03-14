@@ -19,7 +19,7 @@ from django.urls import reverse
 def create_client(request):
     current_company = get_current_company(request)    
     if request.method == 'POST':
-        form = ClientForm(request.POST)
+        form = ClientForm(request.POST, request.FILES)
         if form.is_valid():
             firstname = form.cleaned_data['firstname']
             lastname = form.cleaned_data['lastname']
@@ -119,6 +119,34 @@ def clients(request):
     }
     return render(request, "client/clients.html", context)
 
+@login_required
+@company_required
+def clients_list(request):
+    current_company = get_current_company(request)
+    clients = Client.objects.filter(company=current_company,is_deleted=False)
+    
+    clid_query = request.GET.get("clid")
+    if clid_query:
+        clients = clients.filter(Q(clientid__icontains=clid_query))
+    
+    cl_name_query = request.GET.get("cl_name")
+    if cl_name_query:
+        clients = clients.filter(Q(firstname__icontains=cl_name_query) | Q(lastname__icontains=cl_name_query))
+    
+    cl_comp_query = request.GET.get("cl_comp")
+    if cl_comp_query:
+        clients = clients.filter(Q(company_name__icontains=cl_comp_query))
+    
+
+    paginator = Paginator(clients,1000000000000)
+    page_number = request.GET.get('page')
+    clients = paginator.get_page(page_number)
+    context = {
+        'clients': clients,
+        "title": 'Clients' 
+    }
+    return render(request, "client/clients-list.html", context)
+
 
 @login_required
 @company_required
@@ -174,14 +202,14 @@ def edit_client(request, pk):
 @company_required
 def client(request, pk):
     current_company = get_current_company(request)
-    instance = get_object_or_404(Client.objects.filter(pk=pk,company=current_company,is_deleted=False))
+    client = get_object_or_404(Client.objects.filter(pk=pk,company=current_company,is_deleted=False))
 
     context = {
-        'instance': instance,
+        'client': client,
         'title': 'Client',
 
     }
-    return render(request, "client/clientl", context)
+    return render(request, "client/client-profile.html", context)
 
 @login_required
 @company_required

@@ -256,3 +256,17 @@ class AttendanceRegister(BaseModel):
 
     def __str__(self):
         return str(self.employee)
+
+class Holiday(BaseModel):
+    company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False})  
+    name = models.CharField(_("Name"),max_length=125)
+    date = models.DateField(_('Date'),help_text='due_date',blank=False,null=True)    
+    is_deleted = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'holiday'
+        verbose_name = _('holiday')
+        verbose_name_plural = _('holidays')
+    
+    def __str__(self):
+        return self.name

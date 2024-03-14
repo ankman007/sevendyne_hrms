@@ -383,8 +383,8 @@
 									<li class="submenu">
 										<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
 										<ul>
-											<li><a href="employees.html">All Employees</a></li>
-											{% comment %} <li><a href="holidays.html">Holidays</a></li> {% endcomment %}
+											<li><a href="{% url 'employee:employees' %}">All Employees</a></li>
+											<li><a href="{% url 'employee:holidays' %}">Holidays</a></li>
 											{% comment %} <li><a href="leaves.html">Leaves (Admin) <span class="badge rounded-pill bg-primary float-end">1</span></a></li>
 											<li><a href="leaves-employee.html">Leaves (Employee)</a></li> {% endcomment %}
 											<li><a href="{% url 'employee:leave_types' %}">Leave Settings</a></li>
@@ -746,7 +746,7 @@
 								</a>
 								<ul>
 									<li><a href="{% url 'employee:employees' %}">All Employees</a></li>
-									{% comment %} <li><a href="#">Holidays</a></li> {% endcomment %}
+									<li><a href="{% url 'employee:holidays' %}">Holidays</a></li>
 									<li class="submenu">
 										<a href="{% url 'employee:leave_types' %}">Leave Management<span class="menu-arrow"></span></a>
 										<ul>
@@ -868,22 +868,22 @@
 							<li> 
 								<a href="assets.html"><i class="la la-object-ungroup"></i> <span>Assets</span></a>
 							</li> {% endcomment %} 
-							{% comment %} <li class="submenu">
+							<li class="submenu">
 								<a href="#"><i class="la la-briefcase"></i> <span> Jobs </span> <span class="menu-arrow"></span></a>
 								<ul>
-									<li><a href="user-dashboard.html"> User Dasboard </a></li>
-									<li><a href="#"> Post Jobs </a></li>
-									<li><a href="#"> Manage Jobs </a></li>
-									<li><a href="#"> Manage Resumes </a></li>
+									{% comment %} <li><a href="user-dashboard.html"> User Dasboard </a></li> {% endcomment %}
+									<li><a href="{% url 'job:create_job' %}"> Post Jobs </a></li>
+									<li><a href="{% url 'job:jobs' %}"> Manage Jobs </a></li>
+									{% comment %} <li><a href="#"> Manage Resumes </a></li>
 									<li><a href="#"> Shortlist Candidates </a></li>
 									<li><a href="interview-questions.html"> Interview Questions </a></li>
 									<li><a href="#"> Offer Approvals </a></li>
 									<li><a href="experiance-level.html"> Experience Level </a></li>
 									<li><a href="candidates.html"> Candidates List </a></li>
 									<li><a href="#"> Schedule Interview </a></li>
-									<li><a href="apptitude-result.html"> Aptitude Results </a></li>
+									<li><a href="apptitude-result.html"> Aptitude Results </a></li> {% endcomment %}
 								</ul>
-							</li> {% endcomment %}
+							</li>
 							{% comment %} <li class="submenu">
 								<a href="#"><i class="la la-briefcase"></i> <span>Hire Candidates </span> <span class="menu-arrow"></span></a>
 								<ul>
