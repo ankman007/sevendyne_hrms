@@ -394,8 +394,59 @@
 			
     }	
 
+	
+	// Calculate total working days in the month
+	function calculateTotalWorkingDays() {
+		// Retrieve the selected month and year from the form fields
+		var selectedMonth = $('input[name="month"]').val();
+		var selectedYear = $('input[name="year"]').val();
+
+		// Get the total number of days in the selected month and year
+		var totalDaysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+
+		// Initialize variables to count weekend days and holidays
+		var weekendCount = 0;
+		var holidayCount = 0;
+
+		// Loop through each day in the month to determine if it's a weekend or holiday
+		for (var day = 1; day <= totalDaysInMonth; day++) {
+			var currentDate = new Date(selectedYear, selectedMonth - 1, day); // Note: Month in JavaScript is 0-based
+
+			// Check if the current day is a weekend (Saturday or Sunday)
+			if (currentDate.getDay() === 0 || currentDate.getDay() === 6) {
+				weekendCount++;
+			}
+
+			// You can add logic here to check if the current day is a holiday and increment holidayCount accordingly
+			// For simplicity, I'm assuming holidays are not considered in this example
+		}
+
+		// Calculate the total working days by subtracting weekend days and holidays from the total days
+		var totalWorkingDays = totalDaysInMonth - weekendCount - holidayCount;
+
+		return totalWorkingDays;
+	}
+
 	function calculateNetSalary() {//var netSalary = basicSalary;
-		
+		// Calculate total working days
+		var totalWorkingDays = calculateTotalWorkingDays();
+
+		// Retrieve basic salary
+		var basicSalary = parseFloat($('input[name="Basic Salary"]').val());
+
+		 // Retrieve non-paid leave days
+		var nonPaidLeaveDays = $('input[name="Leave"]').val();
+		// Check if the value is empty or not
+		if (nonPaidLeaveDays === '') {
+			nonPaidLeaveDays = 0; // Set nonPaidLeaveDays to zero if empty
+		} else {
+			nonPaidLeaveDays = parseInt(nonPaidLeaveDays); // Parse the value to integer
+		}
+
+		// Calculate deduction amount for leave based on basic salary and non-paid leave days
+		var leaveDeduction = (basicSalary / totalWorkingDays) * nonPaidLeaveDays;
+	 
+
         // Initialize variables to store the total additions and deductions
         var totalAdditions = 0;
         var totalDeductions = 0;
@@ -413,20 +464,32 @@
 
         // Iterate through all input fields under the class "deduction"
         $('.deduction input[type="text"]').each(function(index, element) {
-            // Get the value of the input field and convert it to a number
-            var value = parseFloat($(element).val());
+			// Check if the input field is not named "Leave"
+			if ($(element).attr('name') !== 'Leave') {
+				// Get the value of the input field and convert it to a number
+				var value = parseFloat($(element).val());
 
-            // Add the value to the total deductions if it's a valid number
-            if (!isNaN(value)) {
-                totalDeductions += value;
-            }
+				// Add the value to the total deductions if it's a valid number
+				if (!isNaN(value)) {
+					totalDeductions += value;
+				}
+			}
         });
+		// Add leave deduction amount to total deductions
+		totalDeductions += leaveDeduction;
+
 
         // Calculate net salary by subtracting total deductions from total additions
         var netSalary = totalAdditions - totalDeductions;
         // Set the calculated net salary value to the corresponding form field
         $('input[name="net_salary"]').val(netSalary.toFixed(2));	
 	}
+
+	// Attach event listener for non-paid leave days input field
+	$('input[name="Leave"]').on('input', function() {
+		// Trigger net salary calculation whenever non-paid leave days change
+		calculateNetSalary();
+	});
 	
 	function submitCreateForm(event) {
 		event.preventDefault();  // Prevent the default form submission behavior
@@ -595,8 +658,7 @@
 			allowOutsideClick: false, // Prevent closing on outside click
 			});
 		}
-		}
-		
+		}		
 	
 		// Attach click event to delete button
 		document.querySelectorAll('.remove').forEach(function(el) {

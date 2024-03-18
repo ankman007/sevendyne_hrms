@@ -5,6 +5,7 @@ urlpatterns = [
 
     # path('ajax_load_da', views.ajax_load_da, name='ajax_load_da'),
     path('ajax_load_salary_components', views.ajax_load_salary_components, name='ajax_load_salary_components'),
+    path('fetch_total_working_days/', views.fetch_total_working_days, name='fetch_total_working_days'),
         
     path('salary-setting/create/', views.create_salary_setting, name='create_salary_setting'),
     path("salary-settings/", views.salary_settings, name="salary_settings"),

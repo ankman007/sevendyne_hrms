@@ -1,4 +1,5 @@
-import datetime
+from calendar import monthrange
+from datetime import datetime
 from django.db import models
 from main.models import BaseModel
 from django.utils.translation import gettext_lazy as _
@@ -256,6 +257,7 @@ class AttendanceRegister(BaseModel):
 
     def __str__(self):
         return str(self.employee)
+    
 
 class Holiday(BaseModel):
     company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False})  

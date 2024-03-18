@@ -13,7 +13,7 @@ from django.core.validators import MinValueValidator
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from num2words import num2words
-from employee.models import Employee
+from employee.models import AttendanceRegister, Employee, Holiday
 
 from django.db import models
 from main.decorators import company_required
@@ -49,6 +49,13 @@ def ajax_load_salary_components(request):
         'data':data
     }
     return render(request,'payroll/ajax_load_salary_components.html',context)
+
+def fetch_total_working_days(request):
+    year = request.GET.get('year')
+    month = request.GET.get('month')
+    total_working_days = Holiday.total_working_days_in_month(int(year), int(month))
+    print("total_working_days",total_working_days)
+    return JsonResponse({'total_working_days': total_working_days})
     
 # Create your views here.
 @login_required
@@ -404,7 +411,7 @@ def create_salary(request):
 
             month = selected_date.month
             year = selected_date.year        
-
+            total_working_days = AttendanceRegister.total_working_days_in_month(year, month)
             if not Salary.objects.filter(date__month=month,date__year=year,employee=employee, company=current_company, is_deleted=False).exists():
                 # Create the Salary instance
                 salary=Salary.objects.create(
