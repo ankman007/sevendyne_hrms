@@ -24,9 +24,11 @@ urlpatterns = [
     re_path(r'^salary/edit/(?P<pk>.*)/$', views.edit_salary, name='edit_salary'),
     re_path(r'^delete-salary/(?P<pk>.*)/$', views.delete_salary, name='delete_salary'),    
     
+    path('payslip/pdf/', views.generate_payslip_pdf, name='generate_payslip_pdf'),
+    
     # path('employees/payslips/hrms-dashboard/', views.employees_payslips, name='employees_payslips'),
     re_path(r'^payslip/(?P<pk>.*)/$', views.payslip, name='payslip'),
-    
+   
     path('payslips/employee/employee-dashboard/', views.payslips_employee, name='payslips_employee'),
     re_path(r'^employee/payslip/employee/(?P<pk>.*)/$', views.employee_payslip, name='employee_payslip'),
 

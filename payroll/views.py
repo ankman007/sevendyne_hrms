@@ -1,6 +1,7 @@
 import datetime
 from decimal import Decimal, InvalidOperation
 import json
+from django.template.loader import render_to_string
 from django.apps import apps
 from django.db.models import DecimalField, Sum, Q
 from django.db.models.functions import ExtractMonth
@@ -13,6 +14,13 @@ from django.core.validators import MinValueValidator
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from num2words import num2words
+from django.utils.text import slugify
+
+from weasyprint import HTML
+
+
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 from employee.models import AttendanceRegister, Employee, Holiday
 
 from django.db import models
@@ -321,6 +329,19 @@ def edit_payroll_item(request, pk):
             updated_payroll_item.updator = request.user
             updated_payroll_item.date_updated = datetime.datetime.now()
             updated_payroll_item.save()
+
+            # Retrieve associated SalaryDynamicField instances
+            salary_dynamic_fields = SalaryDynamicField.objects.filter(
+                company=current_company,
+                field_name=instance.name,  # Assuming name field in PayrollItem represents the field name in SalaryDynamicField
+                is_deleted=False
+            )
+
+            # Update the field_name for each SalaryDynamicField instance
+            for field in salary_dynamic_fields:
+                field.field_name = updated_payroll_item.name  # Update the field name with the new value
+                field.save()
+
 
             
             response_data = {
@@ -650,8 +671,8 @@ def payslip(request,pk):
     # Convert the entire string to uppercase
     net_salary_in_words = net_salary_in_words.upper()
 
-
     context = {
+        'pk':pk,
         'instance': instance,
         'title': 'PaySlip',
         'currency': currency,
@@ -664,6 +685,59 @@ def payslip(request,pk):
         'net_salary_in_words': net_salary_in_words
     }
     return render(request, "payroll/payslip.html", context)
+
+def generate_payslip_pdf(request):
+    print("generate pdf view request")
+    pk=request.GET.get('pk')
+    current_company = get_current_company(request)    
+    currency=current_company.country.currency
+    currency_symbol = current_company.country.currency_symbol
+    instance = Salary.objects.get(pk=pk,company=current_company,is_deleted=False)
+    # Access the Employee instance directly from the Salary instance
+    employee = instance.employee
+    # Get the employee's name
+    # employee_name = instance.employee.get_full_name()
+
+    # Get the month from the date field of the Salary model
+    salary_month = instance.date.strftime('%B %Y')
+
+    dynamic_fields =  SalaryDynamicField.objects.filter(company=current_company,employee=employee,is_deleted=False)
+    # Filter SalaryDynamicField objects for the current Salary instance, separated by category
+    additions_fields = SalaryDynamicField.objects.filter(company=current_company,employee=employee, salary=instance, category='Additions')
+    deductions_fields = SalaryDynamicField.objects.filter(company=current_company,employee=employee, salary=instance, category='Deductions')
+     # Calculate total of additions
+    total_additions = additions_fields.aggregate(Sum('field_value'))['field_value__sum'] or Decimal('0.00')
+    
+    # Calculate total of deductions
+    total_deductions = deductions_fields.aggregate(Sum('field_value'))['field_value__sum'] or Decimal('0.00')
+    # Convert net_salary to words
+    # Convert net_salary to words without specifying currency
+    net_salary_in_words = num2words(instance.net_salary, lang='en')
+    template_path = 'payroll/payslip-pdf.html'
+    context = {
+        'instance': instance,
+        'title': 'PaySlip',
+        'currency': currency,
+        'currency_symbol':currency_symbol,
+        'dynamic_fields': dynamic_fields,
+        'additions_fields': additions_fields,
+        'deductions_fields': deductions_fields,
+        'total_additions': total_additions,
+        'total_deductions': total_deductions,
+        'net_salary_in_words': net_salary_in_words
+    }
+    
+    response = HttpResponse(content_type = 'application/pdf')
+    # Generate a slugified version of the employee name and concatenate it with the month
+    filename = f"payslip_{slugify(employee)}_{salary_month}.pdf"
+
+    response['Content-Disposition'] = f'filename="{filename}"'  
+    template = get_template(template_path)
+    html = template.render(context)
+    pisa_status = pisa.CreatePDF(html,dest=response)
+    if pisa_status.err:
+        return HttpResponse("we had some errors <pre>" + html + "</pre>")
+    return response
 
 @login_required
 @user_passes_test(has_employee_dashboard_permission, redirect_field_name=None)

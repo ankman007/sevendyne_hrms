@@ -26,15 +26,34 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   }
   return s.join(dec);
 }
+// Define an array of month names
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+// Access the monthly HRMS clients data
+var monthlyHrmsClientsDataElement = document.getElementById("monthlyHrmsClientsData");
+var monthlyHrmsClientsData = JSON.parse(monthlyHrmsClientsDataElement.getAttribute("data-clients"));
+
+// Convert numerical months to month names
+var labels = monthlyHrmsClientsData.map(function(client) {
+  var monthIndex = client.month - 1; // Month index starts from 0
+  return monthNames[monthIndex];
+});
+
+// Calculate cumulative sum of HRMS clients
+var cumulativeData = [];
+var cumulativeCount = 0;
+monthlyHrmsClientsData.forEach(function(client) {
+  cumulativeCount += client.count;
+  cumulativeData.push(cumulativeCount);
+});
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: labels, // Use month names for x-axis labels
     datasets: [{
-      label: "Earnings",
+      label: "HRMS Clients Growth",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -46,7 +65,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: cumulativeData,
     }],
   },
   options: {
@@ -78,7 +97,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return value;
           }
         },
         gridLines: {
@@ -110,7 +129,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + tooltipItem.yLabel;
         }
       }
     }

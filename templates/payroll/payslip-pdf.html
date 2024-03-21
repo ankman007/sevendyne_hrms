@@ -1,13 +1,48 @@
-{% extends "base/base_hrms_admin.html" %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
 
-{% block content %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Smarthr - Bootstrap Admin Template">
+		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+        <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+        <title>HRMS Admin Dashboard</title>
+		
+		<!-- Favicon -->
+        {% comment %} <link rel="shortcut icon" type="image/x-icon" href="{%static 'assets/img/logo_svd.png'%}"> {% endcomment %}
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{%static 'assets/css/bootstrap.min.css'%}">
+		
+		<!-- Include datetime picker CSS -->
+		<link rel="stylesheet" href="{%static 'assets/css/bootstrap-datetimepicker.min.css'%}">
+
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="{%static 'assets/plugins/fontawesome/css/fontawesome.min.css'%}">
+    	<link rel="stylesheet" href="{%static 'assets/plugins/fontawesome/css/all.min.css'%}">
+
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="{%static 'assets/css/line-awesome.min.css'%}">
+		<link rel="stylesheet" href="{%static 'assets/css/material.css'%}">
+
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="{%static 'assets/css/line-awesome.min.css'%}">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="{%static 'assets/css/style.css'%}">
+	</head>
+	<body>
 
 <!-- Page Content -->
 <div class="content container-fluid">
+	<div class="main-wrapper">
+		<!-- Page Wrapper -->
+		<div class="page-wrapper">
 				
 	<!-- Page Header -->
-	<div class="page-header">
+	{% comment %} <div class="page-header">
 		<div class="row align-items-center">
 			<div class="col">
 				<h3 class="page-title">Payslip</h3>
@@ -18,14 +53,11 @@
 			</div>
 			<div class="col-auto float-end ms-auto">
 				<div class="btn-group btn-group-sm">
-					{% comment %} <button class="btn btn-white">CSV</button> {% endcomment %}
-					{% comment %} <button href="templates/payroll/payslip-pdf.html"  class="btn btn-white">PDF</button> {% endcomment %}
 					<button id="pdf-button" class="btn btn-white">PDF</button>
-					{% comment %} <button class="btn btn-white"><i class="fa-solid fa-print fa-lg"></i> Print</button> {% endcomment %}
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> {% endcomment %}
 	<!-- /Page Header -->
 	
 	<div class="row">
@@ -131,6 +163,34 @@
         });
     });
 </script>
-
-
-{% endblock %}
+	
+		
+		<!-- jQuery -->
+		<script src="{%static 'assets/js/jquery-3.7.1.min.js'%}"></script>
+		<script src="{%static 'assets/js/jquery.dataTables.min.js'%}"></script>
+		<script src="{%static 'assets/js/dataTables.bootstrap4.min.js'%}"></script>
+ 
+		
+		 
+		 <!-- Bootstrap Core JS -->
+		 <script src="{%static 'assets/js/bootstrap.bundle.min.js'%}"></script>
+		 <script src="{%static 'assets/js/moment.min.js'%}"></script>
+		 <script src="{%static 'assets/js/bootstrap-datetimepicker.min.js'%}"></script>
+		 
+		 <!-- Slimscroll JS -->
+		 <script src="{%static 'assets/js/jquery.slimscroll.min.js'%}"></script>
+		 
+		 <!-- Select2 JS -->
+		 <script src="{%static 'assets/js/select2.min.js' %}"></script>
+		 
+		  <!-- Theme Settings JS -->
+		 <script src="{%static 'assets/js/layout.js'%}"></script>
+		 <script src="{%static 'assets/js/theme-settings.js'%}"></script>
+		 <script src="{%static 'assets/js/greedynav.js'%}"></script>
+		 
+		 <!-- Custom JS -->
+		 <script src="{%static 'assets/js/app.js'%}"></script>
+		 
+		 
+	</body>
+</html>

@@ -13,6 +13,8 @@ from client.models import Client
 from employee.models import AttendanceRegister, Employee, Leave
 from job.models import Job
 from main.decorators import company_required
+from django.db.models.functions import ExtractMonth, ExtractYear
+
 
 from main.forms import CompanyForm
 from main.functions import generate_form_errors, get_a_id, get_auto_id, get_current_company, has_employee_dashboard_permission
@@ -137,7 +139,14 @@ def employee_dashboard(request):
 def admin_dashboard(request):
     total_hrms_clients = 0
     hrms_clients = HrmsClient.objects.filter(is_deleted=False)
-    monthly_hrms_clients = HrmsClient.objects.annotate(month=TruncMonth('created_at')).values('month').annotate(count=Count('id')).order_by('month')
+    monthly_hrms_clients = (
+        HrmsClient.objects
+        .annotate(month=ExtractMonth('created_at'), year=ExtractYear('created_at'))
+        .values('month', 'year')
+        .annotate(count=Count('id'))
+        .order_by('year', 'month')
+    )
+    monthly_hrms_clients = json.dumps(list(monthly_hrms_clients))
     total_hrms_clients = hrms_clients.count()
 
     candidates = Candidate.objects.filter(is_deleted=False,is_blocked=False)
@@ -146,11 +155,31 @@ def admin_dashboard(request):
     jobs = Job.objects.filter(is_deleted=False)
     jobs_count =jobs.count()
 
+    # Calculate number of jobs posted by each company for graph
+    company_jobs = Job.objects.filter(is_deleted=False).values('company__name').annotate(job_count=Count('id'))
+    company_jobs_data = [{'company': job['company__name'], 'job_count': job['job_count']} for job in company_jobs]
+    company_jobs_json = json.dumps(company_jobs_data)
+
+    # Initialize a dictionary to store skill counts
+    skill_counts = {}
+
+    # Count the number of candidates associated with each skill
+    for candidate in candidates:
+        skills = candidate.skills.split(',')
+        for skill in skills:
+            skill = skill.strip()  # Remove leading and trailing whitespaces
+            skill_counts[skill] = skill_counts.get(skill, 0) + 1
+
+    # Prepare data to pass to the template
+    skill_counts_json = json.dumps(skill_counts)
     context = {
         'total_hrms_clients': total_hrms_clients,
         'monthly_hrms_clients' : monthly_hrms_clients,
         'candidates_count':candidates_count,
-        'jobs_count':jobs_count
+        'jobs_count':jobs_count,
+        'company_jobs': company_jobs_json,
+        'skill_counts_json':skill_counts_json
+
     }
     return render(request, "sevendyne_admin/sevendyne_admin.html", context=context)
 

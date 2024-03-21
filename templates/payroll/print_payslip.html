@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    {% load main_template_tags %}
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="print.css" > -->
+    <title>Payslip for the month of  {{ instance.date|date:"F Y" }}</title>
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}" /> -->
+</head>
+<body>
+    <section id="container">
+        {% for key,value in dict_list %}
+        <section class="invoice">
+            <section class="invoice-content">
+                <div class="header">
+					<section class="header bg" style="border: 1px solid #c1c5c4;display: flex; border-top-left-radius: 2px;border-top-right-radius: 2px; ">
+												
+						{% comment %} <div style="width: 40%;margin-top: 2%;margin-left: 10px">
+							
+							<p style="color: #046459;text-transform: uppercase;font-weight: bold;font-size: 100%;">Academic Year : {{current_year}} </p>            		
+						</div> {% endcomment %}
+						<div class="left" style="width: 35%;">
+							<img src="{{instance.company.logo.url}}" style="height: 85px;width:115px;margin-top: 15%" alt=""><br>
+							<h5 style="color: #046459;text-transform: uppercase;font-weight: bold;font-size: 100%;">Payslip for the month of  {{ instance.date|date:"F Y" }}</h5>
+						</div>
+						<div style="width: 40%;margin-left:8%;margin-bottom:2%;">
+							<h5 style="color: #046459;text-transform: uppercase;font-weight: bold;font-size: 90%;"> {{ instance.company.name }}</h5>
+							<p style="color: #046459;text-transform: uppercase;font-weight: bold;font-size: 90%;">{{ instance.company.address }},</p>
+							<p style="color: #046459;text-transform: uppercase;font-weight: bold;font-size: 90%;">{{ instance.company.state }},</p>
+							<p style="color: #046459;text-transform: uppercase;font-weight: bold;font-size: 90%;">{{ instance.company.country }}, </p>
+							<p style="color: #046459;text-transform: uppercase;font-weight: bold;font-size: 90%;"> {{ instance.company.postal_code }}</p>						
+						</div>		
+					</section>	
+                </div>
+                <div class="invoice-table" style="width:100%">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="background-color:#d6dbda;border:0px;font-size:93%">Id</th>								
+                                <th style="width:20%;background-color:#d6dbda;border:0px;text-align: left;font-size:93%">Admission No</th> 
+								<th style="width:20%;background-color:#d6dbda;border:0px;text-align: left;font-size:93%">Name</th>                               
+                                <th style="width:20%;background-color:#046459 ;color: #FFF;border:0px;font-size:93%">Class</th>
+                                <th style="width:20%;background-color:#046459 ;color: #FFF;border:0px;font-size:93%">Phone</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for additions_field in additions_fields %}
+                            <tr class="empty-cell">
+                                <td style="border:0px;font-size:93%;border-bottom:2px solid #c1c5c4"><strong>{{ additions_field.field_name }}</strong> <span class="float-end">{{ additions_field.field_value }}</span></td>
+                                
+                            </tr>
+                            {% endfor %}
+							<tr>
+								<td><strong>Total Earnings</strong> <span class="float-end"><strong>{{ total_additions }}</strong></span></td>
+							</tr>
+							
+							{% for deductions_field in deductions_fields %}
+                            <tr class="empty-cell">
+                                <td style="border:0px;font-size:93%;border-bottom:2px solid #c1c5c4"><strong>{{ deductions_field.field_name }}</strong> <span class="float-end">{{ deductions_field.field_value }}</span></td>
+                                
+                            </tr>
+                            {% endfor %}
+							<tr>
+								<td><strong>Total Deductions</strong> <span class="float-end"><strong>{{ total_deductions }}</strong></span></td>
+							</tr>
+                        </tbody>
+						{% comment %} <div class="footer" style="border-bottom-left-radius: 2px;border-bottom-right-radius: 2px;background-color:#d6dbda;margin-top:-41%;height:5%;width:80%;margin-left:10%">
+							<p style="text-align:center; font-size:8px;margin-top: 15px;">{{school.name}}, {{school.school_code}},{{school.address}} ,{{school.phone}}, {{school.email}} , {{school.website}}</p>
+						</div> {% endcomment %}
+                    </table>
+					
+                </div>
+				
+            </section>
+        </section>
+        {% endfor %}
+        <a href="#" onclick="window.print()" class="float"><img src="{% static 'assets/img/printer.png' %}" alt=""></i></a>
+    </section>
+{% endblock %} {% block static %} {% load static %}
+
+<style>
+    body {
+	height: 100%;
+	margin: 0 auto;
+	padding: 0;
+	font-size:xx-small;
+	font-weight: lighter;
+	font-family: Arial, Helvetica, sans-serif;
+}
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+.clear {
+	clear: both;
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+.text-left {
+	text-align: left;
+}
+.text-right {
+	text-align: right;
+}
+.text-center {
+	text-align: center;
+}
+.pl-10 {
+	padding-left: 10px;
+}
+.pr-10 {
+	padding-right: 10px;
+}
+.w-5 {
+	width: 5%;
+}
+.w-10 {
+	width: 10%;
+}
+.w-14 {
+	width: 14%;
+}
+.w-15 {
+	width: 15%;
+}
+.w-20 {
+	width: 20%;
+}
+.w-21 {
+	width: 21%;
+}
+.w-25 {
+	width: 25%;
+}
+.w-26 {
+	width: 26%;
+}
+.w-30 {
+	width: 30%;
+}
+.w-35 {
+	width: 35%;
+}
+.w-40 {
+	width: 40%;
+}
+.w-45 {
+	width: 45%;
+}
+.w-46 {
+	width: 46%;
+}
+.w-50 {
+	width: 50%;
+}
+.w-55 {
+	width: 55%;
+}
+.w-65 {
+	width: 65%;
+}
+.f-w-b {
+	font-weight: bold;
+}
+div.footer{
+	border-top: 1px solid grey;
+	padding:5px;
+	color:#999;
+	text-align: center;
+	margin-top: 10px;
+	top: 298mm;
+	position: absolute;
+	bottom: 0mm;
+	left:0mm;
+	width:99%;
+	font-size: 10px;
+}
+div.last_footer{
+	padding:5px;
+	color:#999;
+	text-align: center;
+	margin-top: 10px;
+	font-size: 10px;
+}
+@media print {
+	html, body {
+		width: 101.6mm;
+		height: auto;        
+	}
+	#container {
+		margin: 0;
+		border: initial;
+		border-radius: initial;
+		width: initial;
+		min-height: initial;
+		box-shadow: initial;
+		background: initial;
+		page-break-after: always;
+	}
+	.invoice {
+		box-shadow: none;
+	}
+	.float {
+		display: none;
+	}
+}
+#container {
+	width: 210mm;
+	min-height: auto;
+	margin: 10mm auto;
+	background: white;
+}
+.invoice {
+	width: 210mm;
+	height: 296mm;
+	margin: 0 auto;
+	background: white;
+	box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+	background-image: url(../../img/invoice-background.webp);
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	z-index: 0;
+}
+.invoice-content {
+    box-shadow: 0 16px 56px 0 rgba(0, 0, 0, 0.4), 0 18px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 auto 10px auto;
+    padding-top: 55px;
+    padding-left: 10%;
+    padding-bottom: 0;
+    padding-right: 10%;
+    width: 210mm;
+    height: 297mm;
+    font-size: 10pt;   
+	/* width:210mm;
+	padding:10px;
+	position: absolute;
+	top:5%; */
+	/* border-top:  2px solid #2b9299; */
+}
+.client-head {
+	width:100%;
+	/* border-top: 2px solid #2b9299;
+	border-bottom: 2px solid #2b9299; */
+	margin-bottom: 5px;
+}
+.client-head h1, p {
+	margin:0
+}
+.client-head h1 {
+	font-size: 15px;
+	font-weight: bold;
+}
+.client-head p {
+	font-size: 14px;
+}
+.client-head .client {
+	width:50%;
+	/* border-right: 2px solid #2b9299; */
+}
+.client-head .info {
+	width:50%;
+}
+table {
+	width:100%;
+	border: 1px solid #2b9299;
+	border-collapse: collapse;
+	min-height: 150mm;
+}
+table th {
+	padding:5px;
+	font-size: 18px;
+	border: 2px solid #2b9299;
+	font-size: 15px;
+}
+table tbody td {
+	padding:2px;
+	border-right: 2px solid #2b9299;
+	border-left: 2px solid #2b9299;
+	font-size: 15px;
+	vertical-align: top;
+}
+table tfoot td {
+	padding:5px;
+	border: 2px solid #2b9299;
+	font-size: 15px;
+}
+hr {
+	border: 1px solid #2b9299;
+}
+table tr.empty-cell td {
+	height:30px
+}
+.footer {
+	width:210mm;
+	padding: 10px;
+	
+	position: absolute;
+	bottom:15mm;
+}
+.delivery-note {
+	text-align: center;
+	font-weight: bold;
+	color: #2b9299;
+	font-size: 1.3rem !important;
+}
+.header p {
+	font-size: 15px;
+	font-weight: bold;	
+}
+.invoice-footer p {
+	font-size: 13px;
+}
+.internal-notes {
+	font-size: 10px;
+}
+.words {
+	text-transform: capitalize;
+}
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.float img{
+	width:30px;
+	height:30px;
+	margin: 15px;
+}
+
+
+</style>
+{% endblock %}
+</body>
+</html>
