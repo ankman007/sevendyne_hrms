@@ -119,7 +119,7 @@
 										<div class="modal-btn delete-action">
 											<div class="row">
 												<div class="col-6">
-													<a href="{% url 'employee:delete_leave_type' pk=leave_type.pk %}" class="btn btn-primary continue-btn">Delete</a>
+													<a href="{% url 'employee:delete_leave_type' pk=leave_type.pk %}" data-id="{{ leave_type.id }}" class="remove btn btn-primary continue-btn">Delete</a>
 												</div>
 												<div class="col-6">
 													<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>

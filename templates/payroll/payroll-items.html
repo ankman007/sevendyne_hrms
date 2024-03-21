@@ -72,7 +72,7 @@
 										<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 										<div class="dropdown-menu dropdown-menu-right">
 											<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_addition_{{ payroll_item.id }}"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
-											<a class="dropdown-item remove" data-id="{{ payroll_item.id }}" href="#" data-bs-toggle="modal" data-bs-target="#delete_addition_{{ payroll_item.id }}"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
+											<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_addition_{{ payroll_item.id }}"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
 										</div>
 									</div>
 								</td>
@@ -125,7 +125,7 @@
 											<div class="modal-btn delete-action">
 												<div class="row">
 													<div class="col-6">
-														<a href="{% url 'payroll:delete_payroll_item' pk=payroll_item.pk %}" class="btn btn-primary continue-btn">Delete</a>
+														<a href="{% url 'payroll:delete_payroll_item' pk=payroll_item.pk %}" data-id="{{ payroll_item.id }}" class="remove btn btn-primary continue-btn">Delete</a>
 													</div>
 													<div class="col-6">
 														<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -174,7 +174,7 @@
 										<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 										<div class="dropdown-menu dropdown-menu-right">
 											<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_deduction_{{ payroll_item.id }}"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
-											<a class="dropdown-item remove" data-id="{{ payroll_item.id }}" href="#" data-bs-toggle="modal" data-bs-target="#delete_deduction_{{ payroll_item.id }}"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
+											<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_deduction_{{ payroll_item.id }}"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
 										</div>
 									</div>
 								</td>
@@ -228,7 +228,7 @@
 											<div class="modal-btn delete-action">
 												<div class="row">
 													<div class="col-6">
-														<a href="{% url 'payroll:delete_payroll_item' pk=payroll_item.pk %}" class="btn btn-primary continue-btn">Delete</a>
+														<a href="{% url 'payroll:delete_payroll_item' pk=payroll_item.pk %}" data-id="{{ payroll_item.id }}" class="remove btn btn-primary continue-btn">Delete</a>
 													</div>
 													<div class="col-6">
 														<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
