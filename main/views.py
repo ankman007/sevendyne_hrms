@@ -250,22 +250,22 @@ def create_company(request):
                 # Check if CompanyAccess already exists for the user and current_company
                 # if not CompanyAccess.objects.filter(user=request.user, company=current_company).exists():
                 #     is_default = True
-                    group = Group.objects.get(name="hrms_clients")
+                group = Group.objects.get(name="hrms_clients")
 
-                    CompanyAccess.objects.create(
-                        user=request.user,
-                        company=current_company,
-                        group=group,
-                        is_accepted=True,
-                        is_default=is_default
-                    )
+                CompanyAccess.objects.create(
+                    user=request.user,
+                    company=current_company,
+                    group=group,
+                    is_accepted=True,
+                    is_default=is_default
+                )
                 # company_access_instance = CompanyAccess(user=request.user, company=current_company, group=group, is_accepted=True, is_default=is_default)
                 # company_access_instance.save()
 
                 # Add print statements to check if user=request.user is saved in CompanyAccess
                 # print(f"CompanyAccess saved - User: {company_access_instance.user}, Company: {company_access_instance.company}, Group: {company_access_instance.group}")
-                PayrollItem.objects.create(company=current_company,name="Basic Salary",category="Additions")
-                PayrollItem.objects.create(company=current_company,name="Leave",category="Deductions")
+                PayrollItem.objects.create(company=current_company,name="Basic Salary",category="Additions", auto_id=get_auto_id(PayrollItem),a_id = get_a_id(PayrollItem,request),creator = request.user,updator = request.user)
+                PayrollItem.objects.create(company=current_company,name="Leave",category="Deductions", auto_id=get_auto_id(PayrollItem),a_id = get_a_id(PayrollItem,request),creator = request.user,updator = request.user)
 
                 request.session["current_company"] = str(current_company.pk)
                 request.session.save()
@@ -274,7 +274,7 @@ def create_company(request):
                     "title": "Successfully Created",
                     "message": "Company created successfully.",
                     "redirect": "true",
-                    "redirect_url": reverse('main:company', kwargs={'pk': current_company.pk})
+                    "redirect_url": reverse('main:hrms_dashboard')
                 }
                 print("Redirect URL:", response_data["redirect_url"])
             else:               

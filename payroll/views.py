@@ -686,6 +686,59 @@ def payslip(request,pk):
     }
     return render(request, "payroll/payslip.html", context)
 
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def print_payslip(request,pk): 
+    print("print payslip get")
+    current_company = get_current_company(request)    
+    currency=current_company.country.currency
+    currency_symbol = current_company.country.currency_symbol
+    salaries = Salary.objects.filter(company=current_company,is_deleted=False)
+    instance = Salary.objects.get(pk=pk,company=current_company,is_deleted=False)
+    # Access the Employee instance directly from the Salary instance
+    employee = instance.employee
+    dynamic_fields =  SalaryDynamicField.objects.filter(company=current_company,employee=employee,is_deleted=False)
+    # Filter SalaryDynamicField objects for the current Salary instance, separated by category
+    additions_fields = SalaryDynamicField.objects.filter(company=current_company,employee=employee, salary=instance, category='Additions')
+    deductions_fields = SalaryDynamicField.objects.filter(company=current_company,employee=employee, salary=instance, category='Deductions')
+     # Calculate total of additions
+    total_additions = additions_fields.aggregate(Sum('field_value'))['field_value__sum'] or Decimal('0.00')
+    
+    # Calculate total of deductions
+    total_deductions = deductions_fields.aggregate(Sum('field_value'))['field_value__sum'] or Decimal('0.00')
+    # Convert net_salary to words
+    # Convert net_salary to words without specifying currency
+    net_salary_in_words = num2words(instance.net_salary, lang='en')
+
+    # # Check if there's a fractional part to handle "paise"
+    # net_salary_parts = str(instance.net_salary).split('.')
+    # if len(net_salary_parts) > 1 and int(net_salary_parts[1]) > 0:
+    #     rupees_part = num2words(net_salary_parts[0], lang='en')
+    #     paise_part = num2words(net_salary_parts[1], lang='en')
+    #     net_salary_in_words = f"{rupees_part} INDIAN RUPEES AND {paise_part} PAISE"
+    # else:
+    #     net_salary_in_words += " RUPEES"
+
+    # Convert the entire string to uppercase
+    net_salary_in_words = net_salary_in_words.upper()
+
+    context = {
+        'pk':pk,
+        'instance': instance,
+        'title': 'PaySlip',
+        'currency': currency,
+        'currency_symbol':currency_symbol,
+        'dynamic_fields': dynamic_fields,
+        'additions_fields': additions_fields,
+        'deductions_fields': deductions_fields,
+        'total_additions': total_additions,
+        'total_deductions': total_deductions,
+        'net_salary_in_words': net_salary_in_words
+    }
+    return render(request, "payroll/print_payslip.html", context)
+
+
 def generate_payslip_pdf(request):
     print("generate pdf view request")
     pk=request.GET.get('pk')
