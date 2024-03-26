@@ -34,7 +34,8 @@ def create_hrms_client(request):
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+            password = form.cleaned_data['password']            
+            
             # print("valid")
             if not HrmsClient.objects.filter(username=username,is_deleted=False).exists():
                 existing_user = User.objects.filter(username=username).first()
@@ -232,6 +233,11 @@ def delete_hrms_client(request,pk):
     
     HrmsClient.objects.filter(pk=pk).update(is_deleted=True,first_name=instance.first_name)
 
+    # Mark the associated user as deleted
+    user = instance.user
+    user.is_active = False
+    user.save()
+
     response_data = {
         "status" : "true",        
         "title" : "Successfully Deleted",
@@ -241,36 +247,3 @@ def delete_hrms_client(request,pk):
     }
     return HttpResponse(json.dumps(response_data), content_type='application/json')
     
-
-@login_required
-@user_passes_test(has_admin_dashboard_permission, redirect_field_name=None)
-def delete_selected_hrms_clients(request):
-    
-    pks = request.GET.get('pk')
-    if pks:
-        pks = pks[:-1]
-
-        pks = pks.split(',')
-        for pk in pks:
-            instance = get_object_or_404(HrmsClient.objects.filter(pk=pk, is_deleted=False))
-            
-            HrmsClient.objects.filter(pk=pk).update(
-                is_deleted=True, slug=instance.slug + "_deleted_" + str(instance.auto_id))
-
-        response_data = {
-            "status": "true",            
-            "title": "Successfully Deleted",
-            "message": "Selected HRMS Client Successfully Deleted.",  
-
-            "redirect" : "true",          
-            "redirect_url": reverse('hrms:hrms_clients')
-        }
-        
-    else:
-        response_data = {
-            "status": "false",
-            "title": "Nothing selected",
-            "message": "Please select any HRMS Client first.",
-        }
-    return HttpResponse(json.dumps(response_data), content_type='application/javascript')
-

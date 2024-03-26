@@ -79,30 +79,31 @@ def register(request):
         if not HrmsClient.objects.filter(username=username,is_deleted=False).exists():
             user, created = User.objects.get_or_create(username=username, defaults={'password': hashed_password, 'email': email, 'first_name': first_name, 'last_name': last_name})
             print("user",user)
-            if created:
-                print("user is created")
-                # Get or create the 'hrms_clients' group
-                hrms_clients_group, created = Group.objects.get_or_create(name='hrms_clients')
+            # if created:
+            print("user is created")
+            # Get or create the 'hrms_clients' group
+            hrms_clients_group, created = Group.objects.get_or_create(name='hrms_clients')
 
-                # Add the user to the 'hrms_clients' group
-                user.groups.add(hrms_clients_group)
-                print("added to hrms_clients group")
+            # Add the user to the 'hrms_clients' group
+            user.groups.add(hrms_clients_group)
+            print("added to hrms_clients group")
 
-                # Save the user to update group membership
-                user.save()
-                messages.success(request,"Registration Successful! You can now log in.")
-            HrmsClient(  
-                    user = user,                  
-                    first_name = first_name,
-                    last_name = last_name,
-                    username = username,
-                    password = password,
-                    email = email                  
-                ).save()
+            # Save the user to update group membership
+            user.save()
+            
+            hrms_client = HrmsClient.objects.create(  
+                user = user,                  
+                first_name = first_name,
+                last_name = last_name,
+                username = username,
+                password = password,
+                email = email                  
+            )
+            messages.success(request,"Registration Successful! You can now log in.")
             return redirect('user:user_login') 
         else:
             messages.info(request, "Username already exists.") 
-            return redirect('user:register')       
+        return redirect('user:register')       
     else:   
         return render(request, "authentication/register.html")
 

@@ -4,7 +4,8 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
         <meta name="description" content="Smarthr - Bootstrap Admin Template">
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
@@ -32,6 +33,41 @@
 		
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{%static 'assets/css/style.css'%}">
+		<style>
+			@media screen and (max-width: 767px) {
+				body {
+					transform: rotate(90deg);
+					transform-origin: top left;
+					width: 100vw;
+					height: 100vh;
+					overflow-x: hidden;
+					position: fixed;
+					top: 0;
+					left: 0;
+					padding: 0;
+					margin: 0;
+				}
+				
+				.content {
+					transform: rotate(-90deg);
+					transform-origin: top left;
+					width: 100vh; /* Swap width and height for proper display */
+					height: 100vw;
+					overflow-x: hidden;
+					overflow-y: auto;
+					position: fixed;
+					top: 100%; /* Adjust positioning */
+					left: 0; /* Adjust positioning */
+				}
+				
+				.content .main-wrapper {
+					width: 100%; /* Adjust wrapper width */
+					padding: 20px; /* Adjust padding if necessary */
+				}
+			}
+		</style>
+		
+		
 	</head>
 	<body>
 
@@ -60,7 +96,7 @@
 	</div> {% endcomment %}
 	<!-- /Page Header -->
 	
-	<div class="row">
+	<div class="row" >
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
@@ -95,45 +131,45 @@
 							</ul>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<div>
-								<h4 class="m-b-10"><strong>Earnings</strong></h4>
-								<table class="table table-bordered">
-									<tbody>
-										{% for additions_field in additions_fields %}
-										<tr>
-											<td><strong>{{ additions_field.field_name }}</strong> <span class="float-end">{{ additions_field.field_value }}</span></td>
-										</tr>
-										{% endfor %}
-										<tr>
-											<td><strong>Total Earnings</strong> <span class="float-end"><strong>{{ total_additions }}</strong></span></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+					<div class="row" style="display: flex;">
+						<div style="width:30%;float:left;">
+							<h4 style="margin-bottom: 10px;"><strong>Earnings</strong></h4>
+							<table style="border: 1px solid black; border-collapse: collapse; width: 100%;">
+								<tbody>
+									{% for additions_field in additions_fields %}
+									<tr>
+										<td style="padding: 5px;"><strong>{{ additions_field.field_name }}</strong></td>
+										<td style="padding: 5px; text-align: right;">{{ additions_field.field_value }}</td>
+									</tr>
+									{% endfor %}
+									<tr>
+										<td style="padding: 5px;"><strong>Total Earnings</strong></td>
+										<td style="padding: 5px; text-align: right;"><strong>{{ total_additions }}</strong></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						<div class="col-sm-6">
-							<div>
-								<h4 class="m-b-10"><strong>Deductions</strong></h4>
-								<table class="table table-bordered">
-									<tbody>
-										{% for deductions_field in deductions_fields %}
-										<tr>
-											<td><strong>{{ deductions_field.field_name }}</strong> <span class="float-end">{{ deductions_field.field_value }}</span></td>
-										</tr>
-										{% endfor %}
-										<tr>
-											<td><strong>Total Deductions</strong> <span class="float-end"><strong>{{ total_deductions }}</strong></span></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="col-sm-12">
-							<p><strong>Net Salary: {{currency_symbol}} {{ instance.net_salary }}</strong> ( {{currency}} {{ net_salary_in_words }}.)</p>
+						<div style="width:30%; float:right;">
+							<h4 style="margin-bottom: 10px;"><strong>Deductions</strong></h4>
+							<table style="border: 1px solid black; border-collapse: collapse; width: 100%;">
+								<tbody>
+									{% for deductions_field in deductions_fields %}
+									<tr>
+										<td style="padding: 5px;"><strong>{{ deductions_field.field_name }}</strong></td>
+										<td style="padding: 5px; text-align: right;">{{ deductions_field.field_value }}</td>
+									</tr>
+									{% endfor %}
+									<tr>
+										<td style="padding: 5px;"><strong>Total Deductions</strong></td>
+										<td style="padding: 5px; text-align: right;"><strong>{{ total_deductions }}</strong></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
+					
+					
+					
 				</div>
 			</div>
 		</div>
@@ -162,6 +198,36 @@
             });
         });
     });
+	<style>
+		@page {
+			size: 297mm 210mm;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			{% comment %} font-family: 'Open Sans', sans-serif; {% endcomment %}
+			padding: 0;
+			margin: 0;
+			font-size: 22px;
+			font-weight: 700;
+			color: black;
+			box-sizing: border-box;
+		}
+		p {
+			padding: 0;
+			margin: 0;
+		}
+		.card {
+			
+			width: 1400px;
+			height: 991px;
+			max-width: 100%;
+			min-height: 100%;
+			position: relative;
+		}
+	</style>
+	
 </script>
 	
 		
