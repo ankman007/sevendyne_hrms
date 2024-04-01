@@ -76,6 +76,7 @@ def job_portal(request):
     full_time_jobs = Job.objects.filter(job_type='Full Time',is_deleted=False)
     part_time_jobs = Job.objects.filter(job_type='Part Time',is_deleted=False)
     internship_jobs = Job.objects.filter(job_type='Internship',is_deleted=False)
+    contract_jobs = Job.objects.filter(job_type='Contract',is_deleted=False)
     # job_categories = Job.objects.filter(is_deleted=False).values('job_category')
 
     context = {
@@ -85,9 +86,47 @@ def job_portal(request):
         'part_time_jobs': part_time_jobs,
         'internship_jobs': internship_jobs,
         'job_categories':job_categories,
-        'job_locations':job_locations
+        'job_locations':job_locations,
+        'contract_jobs':contract_jobs
     }
     return render(request,"job_portal/index.html",context=context)
+
+def job_list(request):
+    keyword = request.GET.get('keyword')
+    category = request.GET.get('category')
+    location = request.GET.get('location')
+    # Start with a base filter that ensures is_deleted is False
+    filter_conditions = Q(is_deleted=False)
+
+    # Add keyword filter if keyword is present
+    if keyword:
+        filter_conditions &= Q(job_title__icontains=keyword) | Q(description__icontains=keyword)
+
+    # Add category filter if category is present
+    if category:
+        filter_conditions &= Q(job_category__icontains=category)
+
+    # Add location filter if location is present
+    if location:
+        filter_conditions &= Q(job_location__icontains=location)
+
+    # Filter jobs based on combined filter conditions
+    filtered_jobs = Job.objects.filter(filter_conditions)
+    jobs = Job.objects.filter(is_deleted=False)
+    full_time_jobs = Job.objects.filter(job_type='Full Time',is_deleted=False)
+    part_time_jobs = Job.objects.filter(job_type='Part Time',is_deleted=False)
+    internship_jobs = Job.objects.filter(job_type='Internship',is_deleted=False)
+    contract_jobs = Job.objects.filter(job_type='Contract',is_deleted=False)
+
+    context = {
+        'jobs': jobs,
+        'filtered_jobs': filtered_jobs,
+        'full_time_jobs': full_time_jobs,
+        'part_time_jobs': part_time_jobs,
+        'internship_jobs': internship_jobs,
+        'contract_jobs':contract_jobs
+    }
+    return render(request,"job_portal/job-list.html",context=context)
 
 def home_hrms(request):
     return render(request, "home/index.html")
