@@ -3,8 +3,8 @@ from main import views
 from main.autocomplete_registery import StateAutocomplete
 
 urlpatterns = [
-
-    path("", views.home_hrms, name="home_hrms"),
+    path("", views.job_portal, name="job_portal"),
+    path("hrms/home/", views.home_hrms, name="home_hrms"),
     path("hrms/dashboard/", views.hrms_dashboard, name="hrms_dashboard"),
     path("admin/dashboard/", views.admin_dashboard, name="admin_dashboard"),
     path("employee/dashboard/", views.employee_dashboard, name="employee_dashboard"),

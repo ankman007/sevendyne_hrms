@@ -46,6 +46,8 @@ from payroll.models import PayrollItem
 #     return HttpResponseRedirect(reverse('main:create_company'))
     # return HttpResponseRedirect(reverse('dashboard'))
 
+def job_portal(request):
+    return render(request,"job_portal/index.html")
 
 def home_hrms(request):
     return render(request, "home/index.html")
