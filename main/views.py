@@ -47,7 +47,20 @@ from payroll.models import PayrollItem
     # return HttpResponseRedirect(reverse('dashboard'))
 
 def job_portal(request):
-    return render(request,"job_portal/index.html")
+    jobs = Job.objects.filter(is_deleted=False)
+    full_time_jobs = Job.objects.filter(job_type='Full Time',is_deleted=False)
+    part_time_jobs = Job.objects.filter(job_type='Part Time',is_deleted=False)
+    internship_jobs = Job.objects.filter(job_type='Internship',is_deleted=False)
+    job_categories = Job.objects.filter(is_deleted=False).values('job_category')
+
+    context = {
+        'jobs': jobs,
+        'full_time_jobs': full_time_jobs,
+        'part_time_jobs': part_time_jobs,
+        'internship_jobs': internship_jobs,
+        'job_categories':job_categories
+    }
+    return render(request,"job_portal/index.html",context=context)
 
 def home_hrms(request):
     return render(request, "home/index.html")

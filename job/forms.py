@@ -24,6 +24,7 @@ class JobForm(forms.ModelForm):
             'salary_from': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Salary From'}),
             'salary_to': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Salary To'}),
             'job_type': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Job Type'}),
+            'job_category': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Job Category'}),
             'status': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Status'}),
             'start_date': DateInput(attrs={'class': 'form-control datetimepicker', 'placeholder': 'Start Date'}),
             'expired_date': DateInput(attrs={'class': 'form-control datetimepicker', 'placeholder': 'Expired Date'}),

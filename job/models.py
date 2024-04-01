@@ -14,7 +14,15 @@ JOBTYPE_CHOICES = (
     ('Full Time', "Full Time"),
     ('Part Time',"Part time"),
     ('Internship', "Internship"),
-    ('Contract', "Contract"),
+    ('Contract', "Contract")
+)
+
+JOBCATEGORY_CHOICES = (
+    ('Full Stack Development', "Full Stack Development"),
+    ('Marketing',"Marketing"),
+    ('Accounting', "Accounting"),
+    ('Design Engineering', "Design Engineering"),
+    ('Matlab', "Matlab"),
 )
 
 class Job(BaseModel):  
@@ -28,6 +36,7 @@ class Job(BaseModel):
     salary_from = models.PositiveIntegerField(_("Salary From"),null=True, blank=True)
     salary_to = models.PositiveIntegerField(_("Salary To"),null=True, blank=True)
     job_type =  models.CharField(max_length=255, choices=JOBTYPE_CHOICES)
+    job_category =  models.CharField(max_length=255, choices=JOBCATEGORY_CHOICES,default='Full Stack Development')
     status =  models.CharField(max_length=255, choices=STATUS_CHOICES)
     start_date = models.DateField(_('Start Date'),help_text='start date',null=True, blank=True)    
     expired_date = models.DateField(_('Expired Date'),help_text='expired date',null=True, blank=True)
