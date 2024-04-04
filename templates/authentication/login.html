@@ -31,12 +31,21 @@
 
     </head>
     <body class="account-page">
+		
+
 	
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
 			<div class="account-content">
 				{% comment %} <a href="job-list.html" class="btn btn-primary apply-btn">Apply Job</a> {% endcomment %}
 				<div class="container">
+					<!-- Add this hidden div for the popup message -->
+					<div id="loginErrorMessage" class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert">
+						Invalid login credentials. Please try again.
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 				
 					<!-- Account Logo -->
 					{% comment %} <div class="account-logo">
@@ -96,7 +105,7 @@
 							</form>
 							<!-- /Account Form -->
 							<h3>Demo Accounts</h3>
-							<p> Admin Login - Username: admin, Password: admin</p>
+							{% comment %} <p> Admin Login - Username: admin, Password: admin</p> {% endcomment %}
 							<p> HRMS Client Login - Username: hrmsclient1, Password: password@123</p>
 							<p> Employee Login - Username: employee1, Password: password@123</p>
 							
@@ -115,6 +124,21 @@
 		
 		<!-- Custom JS -->
 		<script src="{% static 'assets/js/app.js' %}"></script>
+		<!-- JavaScript to display popup message if login fails -->
+		<script>
+			// Check if login failed, then display the error message
+			{% if error_message %}
+				document.getElementById('loginErrorMessage').style.display = 'block';
+			{% endif %}
+			// Function to close the error message div when the close button is clicked
+			document.addEventListener('DOMContentLoaded', function() {
+				document.querySelectorAll('.close').forEach(function(closeBtn) {
+					closeBtn.addEventListener('click', function() {
+						this.closest('.alert').style.display = 'none';
+					});
+				});
+			});
+		</script>
 		
     </body>
 </html>

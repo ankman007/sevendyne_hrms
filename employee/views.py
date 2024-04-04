@@ -1735,6 +1735,21 @@ def holidays(request):
     }
     return render(request, "leave/holidays.html", context)
 
+@login_required
+@user_passes_test(has_employee_dashboard_permission, redirect_field_name=None)
+def employee_holidays(request):
+    employee = get_object_or_404(Employee, user=request.user)
+    company = employee.company
+    holidays = Holiday.objects.filter(company=company,is_deleted=False).order_by('date')
+    paginator = Paginator(holidays,1000000000000)
+    page_number = request.GET.get('page')
+    holidays = paginator.get_page(page_number)
+    context = {
+        'holidays': holidays,
+        "title": 'Holidays' 
+    }
+    return render(request, "leave/employee_holidays.html", context)
+
 
 @login_required
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
