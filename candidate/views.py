@@ -7,10 +7,10 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 # from main.decorators import company_required
 from django.db.models import Q
-from candidate.models import Candidate
+from candidate.models import Candidate, Intern
 from main.decorators import company_required
 
-from candidate.forms import CandidateForm
+from candidate.forms import CandidateForm, InternForm
 from main.functions import generate_form_errors, get_a_id, get_auto_id, get_candidate_id
 from main.models import Company, State
 
@@ -334,3 +334,63 @@ def candidate_application(request):
         }
         return render(request, 'candidate/candidate_application.html', context)
 
+        
+def create_intern(request): 
+    if request.method == 'POST':
+        form = InternForm(request.POST, request.FILES)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            intern_linkedin = form.cleaned_data['intern_linkedin']
+            intern_git = form.cleaned_data['intern_git']
+            resume = form.cleaned_data['resume']
+            skills = form.cleaned_data['skills']
+            domain = form.cleaned_data['domain']
+
+            if not Intern.objects.filter(email=email,is_deleted=False).exists():
+                
+                Intern( 
+                    name = name,
+                    email = email,
+                    phone = phone,
+                    intern_linkedin = intern_linkedin,
+                    intern_git = intern_git,
+                    resume = resume,
+                    skills = skills,
+                    domain = domain
+                ).save()
+                
+                response_data = {
+                    "status": "true",
+                    "title": "Successfully Enrolled",
+                    "message": "Sevendyne will contact you for further procedure.",
+                    "redirect": "true",
+                    "redirect_url": reverse('main:job_portal')
+                }
+            else:               
+                response_data = {
+                    "status": "false",
+                    "stable": "true",
+                    "title": "Already exists",
+                    "message": "This email is already enrolled",                        
+                }
+        else:
+            message = generate_form_errors(form, formset=False)
+            response_data = {
+                "stable": "true",
+                "status": "form_error",
+                "title": "Form validation error",
+                "message": str(message),               
+            }
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+    else:
+        form = InternForm()
+
+        context = {
+            "title": "Intern Enroll",
+            "form": form,
+            "redirect": "true",
+            "create":True
+        }
+        return render(request, 'internship/enrollment.html', context)

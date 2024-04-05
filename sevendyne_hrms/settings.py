@@ -146,3 +146,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/app/login/'
 LOGOUT_URL = '/app/logout/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+

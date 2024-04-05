@@ -5,8 +5,15 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from main.models import BaseModel
 
-# Refer https://internshala.com/student/resume?detail_source=resume_direct#personal_details 
-#check internshala,naukri etc
+
+DOMAIN_CHOICES = (
+    ('Full Stack Development', "Full Stack Development"),
+    ('Marketing',"Marketing"),
+    ('Accounting',"Accounting"),
+    ('Design Engineering',"Design Engineering"),
+    ('Matlab',"Matlab"),
+)
+
 class Candidate(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(_("First Name"),max_length=100)
@@ -34,3 +41,26 @@ class Candidate(models.Model):
 
     class Meta:
         ordering = ['-date_applied']
+
+
+
+# Create your models here.
+class Intern(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField(_("Email"),unique=True)
+    phone = models.CharField(_("Phone Number"),max_length=255)
+    intern_linkedin = models.URLField(_("linkedin Profile Link"),null=True,blank=True,max_length = 255)
+    intern_git = models.URLField(_("GitHub Profile Link"),null=True,blank=True,max_length = 255)
+    resume = models.FileField(_("Upload your resume"),upload_to='resumes/',null=True,blank=True)
+    skills = models.CharField(max_length=255,null=True,blank=True)
+    domain = models.CharField(_("Select your domain"),max_length=255, choices=DOMAIN_CHOICES,default='Full Stack Development')
+    date_added = models.DateTimeField(db_index=True,auto_now_add=True) 
+    is_deleted = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = ('candidate_intern')
+        verbose_name = _('intern')
+        verbose_name_plural = _('interns')
+
+    def __str__(self):
+        return self.name   

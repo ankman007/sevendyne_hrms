@@ -15,6 +15,9 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from num2words import num2words
 from django.utils.text import slugify
+from django.core.mail import send_mail
+from django.utils.translation import gettext_lazy as _
+from django.core.mail import EmailMultiAlternatives
 
 from weasyprint import HTML
 
@@ -690,7 +693,6 @@ def payslip(request,pk):
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 @company_required
 def print_payslip(request,pk): 
-    print("print payslip get")
     current_company = get_current_company(request)    
     currency=current_company.country.currency
     currency_symbol = current_company.country.currency_symbol
@@ -906,4 +908,45 @@ def employee_payslip(request,pk):
         # Debugging: Print any other exceptions that might occur
         print("Exception:", e)
         return HttpResponse(f"An error occurred: {str(e)}")
-    
+
+
+
+def email_payslip(request):
+
+    pk=request.GET.get('pk')
+    current_company = get_current_company(request)  
+    instance = Salary.objects.get(pk=pk,company=current_company,is_deleted=False)
+    employee = instance.employee
+    # Logic to retrieve employee's email address and other necessary information
+    # employee_email = employee.email
+    employee_email = "shamrifari@gmail.com"
+    print("employee mail",employee_email)
+    # company_email = current_company.email
+    company_email = "shamrifari@gmail.com"
+    print("company_email",company_email)
+    print("employee name", employee.get_full_name)
+
+    # Retrieve month and year from the date field
+    salary_month = instance.date.strftime("%B %Y")
+    print("salary_month",salary_month)
+
+    # Construct email content
+    subject = _("Your Payslip for the Month of %(month_year)s") % {'month_year': salary_month}
+    message = _(
+        f"Dear {employee.get_full_name},\n\nPlease find attached your payslip for the month of {salary_month}.\n\n"
+        "Regards,\nHR Team"
+    )
+
+    # Create EmailMultiAlternatives object
+    email = EmailMultiAlternatives(subject, message, [company_email], [employee_email])
+
+    # Generate payslip PDF and attach it to the email
+    payslip_pdf = generate_payslip_pdf(request)
+    payslip_filename = f"payslip_{employee.get_full_name.replace(' ', '_')}_{salary_month}.pdf"
+    email.attach(payslip_filename, payslip_pdf, 'application/pdf')
+
+    try:
+        email.send()
+        return HttpResponse("Email sent successfully")
+    except Exception as e:
+        return HttpResponse(f"Error sending email: {str(e)}")
