@@ -107,8 +107,13 @@
                         {% endfor %}
                         <a class="btn btn-primary py-3 px-5" href="{% url 'job:jobs' %}">Browse More Internships</a>
                     {% else %}
-                        <h5 style="font-weight:bolder">Introducing our "Enroll in Our Low-Cost Internship Training Programme" and Propel Your Career Forward! </h5>
-                            <a href="{% url 'candidate:candidate_application' %}" class="btn btn-primary">Apply for Training Programme</a>
+                            <h5 style="font-weight:bolder">Introducing our "Enroll in Our Low-Cost Internship Training Programme" and Propel Your Career Forward!</h5>
+                            <h6>Elevate your skills, gain hands-on experience, and broaden your career horizons through mentorship and real-world projects.</h6>    
+                            <p>Our Technical training division is committed to delivering high-quality training programs to professionals seeking to enhance their skills and stay ahead in the rapidly evolving tech landscape.
+                                With a focus on excellence, we have worked with top brands like Collabera to provide comprehensive training in Java, C++, .Net, and other core technologies
+                            </p>
+                            
+                            <a href="{% url 'candidate:create_intern' %}" class="btn btn-primary mt-3">Apply for Training Programme</a>
                     {% endif %}
                 </div>
                 <div id="tab-3" class="tab-pane fade show p-0">
