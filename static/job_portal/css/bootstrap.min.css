@@ -50,7 +50,7 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #666565;
-    background-color: #EFFDF5;
+    background-color: #effdfa;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
@@ -3082,8 +3082,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
     color: #000;
-    background-color: #00B074;
-    border-color: #00B074
+    background-color: #357f93;;
+    border-color: #357f93;
 }
 
 .btn-primary:hover {
@@ -3106,8 +3106,8 @@ fieldset:disabled .btn {
 .btn-primary.active,
 .show>.btn-primary.dropdown-toggle {
     color: #000;
-    background-color: #33c090;
-    border-color: #1ab882
+    background-color: #357f93;
+    border-color: #176379;
 }
 
 .btn-check:checked+.btn-primary:focus,
