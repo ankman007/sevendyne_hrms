@@ -241,6 +241,16 @@ def delete_selected_candidates(request):
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 def hrms_candidates(request):
     instances = Candidate.objects.filter(is_deleted=False,is_blocked=False)
+    
+
+    skills_query = request.GET.get("skills")
+    if skills_query:
+        instances = instances.filter(Q(skills__icontains=skills_query))
+    
+    experience_query = request.GET.get("experience")
+    if experience_query:
+        instances = instances.filter(experience__gte=experience_query)
+        
     paginator = Paginator(instances,1000000000000)
     page_number = request.GET.get('page')
     instances = paginator.get_page(page_number)
