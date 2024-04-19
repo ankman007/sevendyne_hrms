@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from job.models import JOB_STATUS_CHOICES
 from phonenumber_field.modelfields import PhoneNumberField
 
 from main.models import BaseModel
@@ -38,7 +39,8 @@ class Candidate(models.Model):
     resume = models.FileField(upload_to='candidates/resumes/', null=True, blank=True)
     date_applied = models.DateTimeField(auto_now_add=True)
     candidateid = models.CharField(_('Candidate ID'),max_length=255,unique=True,null=True,blank=True)    
-    job_type = models.CharField(_("Select Job Type"),max_length=255, choices=JOBTYPE_CHOICES,default='Full Time')
+    job_type = models.CharField(_("Select Job Type"),max_length=255, choices=JOBTYPE_CHOICES,default='Full Time',null=True,blank=True)
+    status =  models.CharField(max_length=255, choices=JOB_STATUS_CHOICES, default="No Offer",null=True,blank=True)
     is_blocked = models.BooleanField(_('Is Blocked'),help_text='button to toggle candidate block and unblock',default=False)
     is_deleted = models.BooleanField(default=False)
 

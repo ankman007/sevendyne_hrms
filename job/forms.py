@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.widgets import TextInput, Select,URLInput, ClearableFileInput
-from job.models import Job
+from job.models import CandidateJob, Job
 from datetime import date
 from django.utils.translation import gettext_lazy as _
 
@@ -39,5 +39,23 @@ class JobForm(forms.ModelForm):
             },
             'status': {
                 'required': _("Status field is required."),
+            }
+        }
+
+
+class CandidateJobForm(forms.ModelForm):
+    class Meta:
+        model = CandidateJob
+        exclude = ['creator', 'updator', 'auto_id','a_id','company','candidate','is_deleted'] 
+        widgets = {
+            'job_title': forms.TextInput(attrs={'class': 'required form-control ', 'placeholder': 'Job Title'}),
+            'job_location': forms.TextInput(attrs={'class': 'required form-control ', 'placeholder': 'Job Location'}),
+            'salary_from': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Salary From'}),
+            'salary_to': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Salary To'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'})
+        }
+        error_messages = {
+            'job_title': {
+                'required': _("Job Title field is required."),
             }
         }

@@ -25,6 +25,13 @@ JOBCATEGORY_CHOICES = (
     ('Matlab', "Matlab"),
 )
 
+JOB_STATUS_CHOICES = (
+    ('No Offer', "No Offer"),
+    ('Job Offered',"Job Offered"),
+    ('Assign Task',"Assign Task"),
+    ('Schedule Interview',"Schedule Interview")
+)
+
 class Job(BaseModel):  
     company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False}) 
     job_title = models.CharField(_('Job Title'),max_length=255)
@@ -35,7 +42,7 @@ class Job(BaseModel):
     age = models.PositiveIntegerField(_("Age"),null=True, blank=True)
     salary_from = models.PositiveIntegerField(_("Salary From"),null=True, blank=True)
     salary_to = models.PositiveIntegerField(_("Salary To"),null=True, blank=True)
-    job_type =  models.CharField(max_length=255, choices=JOBTYPE_CHOICES)
+    job_type =  models.CharField(max_length=255, choices=JOBTYPE_CHOICES,null=True, blank=True)
     job_category =  models.CharField(max_length=255, choices=JOBCATEGORY_CHOICES,default='Full Stack Development')
     status =  models.CharField(max_length=255, choices=STATUS_CHOICES)
     start_date = models.DateField(_('Start Date'),help_text='start date',null=True, blank=True)    
@@ -51,3 +58,26 @@ class Job(BaseModel):
 
     def __str__(self):
         return self.job_title
+    
+
+class CandidateJob(BaseModel):
+    company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False}) 
+    candidate = models.ForeignKey("candidate.Candidate",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False})     
+    job_title = models.CharField(_('Job Title'),max_length=255)
+    job_location = models.CharField(_('Job Location'),max_length=255,null=True, blank=True)   
+    description = models.TextField(null=True, blank=True)
+    salary_from = models.PositiveIntegerField(_("Salary From"),null=True, blank=True)
+    salary_to = models.PositiveIntegerField(_("Salary To"),null=True, blank=True)
+    status =  models.CharField(max_length=255, choices=JOB_STATUS_CHOICES, default="No Offer")
+    is_deleted = models.BooleanField(default=False)
+
+   
+    class Meta:
+        verbose_name = _('CandidateJob')
+        verbose_name_plural = _('CandidateJobs')
+        ordering = ['job_title']
+
+    def __str__(self):
+        return self.job_title
+    
+

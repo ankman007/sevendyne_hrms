@@ -255,7 +255,7 @@ def hrms_candidates(request):
     instances = paginator.get_page(page_number)
     context = {
         'instances': instances,
-        "title": 'Companies' 
+        "title": 'Candidates' 
     }
     return render(request, "candidate/candidates.html", context)
 

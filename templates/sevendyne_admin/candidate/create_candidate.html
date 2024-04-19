@@ -339,6 +339,13 @@
                           <label class="form-label">Github Profile</label>
                         </div>
         
+                        <div class="form-outline mb-4">
+                          {{ form.status }}
+                          {% if form.status.errors %}
+                            <span class="error">{{ form.status.errors.0 }}</span>
+                          {% endif %}
+                          <label class="form-label">Status</label>
+                        </div>
                         
                       
                     </div>
