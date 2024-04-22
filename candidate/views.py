@@ -8,6 +8,7 @@ from django.urls import reverse
 # from main.decorators import company_required
 from django.db.models import Q
 from candidate.models import Candidate, Intern
+from job.models import INTERVIEW_CHOICES, CandidateInterview
 from main.decorators import company_required
 
 from candidate.forms import CandidateForm, InternForm
@@ -253,8 +254,17 @@ def hrms_candidates(request):
     paginator = Paginator(instances,1000000000000)
     page_number = request.GET.get('page')
     instances = paginator.get_page(page_number)
+
+    # Fetch interview statuses for all candidates
+    interview_statuses = {
+        interview.candidate.id: interview.interview_status 
+        for interview in CandidateInterview.objects.all()
+    }
+    print("interview status",interview_statuses)
     context = {
         'instances': instances,
+        'interview_statuses': interview_statuses, 
+        "interview_choices": INTERVIEW_CHOICES,
         "title": 'Candidates' 
     }
     return render(request, "candidate/candidates.html", context)

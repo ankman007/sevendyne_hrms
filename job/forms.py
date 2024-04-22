@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.widgets import TextInput, Select,URLInput, ClearableFileInput
-from job.models import CandidateJob, Job
+from job.models import CandidateInterview, CandidateJob, Job
 from datetime import date
 from django.utils.translation import gettext_lazy as _
 
@@ -57,5 +57,45 @@ class CandidateJobForm(forms.ModelForm):
         error_messages = {
             'job_title': {
                 'required': _("Job Title field is required."),
+            }
+        }
+
+class CandidateJobStatusForm(forms.ModelForm):
+    class Meta:
+        model = CandidateJob
+        exclude = ['creator', 'updator', 'auto_id','a_id','company','candidate','is_deleted','job_title','job_location','salary_from','salary_to','description'] 
+        widgets = {
+            'status': forms.Select(attrs={'class': 'required form-control ', 'placeholder': 'Status'})
+        }
+        error_messages = {
+            'status': {
+                'required': _("Job Status field is required."),
+            }
+        }
+
+class CandidateInterviewForm(forms.ModelForm):
+    class Meta:
+        model = CandidateInterview
+        exclude = ['creator', 'updator', 'auto_id','a_id','company','candidate','is_deleted','interview_status'] 
+        widgets = {
+            'date_time': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'additional_information': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Additional Information'})
+        }
+        error_messages = {
+            'date_time': {
+                'required': _("Date Time field is required."),
+            }
+        }
+
+class CandidateInterviewStatusForm(forms.ModelForm):
+    class Meta:
+        model = CandidateInterview
+        fields = ['interview_status'] 
+        widgets = {
+            'interview_status': forms.Select(attrs={'class': 'form-control', 'type': 'datetime-local'})
+        }
+        error_messages = {
+            'interview_status': {
+                'required': _("Interview Status field is required."),
             }
         }

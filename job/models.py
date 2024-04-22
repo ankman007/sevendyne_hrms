@@ -26,12 +26,22 @@ JOBCATEGORY_CHOICES = (
 )
 
 JOB_STATUS_CHOICES = (
-    ('No Offer', "No Offer"),
+    ('Offer a job', "Offer a job"),
     ('Job Offered',"Job Offered"),
     ('Assign Task',"Assign Task"),
-    ('Schedule Interview',"Schedule Interview")
+    ('Interested in the Job',"Interested in the Job"),
+    ('Interview Scheduled',"Interview Scheduled"),
+    ('Interview Done',"Interview Done"),
+    ('Cancelled/Rejected',"Cancelled/Rejected")
 )
 
+INTERVIEW_CHOICES = (
+    ('Interview not done', "Interview not done"),
+    ('Sent an offer letter', "Sent an offer letter"),
+    ('Better luck next time',"Better luck next time"),
+    ('Waiting List',"Waiting List"),
+    ('Rejected',"Rejected")
+)
 class Job(BaseModel):  
     company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False}) 
     job_title = models.CharField(_('Job Title'),max_length=255)
@@ -68,7 +78,8 @@ class CandidateJob(BaseModel):
     description = models.TextField(null=True, blank=True)
     salary_from = models.PositiveIntegerField(_("Salary From"),null=True, blank=True)
     salary_to = models.PositiveIntegerField(_("Salary To"),null=True, blank=True)
-    status =  models.CharField(max_length=255, choices=JOB_STATUS_CHOICES, default="No Offer")
+    status =  models.CharField(max_length=255, choices=JOB_STATUS_CHOICES, default="Offer a job")
+    # interview_status =  models.CharField(max_length=255, choices=INTERVIEW_CHOICES, default="Interview not done")
     is_deleted = models.BooleanField(default=False)
 
    
@@ -80,4 +91,23 @@ class CandidateJob(BaseModel):
     def __str__(self):
         return self.job_title
     
+class CandidateInterview(BaseModel):
+    company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False}) 
+    candidate = models.ForeignKey("candidate.Candidate",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False})     
+    date_time = models.DateTimeField()
+    additional_information = models.TextField(null=True, blank=True)
+    interview_status =  models.CharField(max_length=255, choices=INTERVIEW_CHOICES)
+    is_deleted = models.BooleanField(default=False)
+
+   
+    class Meta:
+        verbose_name = _('CandidateInterview')
+        verbose_name_plural = _('CandidateInterviews')
+        ordering = ['date_time']
+
+    def __str__(self):
+        return self.date_time
+    
+
+
 

@@ -18,4 +18,12 @@ urlpatterns = [
     re_path(r'^candidate-job/edit/(?P<pk>.*)/$', views.edit_candidate_job, name='edit_candidate_job'),
     re_path(r'^delete-candidate-job/(?P<pk>.*)/$', views.delete_candidate_job, name='delete_candidate_job'),
     re_path(r'^candidate-job/(?P<pk>.*)/$', views.candidate_job, name='candidate_job'),
+
+    re_path(r'^candidate-interview/create/(?P<pk>.*)/$', views.create_candidate_interview, name='create_candidate_interview'),
+    path('candidate-interviews/', views.candidate_interviews, name="candidate_interviews"),
+    re_path(r'^candidate-interview/edit/(?P<pk>.*)/$', views.edit_candidate_interview, name='edit_candidate_interview'),
+    re_path(r'^candidate-interview/update/(?P<pk>.*)/$', views.update_candidate_interview_status, name='update_candidate_interview_status'),
+    re_path(r'^delete-candidate-interview/(?P<pk>.*)/$', views.delete_candidate_interview, name='delete_candidate_interview'),
+    re_path(r'^candidate-interview/(?P<pk>.*)/$', views.candidate_interview, name='candidate_interview'),
+
 ] 
