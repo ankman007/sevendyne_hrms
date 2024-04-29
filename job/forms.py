@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.widgets import TextInput, Select,URLInput, ClearableFileInput
-from job.models import CandidateInterview, CandidateJob, Job
+from job.models import CandidateInterview, CandidateJob, Job, JobApplicant
 from datetime import date
 from django.utils.translation import gettext_lazy as _
 
@@ -97,5 +97,33 @@ class CandidateInterviewStatusForm(forms.ModelForm):
         error_messages = {
             'interview_status': {
                 'required': _("Interview Status field is required."),
+            }
+        }
+
+
+class JobApplicantForm(forms.ModelForm):
+    class Meta:
+        model = JobApplicant
+        fields = ['candidate'] 
+        widgets = {
+            'candidate': forms.Select(attrs={'class': 'required form-control ', 'placeholder': 'Candidate'})
+        }
+        error_messages = {
+            'candidate': {
+                'required': _("Candidate field is required."),
+            }
+        }
+
+
+class JobApplicantStatusForm(forms.ModelForm):
+    class Meta:
+        model = JobApplicant
+        exclude = ['hiring_status'] 
+        widgets = {
+            'hiring_status': forms.Select(attrs={'class': 'required form-control ', 'placeholder': 'Hiring Status'})
+        }
+        error_messages = {
+            'hiring_status': {
+                'required': _("Hiring Status field is required."),
             }
         }

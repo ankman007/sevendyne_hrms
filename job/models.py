@@ -42,6 +42,16 @@ INTERVIEW_CHOICES = (
     ('Waiting List',"Waiting List"),
     ('Rejected',"Rejected")
 )
+
+JOB_APPLICANT_STATUS_CHOICES = (
+    ('Not an applicant', "Not an applicant"),
+    ('Applicant', "Applicant"),
+    ('Hired',"Hired"),
+    ('Assign Task',"Assign Task"),
+    ('Interview Scheduled',"Interview Scheduled"),
+    ('Interview Done',"Interview Done"),
+    ('Cancelled/Rejected',"Cancelled/Rejected")
+)
 class Job(BaseModel):  
     company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False}) 
     job_title = models.CharField(_('Job Title'),max_length=255)
@@ -109,5 +119,21 @@ class CandidateInterview(BaseModel):
         return self.date_time
     
 
+class JobApplicant(BaseModel):
+    company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False}) 
+    candidate = models.ForeignKey("candidate.Candidate",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False})     
+    job = models.ForeignKey("job.Job",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False})   
+    hiring_status =  models.CharField(max_length=255, choices=JOB_APPLICANT_STATUS_CHOICES, default="Not an Applicant")
+    is_blocked = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
 
+   
+    class Meta:
+        verbose_name = _('JobApplicant')
+        verbose_name_plural = _('JobApplicants')
+        ordering = ['job']
+
+    def __str__(self):
+        return self.job
+    
 

@@ -24,9 +24,9 @@
 					<a href="{% url 'payroll:print_payslip' pk=pk %}" class="btn btn-white">
 						<i class="fa-solid fa-print fa-lg"></i> Print
 					</a>
-					<a href="#" id="email-button" class="btn btn-white">
+					{% comment %} <a href="#" id="email-button" class="btn btn-white">
 						<i class="fa-solid fa-envelope fa-lg"></i> Email
-					</a>  
+					</a>   {% endcomment %}
 					{% comment %} <button href="{% url 'payroll:print_payslip' pk=pk %}" class="btn btn-white"><i class="fa-solid fa-print fa-lg"></i> Print</button> {% endcomment %}
 				</div>
 			</div>

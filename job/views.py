@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from candidate.models import Candidate
 from employee.models import Department
-from job.forms import CandidateInterviewForm, CandidateInterviewStatusForm, CandidateJobForm, CandidateJobStatusForm, JobForm
-from job.models import INTERVIEW_CHOICES, JOBTYPE_CHOICES, STATUS_CHOICES, CandidateInterview, CandidateJob, Job
+from job.forms import CandidateInterviewForm, CandidateInterviewStatusForm, CandidateJobForm, CandidateJobStatusForm, JobApplicantForm, JobApplicantStatusForm, JobForm
+from job.models import INTERVIEW_CHOICES, JOBTYPE_CHOICES, STATUS_CHOICES, CandidateInterview, CandidateJob, Job, JobApplicant
 from django.core.paginator import Paginator
 from main.decorators import company_required
 from django.contrib.auth.decorators import login_required,user_passes_test
@@ -418,7 +418,7 @@ def delete_candidate_job(request,pk):
     return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 
-#  candidate job views here.
+#  candidate interview views here.
 @login_required
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 @company_required
@@ -645,3 +645,168 @@ def delete_candidate_interview(request,pk):
         "redirect_url" : reverse('job:job_interviews')
     }
     return HttpResponse(json.dumps(response_data), content_type='application/json')
+
+
+#  candidate job views here.
+@login_required
+@user_passes_test(has_admin_dashboard_permission, redirect_field_name=None)
+def create_job_applicant(request,pk):
+    job = get_object_or_404(Job.objects.filter(pk=pk,is_deleted=False))
+    company = job.company
+    if request.method == 'POST':
+        form = JobApplicantForm(request.POST)
+        if form.is_valid():
+            candidate = form.cleaned_data['candidate']
+
+            hiring_status = "Applicant"
+            
+            auto_id = get_auto_id(Job)
+            a_id = get_a_id(Job,request)
+            creator = request.user
+            updator = request.user
+
+            if not JobApplicant.objects.filter(job=job,candidate=candidate,company=company,is_deleted=False).exists():
+                JobApplicant(  
+                    candidate = candidate,                  
+                    job = job,
+                    hiring_status = hiring_status,
+                    auto_id = auto_id, 
+                    a_id = a_id,
+                    company =company,
+                    creator = creator,
+                    updator = updator
+                ).save()                
+                
+                response_data = {
+                    "status": "true",
+                    "title": "Successfully Applied",
+                    "message": "Job Applied successfully.",
+                    "redirect": "true",
+                    "redirect_url": reverse('job:job_applicants')
+                }
+            else:               
+                response_data = {
+                    "status": "false",
+                    "stable": "true",
+                    "title": "Already exists",
+                    "message": "Job Applicant already exists",                        
+                }
+        else:
+            print("candidate job - form error")
+            message = generate_form_errors(form, formset=False)
+            response_data = {
+                "stable": "true",
+                "status": "form_error",
+                "title": "Form validation error",
+                "message": str(message),               
+            }
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+    else:
+        form = CandidateJobForm()
+        context = {
+            "title": "Apply to Job",
+            "form": form,
+            "redirect": "true",
+            "create":True
+        }
+        
+        return render(request, 'job/job-applicants.html', context)
+
+@login_required
+@user_passes_test(has_admin_dashboard_permission, redirect_field_name=None)
+
+def job_applicants(request):
+    jobs = JobApplicant.objects.filter(is_deleted=False)
+
+    paginator = Paginator(jobs,1000000000000)
+    page_number = request.GET.get('page')
+    instances = paginator.get_page(page_number)
+    context = {
+        'instances': instances,
+        "title": 'Job Applicants'
+    }
+    return render(request, "sevendyne_admin/candidate/job-applicants.html", context)
+
+
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def edit_job_applicant_status(request, pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(Job.objects.filter(pk=pk, is_deleted=False))    
+    # candidate = instance.candidate
+    
+    if request.method == "POST":
+        form = JobApplicantStatusForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.updator = request.user
+            data.date_updated = datetime.datetime.now()
+            data.save()
+
+           
+
+            response_data = {
+                "status": "true",
+                "redirect" : "true",
+                "title": "Successfully Updated",
+                "message": "Job Applicant Status updated successfully.",                
+                "redirect_url": reverse('job:job_applicants')
+            }
+
+        else:
+            message = generate_form_errors(form, formset=False)
+
+            response_data = {
+                "stable": "true",
+                "status": "false",
+                "message": str(message),
+                "title": "Form validation error"  
+            }
+
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+    else:
+        form = JobApplicantStatusForm(instance=instance)
+       
+        context = {
+            "form": form,
+            "instance": instance,
+            "title": "Edit Job Applicant Status :" + instance.job_title,
+            
+            "redirect": "true",
+            "url": reverse('job:edit_job_applicant', kwargs={'pk': instance.pk}),
+
+        }
+        return render(request, 'job/jobs.html', context)
+
+
+@login_required
+@user_passes_test(has_admin_dashboard_permission, redirect_field_name=None)
+def job_applicant(request,pk):
+    instance = get_object_or_404(JobApplicant.objects.filter(pk=pk,is_deleted=False))
+
+    context = {
+        'instance': instance,
+        'title': 'Job Applicant',
+
+    }
+    return render(request, "sevendyne_admin/candidate/candidate-job.html", context)
+
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def delete_job_applicant(request,pk):
+    instance = get_object_or_404(JobApplicant.objects.filter(pk=pk,is_deleted=False))
+    
+    JobApplicant.objects.filter(pk=pk).update(is_deleted=True,job_title=instance.job_title + "_deleted_" + str(instance.auto_id))
+
+    response_data = {
+        "status" : "true",        
+        "title" : "Successfully Deleted",
+        "message" : "Job Applicant Successfully Deleted.", 
+        "redirect" : "true",       
+        "redirect_url" : reverse('job:job_applicants')
+    }
+    return HttpResponse(json.dumps(response_data), content_type='application/json')
+
