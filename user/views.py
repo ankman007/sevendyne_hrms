@@ -87,7 +87,7 @@ def register(request):
 
         hashed_password = make_password(password)
 
-        if not HrmsClient.objects.filter(username=username,is_deleted=False).exists():
+        if not HrmsClient.objects.filter(username=username).exists():
             user, created = User.objects.get_or_create(username=username, defaults={'password': hashed_password, 'email': email, 'first_name': first_name, 'last_name': last_name})
             print("user",user)
             # if created:
@@ -113,7 +113,7 @@ def register(request):
             message = "Registration Successful! Sevendyne will send you the credentials via email for login after verification.Thank you!"
             return render(request, "authentication/register.html", {"message": message})
         else:
-            message = "Username already exists."
+            message = "Username already exists/existed."
         return render(request, "authentication/register.html", {"message": message})      
     else:   
         return render(request, "authentication/register.html")
