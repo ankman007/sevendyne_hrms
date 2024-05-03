@@ -5,12 +5,22 @@
 
  
 <!-- Page Content -->
-
+<style>
+    /* Hide video controls */
+    video::-webkit-media-controls {
+        display: none !important;
+    }
+</style>
 <!-- Carousel Start -->
 <div class="container-fluid p-0" style="height:70vh;">
     <div class="owl-carousel header-carousel position-relative">
         <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="{% static 'job_portal/img/hrmscover7.png' %}" alt="" style="height:70vh;">
+            <video autoplay muted loop class="img-fluid" style="width: 100vw; height: 69.5vh; object-fit: cover;">
+                <source src="{% static 'job_portal/videos/cover_video.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>     
+              
+            {% comment %} <img class="img-fluid" src="{% static 'job_portal/img/hrmscover7.png' %}" alt="" style="height:70vh;"> {% endcomment %}
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
                 <div class="container">
                     <div class="row justify-content-start">
