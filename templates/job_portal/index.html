@@ -25,10 +25,11 @@
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
-                            <h1 class="text-white animated slideInDown mb-4">Unlock Your Potential with Our Comprehensive HRMS Platform</h1>
-                            <p class="fs-5 fw-medium text-white mb-4 pb-2">Empower your HR team with advanced tools to manage recruitment, employee data, performance, and more efficiently.</p>
+                            <h1 class="text-white animated slideInDown mb-4">Unlock Success with Sevendyne's IT Mastery</h1>
+                            <p class="fs-5 fw-medium text-white mb-4 pb-2">Empower your company with our range of IT services, including tech development, staff management and resource nourishment</p>
                             {% comment %} <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Search A Job</a> {% endcomment %}
-                            <a href="{% url 'user:signup' %}" target="_blank" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Build Teams With Us</a>
+                           {% comment %} <a href="{% url 'user:signup' %}" target="_blank" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Build Teams With Us</a> {% endcomment %}
+                            <a href="{% url 'main:portfolios_home' %}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Explore Our Client Works</a> 
                         </div>
                     </div>
                 </div>
@@ -82,7 +83,7 @@
         </div>
     </div>
 </section> 
-<a href="{% url 'main:portfolios_home' %}" target="_blank" class="btn btn-primary btn-sm mx-auto d-block" style="width: 200px;">Explore Our Client Works</a> 
+
 
 <!-- End Clients Section -->
 
@@ -303,16 +304,17 @@
                     </div> {% endcomment %}
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <h2 class="mb-4">We Help To Get The Best Job<br> & Find A Talent</h2>
-                <p class="mb-4">Building a strong team is crucial for the success of any organization, as it allows individuals to collaborate and leverage their unique skills and experiences to achieve common goals.</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Resource Support</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Staffing Skills</p>
-                <p><i class="fa fa-check text-primary me-3"></i>Technology Solutions</p>   
-                <p>We help you to find remote tech talent for your company.</p>
-                <p class="mb-4">Contact us today to learn more about how we can help your business achieve staffing success through our comprehensive staffing solutions.</p>   
-                <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:about' %}" target="_blank">Read More</a>                  
-            </div>
+          <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+              <h2 class="mb-4">Empowering Your Business with IT Excellence</h2>
+              <p class="mb-4">At Sevendyne, we specialize in providing top-notch IT consultancy services to help you excel in today's digital landscape. Our core expertise lies in three key areas:</p>
+              <p><i class="fa fa-check text-primary me-3"></i>Tech Development</p>
+              <p><i class="fa fa-check text-primary me-3"></i>Staff Management</p>
+              <p><i class="fa fa-check text-primary me-3"></i>Resource Nourishment</p>   
+              <p>Partner with us to discover remote tech talent tailored to your company's needs.</p>
+              <p class="mb-4">Reach out today to explore how our comprehensive IT solutions can drive your business forward.</p>   
+              <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:about' %}" target="_blank">Learn More</a>                  
+          </div>
+
         </div>
     </div>
 </div>
