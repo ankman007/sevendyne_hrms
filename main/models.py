@@ -143,3 +143,18 @@ class Portfolio(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class EmailSetting(BaseModel):
+    company = models.ForeignKey("main.Company",on_delete=models.CASCADE,limit_choices_to={'is_deleted': False})   
+    email = models.EmailField(_("Email"))
+    password = models.CharField(_("password"),max_length=128)
+    is_deleted = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = _('Email Setting')
+        verbose_name_plural = _('Email Settings')
+        ordering = ['email']
+    
+    def __str__(self):
+        return self.email

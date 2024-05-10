@@ -1,6 +1,10 @@
 import calendar
 import datetime
 import json
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.mail import EmailMessage
 from django.forms import formset_factory
 from django.db.models import Sum, Q
 from django.urls import reverse
@@ -16,6 +20,8 @@ from employee.forms import AttendanceDateForm, AttendanceRegisterForm, Departmen
 from employee.models import AttendanceRegister, Department, Designation, Employee, Holiday, Leave, LeaveType
 from main.decorators import company_required
 from main.functions import generate_form_errors, get_a_id, get_auto_id, get_current_company, has_employee_dashboard_permission, has_hrms_permission
+from main.models import EmailSetting
+from sevendyne_hrms import settings
 
 # Department crud starts here
 @login_required
@@ -903,7 +909,6 @@ def create_leave(request):
     employee = get_object_or_404(Employee, user=request.user)
     company = employee.company
     if request.method == 'POST':
-        print("leave type post request")
         form = LeaveForm(request.POST)
         if form.is_valid():
             startdate = form.cleaned_data['startdate']
@@ -917,33 +922,67 @@ def create_leave(request):
             company = company
             creator = request.user
             updator = request.user
-            print("leave type", leavetype)
-            print("leave_days",leave_days)
             if int(leave_days)<=int(remaining_days):
-                print("next step is saving in leave model db")
-                Leave( 
-                    startdate = startdate,
-                    enddate = enddate,                   
-                    leavetype = leavetype,
-                    reason = reason,
-                    leave_days = leave_days,
-                    auto_id = auto_id,
-                    a_id = a_id,
-                    company = company,
-                    employee = employee,
-                    creator = creator,
-                    updator = updator
-                ).save()
-                leave= Leave.objects.all()
-                print("leaves saved in db model",leave)
-                response_data = {
-                    "status": "true",
-                    "title": "Leave Request",
-                    "message": "Requested for Leave successfully.",
-                    "redirect": "true",
-                    "redirect_url": reverse('employee:leaves')
-                }
-                print("Redirect URL:", response_data["redirect_url"])
+                if not Leave.objects.filter(employee=employee,company=company,startdate=startdate,enddate=enddate,is_deleted=False).exists():
+                    leave = Leave( 
+                        startdate = startdate,
+                        enddate = enddate,                   
+                        leavetype = leavetype,
+                        reason = reason,
+                        leave_days = leave_days,
+                        auto_id = auto_id,
+                        a_id = a_id,
+                        company = company,
+                        employee = employee,
+                        creator = creator,
+                        updator = updator
+                    )
+                    leave.save()
+
+                    # name = form.cleaned_data['name']
+                    # email = form.cleaned_data['email']
+                    # content = form.cleaned_data['content']
+                    # content += "<br />"
+                    # link = request.build_absolute_uri(reverse('sales:print_sale',kwargs={'pk':pk}))
+                    # content += '<a href="%s">%s</a>' %(link,link)
+                    
+                    # template_name = 'email/email.html'
+                    # subject = "Purchase Details (#%s) | %s" %(str(instance.auto_id),current_shop.name)          
+                    # context = {
+                    #     'name' : name,
+                    #     'subject' : subject,
+                    #     'content' : content,
+                    #     'email' : email
+                    # }
+                    # html_content = render_to_string(template_name,context)
+                    # send_email(email,subject,content,html_content) 
+
+                    
+                    # Send email notification
+                    subject = 'Leave Request Submitted by %s ' %str(employee)
+                    accept_url = request.build_absolute_uri(reverse('employee:leave_approval', kwargs={'pk': leave.id}))
+                    reject_url = request.build_absolute_uri(reverse('employee:leave_reject', kwargs={'pk': leave.id}))
+                    html_message = render_to_string('leave/email_templates/email_notification.html', {'leave': leave, 'accept_url': accept_url, 'reject_url': reject_url})
+                    plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
+                    from_email = settings.DEFAULT_FROM_EMAIL
+                    to_email = company.email
+                    # to_email = EmailSetting.objects.get(company=company).email  # Fetch recipient email from EmailSetting
+                    send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
+                    
+                    response_data = {
+                        "status": "true",
+                        "title": "Leave Request",
+                        "message": "Requested for Leave successfully.",
+                        "redirect": "true",
+                        "redirect_url": reverse('employee:leaves')
+                    }
+                else:               
+                    response_data = {
+                        "status": "false",
+                        "stable": "true",
+                        "title": "Already applied on these dates",
+                        "message": "already applied on these days",                        
+                    }
             else:               
                 response_data = {
                     "status": "false",
@@ -951,10 +990,7 @@ def create_leave(request):
                     "title": "Can't apply for these much leave days",
                     "message": "Leave days is greater than the remaining days",                        
                 }
-                print("status inside", response_data["status"])
-            print("status outside", response_data["status"])
         else:
-            print('not valid')
             message = generate_form_errors(form, formset=False)
             response_data = {
                 "stable": "true",
@@ -966,7 +1002,7 @@ def create_leave(request):
     else:
         form = LeaveForm()
         context = {
-            "title": "Create Leave",
+            "title": "Apply Leave",
             "form": form,
             "redirect": "true",
             "create":True
@@ -976,22 +1012,16 @@ def create_leave(request):
 def ajax_load_remaining_days(request):
     employee = get_object_or_404(Employee, user=request.user)
     company = employee.company
-    print("company",company)
     leavetype = request.GET.get('leavetype')
-    print("leave type ",leavetype)
     name = leavetype
-    print("leave name", name)
     approved_leave_days_count = Leave.objects.filter(company=company,employee=employee, leavetype__name=name, is_approved=True).count()
-    print("approved_leave_days_count",approved_leave_days_count)
     if LeaveType.objects.filter(name=name,company=company,is_deleted=False).exists():
         # leavetypes  = LeaveType.objects.filter(is_deleted=False,name=name,company=company)
         leavetype = get_object_or_404(LeaveType, is_deleted=False,name=name,company=company)
         leavetype_days = leavetype.days
-        print("leavetype_days",leavetype_days)
         data = leavetype_days - approved_leave_days_count
-        print("data - remaining days",data)
+        
     else:
-        print("leave type not found")
         data="Data Not Found"
     context = {
         'data' : data
@@ -1005,7 +1035,6 @@ def leaves(request):
     employee = get_object_or_404(Employee, user=request.user)
     company = employee.company
     leaves = Leave.objects.filter(company=company,is_deleted=False)
-    print("leaves",leaves)
     paginator = Paginator(leaves,1000000000000)
     page_number = request.GET.get('page')
     leaves = paginator.get_page(page_number)
@@ -1110,7 +1139,6 @@ def leave_approvals(request):
 def edit_leave(request, pk):
     current_company = get_current_company(request)
     instance = get_object_or_404(Leave.objects.filter(pk=pk,company=current_company, is_deleted=False))    
-    print("leave id",instance.pk)
     if request.method == "POST":
         form = LeaveForm(request.POST, instance=instance)
 
@@ -1119,7 +1147,6 @@ def edit_leave(request, pk):
             data.updator = request.user
             data.date_updated = datetime.datetime.now()
             data.save()
-            print("updated leave",data.name)
 
             response_data = {
                 "status": "true",
@@ -1179,6 +1206,31 @@ def leave_approval(request,pk):
         if not instance.is_approved:
             Leave.objects.filter(pk=pk).update(is_approved=True,status='Approved',employee=instance.employee)
 
+            # Send email notification to employee
+            employee = instance.employee
+            subject = 'Leave Request Approved'
+            message = render_to_string('email_templates/leave_approved.html', {'leave': instance})
+            email = EmailMessage(subject, message, to=[employee.email])
+            email.send()
+
+            # name = form.cleaned_data['name']
+			# email = form.cleaned_data['email']
+			# content = form.cleaned_data['content']
+			# content += "<br />"
+			# link = request.build_absolute_uri(reverse('sales:print_sale',kwargs={'pk':pk}))
+			# content += '<a href="%s">%s</a>' %(link,link)
+			
+			# template_name = 'email/email.html'
+			# subject = "Purchase Details (#%s) | %s" %(str(instance.auto_id),current_shop.name)          
+			# context = {
+			# 	'name' : name,
+			# 	'subject' : subject,
+			# 	'content' : content,
+			# 	'email' : email
+			# }
+			# html_content = render_to_string(template_name,context)
+			# send_email(email,subject,content,html_content) 
+    
             response_data = {
                 "status" : "true",        
                 "title" : "Successfully Approved",
@@ -1210,6 +1262,13 @@ def leave_reject(request,pk):
         if not instance.is_approved:
             Leave.objects.filter(pk=pk).update(is_rejected=True,status='Rejected',employee=instance.employee)
 
+             # Send email notification to employee
+            employee = instance.employee
+            subject = 'Leave Request Rejected'
+            message = render_to_string('email_templates/leave_rejected.html', {'leave': instance})
+            email = EmailMessage(subject, message, to=[employee.email])
+            email.send()
+    
             response_data = {
                 "status" : "true",        
                 "title" : "Rejected",
