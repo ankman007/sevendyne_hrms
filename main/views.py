@@ -16,9 +16,9 @@ from main.decorators import company_required
 from django.db.models.functions import ExtractMonth, ExtractYear
 
 
-from main.forms import CompanyForm, PortfolioForm
+from main.forms import CompanyForm, EmailSettingForm, PortfolioForm
 from main.functions import generate_form_errors, get_a_id, get_auto_id, get_current_company, has_employee_dashboard_permission
-from main.models import Company, CompanyAccess, Portfolio, State
+from main.models import Company, CompanyAccess, EmailSetting, Portfolio, State
 
 from django.http import JsonResponse
 
@@ -649,4 +649,166 @@ def company(request, pk):
 
     }
     return render(request, "settings/company.html", context)
+
+# email settings crud starts here
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def create_email_setting(request):
+    current_company = get_current_company(request)
+    print("current comapny",current_company)
+    if request.method == 'POST':
+        print("leave type post request")
+        form = EmailSettingForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            auto_id = get_auto_id(EmailSetting)
+            a_id = get_a_id(EmailSetting,request)
+            company = current_company
+            creator = request.user
+            updator = request.user
+
+            if not EmailSetting.objects.filter(company=current_company,is_deleted=False).exists():
+                EmailSetting(                    
+                    email = email,
+                    password = password,
+                    auto_id = auto_id,
+                    a_id = a_id,
+                    company =company,
+                    creator = creator,
+                    updator = updator
+                ).save()
+                response_data = {
+                    "status": "true",
+                    "title": "Successfully Created",
+                    "message": "Email Setting created successfully.",
+                    "redirect": "true",
+                    "redirect_url": reverse('main:email_settings')
+                }
+            else:               
+                response_data = {
+                    "status": "false",
+                    "stable": "true",
+                    "title": "Already exists",
+                    "message": "Email Setting already exists",                        
+                }
+        else:
+            message = generate_form_errors(form, formset=False)
+            response_data = {
+                "stable": "true",
+                "status": "form_error",
+                "title": "Form validation error",
+                "message": str(message),               
+            }
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+    else:
+        form = EmailSettingForm()
+
+        context = {
+            "title": "Create Email Setting",
+            "form": form,
+            "redirect": "true",
+            "create":True
+        }
+        return render(request, 'settings/email-settings.html', context)
+
+
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def email_settings(request):
+    current_company = get_current_company(request)
+    email_settings = EmailSetting.objects.filter(company=current_company,is_deleted=False)
+    paginator = Paginator(email_settings,1000000000000)
+    page_number = request.GET.get('page')
+    email_settings = paginator.get_page(page_number)
+    context = {
+        'email_settings': email_settings,
+        "title": 'Email Settings',
+        "is_email_settings" : True
+    }
+    return render(request, "settings/email-settings.html", context)
+
+
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def edit_email_setting(request, pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(EmailSetting.objects.filter(pk=pk,company=current_company, is_deleted=False))    
+    if request.method == "POST":
+        form = EmailSettingForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.updator = request.user
+            data.date_updated = datetime.datetime.now()
+            data.save()
+            response_data = {
+                "status": "true",
+                "redirect" : "true",
+                "title": "Successfully Updated",
+                "message": "Email Setting updated successfully.",                
+                "redirect_url": reverse('main:email_settings')
+            }
+
+        else:
+            message = generate_form_errors(form, formset=False)
+
+            response_data = {
+                "stable": "true",
+                "status": "false",
+                "message": str(message),
+                "title": "Form validation error"  
+            }
+
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+    else:
+        form = EmailSettingForm(instance=instance)
+
+        context = {
+            "form": form,
+            "instance": instance,
+            "title": "Edit EmailSetting :" + instance.email,
+            
+            "redirect": "true",
+            "url": reverse('main:edit_email_setting', kwargs={'pk': instance.pk}),
+        }
+        return render(request, 'settings/email-settings.html', context)
+
+
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def email_setting(request, pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(EmailSetting.objects.filter(pk=pk,company=current_company,is_deleted=False))
+
+    context = {
+        'instance': instance,
+        'title': 'Email Setting',
+
+    }
+    return render(request, "settings/email-setting.html", context)
+
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def delete_email_setting(request,pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(EmailSetting.objects.filter(pk=pk,company=current_company,is_deleted=False))
+    
+    EmailSetting.objects.filter(pk=pk).update(is_deleted=True,email=instance.email + "_deleted_" + str(instance.auto_id))
+
+    response_data = {
+        "status" : "true",        
+        "title" : "Successfully Deleted",
+        "message" : "Email Setting Successfully Deleted.", 
+        "redirect" : "true",       
+        "redirect_url" : reverse('main:email_settings')
+    }
+    return HttpResponse(json.dumps(response_data), content_type='application/json')
+   
+
 
