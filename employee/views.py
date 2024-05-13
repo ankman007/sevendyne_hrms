@@ -185,7 +185,7 @@ def delete_department(request,pk):
     }
     return HttpResponse(json.dumps(response_data), content_type='application/json')
  
- 
+
 @login_required
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 @company_required
@@ -589,7 +589,6 @@ def edit_employee(request, pk):
             data.updator = request.user
             data.date_updated = datetime.datetime.now()
             data.save()
-            # print("updated Client",data.company)
             print("edited Employee's groups:", user.groups.all())
 
             response_data = {
@@ -865,26 +864,7 @@ def create_leave(request):
                         creator = creator,
                         updator = updator
                     )
-                    leave.save()
-
-                    # name = form.cleaned_data['name']
-                    # email = form.cleaned_data['email']
-                    # content = form.cleaned_data['content']
-                    # content += "<br />"
-                    # link = request.build_absolute_uri(reverse('sales:print_sale',kwargs={'pk':pk}))
-                    # content += '<a href="%s">%s</a>' %(link,link)
-                    
-                    # template_name = 'email/email.html'
-                    # subject = "Purchase Details (#%s) | %s" %(str(instance.auto_id),current_shop.name)          
-                    # context = {
-                    #     'name' : name,
-                    #     'subject' : subject,
-                    #     'content' : content,
-                    #     'email' : email
-                    # }
-                    # html_content = render_to_string(template_name,context)
-                    # send_email(email,subject,content,html_content) 
-
+                    leave.save()       
                     
                     # Send email notification
                     subject = 'Leave Request Submitted by %s ' %str(employee)
@@ -894,7 +874,6 @@ def create_leave(request):
                     plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
                     from_email = settings.DEFAULT_FROM_EMAIL
                     to_email = company.email
-                    # to_email = EmailSetting.objects.get(company=company).email  # Fetch recipient email from EmailSetting
                     send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
                     
                     response_data = {
@@ -944,7 +923,6 @@ def ajax_load_remaining_days(request):
     name = leavetype
     approved_leave_days_count = Leave.objects.filter(company=company,employee=employee, leavetype__name=name, is_approved=True).count()
     if LeaveType.objects.filter(name=name,company=company,is_deleted=False).exists():
-        # leavetypes  = LeaveType.objects.filter(is_deleted=False,name=name,company=company)
         leavetype = get_object_or_404(LeaveType, is_deleted=False,name=name,company=company)
         leavetype_days = leavetype.days
         data = leavetype_days - approved_leave_days_count
@@ -1140,24 +1118,6 @@ def leave_approval(request,pk):
             message = render_to_string('email_templates/leave_approved.html', {'leave': instance})
             email = EmailMessage(subject, message, to=[employee.email])
             email.send()
-
-            # name = form.cleaned_data['name']
-			# email = form.cleaned_data['email']
-			# content = form.cleaned_data['content']
-			# content += "<br />"
-			# link = request.build_absolute_uri(reverse('sales:print_sale',kwargs={'pk':pk}))
-			# content += '<a href="%s">%s</a>' %(link,link)
-			
-			# template_name = 'email/email.html'
-			# subject = "Purchase Details (#%s) | %s" %(str(instance.auto_id),current_shop.name)          
-			# context = {
-			# 	'name' : name,
-			# 	'subject' : subject,
-			# 	'content' : content,
-			# 	'email' : email
-			# }
-			# html_content = render_to_string(template_name,context)
-			# send_email(email,subject,content,html_content) 
     
             response_data = {
                 "status" : "true",        
