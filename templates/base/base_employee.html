@@ -130,51 +130,48 @@
 										<span>Main</span>
 									</li>
 									<li class="submenu">
+										<a href="{% url 'main:employee_dashboard' %}"><i class="la la-dashboard"></i> <span> Dashboard</span></a>								
+									</li> 
+									<li class="submenu"> 
+										<a href="{% url 'employee:employee_holidays' %}"><i class=""></i> <span>Holidays</span></a>
+									</li>
+									<li class="submenu">
+										<a href="{% url 'employee:leaves' %}"><i class="la la-rocket"></i> <span> Leave Request & Status</span> </a>								
+									</li>
+									
+									<li class="submenu">
+										<a href="{% url 'payroll:payslips_employee' %}"><i class="la la-money"></i> <span> Payslips </span> </a>
+									</li>
+									{% comment %} <li class="submenu">
 										<a href="#"><i class="la la-dashboard" href="{% url 'main:employee_dashboard' %}"></i> <span> Dashboard</span>
 										</a>
-									</li>
+									</li> {% endcomment %}
 								</ul>
-								<li> 
+								{% comment %} <li> 
 									<a href="{% url 'employee:employee_holidays' %}"><i class=""></i> <span>Holidays</span></a>
 								</li>
 								<button class="viewmoremenu">More Menu</button>
-								<ul class="hidden-links hidden">
-									
+								<ul class="hidden-links hidden">									
 									<li class="submenu">
-										<a href="#"><i class="la la-money"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
-										<ul>
-											<li><a href="{% url 'payroll:payslips_employee' %}"> Payslips </a></li>
-										</ul>
+										<a href="{% url 'payroll:payslips_employee' %}"><i class="la la-money"></i> <span> Payroll </span></a>										
 									</li>
-								</ul> 
+								</ul>  {% endcomment %}
 							</nav>
 						</div>
 						<ul class="sidebar-vertical">
-							<li class="menu-title"> 
-								<span>Main</span>
-							</li>
-							<li class="submenu">
-								<a href="{% url 'main:employee_dashboard' %}"><i class="la la-dashboard"></i> <span> Dashboard</span>
-								</a>
-								<ul>
-									<li><a  class="" href="{% url 'main:employee_dashboard' %}">Employee Dashboard</a></li>
-								</ul>
+							
+							<li>
+								<a href="{% url 'main:employee_dashboard' %}"><i class="la la-dashboard"></i> <span> Dashboard</span></a>								
 							</li> 
 							<li> 
-								<a href="{% url 'employee:employee_holidays' %}"><i class=""></i> <span>Holidays</span></a>
+								<a href="{% url 'employee:employee_holidays' %}"><i class="la la-automobile"></i> <span>Holidays</span></a>
 							</li>
-							<li class="submenu">
-								<a href="#"><i class="la la-rocket"></i> <span> Leave Management</span> <span class="menu-arrow"></span></a>
-								<ul>
-									<li><a href="{% url 'employee:leaves' %}">Leave Request & Status</a></li>
-								</ul>
+							<li>
+								<a href="{% url 'employee:leaves' %}"><i class="la la-home"></i> <span> Leave Request & Status</span> </a>								
 							</li>
 							
-							<li class="submenu">
-								<a href="#"><i class="la la-money"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
-								<ul>
-									<li><a href="{% url 'payroll:payslips_employee' %}"> Payslips </a></li>
-								</ul>
+							<li>
+								<a href="{% url 'payroll:payslips_employee' %}"><i class="la la-money"></i> <span> Payslips </span> </a>
 							</li>
 						</ul>
 					</div>
