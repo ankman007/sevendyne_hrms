@@ -103,7 +103,9 @@
 							</tbody>
 						</table>
 					{% else %}
-						<h3>No jobs posted yet. Post a job</h3>
+					<div class="no-jobs-message" style="display: flex;justify-content: center;">
+						<a href="{% url 'job:jobs' %}"><h3>No jobs posted yet. Post a job</h3></a>
+					</div>
 					{% endif %}
 				</div>
 			</div>
@@ -135,7 +137,7 @@
 								<td>
 									<h2 class="table-avatar">
 										<a href="#" class="avatar"><img src="{% static 'assets/img/profiles/avatar-19.jpg' %}" alt="User Image"></a>
-										<a href="candidate-profile.html">{{ candidate.get_full_name }} <span>CEO</span></a>
+										<a href="candidate-profile.html">{{ candidate.get_full_name }} </a>
 									</h2>
 								</td>
 								<td>{{ candidate.skills }}</td>
@@ -179,7 +181,7 @@
 								<td>
 									<h2 class="table-avatar">
 										<a href="#" class="avatar"><img src="{% static 'assets/img/profiles/avatar-19.jpg' %}" alt="User Image"></a>
-										<a href="employee-profile.html">{{ employee.get_full_name }} <span>CEO</span></a>
+										<a href="employee-profile.html">{{ employee.get_full_name }} <span>{{ employee.designation }}</span></a>
 									</h2>
 								</td>
 								<td>{{ employee.email }}</td>
@@ -219,7 +221,7 @@
 								<td>
 									<h2 class="table-avatar">
 										<a href="#" class="avatar"><img src="{% static 'assets/img/profiles/avatar-19.jpg' %}" alt="User Image"></a>
-										<a href="client-profile.html">{{ client.get_full_name }} <span>CEO</span></a>
+										<a href="client-profile.html">{{ client.get_full_name }} </a>
 									</h2>
 								</td>
 								<td>{{ client.email }}</td>
