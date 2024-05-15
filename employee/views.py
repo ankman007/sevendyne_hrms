@@ -989,19 +989,23 @@ def leave(request, pk):
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 @company_required
 def leave_approval(request,pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(Leave.objects.filter(pk=pk,company=current_company,is_deleted=False))        
     if request.method == 'POST':
-        current_company = get_current_company(request)
-        instance = get_object_or_404(Leave.objects.filter(pk=pk,company=current_company,is_deleted=False))
-        
         if not instance.is_approved:
             Leave.objects.filter(pk=pk).update(is_approved=True,status='Approved',employee=instance.employee)
 
             # Send email notification to employee
             employee = instance.employee
             subject = 'Leave Request Approved'
-            message = render_to_string('email_templates/leave_approved.html', {'leave': instance})
-            email = EmailMessage(subject, message, to=[employee.email])
-            email.send()
+            # message = render_to_string('leave/email_templates/leave_approved.html', {'leave': instance})
+            # email = EmailMessage(subject, message, to=[employee.email])
+            # email.send()
+            html_message = render_to_string('leave/email_templates/leave_approved.html', {'leave': instance})
+            plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
+            from_email = settings.DEFAULT_FROM_EMAIL
+            to_email = employee.email
+            send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)                   
     
             response_data = {
                 "status" : "true",        
@@ -1019,23 +1023,33 @@ def leave_approval(request,pk):
                 "message": "This leave request is already processed.",                        
             }
             return HttpResponse(json.dumps(response_data), content_type='application/json')
-    return redirect('employee:leave_approvals')
+    context = {
+        'leave': instance,
+    }
+    return render(request, 'leave/leave-approval.html', context=context)
+
 
 @login_required
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 @company_required
 def leave_reject(request,pk):
+    current_company = get_current_company(request)
+    instance = get_object_or_404(Leave.objects.filter(pk=pk,company=current_company,is_deleted=False))        
     if request.method == 'POST':
-        current_company = get_current_company(request)
-        instance = get_object_or_404(Leave.objects.filter(pk=pk,company=current_company,is_deleted=False))        
         if not instance.is_approved:
             Leave.objects.filter(pk=pk).update(is_rejected=True,status='Rejected',employee=instance.employee)
             # Send email notification to employee
             employee = instance.employee
             subject = 'Leave Request Rejected'
-            message = render_to_string('email_templates/leave_rejected.html', {'leave': instance})
-            email = EmailMessage(subject, message, to=[employee.email])
-            email.send()    
+            # message = render_to_string('leave/email_templates/leave_rejected.html', {'leave': instance})
+            # email = EmailMessage(subject, message, to=[employee.email])
+            # email.send()   
+            html_message = render_to_string('leave/email_templates/leave_rejected.html', {'leave': instance})
+            plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
+            from_email = settings.DEFAULT_FROM_EMAIL
+            to_email = employee.email
+            send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)                   
+     
             response_data = {
                 "status" : "true",        
                 "title" : "Rejected",
@@ -1052,7 +1066,10 @@ def leave_reject(request,pk):
                 "message": "This leave request is already processed.",                        
             }
             return HttpResponse(json.dumps(response_data), content_type='application/json')
-    return redirect('employee:leave_approvals')
+    context = {
+        'leave': instance,
+    }
+    return render(request, 'leave/leave-reject.html', context=context)
 
 
 @login_required
