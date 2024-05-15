@@ -390,7 +390,7 @@ def create_salary(request):
             updator = request.user    
             month = selected_date.month
             year = selected_date.year        
-            total_working_days = AttendanceRegister.total_working_days_in_month(year, month)
+            # total_working_days = AttendanceRegister.total_working_days_in_month(year, month)
             if not Salary.objects.filter(date__month=month,date__year=year,employee=employee, company=current_company, is_deleted=False).exists():
                 salary=Salary.objects.create(
                     employee=employee,
