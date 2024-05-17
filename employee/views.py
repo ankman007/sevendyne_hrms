@@ -998,9 +998,6 @@ def leave_approval(request,pk):
             # Send email notification to employee
             employee = instance.employee
             subject = 'Leave Request Approved'
-            # message = render_to_string('leave/email_templates/leave_approved.html', {'leave': instance})
-            # email = EmailMessage(subject, message, to=[employee.email])
-            # email.send()
             html_message = render_to_string('leave/email_templates/leave_approved.html', {'leave': instance})
             plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
             from_email = settings.DEFAULT_FROM_EMAIL

@@ -516,9 +516,7 @@ def create_salary(request):
                 
                 # Convert PDF content to bytes
                 payslip_pdf_bytes = BytesIO(payslip_pdf_content)
-                print("payslip_pdf_bytes",payslip_pdf_bytes)
-                print("payslip_pdf_bytes.getvalue()",payslip_pdf_bytes.getvalue())
-
+                
                 # Replace spaces in the employee's name with underscores
                 employee_name_with_underscores = employee.get_full_name.replace(' ', '_')
                 # Format the filename with the employee's name and selected date
