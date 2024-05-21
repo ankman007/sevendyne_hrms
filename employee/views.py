@@ -842,7 +842,7 @@ def ajax_load_remaining_days(request):
 def leaves(request):
     employee = get_object_or_404(Employee, user=request.user)
     company = employee.company
-    leaves = Leave.objects.filter(company=company,is_deleted=False)
+    leaves = Leave.objects.filter(company=company,employee=employee,is_deleted=False)
     paginator = Paginator(leaves,1000000000000)
     page_number = request.GET.get('page')
     leaves = paginator.get_page(page_number)
