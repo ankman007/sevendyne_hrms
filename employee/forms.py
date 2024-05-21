@@ -65,7 +65,7 @@ class EmployeeForm(forms.ModelForm):
             'password': forms.TextInput(attrs={'class': 'required form-control ', 'placeholder': 'Password'}),  # Display password field as a password input
             'phone': TextInput(attrs={'class': 'required form-control', 'placeholder': 'Enter phone number'}),
             'address': TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter address'}),
-            'client_company': Select(attrs={'class': 'required form-control', 'placeholder': 'Enter company name'}),
+            # 'client_company': Select(attrs={'class': 'required form-control', 'placeholder': 'Enter company name'}),
             'department': Select(attrs={'class': 'required form-control'}),
             'designation': Select(attrs={'class': 'required form-control'}),
             'employeeid': TextInput(attrs={'class': 'required form-control', 'placeholder': 'Enter employee id'}),
