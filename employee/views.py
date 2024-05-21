@@ -338,7 +338,7 @@ def create_employee(request):
             password = form.cleaned_data['password']
             phone = form.cleaned_data['phone']
             address = form.cleaned_data['address']
-            client_company = form.cleaned_data['client_company']
+            # client_company = form.cleaned_data['client_company']
             employeeid = form.cleaned_data['employeeid']
             department = form.cleaned_data['department']
             designation = form.cleaned_data['designation']
@@ -378,7 +378,7 @@ def create_employee(request):
                             password = password,
                             phone = phone,
                             address = address,
-                            client_company = client_company,
+                            # client_company = client_company,
                             department = department,
                             designation = designation,
                             employeeid = employeeid,
