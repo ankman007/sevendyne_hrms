@@ -34,7 +34,7 @@
 								{% endif %}
 							</div>
 						</div>
-						{% comment %} <div class="profile-basic">
+						<div class="profile-basic">
 							<div class="row">
 								<div class="col-md-5">
 									<div class="profile-info-left">
@@ -44,7 +44,7 @@
 								</div>
 								<div class="col-md-7">
 									<ul class="personal-info">
-										<li>
+										{% comment %} <li>
 											<span class="title">Phone:</span>
 											<span class="text"><a href="">{{ client.phone }}</a></span>
 										</li>
@@ -55,7 +55,7 @@
 										<li>
 											<span class="title">Address:</span>
 											<span class="text">{{ client.address }}</span>
-										</li>
+										</li> {% endcomment %}
 										<li>
 											<span class="title">Company Name:</span>
 											<span class="text"><a href="">{{ client.company_name }}</a></span>
@@ -63,7 +63,7 @@
 									</ul>
 								</div>
 							</div>
-						</div> {% endcomment %}
+						</div>
 					</div>
 				</div>
 			</div>
