@@ -133,7 +133,13 @@
 							<td class="text-center">
 								<div class="dropdown action-label">
 									<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-										<i class="fa-regular fa-circle-dot text-purple"></i> Pending
+										{% if leave.status == "Pending" %}
+											<i class="fa-regular fa-circle-dot text-purple"></i> Pending
+										{% elif leave.status == "Approved" %}
+											<i class="fa-regular fa-circle-dot text-success"></i> Approved
+										{% else %}
+											<i class="fa-regular fa-circle-dot text-danger"></i> Rejected
+										{% endif %}
 									</a>
 									<div class="dropdown-menu dropdown-menu-right">
 										{% comment %} <a class="dropdown-item" href="#"><i class="fa-regular fa-circle-dot text-purple"></i> New</a> {% endcomment %}
