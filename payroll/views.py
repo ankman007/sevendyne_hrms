@@ -1,3 +1,4 @@
+import base64
 import calendar
 from num2words import num2words
 from weasyprint import HTML
@@ -418,10 +419,7 @@ def delete_payroll_item(request,pk):
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 @company_required
 def create_salary(request):
-    current_company = get_current_company(request)   
-    currency=current_company.country.currency
-    currency_symbol = current_company.country.currency_symbol
-     
+    current_company = get_current_company(request)        
     if request.method == 'POST':
         form = SalaryForm(request.POST, current_company=current_company)
         if form.is_valid():
@@ -489,68 +487,9 @@ def create_salary(request):
                         field_value = Decimal('0.00')
                     SalaryDynamicField.objects.create(company=current_company,employee=employee, salary=salary, field_name=field_name, field_value=field_value, category='Deductions')
        
-                # Send payslip as email 
-                # Filter SalaryDynamicField objects for the current Salary instance, separated by category
-                additions_fields = SalaryDynamicField.objects.filter(company=current_company,employee=employee, salary=salary, category='Additions')
-                deductions_fields = SalaryDynamicField.objects.filter(company=current_company,employee=employee, salary=salary, category='Deductions')
-                
-                 # Calculate total of additions
-                total_additions = additions_fields.aggregate(Sum('field_value'))['field_value__sum'] or Decimal('0.00')    
-                # Calculate total of deductions
-                total_deductions = deductions_fields.aggregate(Sum('field_value'))['field_value__sum'] or Decimal('0.00')
-                # Convert net_salary to words without specifying currency
                 net_salary_in_words = num2words(net_salary, lang='en')
                 # Convert the entire string to uppercase
                 net_salary_in_words = net_salary_in_words.upper()
-    
-                # Generate payslip PDF
-                payslip_pdf = generate_email_payslip_pdf(request, pk=salary.id)
-                # Assuming you have the content of the PDF in `payslip_pdf_content`
-                
-                # Ensure payslip_pdf_response is an HttpResponse object
-                if isinstance(payslip_pdf, HttpResponse):
-                    # Get PDF content from HttpResponse
-                    payslip_pdf_content = payslip_pdf.content
-                else:
-                    return HttpResponse("Error generating payslip PDF", status=500)                
-                
-                # Convert PDF content to bytes
-                payslip_pdf_bytes = BytesIO(payslip_pdf_content)
-                
-                # Replace spaces in the employee's name with underscores
-                employee_name_with_underscores = employee.get_full_name.replace(' ', '_')
-                # Format the filename with the employee's name and selected date
-                payslip_filename = f"payslip_{employee_name_with_underscores}_{selected_date.strftime('%B_%Y')}.pdf"
-                # Get the month name
-                month_name = calendar.month_name[month]
-                subject = 'PaySlip for the month - %s ' %str(month_name)
-                context = {
-                    'pk':salary.id,
-                    'instance': salary,
-                    'title': 'PaySlip',
-                    'currency': currency,
-                    'currency_symbol':currency_symbol,
-                    'additions_fields': additions_fields,
-                    'deductions_fields': deductions_fields,
-                    'total_additions': total_additions,
-                    'total_deductions': total_deductions,
-                    'net_salary_in_words': net_salary_in_words
-                }
-                html_message = render_to_string('payroll/payslip-employee-pdf.html', context=context)
-                plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
-                from_email = settings.DEFAULT_FROM_EMAIL
-                to_email = employee.email
-                # Attach the payslip PDF to the email
-                email = EmailMultiAlternatives(subject, plain_message, from_email, [to_email])
-                email.attach(payslip_filename, payslip_pdf_bytes.getvalue(), 'application/pdf')
-                email.attach_alternative(html_message, "text/html")
-                # email.send()
-                try:
-                # Attempt to send the email
-                    email.send()
-                except Exception as e:
-                    # Print the exception if sending fails
-                    print("Error sending email:", str(e))
                 response_data = {
                     "status": "true",
                     "title": "Successfully Created",
@@ -1086,7 +1025,8 @@ def employee_payslip(request,pk):
 #         print("Error sending email:", str(e))
 #         return HttpResponse(f"Error sending email: {str(e)}")
 
-def email_payslip(request, pk):
+def email_payslip(request, pk=None):
+    pk=request.GET.get('pk')
     try:
         current_company = get_current_company(request)
         currency = current_company.country.currency
@@ -1135,7 +1075,7 @@ def email_payslip(request, pk):
             'deductions_fields': deductions_fields,
             'total_additions': total_additions,
             'total_deductions': total_deductions,
-            'net_salary_in_words': net_salary_in_words,
+            'net_salary_in_words': net_salary_in_words
         }
         html_message = render_to_string('payroll/payslip-employee-pdf.html', context=context)
         plain_message = strip_tags(html_message)
@@ -1149,12 +1089,24 @@ def email_payslip(request, pk):
 
         # Send the email
         email.send()
-
-        return HttpResponse("Payslip email sent successfully")
-
+        response_data = {
+            "status": "true",
+            "title": "Email sent Successfully",
+            "message": "Payslip Sent in email successfully.",
+            "redirect": "true"
+        }
     except Salary.DoesNotExist:
-        return HttpResponse("Salary record not found", status=404)
+        response_data = {
+            "status": "false",
+            "stable": "true",
+            "title": "Not Found",
+            "message": "Salary not found",                        
+        }
     except Exception as e:
-        # Print the exception if sending fails
-        print("Error sending email:", str(e))
-        return HttpResponseServerError(f"Error sending email: {str(e)}")
+        response_data = {
+            "status": "false",
+            "stable": "true",
+            "title": "Error sending in email",
+            "message": "Error sending in email",                        
+        }
+    return JsonResponse(response_data)

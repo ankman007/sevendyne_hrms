@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-
 <!-- Page Content -->
 <div class="content container-fluid">
 				
@@ -21,12 +20,13 @@
 					{% comment %} <button class="btn btn-white">CSV</button> {% endcomment %}
 					{% comment %} <button href="templates/payroll/payslip-pdf.html"  class="btn btn-white">Email</button> {% endcomment %}
 					<button id="pdf-button" class="btn btn-white">PDF</button>
+					<button id="email-button" class="btn btn-white">Email</button>
 					<a href="{% url 'payroll:print_payslip' pk=pk %}" class="btn btn-white">
 						<i class="fa-solid fa-print fa-lg"></i> Print
 					</a>
-					<a href="{% url 'payroll:email_payslip' pk=pk %}" id="email-button" class="btn btn-white">
+					{% comment %} <a href="{% url 'payroll:email_payslip' pk=pk %}" id="email-button" class="btn btn-white">
 						<i class="fa-solid fa-envelope fa-lg"></i> Email
-					</a>  
+					</a>   {% endcomment %}
 					{% comment %} <button href="{% url 'payroll:print_payslip' pk=pk %}" class="btn btn-white"><i class="fa-solid fa-print fa-lg"></i> Print</button> {% endcomment %}
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 					<div class="row">
 						<div class="col-sm-6 m-b-20">
 							{% if instance.company.logo %}
-								<img src="{{ instance.company.logo.url }}" class="inv-logo" alt="Company Logo" style="width: 11%">
+								<img src="{{ instance.company.logo.url }}" class="inv-logo" style="width: 11%">
 							{% endif %}
 							<ul class="list-unstyled mb-0">
 								<li>{{ instance.company.name }}</li>
@@ -116,21 +116,19 @@
 	</div>
 </div>
 <!-- /Page Content -->
+<!-- SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+
 <script>
     $(document).ready(function() {
-        // JavaScript code to generate PDF when the PDF button is clicked
         $('#pdf-button').click(function() {
-            var pk = '{{ pk }}';  // Get the primary key from the template context
+            var pk = '{{ pk }}';
             $.ajax({
-                url: '/app/payroll/payslip/pdf/',  // URL contains only the primary key
+                url: '/app/payroll/payslip/pdf/',
                 type: 'GET',
-				data: {
-					pk: pk  // Pass the primary key as a parameter
-				},
+                data: { pk: pk },
                 success: function(data) {
-                    // Display or download the PDF based on your requirement
-                    // For example, you can display it in a new tab
                     var blob = new Blob([data], { type: 'application/pdf' });
                     var url = window.URL.createObjectURL(blob);
                     window.open(url);
@@ -138,26 +136,45 @@
             });
         });
 
-		$('#email-button').click(function() {
-			var pk = '{{ pk }}';
-			$.ajax({
-				url: '/app/payroll/payslip/email/',
-				type: 'GET',
-				data: {
-					pk: pk
-				},
-				success: function(data) {
-					// Handle success response
-					alert("Email sent successfully");
-				},
-				error: function(xhr, status, error) {
-					// Handle error response
-					alert("Error sending email");
-				}
-			});
-		});
+        $('#email-button').click(function() {
+        var pk = '{{ pk }}';
+        $.ajax({
+            url: '/app/payroll/payslip/email/',
+            type: 'GET',
+            data: {
+                pk: pk
+            },
+            success: function(data) {
+                //var response = JSON.parse(data);
+                if(data.status === "true") {
+                    Swal.fire({
+                        title: data.title,
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    Swal.fire({
+                        title: data.title,
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    title: "Error",
+                    text: "An error occurred while sending the email.",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+    });
     });
 </script>
+
 
 
 {% endblock %}
