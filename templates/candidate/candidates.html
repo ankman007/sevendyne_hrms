@@ -58,47 +58,35 @@
 						</tr>
 					</thead>
 					<tbody>
-						{% for instance in instances %}
-						<tr>
-							<td>{{ forloop.counter }}</td>
-							<td>
-								<h2 class="table-avatar">
-									<a href="#" class="avatar">
-										{% comment %} {% if instance.photo %}
-											<img src="{{ instance.photo.url }}" alt="{{ instance.firstname }}'s profile photo">
-										{% else %} {% endcomment %}
-											<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
-										{% comment %} {% endif %} {% endcomment %}
-									<a href="#">{{ instance.candidateid }} </a>
-								</h2>
-							</td>
-							<td>{{ instance.skills }}</td>
-							<td>{{ instance.experience }}</td>
-							</td>
-							<td>
-								{% if instance.status == "Job Offered" %}
-									<button class="btn btn-sm btn-primary" disabled>Job Offer Sent</button>
-								{% elif instance.status == "Offer a Job" %}
-									<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_job">Offer a Job</button>
-								
-								{% elif instance.status == "Interested in the Job" %}
-									<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_interview_date">Schedule Interview Date & Time</button>
-								{% elif instance.status == "Interview Scheduled" %}
-									<button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_interview_status">Interview Scheduled</button>									
-								{% elif instance.status == "Interview Done" %}
-									{% if instance.id in interview_statuses %}
-									<button class="btn btn-sm btn-primary" disabled>{{ interview_statuses.1 }}</button>
-									{% else %}
-											<button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#add_interview_status">Add Interview Status</button>									
-									{% endif %}
-									{% comment %} {% else %}
-										<button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#add_interview_status">Add Interview Status</button>									
-									{% endif %}									 {% endcomment %}
-								{% else %}
-									<a class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_job">Interested to Hire</a>
-								{% endif %}
-							</td>							
-						</tr>
+						{% for candidate in candidate_data %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a href="#" class="avatar">
+                                        <img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
+                                    </a>
+                                    <a href="#">{{ candidate.instance.candidateid }}</a>
+                                </h2>
+                            </td>
+                            <td>{{ candidate.instance.skills }}</td>
+                            <td>{{ candidate.instance.experience }}</td>
+                            <td>
+                                {% if candidate.job_status == "Job Offered" %}
+                                    <button class="btn btn-sm btn-primary" disabled>Job Offer Sent</button>
+                                {% elif candidate.job_status == "Offer a Job" %}
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_job">Offer a Job</button>
+                                {% elif candidate.job_status == "Interested in the Job" %}
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_interview_date">Schedule Interview Date & Time</button>
+                                {% elif candidate.job_status == "Interview Scheduled" %}
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_interview_status">Interview Scheduled</button>
+                                {% elif candidate.job_status == "Interview Done" %}
+                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#add_interview_status">Add Interview Status</button>
+                                {% else %}
+                                    <a class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_job">Interested to Hire</a>
+                                {% endif %}
+                            </td>
+                        </tr>
 						
 						<!-- Create Job Offer Modal -->
 						<div id="add_job" class="modal custom-modal fade" role="dialog">

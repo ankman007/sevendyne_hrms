@@ -1,13 +1,14 @@
 {% comment %} {% load inlinecss %}
 {% inlinecss "job_portal/css/email.css" %} {% endcomment %}
 {% load static %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Leave Request Submitted by {{ leave.employee.get_full_name }}</title>
+        <title>Job Offered</title>
         <style>
             
             html,body{
@@ -145,16 +146,16 @@
                     <p>
                         Hello,
                         <br><br>
-                        This is to inform you that a job has been offered by {{ job.company }} to  {{ job.candidate }}.
+                        This is to inform you that a job has been offered by {{ instance.company }} to  {{ instance.candidate }}.
                         <br><br>
                         job Details:
                         <ul>
-                            <li><strong>Candiate Name:</strong> {{ job.candidate.first_name }}</li>
-                            <li><strong>Job Title:</strong> {{ job.job_title }}</li>
-                            <li><strong>Description:</strong> {{ job.description }}</li>
-                            <li><strong>Company:</strong> {{ job.company }}</li>
-                            <li><strong>Salary Range:</strong> {{ job.salary_from }} -  {{ job.salary_to }}</li>
-                            <li><strong>Job Location:</strong> {{ job.job_location }}</li>
+                            <li><strong>Candiate Name:</strong> {{ instance.candidate.first_name }}</li>
+                            <li><strong>Job Title:</strong> {{ instance.job_title }}</li>
+                            <li><strong>Description:</strong> {{ instance.description }}</li>
+                            <li><strong>Company:</strong> {{ instance.company }}</li>
+                            <li><strong>Salary Range:</strong> {{ instance.salary_from }} -  {{ instance.salary_to }}</li>
+                            <li><strong>Job Location:</strong> {{ instance.job_location }}</li>
                         </ul>
                         Please take appropriate action(Interested) on this job offer by clicking the following link:
                         <br>

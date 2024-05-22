@@ -278,17 +278,19 @@ def create_candidate_job(request,pk):
                     updator = updator
                 ).save()
 
-                # Updating Candidate status to "Job Offered"
-                candidate.status = status
-                candidate.save()
+                 # Updating Candidate status to "Job Offered" only if the current company made the offer
+                if candidate.company == current_company:
+                    candidate.status = status
+                    candidate.save()                
 
                 # Send email notification to sevendyne hrms admin
                 subject = f'Job offered by {str(company)} to {str(candidate)}'
-                action_url = request.build_absolute_uri(reverse('job:edit_candidate_job', kwargs={'pk': candidate.id}))
-                html_message = render_to_string('job/email_templates/job_offered.html', {'job': instance, 'action_url': action_url})
+                action_url = request.build_absolute_uri(reverse('job:edit_candidate_job', kwargs={'pk': instance.id}))
+                html_message = render_to_string('job/email_templates/job_offered.html', {'instance': instance, 'action_url': action_url})
                 plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
                 from_email = settings.DEFAULT_FROM_EMAIL
-                to_email = 'hr@sevendyne.com' 
+                # to_email = 'hr@sevendyne.com' 
+                to_email = 'shamrifari@gmail.com' 
                 send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
                    
                                

@@ -10,8 +10,9 @@ from django.core.paginator import Paginator
 from django.urls import reverse
 
 from candidate.models import Candidate, Intern
-from job.models import INTERVIEW_CHOICES, CandidateInterview
-from main.functions import generate_form_errors, has_admin_dashboard_permission, has_hrms_permission
+from job.models import INTERVIEW_CHOICES, CandidateInterview, CandidateJob
+from main.decorators import company_required
+from main.functions import generate_form_errors, get_current_company, has_admin_dashboard_permission, has_hrms_permission
 from main.functions import generate_form_errors, get_candidate_id
 from candidate.forms import CandidateForm, InternForm
 
@@ -215,8 +216,10 @@ def delete_selected_candidates(request):
 
 
 @login_required
+@company_required
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
 def hrms_candidates(request):
+    company = get_current_company(request)
     instances = Candidate.objects.filter(is_deleted=False,is_blocked=False)
     
     skills_query = request.GET.get("skills")
@@ -235,8 +238,23 @@ def hrms_candidates(request):
         interview.candidate.id: interview.interview_status 
         for interview in CandidateInterview.objects.all()
     }
+
+    # Fetch job statuses for all candidates
+    candidate_job_statuses = {
+        candidate_job.candidate.id: candidate_job.status 
+        for candidate_job in CandidateJob.objects.filter(company=company,is_deleted=False)
+    }
+
+    # Create a list of candidates with their job statuses
+    candidate_data = []
+    for instance in instances:
+        candidate_data.append({
+            'instance': instance,
+            'job_status': candidate_job_statuses.get(instance.id, None)
+        })
     context = {
         'instances': instances,
+        'candidate_data': candidate_data,
         'interview_statuses': interview_statuses, 
         "interview_choices": INTERVIEW_CHOICES,
         "title": 'Candidates' 
