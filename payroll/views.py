@@ -553,9 +553,30 @@ def salaries(request):
     paginator = Paginator(salaries,1000000000000)
     page_number = request.GET.get('page')
     salaries = paginator.get_page(page_number)
+
+
+    # Retrieve dynamic fields for additions and deductions
+    additions_fields = PayrollItem.objects.filter(company=current_company, category='Additions', is_deleted=False)
+    deductions_fields = PayrollItem.objects.filter(company=current_company, category='Deductions', is_deleted=False)
+    employees = Employee.objects.filter(company=current_company, is_deleted=False)
+
+    # Retrieve the current values of additions and deductions
+    dynamic_fields = SalaryDynamicField.objects.filter(company=current_company, is_deleted=False)
+    additions_values = {item.field_name: item.field_value for item in dynamic_fields if item.category == 'Additions'}
+    deductions_values = {item.field_name: item.field_value for item in dynamic_fields if item.category == 'Deductions'}
+    
+    additions_data = [{'name': field.name, 'value': additions_values.get(field.name, '')} for field in additions_fields]
+    deductions_data = [{'name': field.name, 'value': deductions_values.get(field.name, '')} for field in deductions_fields]
+
     context = {
         'salaries': salaries,
-        "title": 'Salary List' 
+        "title": 'Salary List' ,
+        "employees":employees,
+        "additions_fields": additions_fields,
+        "deductions_fields": deductions_fields,
+        "additions_data": additions_data,
+        "deductions_data": deductions_data
+
     }
     return render(request, "payroll/salary.html", context)
 
@@ -590,11 +611,11 @@ def edit_salary(request, pk):
             }
         return HttpResponse(json.dumps(response_data), content_type='application/json')
     else:
-        form = SalaryForm(instance=instance, current_company=current_company)       
+        form = SalaryForm(instance=instance, current_company=current_company) 
         context = {
             "form": form,
             "instance": instance,
-            "title": "Edit Salary :" + instance.da,            
+            "title": "Edit Salary :" + instance.employee,   
             "redirect": "true",
             "url": reverse('payroll:edit_salary', kwargs={'pk': instance.pk})
         }

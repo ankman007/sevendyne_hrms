@@ -1,4 +1,5 @@
 {% extends "base/base_hrms_admin.html" %}
+{% load main_template_tags %}
 {% load static %}
 
 {% block content %}
@@ -96,7 +97,7 @@
 								<div class="dropdown dropdown-action">
 									<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 									<div class="dropdown-menu dropdown-menu-right">
-										{% comment %} <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_salary_{{ salary.id }}"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a> {% endcomment %}
+										<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_salary_{{ salary.id }}"><i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
 										<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_salary_{{ salary.id }}"><i class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
 									</div>
 								</div>
@@ -114,92 +115,69 @@
 										</button>
 									</div>
 									<div class="modal-body">
-										<form action="salary.html">
+										<form id="update_form_{{ salary.id }}" method="POST" action="{% url 'payroll:edit_salary' pk=salary.id %}" enctype="multipart/form-data">
+											{% csrf_token %}											
 											<div class="row"> 
 												<div class="col-sm-6"> 
 													<div class="input-block mb-3">
 														<label class="col-form-label">Select Staff</label>
-														<select class="select"> 
-															<option>John Doe</option>
-															<option>Richard Miles</option>
+														{% comment %} <input name="employee" id="employee" class="form-control" type="text" value="{{salary.employee}}"> {% endcomment %}
+												
+														<select name="employee" id="employee_name_{{ salary.id }}" class="form-control">
+															{% for employee in employees %}
+																<option value="{{ employee.id }}" {% if employee.id == salary.employee.id %} selected {% endif %}>{{ salary.employee }}</option>
+															{% endfor %}
 														</select>
 													</div>
 												</div>
 												<div class="col-sm-6"> 
 													<label class="col-form-label">Net Salary</label>
-													<input class="form-control" type="text" value="$4000">
+													<input name="net_salary" id="net_salary" class="form-control" type="text" value="{{salary.net_salary}}">
+												</div>
+												<div class="col-sm-6"> 
+													<label class="col-form-label">Date</label>
+													<input name="date" id="date" class="form-control" type="text" value="{{salary.date}}">
 												</div>
 											</div>
 											<div class="row"> 
 												<div class="col-sm-6"> 
 													<h4 class="text-primary">Earnings</h4>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Basic</label>
-														<input class="form-control" type="text" value="$6500">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">DA(40%)</label>
-														<input class="form-control" type="text" value="$2000">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">HRA(15%)</label>
-														<input class="form-control" type="text" value="$700">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Conveyance</label>
-														<input class="form-control" type="text" value="$70">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Allowance</label>
-														<input class="form-control" type="text" value="$30">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Medical  Allowance</label>
-														<input class="form-control" type="text" value="$20">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Others</label>
-														<input class="form-control" type="text">
-													</div>  
+													{% comment %} {% for field in additions_fields %}
+														{% if field.name == 'Basic Salary' %}
+															<div class="addition input-block mb-3">
+																<label for="{{ field.name }}" class="col-form-label">{{ field.name }}</label>
+																<input id="{{ field.name }}" class="form-control" type="text" name="{{ field.name }}" value="{{ additions_values|get_value:field.name }}">
+																{% if form.errors.field.name %}
+																	<span class="error">{{ form.errors.field.name.0 }}</span>
+																{% endif %}
+															</div>
+														{% endif %}
+													{% endfor %} {% endcomment %}
+													{% for item in additions_data %}
+														<div class="addition input-block mb-3">
+															<label for="{{ item.name }}" class="col-form-label">{{ item.name }}</label>
+															<input id="{{ item.name }}" class="form-control" type="text" name="{{ item.name }}" value="{{ item.value }}">
+															{% if form.errors.item.name %}
+																<span class="error">{{ form.errors.item.name.0 }}</span>
+															{% endif %}
+														</div>
+													{% endfor %}
 												</div>
 												<div class="col-sm-6">  
 													<h4 class="text-primary">Deductions</h4>
-													<div class="input-block mb-3">
-														<label class="col-form-label">TDS</label>
-														<input class="form-control" type="text" value="$300">
-													</div> 
-													<div class="input-block mb-3">
-														<label class="col-form-label">ESI</label>
-														<input class="form-control" type="text" value="$20">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">PF</label>
-														<input class="form-control" type="text" value="$20">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Leave</label>
-														<input class="form-control" type="text" value="$250">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Prof. Tax</label>
-														<input class="form-control" type="text" value="$110">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Labour Welfare</label>
-														<input class="form-control" type="text" value="$10">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Fund</label>
-														<input class="form-control" type="text" value="$40">
-													</div>
-													<div class="input-block mb-3">
-														<label class="col-form-label">Others</label>
-														<input class="form-control" type="text" value="$15">
-													</div>
+													{% for item in deductions_data %}
+														<div class="deduction input-block mb-3">
+															<label for="{{ item.name }}" class="col-form-label">{{ item.name }}</label>
+															<input id="{{ item.name }}" class="form-control" type="text" name="{{ item.name }}" value="{{ item.value }}">
+															{% if form.errors.item.name %}
+																<span class="error">{{ form.errors.item.name.0 }}</span>
+															{% endif %}
+														</div>
+													{% endfor %}
 												</div>
 											</div>
 											<div class="submit-section">
-												<button class="btn btn-primary submit-btn">Save</button>
+												<button class="btn btn-primary submit-btn" onclick="submitUpdateForm(event, '{{salary.id}}')">Save</button>
 											</div>
 										</form>
 									</div>
@@ -628,7 +606,96 @@
 			});
 		}
 	}
+
+	function submitUpdateForm(event,salaryId) {
+		event.preventDefault();  // Prevent the default form submission behavior
+		var form = document.getElementById('update_form_' + salaryId);
+		var formData = new FormData(form);
 	
+		fetch(form.action, {
+			method: 'POST',
+			body: formData,
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			console.log("status", data.status);
+			console.log('data.redirect_url:', data.redirect_url);
+	
+			// Corrected variable name here
+			if (data.status === 'true') {
+			console.log("status is true");
+			console.log("redirect url", data.redirect_url);
+			showSweetAlert(data.message, data.status, data.redirect_url);
+			} else if (data.status === 'form_error') {
+			console.log("status is form_error");
+			showSweetAlert(data.message, 'form_error');
+			} else if (data.status === 'false') {
+			console.log("status is false");
+			showSweetAlert(data.message, data.status);
+			} else {
+			console.log("status is neither true or false");
+			showSweetAlert(data.message, 'error');
+			}
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+		}
+	
+		function showSweetAlert(message, status, redirectUrl) {
+		console.log('showSweetAlert called');
+		console.log('message:', message);
+		console.log('status:', status);
+		console.log('redirectUrl:', redirectUrl);
+	
+		if (status === 'true') {
+			Swal.fire({
+			icon: 'success',
+			title: 'Success!',
+			text: message,
+			showConfirmButton: true,
+			allowOutsideClick: false, // Prevent closing on outside click
+	
+			didClose: () => {
+				console.log('Redirecting to:', redirectUrl);
+				if (redirectUrl) {
+				// Combine the redirect URL with the current protocol and host to get the full URL
+				var fullRedirectUrl = window.location.origin + redirectUrl;
+				console.log('Full Redirect URL:', fullRedirectUrl);
+				window.location.href = fullRedirectUrl;
+				}
+			}
+			});
+		} else if (status === 'form_error') {
+			console.log('Showing form error alert');
+			Swal.fire({
+			icon: 'error',
+			title: 'Form Validation Error!',
+			html: message,  // Display form errors as HTML
+			showConfirmButton: true,
+			allowOutsideClick: false,
+			});
+		} else if (status === 'false') {
+			console.log('Showing form error alert');
+			Swal.fire({
+			icon: 'error',
+			title: 'Form Error!',
+			text: 'Error: ' + message,
+			showConfirmButton: true,
+			allowOutsideClick: false, // Prevent closing on outside click
+			});
+		} else {
+			console.log('Showing error alert');
+			Swal.fire({
+			icon: 'error',
+			title: 'Error!',
+			text: 'Error: ' + message,
+			showConfirmButton: true,
+			allowOutsideClick: false, // Prevent closing on outside click
+			});
+		}
+		}	
 
 	// Function to handle delete action
 	function handleDelete(pk) {
