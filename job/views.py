@@ -280,8 +280,7 @@ def create_candidate_job(request,pk):
                 html_message = render_to_string('job/email_templates/job_offered.html', {'instance': instance, 'action_url': action_url})
                 plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
                 from_email = settings.DEFAULT_FROM_EMAIL
-                # to_email = 'hr@sevendyne.com' 
-                to_email = 'shamrifari@gmail.com' 
+                to_email = 'hr@sevendyne.com' 
                 send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
                    
                                
