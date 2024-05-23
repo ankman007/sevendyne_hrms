@@ -8,15 +8,9 @@ class JobAdmin(admin.ModelAdmin):
 admin.site.register(Job, JobAdmin) 
 
 
-class CandidateJobAdmin(admin.ModelAdmin):
-    exclude = ('is_deleted')  
-admin.site.register(CandidateJob, CandidateJobAdmin) 
+admin.site.register(CandidateJob)
 
-
-class CandidateInterviewAdmin(admin.ModelAdmin):
-    exclude = ('is_deleted')  
-admin.site.register(CandidateInterview, CandidateInterviewAdmin) 
-
+admin.site.register(CandidateInterview)
 
 class JobApplicantAdmin(admin.ModelAdmin):
     exclude = ('date_added','is_deleted')  
