@@ -281,6 +281,7 @@ def hrms_dashboard(request):
             'employees_count': employees_count,
             'clients_count':clients_count,
             'candidates_count':candidates_count,
+            'jobs':jobs,
             'jobs_count':jobs_count,
             'clients':clients,
             'candidates':candidates,
