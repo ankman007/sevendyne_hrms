@@ -354,6 +354,15 @@
 						</div>
 						<div class="col-md-6">
 							<div class="input-block mb-3">
+								<label class="col-form-label">Job Category</label>
+								{{ form.job_category }}
+								{% if form.job_category.errors %}
+								<span class="error">{{ form.job_category.errors.0 }}</span>
+								{% endif %}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="input-block mb-3">
 								<label class="col-form-label">Status</label>
 								{{ form.status }}
 								{% if form.status.errors %}
