@@ -10,6 +10,7 @@ from django.contrib.auth.models import User, Group
 from sevendyne_hrms import settings
 from hrms.models import HrmsClient
 from user.forms import LoginForm
+from user.tasks import send_hrms_signup_email_notification
 
 
 def user_login(request):
@@ -84,7 +85,8 @@ def register(request):
             plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
             from_email = settings.DEFAULT_FROM_EMAIL
             to_email = "hr@sevendyne.com"
-            send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
+            # Enqueue the email sending task
+            send_hrms_signup_email_notification.delay(subject, plain_message, from_email, to_email, html_message)    
                     
             message = "Registration Successful! Sevendyne will send you the credentials via email for login after verification.Thank you!"
             return render(request, "authentication/register.html", {"message": message})

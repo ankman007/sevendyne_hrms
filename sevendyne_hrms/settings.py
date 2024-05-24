@@ -147,6 +147,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/app/login/'
 LOGOUT_URL = '/app/logout/'
 
+#Email Configuration settings
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.gmail.com'
@@ -161,3 +163,11 @@ SERVER_EMAIL = 'sevendyne.technical@gmail.com'
 ADMIN_EMAIL = 'sevendyne.technical@gmail.com'
 
 # app password"#7dynehrms"
+
+# CELERY STUFF
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'

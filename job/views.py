@@ -4,6 +4,7 @@ import json
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
+from job.tasks import send_hrms_credentials_email
 from main.decorators import company_required
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404, render
@@ -294,9 +295,9 @@ def create_candidate_job(request,pk):
                 plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
                 from_email = settings.DEFAULT_FROM_EMAIL
                 to_email = 'hr@sevendyne.com' 
-                send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
-                   
-                               
+                # Enqueue the email sending task
+                send_hrms_credentials_email.delay(subject, plain_message, from_email, to_email, html_message)    
+                
                 response_data = {
                     "status": "true",
                     "title": "Successfully Created",

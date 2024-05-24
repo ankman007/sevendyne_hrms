@@ -25,7 +25,3 @@ def get_attendance(att,date):
 @register.filter
 def get_dynamic_field_value(salary, field_name):
     return getattr(salary, field_name, '')
-
-@register.filter
-def get_value(dictionary, key):
-    return dictionary.get(key)

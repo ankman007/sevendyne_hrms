@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from django.forms import formset_factory
+from employee.tasks import send_leave_email_notification
 from main.decorators import company_required
 from django.template.loader import render_to_string
 from django.contrib.auth.hashers import make_password
@@ -846,8 +847,9 @@ def create_leave(request):
                     plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
                     from_email = settings.DEFAULT_FROM_EMAIL
                     to_email = company.email
-                    send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)
-                    
+                    # Enqueue the email sending task
+                    send_leave_email_notification.delay(subject, plain_message, from_email, to_email, html_message)
+
                     response_data = {
                         "status": "true",
                         "title": "Leave Request",
@@ -1071,7 +1073,8 @@ def leave_approval(request,pk):
             plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
             from_email = settings.DEFAULT_FROM_EMAIL
             to_email = employee.email
-            send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)                   
+            # Enqueue the email sending task
+            send_leave_email_notification.delay(subject, plain_message, from_email, to_email, html_message)       
     
             response_data = {
                 "status" : "true",        
@@ -1114,7 +1117,8 @@ def leave_reject(request,pk):
             plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email
             from_email = settings.DEFAULT_FROM_EMAIL
             to_email = employee.email
-            send_mail(subject, plain_message, from_email, [to_email], html_message=html_message)                   
+            # Enqueue the email sending task
+            send_leave_email_notification.delay(subject, plain_message, from_email, to_email, html_message)     
      
             response_data = {
                 "status" : "true",        
