@@ -37,6 +37,7 @@ def create_job(request):
             salary_from = form.cleaned_data['salary_from']
             salary_to = form.cleaned_data['salary_to']
             job_type = form.cleaned_data['job_type']
+            job_category = form.cleaned_data['job_category']
             status = form.cleaned_data['status']
             start_date = form.cleaned_data['start_date']
             expired_date = form.cleaned_data['expired_date']
@@ -59,6 +60,7 @@ def create_job(request):
                     salary_from = salary_from,
                     salary_to = salary_to,
                     job_type = job_type,
+                    job_category = job_category,
                     status = status,
                     start_date = start_date,
                     expired_date = expired_date,
