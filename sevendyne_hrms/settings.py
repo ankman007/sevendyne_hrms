@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dal',
     'dal_select2',
-    # Third party apps
     'dbbackup',
     "django_apscheduler",
     'main',
