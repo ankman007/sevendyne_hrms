@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'dal',
     'dal_select2',
     # Third party apps
+    'dbbackup',
+    "django_apscheduler",
     'main',
     'user',
     'hrms',
@@ -90,6 +92,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup/'}
 
 
 # Password validation

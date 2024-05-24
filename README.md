@@ -37,3 +37,8 @@ For Windows
 
 **Run the app**: python manage.py runserver 0.0.0.0:8000
 - Open your browser and type localhost:8000 and you will see the app running. Cheers!!!
+
+
+**To Backup the database**
+
+- python manage.py dbbackup

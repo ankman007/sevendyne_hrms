@@ -10,6 +10,8 @@ urlpatterns = [
     path('privacy_policy/',views.privacy_policy,name='privacy_policy'),
     path('portfolio-home/',views.portfolios_home,name='portfolios_home'),
 
+    path('get_states/', views.get_states, name='get_states'),
+
     path('portfolio/create/', views.create_portfolio, name='create_portfolio'),
     path('portfolios/', views.portfolios, name="portfolios"),
     re_path(r'^portfolio/edit/(?P<pk>.*)/$', views.edit_portfolio, name='edit_portfolio'),

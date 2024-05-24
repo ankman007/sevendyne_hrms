@@ -147,33 +147,34 @@
 	</form>
 	
 </div>
-{% comment %} <script>
-    $(document).ready(function () {
-        $("#id_country").change(function () {
-            var country_id = $(this).val();
-            $.ajax({
-                url: '/get_states/',
-                data: {'country_id': country_id},
-                dataType: 'json',
-                success: function (data) {
-                    var statesSelect = $("#id_state");
-                    statesSelect.empty();
-                    $.each(data.states, function (index, state) {
-                        statesSelect.append($('<option>', {
-                            value: state.id,
-                            text: state.name
-                        }));
-                    });
-                }
-            });
-        });
-    });
-</script> {% endcomment %}
-<!-- Include SweetAlert JS from CDN -->
-  
+
+<!-- jQuery -->
+<script src="{%static 'assets/js/jquery-3.7.1.min.js'%}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Add JavaScript code to handle form submission and show SweetAlert messages -->
 <script>
+	$(document).ready(function () {
+        $("#id_country").change(function () {
+            var country_id = $(this).val();
+            if (country_id) {
+                $.ajax({
+                    url: '{% url "main:get_states" %}',
+                    data: {'country_id': country_id},
+                    dataType: 'json',
+                    success: function (data) {
+                        var statesSelect = $("#id_state");
+                        statesSelect.empty();
+                        $.each(data.states, function (index, state) {
+                            statesSelect.append($('<option>', {
+                                value: state.id,
+                                text: state.name
+                            }));
+                        });
+                    }
+                });
+            }
+        });
+    });
 	function submitForm(event) {
 	event.preventDefault();  // Prevent the default form submission behavior
 	var form = document.getElementById('create_update_form');

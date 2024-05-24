@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models.functions import ExtractMonth, ExtractYear
 from django.contrib.auth.models import Group
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
 from django.db.models import Sum
 from django.db.models import Q
@@ -19,7 +19,7 @@ from main.decorators import company_required
 from main.functions import generate_form_errors, has_admin_dashboard_permission, has_hrms_permission
 from main.functions import generate_form_errors, get_a_id, get_auto_id, get_current_company, has_employee_dashboard_permission
 from employee.models import AttendanceRegister, Employee, Holiday, Leave, LeaveType
-from main.models import Company, CompanyAccess, EmailSetting, Portfolio
+from main.models import Company, CompanyAccess, EmailSetting, Portfolio, State
 from main.forms import CompanyForm, EmailSettingForm, PortfolioForm
 from payroll.models import PayrollItem, Salary, SalaryDynamicField, SalarySetting
 from candidate.models import Candidate
@@ -44,6 +44,14 @@ def terms_and_conditions(request):
 
 def privacy_policy(request):
     return render(request, 'job_portal/privacy_policy.html')
+
+
+def get_states(request):
+    country_id = request.GET.get('country_id')
+    if country_id:
+        states = State.objects.filter(country_id=country_id).values('id', 'name')
+        return JsonResponse({'states': list(states)})
+    return JsonResponse({'states': []})
 
 
 def job_portal(request):
