@@ -164,20 +164,26 @@
 							</li> 
 							<li class="submenu">
 								<a href="#" >
-									<i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span>
+									<i class="la la-group"></i> <span> Employees</span> <span class="menu-arrow"></span>
 								</a>
 								<ul>
 									<li><a href="{% url 'employee:employees' %}" >All Employees</a></li>
-									<li ><a href="{% url 'employee:holidays' %}" >Holidays</a></li>
 									<li class="submenu">
 										<a href="{% url 'employee:leave_approvals' %}">Leave Management</a>											
 									</li>
 									{% if hrms_client.is_attendance_enabled %}
 										<li><a href="{% url 'employee:attendance_register' %}">Attendance</a></li>
 									{% endif %}
-									<li ><a href="{% url 'employee:departments' %}" >Departments</a></li>
-									<li ><a href="{% url 'employee:designations' %}" >Designations</a></li>
 								</ul>
+							</li>
+							<li>
+								<a href="{% url 'employee:departments' %}"><i class="la la-building"></i><span>Departments</span></a>
+							</li>
+							<li >
+								<a href="{% url 'employee:designations' %}"><i class="la la-mortar-board"></i><span>Designations</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'employee:employee_holidays' %}"><i class="la la-automobile"></i> <span>Holidays</span></a>
 							</li>
 							<li class="submenu">
 								<a href="{% url 'payroll:salaries' %}"><i class="la la-money"></i> <span> Payroll </span></a>								
@@ -186,7 +192,7 @@
 								<a href="{% url 'job:jobs' %}"><i class="la la-briefcase"></i> <span> Jobs </span></a>								
 							</li>
 							<li class="submenu">
-								<a href="{% url 'candidate:hrms_candidates' %}"><i class="la la-briefcase"></i> <span>Hire Candidates </span></a>								
+								<a href="{% url 'candidate:hrms_candidates' %}"><i class="la la-user"></i> <span>Hire Candidates </span></a>								
 							</li>
 							<li> 
 								<a href="{% url 'employee:leave_types' %}"><i class="la la-cog"></i> <span>Settings</span></a>
