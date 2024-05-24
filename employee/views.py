@@ -1443,6 +1443,7 @@ def holidays(request):
     }
     return render(request, "leave/holidays.html", context)
 
+
 @login_required
 @user_passes_test(has_employee_dashboard_permission, redirect_field_name=None)
 def employee_holidays(request):
@@ -1453,6 +1454,8 @@ def employee_holidays(request):
     page_number = request.GET.get('page')
     holidays = paginator.get_page(page_number)
     context = {
+        'company':company,
+        'employee': employee,
         'holidays': holidays,
         "title": 'Holidays',
         "is_holidays": True  
