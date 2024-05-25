@@ -83,7 +83,13 @@
 										{% if employee.photo %}
 											<img src="{{ employee.photo.url }}" alt="{{ employee.firstname }}'s profile photo">
 										{% else %}
-											<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
+											{% if employee.gender == "Male" %}
+												<img src="{% static 'assets/img/profiles/it_man.png' %}" alt="Default User Image">
+											{% elif employee.gender == "Female" %}
+												<img src="{% static 'assets/img/profiles/it_woman.png' %}" alt="Default User Image">
+											{% else %}
+												<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
+											{% endif %}
 										{% endif %}
 									</a>
 									<a href="{% url 'employee:employee' pk=employee.pk %}">{{ employee.get_full_name }} <span>{{ employee.designation }}</span></a>
