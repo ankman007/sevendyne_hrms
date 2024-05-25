@@ -93,7 +93,7 @@
 									<td>
 										<h2 class="table-avatar">
 											{% comment %} <a href="#" class="avatar"><img src="{% static 'assets/img/profiles/avatar-19.jpg' %}" alt="User Image"></a> {% endcomment %}
-											<a href="#">{{ job.job_title }} </a>
+											{{ job.job_title }} <span></span>
 										</h2>
 									</td>
 									<td>{{ job.no_of_vacancies }}</td>
@@ -137,7 +137,7 @@
 								<td>
 									<h2 class="table-avatar">
 										<img src="{% static 'assets/img/profiles/avatar-19.jpg' %}" alt="User Image">
-										{{ candidate.get_full_name }}
+										{{ candidate.get_full_name }} <span></span>
 									</h2>
 								</td>
 								<td>{{ candidate.skills }}</td>
@@ -180,8 +180,8 @@
 							<tr>
 								<td>
 									<h2 class="table-avatar">
-										<a href="#" class="avatar"><img src="{% static 'assets/img/profiles/avatar-19.jpg' %}" alt="User Image"></a>
-										<a href="#">{{ employee.get_full_name }} <span>{{ employee.designation }}</span></a>
+										<img src="{% static 'assets/img/profiles/avatar-19.jpg' %}" alt="User Image">
+										{{ employee.get_full_name }} <span>{{ employee.designation }}</span>
 									</h2>
 								</td>
 								<td>{{ employee.email }}</td>
