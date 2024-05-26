@@ -241,7 +241,6 @@
 <script>
     function loadCreateSalaryForm() {
 		netSalary = 0;
-        console.log("salary form load called");
         fetch("{% url 'payroll:create_salary' %}")
             .then(response => response.text())
             .then(data => {            
@@ -259,7 +258,6 @@
 
                 // Show the modal
                 $('#add_salary').modal('show');
-                console.log("modal showed");
                 // Attach event listeners after the form is loaded
                 attachEventListeners();
             })
@@ -292,7 +290,6 @@
             });
         });		
 		$('.addition input[type="text"], .deduction input[type="text"]').on('input', function() {
-			console.log("addition Input and deduction input changed!");
 			calculateNetSalary();
 		});	
 			
@@ -344,24 +341,15 @@
 		})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
-			console.log("status", data.status);
-			console.log('data.redirect_url:', data.redirect_url);
-	
 			// Corrected variable name here
 			if (data.status === 'true') {
-			console.log("status is true");
-			console.log("redirect url", data.redirect_url);
 			showSweetAlert(data.message, data.status, data.redirect_url);
 			//savePayslipData();
 			} else if (data.status === 'form_error') {
-			console.log("status is form_error");
 			showSweetAlert(data.message, 'form_error');
 			} else if (data.status === 'false') {
-			console.log("status is false");
 			showSweetAlert(data.message, data.status);
 			} else {
-			console.log("status is neither true or false");
 			showSweetAlert(data.message, 'error');
 			}
 		})
@@ -370,12 +358,7 @@
 		});
 		}
 		
-		function showSweetAlert(message, status, redirectUrl) {
-		console.log('showSweetAlert called');
-		console.log('message:', message);
-		console.log('status:', status);
-		console.log('redirectUrl:', redirectUrl);
-	
+		function showSweetAlert(message, status, redirectUrl) {	
 		if (status === 'true') {			
 			Swal.fire({
 			icon: 'success',
@@ -385,17 +368,14 @@
 			allowOutsideClick: false, // Prevent closing on outside click
 	
 			didClose: () => {
-				console.log('Redirecting to:', redirectUrl);
 				if (redirectUrl) {
 				// Combine the redirect URL with the current protocol and host to get the full URL
 				var fullRedirectUrl = window.location.origin + redirectUrl;
-				console.log('Full Redirect URL:', fullRedirectUrl);
 				window.location.href = fullRedirectUrl;
 				}
 			}
 			});
 		} else if (status === 'form_error') {
-			console.log('Showing form error alert');
 			Swal.fire({
 			icon: 'error',
 			title: 'Form Validation Error!',
@@ -404,7 +384,6 @@
 			allowOutsideClick: false,
 			});
 		} else if (status === 'false') {
-			console.log('Showing form error alert');
 			Swal.fire({
 			icon: 'error',
 			title: 'Form Error!',
@@ -413,7 +392,6 @@
 			allowOutsideClick: false, // Prevent closing on outside click
 			});
 		} else {
-			console.log('Showing error alert');
 			Swal.fire({
 			icon: 'error',
 			title: 'Error!',

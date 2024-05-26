@@ -303,10 +303,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Add JavaScript code to handle form submission and show SweetAlert messages -->
 <script>
-	function loadUpdatepayroll_itemForm(element, payroll_itemId) {
-		console.log("update payroll_item form load called");
-		console.log("payroll_item id", payroll_itemId);
-	
+	function loadUpdatepayroll_itemForm(element, payroll_itemId) {	
 		// Construct the URL with a hardcoded path
 		const editUrl = `/app/employee/payroll_item/edit/${payroll_itemId}/`;
 	
@@ -315,51 +312,18 @@
 			.then(response => response.text())
 			.then(data => {
 				if (data.includes("edit_payroll_item_modal")) {
-					console.log("Data contains edit_payroll_item_modal", data);
-
 					// Find the form element in the fetched data
 					var formElement = document.querySelector('#update_form_' + payroll_itemId);
-					//var formElement = $(data).find('#update_form_' + payroll_itemId);
-					console.log("form element",formElement)
-					if (!formElement) {
-						console.error("Form element not found in the fetched data");
-						return;
-					}
-					// Find the modal body element
-					//var modalBody = $('#edit_payroll_item_modal').find('.modal-body');
-		
-					// Check if modal body is found
-					{% comment %} if (!modalBody.length) {
-						console.error("Modal body element not found");
-						return;
-					} {% endcomment %}
-		
-					// Update the content of the modal body with the form element
-					{% comment %} modalBody.html(formElement);
-					console.log("moda body",modalBody) {% endcomment %}
-					// Show the modal after updating its content
-					{% comment %} $('#edit_payroll_item_modal').modal('show'); {% endcomment %}
+					
 					// Find the modal element
 					var modal = $('#edit_payroll_item_modal .modal-body');
 					var modalBody = $('#edit_payroll_item_modal').find('.modal-body');
 
-					// Check if modal is found
-					if (!modal.length) {
-						console.error("Modal element not found");
-						return;
-					}
-						// Check if modal body is found
-						if (!modalBody.length) {
-						console.error("Modal body element not found");
-						return;
-					}
+					
 					// Update the content of the modal body with the form element
 					modalBody.html(formElement);
-					console.log("modal body", modalBody);
-	
 					// Show the modal for updating payroll_items
 					$('#edit_payroll_item_modal').modal('show');
-					//console.log("modal showed");
 				} else {
 					console.log("Data does not contain edit_payroll_item_modal");
 				}
@@ -371,7 +335,6 @@
 	
 		
 	function loadCreatePayrollForm() {
-        console.log("payroll_item form load called");
 		fetch("{% url 'payroll:create_payroll_item' %}")
         .then(response => response.text())
         .then(data => {            
@@ -389,7 +352,6 @@
 
             // Show the modal
             $('#addition_deduction').modal('show');
-            console.log("modal showed");
         })
         .catch(error => {
             console.error('Error:', error);
@@ -407,23 +369,14 @@
 	})
 	.then(response => response.json())
 	.then(data => {
-		console.log(data);
-		console.log("status", data.status);
-		console.log('data.redirect_url:', data.redirect_url);
-
 		// Corrected variable name here
 		if (data.status === 'true') {
-		console.log("status is true");
-		console.log("redirect url", data.redirect_url);
 		showSweetAlert(data.message, data.status, data.redirect_url);
 		} else if (data.status === 'form_error') {
-		console.log("status is form_error");
 		showSweetAlert(data.message, 'form_error');
 		} else if (data.status === 'false') {
-		console.log("status is false");
 		showSweetAlert(data.message, data.status);
 		} else {
-		console.log("status is neither true or false");
 		showSweetAlert(data.message, 'error');
 		}
 	})
@@ -433,11 +386,6 @@
 	}
 	
 	function showSweetAlert(message, status, redirectUrl) {
-	console.log('showSweetAlert called');
-	console.log('message:', message);
-	console.log('status:', status);
-	console.log('redirectUrl:', redirectUrl);
-
 	if (status === 'true') {
 		CreateDynamicFieldsPayslip()
 		Swal.fire({
@@ -448,17 +396,14 @@
 		allowOutsideClick: false, // Prevent closing on outside click
 
 		didClose: () => {
-			console.log('Redirecting to:', redirectUrl);
 			if (redirectUrl) {
 			// Combine the redirect URL with the current protocol and host to get the full URL
 			var fullRedirectUrl = window.location.origin + redirectUrl;
-			console.log('Full Redirect URL:', fullRedirectUrl);
 			window.location.href = fullRedirectUrl;
 			}
 		}
 		});
 	} else if (status === 'form_error') {
-		console.log('Showing form error alert');
 		Swal.fire({
 		icon: 'error',
 		title: 'Form Validation Error!',
@@ -467,7 +412,6 @@
 		allowOutsideClick: false,
 		});
 	} else if (status === 'false') {
-		console.log('Showing form error alert');
 		Swal.fire({
 		icon: 'error',
 		title: 'Form Error!',
@@ -476,7 +420,6 @@
 		allowOutsideClick: false, // Prevent closing on outside click
 		});
 	} else {
-		console.log('Showing error alert');
 		Swal.fire({
 		icon: 'error',
 		title: 'Error!',
@@ -488,7 +431,6 @@
 	}
 
 	function submitUpdateForm(event,payroll_itemId) {
-	console.log("deapartment id",payroll_itemId)
 	event.preventDefault();  // Prevent the default form submission behavior
 	var form = document.getElementById('update_form_' + payroll_itemId);
 	var formData = new FormData(form);
@@ -499,23 +441,14 @@
 	})
 	.then(response => response.json())
 	.then(data => {
-		console.log(data);
-		console.log("status", data.status);
-		console.log('data.redirect_url:', data.redirect_url);
-
 		// Corrected variable name here
 		if (data.status === 'true') {
-		console.log("status is true");
-		console.log("redirect url", data.redirect_url);
 		showSweetAlert(data.message, data.status, data.redirect_url);
 		} else if (data.status === 'form_error') {
-		console.log("status is form_error");
 		showSweetAlert(data.message, 'form_error');
 		} else if (data.status === 'false') {
-		console.log("status is false");
 		showSweetAlert(data.message, data.status);
 		} else {
-		console.log("status is neither true or false");
 		showSweetAlert(data.message, 'error');
 		}
 	})

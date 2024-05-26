@@ -143,8 +143,6 @@
 	
 
 	function loadUpdateLeaveForm(element, leaveId) {
-		console.log("update leave form load called");
-		console.log("leave id", leaveId);
 	
 		// Construct the URL with a hardcoded path
 		const editUrl = `/app/employee/leave/edit/${leaveId}/`;
@@ -152,29 +150,15 @@
 		// Fetch the URL using the provided leaveId
 		fetch(editUrl)
 			.then(response => response.text())
-			.then(data => {
-				console.log("data", data);// Check if "edit_leave_modal" is present in the data
-				if (data.includes("edit_leave_modal")) {
-					console.log("Data contains edit_leave_modal");
-				} else {
-					console.log("Data does not contain edit_leave_modal");
-				}
-	
+			.then(data => {	
 				// Find the form element in the fetched data
-				var formElement = document.querySelector('#update_form_' + leaveId);
-	
-				if (!formElement) {
-					console.error("Form element not found in the fetched data");
-					return;
-				}
-	
+				var formElement = document.querySelector('#update_form_' + leaveId);	
 				// Append the form to the modal body
 				var modalBody = document.querySelector('#edit_leave_modal .modal-body');
 				modalBody.appendChild(formElement);
 	
 				// Show the modal for updating leaves
 				$('#edit_leave_modal_' + leaveId).modal('show');
-				console.log("modal showed");
 			})
 			.catch(error => {
 				console.error('Error:', error);
@@ -182,7 +166,6 @@
 	}	
 		
 	function loadCreateLeaveForm() {
-        console.log("leave form load called");
 		fetch("{% url 'employee:create_leave' %}")
         .then(response => response.text())
         .then(data => {            
@@ -200,7 +183,6 @@
 
             // Show the modal
             $('#add_leave').modal('show');
-            console.log("modal showed");
 			 // Attach event listeners after the form is loaded
 			 attachEventListeners();
         })
@@ -212,22 +194,17 @@
 		// Event listener for #id_leavetype
 		// leave type based remaining_days load -Ajax
 		$('#id_leavetype').change(function() {
-			console.log('id_leavetype clicked');
 			var url = "{% url 'employee:ajax_load_remaining_days'%}";
 			var leavetype_id = $(this).val();
-			console.log('leavetype_id:', leavetype_id);
 			var leaveType = $(this).find("option:selected").text(); // Get the text of the selected leave type
-			console.log('leavetype name:', leaveType);
 			$.ajax({
 				url: url,
 				data: {
 					'leavetype': leaveType
 				},
 				success: function(data) {
-					console.log('Data received from server:', data);
 					var remainingDaysValue = $(data).val(); // Extract value from HTML response
 					$("#id_remaining_days").val(remainingDaysValue); // Set value of input field
-					console.log('Success function executed.');
 				},
 				error: function(xhr, status, error) {
 					console.error('Error:', error);
@@ -238,7 +215,6 @@
 		$(document).ready(function() {
 			// Event listener for start date change
 			$('#id_startdate').on('change', function() {
-				console.log("start date changed");
 				// Get today's date
 				var today = new Date();
 			
@@ -249,7 +225,6 @@
 				if (startDate < today) {
 					// Reset the value of the start date input to today's date
 					this.value = today.toISOString().slice(0,10);
-					console.log("Start date cannot be earlier than today. Resetting to today's date.");
 				}
 				updateLeaveDays();
 				//updateRemainingDays(); 
@@ -257,7 +232,6 @@
 		
 			// Event listener for end date change
 			$('#id_enddate').on('change', function() {
-				console.log("end date changed");
 				updateLeaveDays();
 				//updateRemainingDays(); 
 			});
@@ -266,7 +240,6 @@
 	}
 	// Event listener for end date change
 	function calculateLeaveDays(startDateString, endDateString, leaveTypeDays) {
-		console.log("calculate leave days called")
 		var startDate = new Date(startDateString);
 		var endDate = new Date(endDateString);
 		var diffTime = Math.abs(endDate - startDate);
@@ -282,17 +255,13 @@
 	}
 
 	function calculateRemainingDays(approvedLeaveDays, leaveTypeDays) {
-		console.log("calculate remaining days called")
 		var remainingDays = leaveTypeDays - approvedLeaveDays;
 		return Math.max(0, remainingDays);
 	}
 	// Function to calculate and update leave days
 	function updateLeaveDays() {
-		console.log("update leave days called")
 		var startDate = $('#id_startdate').val();
-		console.log("start date",startDate)
 		var endDate = $('#id_enddate').val();
-		console.log("start date",endDate)
 		var leaveTypeDays = parseInt($('#id_leave_days').val()); // Assuming you have a hidden input field with leave type days
 		var leaveDays = calculateLeaveDays(startDate, endDate, leaveTypeDays);
 		$('#id_leave_days').val(leaveDays);
@@ -309,23 +278,14 @@
 	})
 	.then(response => response.json())
 	.then(data => {
-		console.log(data);
-		console.log("status", data.status);
-		console.log('data.redirect_url:', data.redirect_url);
-
 		// Corrected variable name here
 		if (data.status === 'true') {
-		console.log("status is true");
-		console.log("redirect url", data.redirect_url);
 		showSweetAlert(data.message, data.status, data.redirect_url);
 		} else if (data.status === 'form_error') {
-		console.log("status is form_error");
 		showSweetAlert(data.message, 'form_error');
 		} else if (data.status === 'false') {
-		console.log("status is false");
 		showSweetAlert(data.message, data.status);
 		} else {
-		console.log("status is neither true or false");
 		showSweetAlert(data.message, 'error');
 		}
 	})
@@ -335,11 +295,6 @@
 	}
 
 	function showSweetAlert(message, status, redirectUrl) {
-	console.log('showSweetAlert called');
-	console.log('message:', message);
-	console.log('status:', status);
-	console.log('redirectUrl:', redirectUrl);
-
 	if (status === 'true') {
 		Swal.fire({
 		icon: 'success',
@@ -349,17 +304,14 @@
 		allowOutsideClick: false, // Prevent closing on outside click
 
 		didClose: () => {
-			console.log('Redirecting to:', redirectUrl);
 			if (redirectUrl) {
 			// Combine the redirect URL with the current protocol and host to get the full URL
 			var fullRedirectUrl = window.location.origin + redirectUrl;
-			console.log('Full Redirect URL:', fullRedirectUrl);
 			window.location.href = fullRedirectUrl;
 			}
 		}
 		});
 	} else if (status === 'form_error') {
-		console.log('Showing form error alert');
 		Swal.fire({
 		icon: 'error',
 		title: 'Form Validation Error!',
@@ -368,7 +320,6 @@
 		allowOutsideClick: false,
 		});
 	} else if (status === 'false') {
-		console.log('Showing form error alert');
 		Swal.fire({
 		icon: 'error',
 		title: 'Form Error!',
@@ -377,7 +328,6 @@
 		allowOutsideClick: false, // Prevent closing on outside click
 		});
 	} else {
-		console.log('Showing error alert');
 		Swal.fire({
 		icon: 'error',
 		title: 'Error!',
@@ -389,7 +339,6 @@
 	}
 
 	function submitUpdateForm(event,leaveId) {
-	console.log("deapartment id",leaveId)
 	event.preventDefault();  // Prevent the default form submission behavior
 	var form = document.getElementById('update_form_' + leaveId);
 	var formData = new FormData(form);
@@ -400,23 +349,14 @@
 	})
 	.then(response => response.json())
 	.then(data => {
-		console.log(data);
-		console.log("status", data.status);
-		console.log('data.redirect_url:', data.redirect_url);
-
 		// Corrected variable name here
 		if (data.status === 'true') {
-		console.log("status is true");
-		console.log("redirect url", data.redirect_url);
 		showSweetAlert(data.message, data.status, data.redirect_url);
 		} else if (data.status === 'form_error') {
-		console.log("status is form_error");
 		showSweetAlert(data.message, 'form_error');
 		} else if (data.status === 'false') {
-		console.log("status is false");
 		showSweetAlert(data.message, data.status);
 		} else {
-		console.log("status is neither true or false");
 		showSweetAlert(data.message, 'error');
 		}
 	})
