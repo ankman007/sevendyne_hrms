@@ -186,7 +186,6 @@
 							<tr>
 								<th>Name</th>
 								<th>Email</th>
-								<th>Client Company</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -194,12 +193,23 @@
 							<tr>
 								<td>
 									<h2 class="table-avatar">
-										<a href="{% url 'employee:employees' %}" class="avatar"><img src="{% static 'assets/img/profiles/avatar-19.jpg' %}" alt="User Image"></a>
+										<a href="{% url 'employee:employees' %}" class="avatar">
+											{% if employee.photo %}
+												<img src="{{ employee.photo.url }}" alt="{{ employee.firstname }}'s profile photo">
+											{% else %}
+												{% if employee.gender == "Male" %}
+													<img src="{% static 'assets/img/profiles/it_man.png' %}" alt="Default User Image">
+												{% elif employee.gender == "Female" %}
+													<img src="{% static 'assets/img/profiles/it_woman.png' %}" alt="Default User Image">
+												{% else %}
+													<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
+												{% endif %}
+											{% endif %}
+										</a>
 										<a href="{% url 'employee:employees' %}">{{ employee.get_full_name }} <span>{{ employee.designation }}</span></a>
 									</h2>
 								</td>
 								<td>{{ employee.email }}</td>
-								<td>{{ employee.client_company }}</td>
 							</tr>
 							{% endfor %}
 						</tbody>
