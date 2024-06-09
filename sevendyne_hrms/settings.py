@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'job'
 ]
 
+#csrf configuration for deployment 
 CSRF_TRUSTED_ORIGINS = [
     'https://hrms.sevendyne.com',
 ]
