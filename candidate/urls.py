@@ -12,6 +12,8 @@ urlpatterns = [
     re_path(r'^candidate/(?P<pk>.*)/$', views.candidate, name='candidate'),   
     path('apply/', views.candidate_application, name='candidate_application'),
 
-    path('enroll/',views.create_intern,name='create_intern')
+    path('enroll/',views.create_intern,name='create_intern'),
+    path("interns/", views.interns, name="interns"),
+    re_path(r'^intern/(?P<pk>.*)/$', views.intern, name='intern'),   
 ]
 
