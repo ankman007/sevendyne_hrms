@@ -399,3 +399,29 @@ def create_intern(request):
             "create":True
         }
         return render(request, 'internship/enrollment.html', context)
+
+
+@login_required
+@user_passes_test(has_admin_dashboard_permission, redirect_field_name=None)
+def interns(request):
+    instances = Intern.objects.filter(is_deleted=False)
+    paginator = Paginator(instances,1000000000000)
+    page_number = request.GET.get('page')
+    instances = paginator.get_page(page_number)
+    context = {
+        'instances': instances,
+        "title": 'Companies' 
+    }
+    return render(request, "sevendyne_admin/intern/interns.html", context)
+
+
+@login_required
+@user_passes_test(has_admin_dashboard_permission, redirect_field_name=None)
+def intern(request, pk):
+    instance = get_object_or_404(Intern.objects.filter(pk=pk,is_deleted=False))
+    context = {
+        'instance': instance,
+        'title': 'Intern',
+    }
+    return render(request, "sevendyne_admin/intern/intern.html", context)
+

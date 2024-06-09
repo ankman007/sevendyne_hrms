@@ -12,6 +12,15 @@
 - python manage.py migrate
 - python manage.py loaddata states countries
 
+**Celery Configuration in bin/activate:**
+
+- cd ~/sevendyne_hrms/venv/bin/
+- nano activate
+- ...
+export DJANGO_SETTINGS_MODULE=sevendyne_hrms.settings  # Add this line
+...
+
+
 **Create user groups and permissions:**
 
 - python manage.py create_groups_and_permissions
