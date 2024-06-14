@@ -5,6 +5,8 @@ from django.forms.widgets import TextInput, Select,URLInput, FileInput
 from django.utils.translation import gettext_lazy as _
 from client.models import Client
 from employee.models import AttendanceRegister, Department, Designation, Employee, Holiday, Leave, LeaveType
+from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 
 class DateInput(forms.DateInput):
@@ -99,7 +101,18 @@ class EmployeeForm(forms.ModelForm):
             self.fields['department'].queryset = Department.objects.filter(company=current_company, is_deleted=False)            
             # Filter designations by current company
             self.fields['designation'].queryset = Designation.objects.filter(company=current_company, is_deleted=False)
-            
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
+            raise ValidationError("Username already exists.")
+        return username
+    
+    def clean_employeeid(self):
+        employeeid = self.cleaned_data['employeeid']
+        if Employee.objects.filter(employeeid=employeeid, company=self.current_company).exclude(pk=self.instance.pk).exists():
+            raise ValidationError("Employee ID already exists.")
+        return employeeid            
 
 
 class LeaveTypeForm(forms.ModelForm):    
