@@ -994,7 +994,7 @@ def email_payslip(request, pk=None):
             salary=salary,
             category='Deductions'
         )
-
+        absolute_logo_url = request.build_absolute_uri(current_company.logo.url) 
         # Calculate total of additions and deductions
         total_additions = additions_fields.aggregate(Sum('field_value'))['field_value__sum'] or Decimal('0.00')
         total_deductions = deductions_fields.aggregate(Sum('field_value'))['field_value__sum'] or Decimal('0.00')
@@ -1013,6 +1013,7 @@ def email_payslip(request, pk=None):
         
         subject = f'PaySlip for the month - {month}'
         context = {
+            'absolute_logo_url': absolute_logo_url,
             'pk': salary.id,
             'instance': salary,
             'title': 'PaySlip',
