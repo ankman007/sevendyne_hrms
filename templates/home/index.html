@@ -44,23 +44,6 @@
                                 <i class="fas fa-times"></i>
                             </a>
                         </div>
-                        {% comment %} <ul class="main-nav bg-trans">
-                            <li>
-                                <a href="#features">Features</a>
-                            </li>
-                            <li>
-                                <a href="#pricing">Pricing</a>
-                            </li>
-                            <li>
-                                <a href="#reviews">Reviews</a>
-                            </li>
-                            <li>
-                                <a href="#blog">Blog</a>
-                            </li>
-                            <li>
-                                <a href="#contact">Contact us</a>
-                            </li> {% endcomment %}
-                        </ul>
                         <div class="try-free link mobile-head-menu">
                             <a class="btn btn-primary response-head-menu" href="#" target="_blank"  role="button">Try It Free</a>
                         </div>
@@ -80,19 +63,6 @@
                                 </div>
                             </div>
                         </div>
-                        {% comment %} <div class="menu-list">
-                            <div class="right-header d-flex justify-content-center">
-                                <nav class="land-menu">
-                                    <ul>
-                                        <li><a href="#features" class="scrollTo">Features</a></li>
-                                        <li><a href="#pricing" class="scrollTo">Pricing</a></li>
-                                        <li><a href="#reviews" class="scrollTo">Reviews</a></li>
-                                        <li><a href="#blog" class="scrollTo">Blog</a></li>
-                                        <li><a href="#contact" class="scrollTo">Contact us</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div> {% endcomment %}
                         <div class="home-buy-button">
                             <div class="buy-btns">
                                 <a href="{% url 'user:user_login' %}" target="_blank"  class="btn btn-buy">Login </a>
@@ -115,11 +85,10 @@
                     <div class="homepage-section d-flex justify-content-center">
                         <div class="col-lg-5 col-sm-5 col-12">
                             <div class="process-content">
-                                <p>Manage all your people in one place.</p>
-                                <h2>The Processes more important from 
-                                    <span>HRMS</span>
-                                    {% comment %} <span>HRMS</span> {% endcomment %}
-                                     Here!</h2>
+                                <p>Simplify employee management with our all-in-one solution.</p>
+                                <h2>Explore the top features offered by
+                                    <span>Sevendyne HRMS</span>
+                                    Here!</h2>
                                 <a href="{% url 'user:signup' %}" class="btn btn-free">Sign Up</a>
                             </div>
                         </div>
@@ -136,166 +105,6 @@
             </div>
         </div>
         <!-- / Banner-->
-
-        <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients mb-3 " style="margin-top:3%">
-            <div class="container" data-aos="zoom-out">
-                <div class="clients-slider swiper">
-                    <div class="swiper-wrapper align-items-center" style="height:40%;">
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/getmy-1.png' %}" class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/orka.jpg' %}" class="img-fluid" alt="" ></div>
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/redrhino-1.png' %}" class="img-fluid" alt="" ></div>
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/rdp-1.png' %}" class="img-fluid" alt="" ></div>
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/tsapi-1.png' %}" class="img-fluid" alt="" ></div>
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/np.png' %}" class="img-fluid" alt="" ></div>
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/cygnus.png' %}" class="img-fluid" alt="" ></div>
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/csr.png' %}" class="img-fluid" alt="" ></div>
-                        <div class="swiper-slide"><img src="{% static 'assets_home/img/clients/collabera.png' %}" class="img-fluid" alt="" ></div>
-                    </div>
-                </div>
-            </div>
-        </section> 
-        <!-- End Clients Section -->
-
-        <!-- Features section list -->
-        {% comment %} <div class="features-choose-section" id="features">
-            <div class="feature-vector-layar"><img src="{% static 'assets_home/img/vector/feature-vector-left-top.png' %}" alt="img"></div>
-            <div class="feature-vector-layars"><img src="{% static 'assets_home/img/vector/feature-vector-bottom.png' %}" alt="img"></div>
-            <div class="feature-vector-overlay"><img src="{% static 'assets_home/img/vector/feature-bottom-left.png' %}" alt="img"></div>
-            <div class="features-layer"><img src="{% static 'assets_home/img/vector/vector-home-bottom.png' %}" alt="img"></div>
-            <div class="feature-overlay"><img src="{% static 'assets_home/img/vector/feature-vector-bottom.png' %}" alt="img"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="common-title-section" data-aos="fade-up" data-aos-duration="2000">
-                        <h3>Why Choose</h3>
-                    </div>
-                    <div class="feature-content-heading" data-aos="fade-up" data-aos-duration="2000">
-                        <h2>HRMS Providing You <span> Best Features</span></h2>
-                        <p>Looking to automate HR management template? HRMS is for you. This is a project management and HR automation template that can be used for the HRMS system.</p>
-                    </div>
-                    <div class="d-flex justify-content-around feature-list">
-                        <div class="col-lg-3 col-md-3 col-12">
-                            <div class="feature-left">
-                                <div class="feature-left-content"  data-aos="fade-right" data-aos-duration="1000">
-                                    <div class="feat-box">
-                                        <div class="feat-icon bg-orange">
-                                            <i class="fas fa-cubes"></i>
-                                        </div>
-                                    </div>
-                                    <h4>Advanced Features</h4>
-                                    <p>Advanced features tools like graphs, charts, invoices, video & audio call's, projects, etc.</p>
-                                </div>
-                                <div class="feature-left-content"  data-aos="fade-right" data-aos-duration="2000">
-                                    <div class="feat-box">
-                                        <div class="feat-icon bg-lightpink">
-                                            <i class="fas fa-laptop"></i>
-                                        </div>
-                                    </div>
-                                    <h4>More Flexible</h4>
-                                    <p>Advanced features tools like graphs, charts, invoices, video & audio call's, projects, etc.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12 " >
-                            <div class="feature-image" data-aos="fade-up" data-aos-duration="2000">
-                                <img src="{% static 'assets_home/img/featurebackground.png' %}" alt="features">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-12 ">
-                            <div class="feature-right">
-                                <div class="feature-right-content" data-aos="fade-left" data-aos-duration="1000">
-                                    <div class="feat-box">
-                                        <div class="feat-icon bg-orange">
-                                            <i class="fas fa-eye"></i>
-                                        </div>
-                                    </div>
-                                    <h4>Retina Ready</h4>
-                                    <p>Collaborate over projects with your team and clients optimised for mobile and tablet don't let slow page speeds drive</p>
-                                </div>
-                                <div class="feature-right-content" data-aos="fade-left" data-aos-duration="2000">
-                                    <div class="feat-box">
-                                        <div class="feat-icon bg-lightpink">
-                                            <i class="fas fa-code"></i>
-                                        </div>
-                                    </div>
-                                    <h4>Clean Codes</h4>
-                                    <p>Well tested, well documented and W3 validated code.<span> Developers can take advantage immediately.</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> {% endcomment %}
-                    {% comment %} <div class="feature-choose-list d-flex justify-content-center">
-                        <div class="row" data-aos="fade-up" data-aos-duration="2000">
-                            <div class="col-lg-3 col-sm-6 col-12 d-flex">
-                                <div class="sections-features card flex-fill">
-                                    <div class="sections-features card-body">
-                                        <div class="sections-background-vector">
-                                            <div class="sections-vector">
-                                                <img src="{% static 'assets_home/img/vector/vector-background.png' %}" alt="img">
-                                            </div>
-                                            <div class="section-feature-image">
-                                                <i class="fas fa-cubes"></i>
-                                            </div>
-                                        </div>
-                                        <h4>Advanced Features</h4>
-                                        <p>Advanced features tools like graphs, charts, invoices, video & audio call's, projects, etc.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 col-12 wow fadeInUp d-flex">
-                                <div class="sections-features card flex-fill">
-                                    <div class="sections-features card-body">
-                                        <div class="sections-background-vector">
-                                            <div class="sections-vector">
-                                                <img src="{% static 'assets_home/img/vector/vector-background.png' %}" alt="img">
-                                            </div>
-                                            <div class="section-feature-image">
-                                                <i class="fas fa-code"></i>
-                                            </div>
-                                        </div>
-                                        <h4>More Flexible</h4>
-                                        <p>Advanced features tools like graphs, charts, invoices, video & audio call's, projects, etc.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 col-12 wow fadeInUp d-flex">
-                                <div class="sections-features card flex-fill">
-                                    <div class="sections-features card-body">
-                                        <div class="sections-background-vector">
-                                            <div class="sections-vector">
-                                                <img src="{% static 'assets_home/img/vector/vector-background.png' %}"  alt="img">
-                                            </div>
-                                            <div class="section-feature-image">
-                                                <i class="fas fa-laptop"></i>
-                                            </div>
-                                            <h4>Retina Ready</h4>
-                                            <p>Collaborate over projects with your team and clients optimised for mobile and tablet don't let slow page speeds drive.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 col-12 wow fadeInUp d-flex">
-                                <div class="sections-features card flex-fill">
-                                    <div class="sections-features card-body">
-                                        <div class="sections-background-vector">
-                                            <div class="sections-vector">
-                                                <img src="{% static 'assets_home/img/vector/vector-background.png' %}" alt="img">
-                                            </div>
-                                            <div class="section-feature-image">
-                                                <i class="fas fa-eye"></i>
-                                            </div>
-                                        </div>
-                                        <h4>Clean Codes</h4>
-                                        <p>Well tested, well documented and W3 validated code. Developers can take advantage immediately.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> {% endcomment %}
-                {% comment %} </div>
-            </div>
-        </div> {% endcomment %}
-        <!--/ Features Section List-->
             
         <!-- Features slider-->
         <div class="build-feature mb-5">
@@ -309,7 +118,7 @@
                     </div>
                     <div class="feature-content-heading">
                         <h2>Features that Help you <span>build better.</span></h2>
-                        <p>Looking to automate HR management template? HRMS is for you. This is a project management and HR automation template that can be used for the HRMS system.</p>
+                        <p>Looking to automate HR Management? HRMS is for you. This is a employee management and HR automation platform that can be used for your HRMS system.</p>
                     </div>
                 </div>
                 <div class="feature-sections">
@@ -319,7 +128,7 @@
                                 <div class="card-body">
                                     <img src="{% static 'assets_home/img/handshake.png' %}" alt="employee-management">
                                     <h4>Employee Management</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
+                                    <p>Efficiently handle all aspects of employee data and administration.</p>
                                 </div>
                             </div>
                         </div>
@@ -328,16 +137,16 @@
                                 <div class="card-body">
                                     <img src="{% static 'assets_home/img/people.png' %}" alt="payroll-management">
                                     <h4>Payroll Management</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
+                                    <p>Automate payroll processing with precision and ease.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 d-flex">
                             <div class="management card flex-fill">
                                 <div class="card-body">
-                                    <img src="{% static 'assets_home/img/innovation.png' %}" alt="project-management">
-                                    <h4>Project Management</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
+                                    <img src="{% static 'assets_home/img/notes.png' %}" alt="project-management">
+                                    <h4>Payslip Distribution</h4>
+                                    <p>Generate and distribute payslips automatically to your workforce.</p>
                                 </div>
                             </div>
                         </div>
@@ -346,9 +155,9 @@
                         <div class="col-lg-4 col-md-4 d-flex">
                             <div class="management card flex-fill">
                                 <div class="card-body">
-                                    <img src="{% static 'assets_home/img/notes.png' %}" alt="tas-management">
-                                    <h4>Task Management</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
+                                    <img src="{% static 'assets_home/img/client.png' %}" alt="tas-management">
+                                    <h4>Candidate Hiring Management</h4>
+                                    <p>Seamlessly manage the recruitment process, from job posting to onboarding.</p>
                                 </div>
                             </div>
                         </div>
@@ -357,7 +166,7 @@
                                 <div class="card-body">
                                     <img src="{% static 'assets_home/img/management.png' %}" alt="jobs-management">
                                     <h4>Jobs Management</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
+                                    <p>Post job openings and manage applications efficiently.</p>
                                 </div>
                             </div>
                         </div>
@@ -365,38 +174,8 @@
                             <div class="management card flex-fill">
                                 <div class="card-body">
                                     <img src="{% static 'assets_home/img/timing.png' %}" alt="leads-management">
-                                    <h4>Leads Management</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" data-aos="fade-up" data-aos-duration="2000">
-                        <div class="col-lg-4 col-md-4 d-flex" data-aos="fade-up" data-aos-duration="14000">
-                            <div class="management card flex-fill">
-                                <div class="card-body">
-                                    <img src="{% static 'assets_home/img/client.png' %}" alt="clients-management">
-                                    <h4>Clients Management</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 d-flex" data-aos="fade-up" data-aos-duration="8000">
-                            <div class="management card flex-fill">
-                                <div class="card-body">
-                                    <img src="{% static 'assets_home/img/accounts.png' %}" alt="account-management">
-                                    <h4>Account Management</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 d-flex" data-aos="fade-up" data-aos-duration="9000">
-                            <div class="management card flex-fill">
-                                <div class="card-body">
-                                    <img src="{% static 'assets_home/img/customer-care.png' %}" alt="ticket-system">
-                                    <h4>Ticket System</h4>
-                                    <p>It is a long established fact that a will be distracted.</p>
+                                    <h4>Leave Management</h4>
+                                    <p>Simplify leave requests and approvals with a streamlined process.</p>
                                 </div>
                             </div>
                         </div>
@@ -405,198 +184,35 @@
                 
             </div>
         </div>
-        <!--/ Pricing Slider-->
-
-        <!-- News and Events -->
-        {% comment %} <div class="main-news" id="blog">
-            <div class="container">
-                <div class="row" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="common-title-section">
-                        <h3>Latest News & Articles</h3>
-                    </div>
-                    <div class="feature-content-heading">
-                        <h2>Checkout What’s Going <span>on in Our Blog</span></h2>
-                        <p>Looking to automate HR management template? HRMS is for you. This is a project management and HR automation template that can be used for the HRMS system.</p>
-                    </div>
-                </div>
-                <div class="main-news-blog d-flex justify-content-center" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="main-blog card">
-                                <div class="date-calender">
-                                    <span><i class="fa fa-calendar" aria-hidden="true"></i> April 18, 2022</span>
-                                </div>
-                                <div class="events card-body">
-                                    <div class="main-news-picture">
-                                        <div class="news-overlays"></div>
-                                        <a href="javascript:void(0)">
-                                            <img src="{% static 'assets_home/img/news-people.jpg' %}" alt="img">
-                                        </a>
-                                    </div>
-                                    <div class="main-news-content">
-                                        <div class="event-overlay"></div>
-                                        <div class="event-circle-overlay"></div>
-                                        <h4><a href="javascript:void(0)">Why Web App Maintain Should Be More</a></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        <div class="events-read">
-                                            <a href="javascript:void(0)" class="btn btn-blog-read-more">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="main-blog card">
-                                <div class="date-calender">
-                                    <span><i class="fa fa-calendar" aria-hidden="true"></i> April 18, 2022</span>
-                                </div>
-                                <div class="events card-body">
-                                    <div class="main-news-picture">
-                                        <div class="news-overlays"></div>
-                                        <a href="javascript:void(0)">
-                                            <img src="{% static 'assets_home/img/news-meeting.jpg' %}" alt="img">
-                                        </a>
-                                    </div>
-                                    <div class="main-news-content">
-                                        <div class="event-overlay"></div>
-                                        <div class="event-circle-overlay"></div>
-                                        <h4><a href="javascript:void(0)">The Right Thinking Biggest Job Picking The</a></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        <div class="events-read">
-                                            <a href="javascript:void(0)" class="btn btn-blog-read-more">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="main-blog card">
-                                <div class="date-calender">
-                                    <span><i class="fa fa-calendar" aria-hidden="true"></i> April 18, 2022</span>
-                                </div>
-                                <div class="events card-body">
-                                    <div class="main-news-picture">									
-                                        <div class="news-overlays"></div>
-                                        <a href="javascript:void(0)">
-                                            <img src="{% static 'assets_home/img/news-customer.jpg' %}"  alt="img">
-                                        </a>
-                                    </div>
-                                    <div class="main-news-content">
-                                        <div class="event-overlay"></div>
-                                        <div class="event-circle-overlay"></div>
-                                        <div class="news-vector-overlay"></div>
-                                        <h4><a href="javascript:void(0)">Keeping Your Business And Clients Safe With</a></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        <div class="events-read">
-                                            <a href="javascript:void(0)" class="btn btn-blog-read-more">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-disc">
-                            <a href="javascript:void(0)" class="btn btn-blog-discover">Discover More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> {% endcomment %}
-            
-        <!-- ======= About Us Section ======= -->   
-        <section id="about" class="about mt-5" style="margin-bottom:5%">
-            <div class="container" data-aos="fade-up">
-    
-            <div class="row position-relative">
-    
-                <div class="col-lg-7 about-img" style="background-image: url(/static/assets_home/img/innovative-entrepreneur-768x512.jpg);"></div>
-    
-                <div class="col-lg-7">
-                <!--<h2>Your Remote Tech Assistant</h2>-->
-                <div class="our-story">
-                    <h4>Est 2016</h4>
-                    <h3>About Us</h3>
-                    <p>Building a strong team is crucial for the success of any organization, as it allows individuals to collaborate and leverage their unique skills and experiences to achieve common goals.</p>
-                    <!--<p>Partner with our innovative tech consultancy business, where we bring together our extensive staffing experience and cutting-edge technologies to provide unparalleled solutions that transform your operations, drive growth, and maximize your success in the digital age.</p>-->
-                    <!--<p>Founded in 2016, our company has grown from a small startup to a recognized industry leader in providing exceptional staffing solutions for businesses. Our team of seasoned experts has decades of collective experience in staffing, both in-house and remote, and we are committed to staying at the forefront of staffing trends and industry advancements.</p>-->
-                    <ul>
-                    <li><i class="bi bi-check-circle"></i> <span>Resource Support</span></li>
-                    <li><i class="bi bi-check-circle"></i> <span>Staffing Skills</span></li>
-                    <li><i class="bi bi-check-circle"></i> <span>Technology Solutions</span></li>
-                    </ul>
-                    <!--<p>Our mission is to empower businesses to succeed in the digital age by providing innovative and effective staffing solutions that drive growth, streamline operations, and improve overall performance. We strive to be a trusted staffing partner for all of our clients, and we are committed to delivering exceptional value and service in everything we do, whether it's in-house or remote staffing.</p>-->
-                    <p>We help you to find remote tech talent for your company</p>
-                    <!--<p>You will get more benefits in outsourcing app development</p>-->
-    
-                    <p>Contact us today to learn more about how we can help your business achieve staffing success through our comprehensive staffing solutions.</p>              
-                </div>
-                </div>
-    
-            </div>
-    
-            </div>
-        </section>
-        <!-- End About-Us Section -->
-
-        <!-- ======= Contact Section ======= -->
-        <section id="contact" class="padd-section mb-5">
-
-            <div class="container" data-aos="fade-up">
-            <div class="section-title text-center">
-                <h2>Contact Us</h2>
-                <p class="separator">Connect with Us to discuss our works</p>
-            </div>
-    
-            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-    
-                <div class="col-lg-3 col-md-4">
-    
-                <div class="info">
-                    <div>
-                    <i class="bi bi-geo-alt"></i>                  
-                    <p>Sevendyne Consultancy Services LLP,<br>Noble Homes, <br> 5th floor, Market Rd,<br>Kochi 682011, India</p>
-                    </div>
-    
-                </div>
-    
-                </div>
-    
-                <div class="col-lg-5 col-md-8">
-                <div class="form">
-                    <!-- <form id="submit-form" action=""  role="form" class="php-email-form"> -->
-                    <form id="submit-form" action="#" class="php-email-form">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                    </div>
-                    <div class="my-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                    </div>
-                    <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-                </div>
-                </div>
-            </div>
-            </div>
-        </section><!-- End Contact Section -->
-
+        <!--/ Pricing Slider-->        
 
         <!-- Footer-->
         <footer class="footer-second ">
             <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-6">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4">Sevendyne Inc</h5>
+                        <a class="btn-link text-white-50" href="#">IT Consultancy Company</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4" style="font-size:small">TRAINING & OTHER TECH SUPPORTS</h5>
+                        <a class="btn-link text-white-50" style="text-transform: lowercase;" href="mailto:technical@sevendyne.com">technical@sevendyne.com</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4" style="font-size:small">HR SUPPORT</h5>
+                        <a class="btn-link text-white-50" style="text-transform: lowercase;" href="mailto:hr@sevendyne.com">hr@sevendyne.com</a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4" style="font-size:small">QUICK LINKS</h5>
+                        <p class="mb-2"><i class=""></i><a href="{% url 'main:portfolios_home' %}">Our Client Works</a></p>
+                        <p class="mb-2"><i class=""></i><a href="{% url 'main:terms_and_conditions' %}">Terms Of Service</a></p>
+                        <p class="mb-2"><i class=""></i><a href="{% url 'main:privacy_policy' %}">Privacy Policy</a></p>
+                    </div>
+                </div>
+                <div class="row  mt-3">
+                    <div class="col-lg-5">
                         <div class="copy-rights-second">
-                            <p>Copyrights © 2024. All Rights Reserved By Sevendyne </p>
+                            <p>@Copyright 2016-2024 Sevendyne Consultancy Services LLP.<br> All Rights Reserved. </p>
                         </div>
                     </div>
                     <div class="col-lg-6">
