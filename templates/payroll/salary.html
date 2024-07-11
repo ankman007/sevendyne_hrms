@@ -81,8 +81,20 @@
 						<tr>
 							<td>
 								<h2 class="table-avatar">
-									<a href="#" class="avatar"><img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="User Image"></a>
-									<a href="profile.html">{{ salary.employee.get_full_name }} <span>{{ salary.employee.salary }}</span></a>
+									<a href="#" class="avatar">
+										{% if salary.employee.photo %}
+											<img src="{{ salary.employee.photo.url }}" alt="{{ salary.employee.firstname }}'s profile photo">
+										{% else %}
+											{% if salary.employee.gender == "Male" %}
+												<img src="{% static 'assets/img/profiles/it_man.png' %}" alt="Default User Image">
+											{% elif salary.employee.gender == "Female" %}
+												<img src="{% static 'assets/img/profiles/it_woman.png' %}" alt="Default User Image">
+											{% else %}
+												<img src="{% static 'assets/img/profiles/avatar-02.jpg' %}" alt="Default User Image">
+											{% endif %}
+										{% endif %}
+									</a>
+									<a href="{% url 'employee:employee' pk=salary.employee.pk %}">{{ salary.employee.get_full_name }} <span>{{ salary.employee.salary }}</span></a>
 								</h2>
 							</td>
 							<td>{{ salary.employee.employeeid }}</td>
