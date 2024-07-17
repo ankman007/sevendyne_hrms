@@ -19,7 +19,7 @@
 
 		<!-- Fontawesome CSS -->
         <link rel="stylesheet" href="{%static 'assets/plugins/fontawesome/css/fontawesome.min.css'%}">
-    	<link rel="stylesheet" href="{%static 'assets/plugins/fontawesome/css/all.min.css'%}">
+		<link rel="stylesheet" href="{%static 'assets/plugins/fontawesome/css/all.min.css'%}">
 
 		<!-- Lineawesome CSS -->
         <link rel="stylesheet" href="{%static 'assets/css/line-awesome.min.css'%}">
@@ -118,16 +118,19 @@
 							</li>
 							<li class="menu-title">Settings</li>
 							<li> 
-								<a href="{% url 'main:companies' %}"><i class="la la-money"></i> <span>Company Settings</span></a>
+								<a href="{% url 'main:companies' %}"><i class="la la-building"></i> <span>Company Settings</span></a>
 							</li>
 							<li> 
 								<a href="{% url 'payroll:salary_settings' %}"><i class="la la-money"></i> <span>Salary Settings</span></a>
 							</li>
 							<li> 
-								<a href="{% url 'payroll:payroll_items' %}"><i class="la la-money"></i> <span>Payroll Item Settings</span></a>
+								<a href="{% url 'payroll:payroll_items' %}"><i class="la la-money-check"></i> <span>Payroll Item Settings</span></a>
 							</li>
 							<li> 
 								<a href="{% url 'employee:leave_types' %}"><i class="la la-cogs"></i> <span>Leave Type</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'hrms:edit_hrms_client_password' %}"><i class="la la-expeditedssl"></i> <span>Password Settings</span></a>
 							</li>
 						</ul>							
 					</div>

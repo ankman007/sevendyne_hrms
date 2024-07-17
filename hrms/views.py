@@ -11,8 +11,9 @@ from django.http.response import HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from main.functions import generate_form_errors, has_admin_dashboard_permission
-from hrms.forms import HrmsClientEditForm, HrmsClientForm
+from main.decorators import company_required
+from main.functions import generate_form_errors, has_admin_dashboard_permission, has_hrms_permission
+from hrms.forms import HrmsClientEditForm, HrmsClientForm, HrmsClientPasswordForm
 from hrms.models import HrmsClient
 
 
@@ -176,3 +177,58 @@ def delete_hrms_client(request,pk):
     }
     return HttpResponse(json.dumps(response_data), content_type='application/json')
     
+
+
+# employee settings to change password or photo
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def edit_hrms_client_password(request):
+    instance = get_object_or_404(HrmsClient.objects.filter(user=request.user, is_deleted=False))   
+    if request.method == 'POST':
+        form = HrmsClientPasswordForm(request.POST, instance=instance)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.updator = request.user
+            data.date_updated = datetime.datetime.now()
+            data.save()
+
+            user = instance.user   
+
+            # Handle password update separately
+            if form.cleaned_data.get('password'):
+                request.user.set_password(form.cleaned_data['password'])
+                request.user.save()
+                    
+
+            if data.password:
+                user.password = make_password(data.password)  # Hash the new password
+
+            user.save()
+            
+            response_data = {
+                "status": "true",
+                "redirect": "true",
+                "title": "Successfully Updated",
+                "message": "Your profile has been updated successfully.",
+                "redirect_url": reverse('main:hrms_dashboard')
+            }
+        else:
+            message = generate_form_errors(form, formset=False)
+            response_data = {
+                "stable": "true",
+                "status": "false",
+                "message": str(message),
+                "title": "Form validation error"
+            }
+        return HttpResponse(json.dumps(response_data), content_type='application/json')
+    else:
+        form = HrmsClientPasswordForm(instance=instance)
+        context = {
+            "instance": instance,
+            "form": form,
+            "title": "Edit Profile",
+            "redirect": "true",
+            "url": reverse('hrms:edit_hrms_client_password')
+        }
+        return render(request, 'settings/hrms-client-password-settings.html', context)
