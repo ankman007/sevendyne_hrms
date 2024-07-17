@@ -197,7 +197,7 @@ class AttendanceRegisterForm(forms.ModelForm):
         model = AttendanceRegister
         fields = []        
         widgets = {   
-                   
+                
         }, 
         error_messages = {
             
@@ -208,8 +208,7 @@ class AttendanceRegisterForm(forms.ModelForm):
         if current_company:
             # Filter employee by current company
             self.fields['employee'].queryset = Employee.objects.filter(company=current_company, is_deleted=False)            
-      
-       
+
 class AttendanceDateForm(forms.ModelForm): 
     an_fn_CHOICES = (                
         ('FN', 'Forenoon'), 
