@@ -60,3 +60,11 @@ class HrmsClientEditForm(forms.ModelForm):
                 'required': _("password field is required."),
             }
         }
+
+class HrmsClientPasswordForm(forms.ModelForm):
+    class Meta:
+        model = HrmsClient
+        fields = ['password']
+        widgets = {   
+            'password': forms.PasswordInput(attrs={'class': 'form-control ', 'placeholder': 'Password'})
+        }    

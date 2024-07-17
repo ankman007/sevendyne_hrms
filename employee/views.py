@@ -625,7 +625,8 @@ def edit_employee(request, pk):
         }
         return render(request, 'employee/employees.html', context)
 
-# employee settings to change username, password or photo
+
+# employee settings to change password or photo
 @login_required
 @user_passes_test(has_employee_dashboard_permission, redirect_field_name=None)
 def edit_employee_profile(request):
