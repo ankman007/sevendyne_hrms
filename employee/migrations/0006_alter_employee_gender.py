@@ -1,7 +1,7 @@
 from django.db import migrations, models
 
-
 class Migration(migrations.Migration):
+
     dependencies = [
         ('employee', '0005_alter_attendanceregister_status_and_more'),
     ]
@@ -17,4 +17,5 @@ class Migration(migrations.Migration):
                 null=True,
                 verbose_name="Gender",
             ),
+        ),
     ]
