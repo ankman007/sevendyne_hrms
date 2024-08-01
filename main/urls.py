@@ -1,6 +1,11 @@
 from django.urls import path, re_path
+from django.contrib import sitemaps
+from django.contrib.sitemaps.views import sitemap
+from django.urls import path
+from .sitemaps import StaticViewSitemap
 from main import views
 from main.autocomplete_registery import StateAutocomplete
+
 
 urlpatterns = [
     path("", views.job_portal, name="job_portal"),

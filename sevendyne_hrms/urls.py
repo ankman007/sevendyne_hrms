@@ -3,10 +3,16 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from main import views as general_views
 from sevendyne_hrms import settings
+from sevendyne_hrms.sitemaps import StaticViewSitemap
+from django.contrib.sitemaps.views import sitemap
 
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
-
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('admin/', admin.site.urls),
     path('app/',include(('user.urls','user'),namespace='user')),
     path('',general_views.job_portal,name='job_portal'),
