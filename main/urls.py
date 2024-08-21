@@ -9,7 +9,6 @@ from main.autocomplete_registery import StateAutocomplete
 
 urlpatterns = [
     path("", views.job_portal, name="job_portal"),
-    path("google/", views.google_verification, name="google_verification"),
     path("jobs/", views.job_list, name="job_list"),
     path('about/',views.about,name='about'),
     path('terms_and_conditions/',views.terms_and_conditions,name='terms_and_conditions'),

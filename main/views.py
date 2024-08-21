@@ -39,10 +39,6 @@ def robots_txt(request):
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
-def google_verification(request):
-    return render(request, 'google435f2f9b7ebcd337.html')
-
-
 def home_hrms(request):
     portfolios = Portfolio.objects.filter(is_deleted=False)
     context ={
