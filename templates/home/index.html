@@ -4,10 +4,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Sevendyne HRMS</title>
+        <title>Sevendyne : Top Talent Management & Free HRMS Solutions</title>
+        <meta name="keywords" content="Talent Management und HRMS Deutschland, Personalbeschaffung und HR-Software, Rekrutierung und HR-Lösungen, Talent Management und Personalverwaltung, HRMS und Rekrutierungsservices" name="keywords">
+        <meta name="description" content="At Sevendyne, we connect businesses with top talent and offer free HRMS software to streamline HR operations, reduce costs, and support business growth." name="description">
+        <meta property="og:title" content="{% block og_title %}Sevendyne: Unlock Top Talent with Leading HRMS & Talent Management Solutions{% endblock %}" />
+        <meta property="og:description" content="{% block og_description %}Sevendyne connects businesses with top talent and offers free HRMS software to streamline HR processes, reduce costs, and drive growth. Simplify your HR operations and empower your business with our innovative solutions.{% endblock %}" />
+        {% comment %} <meta property="og:image" content="{% block og_image %}https://sevendyne.com/default-image.jpg{% endblock %}" /> {% endcomment %}
+        <meta property="og:url" content="{% block og_url %}https://sevendyne.com{% endblock %}" />
+        <meta property="og:type" content="website" />
 
         <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/logo_svd.png' %}">
+        <link href="{% static 'assets/img/logo/logo_svd.png' %}" rel="icon">
 
         <!-- Animate CSS -->
         <link rel="stylesheet" href="{% static 'assets_home/css/aos.css' %}">
@@ -37,7 +44,7 @@
                 <div class="row">
                     <div class="main-menu-wrapper">
                         <div class="menu-header">
-                            <a href="index.html" class="menu-logo">
+                            <a href="{% url 'main:job_portal' %}" class="menu-logo">
                                 <img src="{% static 'assets_home/img/01.png' %}" style="max-width:50% !important" class="img-fluid" alt="Logo">
                             </a>
                             <a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -59,7 +66,7 @@
                                     </span>
                                 </a>
                                 <div class="site-brand">
-                                    <a href="index.html" class="site-branding-logo"><img src="{% static 'assets_home/img/01.png' %}" style="max-width:50% !important" alt="logo" class="img-fluid"></a>
+                                    <a href="{% url 'main:job_portal' %}" class="site-branding-logo"><img src="{% static 'assets_home/img/01.png' %}" style="max-width:50% !important" alt="logo" class="img-fluid"></a>
                                 </div>
                             </div>
                         </div>
