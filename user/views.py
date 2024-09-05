@@ -38,7 +38,7 @@ def user_login(request):
                         login(request, user)
                         return redirect('main:hrms_dashboard') 
                     else:
-                        error_message = "Your account is not enabled. Please contact technical@sevendyne.com"
+                        error_message = "Your account is not enabled. Please contact hr@sevendyne.com"
                         return render(request, "authentication/login.html", {"form": form, "error_message": error_message})
                 elif user.groups.filter(name='employee_group').exists():
                     login(request, user)
