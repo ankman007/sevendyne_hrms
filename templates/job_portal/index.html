@@ -1,10 +1,10 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}Sevendyne: App Development Solutions, Global HR Services, and Skill-Building Programs{% endblock %}
-{% block og_description %}At Sevendyne, we specialize in providing cutting-edge App Development Solutions, Global HR Services to connect with top talent, and Skill-Building Programs to enhance your team’s capabilities. Explore how our tailored solutions can drive your business forward.{% endblock %}
+{% block og_title %}Sevendyne : Top Talent Management & Free HRMS Solutions{% endblock %}
+{% block og_description %}At Sevendyne, we connect businesses with top talent and offer free HRMS software to streamline HR operations, reduce costs, and support business growth.{% endblock %}
 {% comment %} {% block og_image %}https://example.com/my-custom-image.jpg{% endblock %} {% endcomment %}
 {% block og_url %}https://sevendyne.com/{% endblock %}
-{% block title %}Sevendyne: Innovative Solutions for Business Growth{% endblock %}
+{% block title %}Sevendyne HRMS{% endblock %}
 
 {% load static %}
 
@@ -32,9 +32,10 @@
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
-						<h1 class="text-white animated slideInDown mb-4">Empowering Your Business with Expert App Development Solutions</h1>
-						<h4 class="fs-5 fw-medium text-white mb-4 pb-2">Tailored App Development Services to Elevate Your Business and Drive Innovation</h4>
-						<a href="{% url 'main:about' %}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Explore About Us</a>
+                            <h1 class="text-white animated slideInDown mb-4">Build Global Tech Teams with Sevendyne</h1>
+							<h4 class="fs-5 fw-medium text-white mb-4 pb-2">Empower your business by accessing top remote tech talent worldwide with Sevendyne</h4>
+							<h4 class="fs-5 fw-medium text-white mb-4 pb-2">Simplify your HR processes with our easy-to-use, free HRMS tool, designed to manage your global teams efficiently</h4>
+							<a href="{% url 'main:home_hrms' %}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Explore Sevendyne HRMS</a>
 
                         </div>
                     </div>
@@ -46,45 +47,42 @@
 </div>
 <!-- Carousel End -->
 
-<div id="about" class="container-xxl py-5">
+
+<!-- Search Start -->
+<div id="index" class="container-fluid bg-primary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">
     <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row g-0 about-bg rounded overflow-hidden">
-                    <div class="col-12 text-start">
-                        <img class="img-fluid w-100" src="{% static 'job_portal/img/about1.png' %}">
-                    </div>
-                </div>
-            </div>
-       <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-		   <h2 class="mb-4">Empowering Your Business with Comprehensive HRMS Staffing Solutions</h2>
-		   <h4>Build Global Teams with Sevendyne's HRMS Platform</h4>
-		   <p class="mb-4">At Sevendyne, we specialize in building high-performing teams and sourcing skilled individuals through our powerful HRMS platform. From recruitment to onboarding and management, our platform simplifies the entire staffing process, ensuring your business has the right talent for every project. Our key offerings include:</p>
-		   
-		   <p><i class="fa fa-check text-primary me-3"></i>Recruitment & Onboarding</p>
-		   <p>Sevendyne's HRMS platform streamlines recruitment by connecting you with top-tier professionals, guiding them through a smooth onboarding process to ensure they integrate seamlessly into your organization.</p>
-		   
-		   <p><i class="fa fa-check text-primary me-3"></i>HRMS & Payroll Management</p>
-		   <p>Our all-in-one HRMS tool simplifies payroll processing and HR management, giving you full control over your workforce while automating administrative tasks.</p>
-		   
-		   <p><i class="fa fa-check text-primary me-3"></i>Talent & Workforce Optimization</p>
-		   <p>Maximize the potential of your workforce with resource optimization strategies, ensuring that each individual or team contributes to sustainable growth and success.</p>
-		   
-		   <p>Partner with Sevendyne to leverage our innovative HRMS platform and build world-class teams through efficient staffing and onboarding solutions.</p>
-		   <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:home_hrms' %}">Learn More</a>
-	   </div>
-
-
+        <div class="row g-2">
+            <h3 style="text-align:center;color:white;">Our Clients</h3>
         </div>
     </div>
 </div>
-<!-- About End -->
+<!-- Search End -->
+
+<!-- ======= Clients Section ======= -->
+<section id="clients" class="clients mb-3 " style="margin-top:0%">
+    <div class="container" data-aos="zoom-out">
+        <div class="clients-slider swiper">
+            <div class="swiper-wrapper align-items-center" style="height:40%;">
+                {% comment %} <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/getmy-1.png' %}" class="img-fluid" alt=""></div> {% endcomment %}
+                {% comment %} <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/orka.jpg' %}" class="img-fluid" alt="" ></div> {% endcomment %}
+                {% comment %} <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/redrhino-1.png' %}" class="img-fluid" alt="" ></div> {% endcomment %}
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/rdp-1.png' %}" class="img-fluid" alt="" ></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/tsapi-1.png' %}" class="img-fluid" alt="" ></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/np.png' %}" class="img-fluid" alt="" ></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/cygnus.png' %}" class="img-fluid" alt="" ></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/csr.png' %}" class="img-fluid" alt="" ></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/KE_logo.png' %}" class="img-fluid" alt="" ></div>
+            </div>
+        </div>
+    </div>
+</section> 
+
 
 <!-- End Clients Section -->
 <!-- Heading End -->
 <div id="jobs" class="padd-section" style="background-color: #d9e1e5b8;padding-top:5%;padding-bottom:5%">
     <div class="container">       
-        <h2 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Training/Job Opportunities</h2>
+        <h2 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job/Training Opportunities</h2>
         <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
             <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                 <li class="nav-item">
@@ -135,12 +133,11 @@
                         {% endfor %}
                         <a class="btn btn-primary py-3 px-5" href="{% url 'job:jobs' %}" target="_blank">Browse More Internships</a>
                     {% else %}
-                       <h5 style="font-weight:bolder">Enroll in Our Fullstack Training Program and Propel Your Career Forward!</h5>
-						<p>Our Fullstack training division is dedicated to providing high-quality programs for professionals eager to master both frontend and backend development skills. 
-						With a focus on practical knowledge, we offer comprehensive training in technologies like Node.js, Bootstrap, Django, Python, HTML, CSS, and more, helping you stay ahead in the fast-paced tech industry.
-						</p>
-                    
-                        <a href="{% url 'candidate:create_intern' %}" class="btn btn-primary mt-3">Apply for Full-Stack Training Programme</a>
+                        <h5 style="font-weight:bolder">Enroll in Our Internship Training Programme and Propel Your Career Forward!</h5>
+                        <p>Our Technical training division is committed to delivering high-quality training programs to professionals seeking to enhance their skills and stay ahead in the rapidly evolving tech landscape.
+                            With a focus on excellence, we have worked with top brands like Collabera to provide comprehensive training in Python, Java, C++, .Net, and other core technologies
+                        </p>                        
+                        <a href="{% url 'candidate:create_intern' %}" class="btn btn-primary mt-3">Apply for Training Programme</a>
                     {% endif %}                    
                 </div>
                 <div id="tab-2" class="tab-pane fade show p-0">  
@@ -235,38 +232,35 @@
     </div>
 </div>
 <!-- Jobs End -->
-
-
-<!-- Search Start -->
-<div id="index" class="container-fluid bg-primary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">
+<!-- Heading End -->
+<div id="about" class="container-xxl py-5">
     <div class="container">
-        <div class="row g-2">
-            <h3 style="text-align:center;color:white;">Our Clients</h3>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="row g-0 about-bg rounded overflow-hidden">
+                    <div class="col-12 text-start">
+                        <img class="img-fluid w-100" src="{% static 'job_portal/img/about1.png' %}">
+                    </div>
+                </div>
+            </div>
+        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+           <h2 class="mb-4">Empowering Your Business with Remote Tech Staffing</h2>
+			<h4>Build Global Teams with Sevendyne's HRMS Platform</h4>
+			<p class="mb-4">At Sevendyne, we specialize in providing remote tech staffing solutions that empower your business to succeed in the global market. Our HRMS platform is designed to simplify the process of finding, managing, and optimizing remote talent. Our key offerings include:</p>
+			<p><i class="fa fa-check text-primary me-3"></i>Remote Tech Staffing
+			Access top-tier remote developers and tech professionals worldwide, tailored to meet your specific project needs through our efficient HRMS platform.</p>
+			<p><i class="fa fa-check text-primary me-3"></i>HRMS & Payroll Management
+			Streamline your HR and payroll operations with our easy-to-use, free HRMS tool. Manage your remote teams effortlessly with comprehensive payroll processing, HR management, and talent management features.</p>
+			<p><i class="fa fa-check text-primary me-3"></i>Resource Optimization
+			Enhance your business operations with our resource optimization strategies. We ensure effective utilization and management of your remote workforce for sustainable growth.</p>   
+			<p>Partner with Sevendyne to leverage our innovative HRMS platform and build high-performing remote tech teams.</p>
+			<a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:about' %}">Learn More</a>
+        </div>
+
         </div>
     </div>
 </div>
-<!-- Search End -->
-
-<!-- ======= Clients Section ======= -->
-<section id="clients" class="clients mb-3 " style="margin-top:0%">
-    <div class="container" data-aos="zoom-out">
-        <div class="clients-slider swiper">
-            <div class="swiper-wrapper align-items-center" style="height:40%;">
-                {% comment %} <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/getmy-1.png' %}" class="img-fluid" alt=""></div> {% endcomment %}
-                {% comment %} <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/orka.jpg' %}" class="img-fluid" alt="" ></div> {% endcomment %}
-                {% comment %} <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/redrhino-1.png' %}" class="img-fluid" alt="" ></div> {% endcomment %}
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/rdp-1.png' %}" class="img-fluid" alt="" ></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/tsapi-1.png' %}" class="img-fluid" alt="" ></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/np.png' %}" class="img-fluid" alt="" ></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/cygnus.png' %}" class="img-fluid" alt="" ></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/csr.png' %}" class="img-fluid" alt="" ></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/KE_logo.png' %}" class="img-fluid" alt="" ></div>
-            </div>
-        </div>
-    </div>
-</section> 
-
-<!-- Heading End -->
+<!-- About End -->
 <!-- Heading End -->
 <section id="contact" class="padd-section" style="background-color: #d9e1e5b8;padding-top:0%;">
     <div class="container mb-5"> 
