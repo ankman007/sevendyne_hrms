@@ -181,16 +181,16 @@ LOGOUT_URL = '/app/logout/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtpout.secureserver.net'  
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'sevendyne.technical@gmail.com'
-EMAIL_HOST_PASSWORD = 'itze zzmq jiqt otqk'
+EMAIL_HOST_USER = 'marketing@sevendyne.com'
+EMAIL_HOST_PASSWORD = '7dyne123$'  # Replace with your GoDaddy email password
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'sevendyne.technical@gmail.com'
-DEFAULT_REPLY_TO_EMAIL = 'sevendyne.technical@gmail.com'
-DEFAULT_BCC_EMAIL = 'sevendyne.technical@gmail.com'
-SERVER_EMAIL = 'sevendyne.technical@gmail.com'
-ADMIN_EMAIL = 'sevendyne.technical@gmail.com'
+DEFAULT_FROM_EMAIL = 'marketing@sevendyne.com'
+DEFAULT_REPLY_TO_EMAIL = 'marketing@sevendyne.com'  # Optional, can be changed
+DEFAULT_BCC_EMAIL = 'marketing@sevendyne.com'  # Optional, can be changed
+SERVER_EMAIL = 'marketing@sevendyne.com'  # Optional, can be changed
+ADMIN_EMAIL = 'marketing@sevendyne.com'  # Optional, can be changed
 
 # app password"#7dynehrms"
 
