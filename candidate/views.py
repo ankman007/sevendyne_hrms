@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.urls import reverse
+from django.utils.html import strip_tags
+from django.template.loader import render_to_string
+from sevendyne_hrms import settings
 
 from candidate.models import Candidate, Intern
 from job.models import INTERVIEW_CHOICES, CandidateInterview, CandidateJob, JobApplicant
@@ -289,7 +292,7 @@ def candidate_application(request):
             linkedin_profile = form.cleaned_data['linkedin_profile']
             github_profile = form.cleaned_data['github_profile']
             resume = form.cleaned_data['resume']
-            candidateid = get_candidate_id(request)
+            candidateid = get_candidate_id()
             if not Candidate.objects.filter(email=email).exists():
                 candidate = Candidate.objects.create(                    
                     first_name = first_name, 
@@ -377,7 +380,7 @@ def create_intern(request):
                     domain = domain
                 )  
                 # Send email notification to sevendyne hr about intern registration
-                subject = 'Congratulations ! An Intern, %s is registered in Sevendyne HRMS.' %str(first_name)
+                subject = 'Congratulations ! An Intern, %s is registered in Sevendyne HRMS.' %str(name)
                 enable_url = request.build_absolute_uri(reverse('candidate:intern', kwargs={'pk': intern.id}))
                 html_message = render_to_string('candidate/email_templates/intern_email_notification.html', {'intern': intern, 'enable_url': enable_url})
                 plain_message = strip_tags(html_message)  # Strip HTML tags for plain text email

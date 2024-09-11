@@ -14,7 +14,7 @@ a{
 	border-top: 3px solid #0B3F7A;
 }
 #top{
-	background: url(http://www.tegain.com/static/web/images/spotlight-bg.jpg);
+	background: url(https://www.sevendyne.com/static/web/images/spotlight-bg.jpg);
 	background-color:#28233a;
 	background-size:cover;
 }
@@ -22,7 +22,7 @@ br.clear{
 	clear:both;
 }
 #header{
-	background: url(http://www.tegain.com/static/web/images/tr.png) repeat-x bottom left;
+	background: url(https://www.sevendyne.com/static/web/images/tr.png) repeat-x bottom left;
 	padding:20px 0 30px;
 }
 #header h1{

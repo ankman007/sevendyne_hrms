@@ -91,7 +91,7 @@
 			</div> 
                 <div class="col-lg-4 col-md-8">
                     <div class="form">
-                       <form  id="create_form" method="POST" action="{% url 'candidate:create_intern' %}" enctype="multipart/form-data">
+                       <form  id="create_form" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
                                 {{ form.name }}
@@ -192,10 +192,17 @@
     event.preventDefault();  // Prevent the default form submission behavior
     var form = document.getElementById('create_form');
     var formData = new FormData(form);
+
+    // Get the CSRF token from the CSRF token input field
+		var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+		
     
     fetch(form.action, {
       method: 'POST',
       body: formData,
+      headers: {
+				'X-CSRFToken': csrfToken // Add CSRF token in the headers
+			},
     })
     .then(response => response.json())
     .then(data => {
@@ -214,7 +221,49 @@
       console.error('Error:', error);
     });
     }   
-    
+    function showSweetAlert(message, status, redirectUrl) {	
+      if (status === 'true') {
+        Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: message,
+        showConfirmButton: true,
+        allowOutsideClick: false, // Prevent closing on outside click
+      
+        didClose: () => {
+          if (redirectUrl) {
+          // Combine the redirect URL with the current protocol and host to get the full URL
+          var fullRedirectUrl = window.location.origin + redirectUrl;
+          window.location.href = fullRedirectUrl;
+          }
+        }
+        });
+      } else if (status === 'form_error') {
+        Swal.fire({
+        icon: 'error',
+        title: 'Form Validation Error!',
+        html: message.replace(/\|/g, '<br>'),  // Display form errors as HTML, replace '|' with line breaks
+        showConfirmButton: true,
+        allowOutsideClick: false,
+        });
+      } else if (status === 'false') {
+        Swal.fire({
+        icon: 'error',
+        title: 'Form Error!',
+        text: 'Error: ' + message,
+        showConfirmButton: true,
+        allowOutsideClick: false, // Prevent closing on outside click
+        });
+      } else {
+        Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Error: ' + message,
+        showConfirmButton: true,
+        allowOutsideClick: false, // Prevent closing on outside click
+        });
+      }
+    }	
 </script>
 
 {% endblock %}

@@ -1,3 +1,4 @@
+import re
 from candidate.models import Candidate
 from main.models import Company, CompanyAccess
 from django.utils.html import strip_tags
@@ -87,34 +88,26 @@ def company_access(request):
                 companies.append(access.company)        
     return companies
         
-def get_candidate_id(request):
-    candidate_id = "SVD1001" # user defined number
+def get_candidate_id():
+    candidate_id = "SVD1001"  # default starting candidate ID
+
+    # Check if there are existing candidates
     if Candidate.objects.filter(is_deleted=False).exists():
-        candidate_id = Candidate.objects.filter(is_deleted=False).latest('id').candidateid
+        latest_candidate = Candidate.objects.filter(is_deleted=False).latest('id')
+        candidate_id = latest_candidate.candidateid
+
+    # Extract the numeric part from the candidate ID    
+    numeric_part = re.search(r'\d+', candidate_id)
     
-    if candidate_id:
-        rev_admn_no =  candidate_id[::-1]  
-        length = len(rev_admn_no) 
-        rev_numbers = "" 
-        for i in range(length):
-            if not rev_admn_no[i].isnumeric():
-                break;
-            else:
-                rev_numbers += rev_admn_no[i]
-        numbers = rev_numbers[::-1]
-        
-        int_number = int(numbers)
-        length_number = len(numbers)
-        
-        code = rev_admn_no[length_number:]
-        if numbers[:1]:
-            a = length_number - len(str(int_number))
-            b = numbers[:a]
-            len0 = len(b)
-        last_admn_code = code[::-1]
-        next_no = int(int_number) + 1
-        if len0 :
-            candidate_id = str(last_admn_code) + str(b)+ str(next_no)
-        else:
-            candidate_id = str(last_admn_code) + str(next_no)    
-    return candidate_id 
+    if numeric_part:
+        next_number = int(numeric_part.group()) + 1
+        candidate_id = f"SVD{next_number:04d}"  # Maintain the format "SVDXXXX"
+    else:
+        candidate_id = "SVD1001"  # Default value if no valid candidate ID exists
+    
+    # Ensure the candidate ID is unique
+    while Candidate.objects.filter(candidateid=candidate_id).exists():
+        next_number += 1
+        candidate_id = f"SVD{next_number:04d}"
+    
+    return candidate_id

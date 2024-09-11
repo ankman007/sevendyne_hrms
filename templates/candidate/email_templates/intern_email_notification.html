@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>An Intern is registered in Sevendyne HRMS {{ intern.first_name }}</title>
+        <title>An Intern is registered in Sevendyne HRMS {{ intern.name }}</title>
         <style>
             
             html,body{
@@ -23,7 +23,7 @@
                 border-top: 3px solid #0B3F7A;
             }
             #top{
-                background: url(http://www.tegain.com/static/web/images/spotlight-bg.jpg);
+                background: url(https://www.sevendyne.com/static/web/images/spotlight-bg.jpg);
                 background-color:#388ac0;
                 background-size:cover;
             }
@@ -31,7 +31,7 @@
                 clear:both;
             }
             #header{
-                background: url(http://www.tegain.com/static/web/images/tr.png) repeat-x bottom left;
+                background: url(https://www.sevendyne.com/static/web/images/tr.png) repeat-x bottom left;
                 padding:20px 0 30px;
             }
             #header h1{
@@ -125,15 +125,15 @@
 			</div>
             <div id="content">
 				<div class="contentInner">
-                    <h2>An Intern,{{ intern.get_full_name }} is registered in Sevendyne HRMS</h2>
+                    <h2>An Intern,{{ intern.name }} is registered in Sevendyne HRMS</h2>
                     <p>
                         Hello,
                         <br><br>
-                        This is to inform you that {{ intern.get_full_name }} is registered in Sevendyne HRMS.
+                        This is to inform you that {{ intern.name }} is registered in Sevendyne HRMS.
                         <br><br>
                         Job Aplicant Details:
                         <ul>
-                            <li><strong>Name    :   </strong> {{ intern.get_full_name }}</li>
+                            <li><strong>Name    :   </strong> {{ intern.name }}</li>
                             <li><strong>Mail id :   </strong> {{ intern.email }}</li>
                             <li><strong>Phone   :   </strong> {{ intern.phone }}</li>
                             <li><strong>Skills  :   </strong> {{ intern.skills }}</li>
