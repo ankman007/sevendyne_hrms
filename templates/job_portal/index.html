@@ -28,51 +28,50 @@
                 Your browser does not support the video tag.
             </video>      {% endcomment %}
             
-            <img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="height:70vh;">
+            <div class="row g-5 align-items-center">
+				<div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+					<div class="row g-0 about-bg rounded overflow-hidden">
+						<div class="col-12 text-start">
+							{% comment %} <img class="img-fluid w-100" src="{% static 'assets_home/img/laptop.png' %}"> {% endcomment %}
+							<img class="img-fluid w-100" src="{% static 'job_portal/img/dashboard.png' %}">
+						</div>
+					</div>
+				</div>
+			    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+					<h2>Introducing Sevendyne HRMS: Your All-in-One Hiring and Management Solution</h2>
+					<p>Experience the power of a Django-powered platform built with Bootstrap and deployed on AWS cloud. Designed to streamline hiring and resource management for businesses worldwide.</p>
+
+					<p><i class="fa fa-check text-primary me-3"></i>Streamlined Global Hiring</p>
+					<p>Quickly source and onboard top talent from anywhere.</p>
+
+					<p><i class="fa fa-check text-primary me-3"></i>Payroll & HR</p>
+					<p>Handle payroll and HR tasks with ease.</p>
+
+					<a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:home_hrms' %}">Explore Sevendyne HRMS platform</a>
+				</div>
+			</div>
+        </div>
+     </div>
+ </div>
+<!-- Carousel End -->
+
+<!-- HRMS<!-- Jobs End --> -->
+<div id="about" class="container-xxl py-5">
+    <div class="container">
+		<img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="height:70vh;">
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
-						<h1 class="text-white animated slideInDown mb-4">Transforming Projects with Complete IT Solutions</h1>
-						<h4 class="fs-5 fw-medium text-white mb-4 pb-2">Tailored Services in Technology Development, Staffing & Payroll, and Professional Training</h4>
+						<h1 class="text-white animated slideInDown mb-4">Complete App Development Solutions</h1>
+						<h4 class="fs-5 fw-medium text-white mb-4 pb-2">Expertly Crafted Services for Your Unique Needs</h2></h4>
 
 						<a href="{% url 'main:portfolios_home' %}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Discover Our Client Projects</a>
 
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        </div>
-    </div>
-</div>
-<!-- Carousel End -->
-
-<!-- HRMS<!-- Jobs End --> -->
-<div id="about" class="container-xxl py-5">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row g-0 about-bg rounded overflow-hidden">
-                    <div class="col-12 text-start">
-                        {% comment %} <img class="img-fluid w-100" src="{% static 'assets_home/img/laptop.png' %}"> {% endcomment %}
-                        <img class="img-fluid w-100" src="{% static 'job_portal/img/dashboard.png' %}">
-                    </div>
-                </div>
-            </div>
-		   <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-				<h2 class="mb-4">Simplify Hiring with Seamless Staffing and Payroll Solutions</h2>
-				<p class="mb-4">Whether you're looking to hire a full team or individual experts, we simplify global staffing.</p>
-		
-				<p><i class="fa fa-check text-primary me-3"></i>Streamlined Global Hiring</p>
-				<p>Quickly source and onboard top talent from anywhere.</p>
-				
-				<p><i class="fa fa-check text-primary me-3"></i>Payroll & HR</p>
-				<p>Handle payroll and HR tasks with ease.</p>
-				
-				<a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:home_hrms' %}">Explore Sevendyne HRMS platform</a>
-			</div>
-        </div>
+         </div>
     </div>
 </div>
 <!-- HRMS End -->
