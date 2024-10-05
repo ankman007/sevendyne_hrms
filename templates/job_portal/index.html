@@ -20,20 +20,17 @@
     }
 </style>
 <!-- Carousel Start -->
+<!-- Carousel Start -->
 <div class="container-fluid p-0" style="height:70vh;">
     <div class="owl-carousel header-carousel position-relative">
         <div class="owl-carousel-item position-relative">
-            {% comment %} <video autoplay muted loop id="backgroundVideo" class="img-fluid" style="width: 100%; height: 69.5vh; ">
-                <source src="{% static 'job_portal/videos/video.mp4' %}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>      {% endcomment %}
+            {% comment %} <video autoplay muted loop id="backgroundVideo" class="img-fluid" style="width: 100%; height: 69.5vh; ">{% endcomment %}
             
             <div class="row g-5 align-items-center">
 				<div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
 					<div class="row g-0 about-bg rounded overflow-hidden">
 						<div class="col-12 text-start">
-							{% comment %}<img class="img-fluid w-100" src="{% static 'job_portal/img/dashboard.png' %}">{% endcomment %}
-							<img class="img-fluid w-100" src="{% static 'job_portal/img/dashboard.png' %}" style="object-fit: contain; max-height: 100%;">
+							<img class="img-fluid w-100" src="{% static 'job_portal/img/dashboard.png' %}" style="object-fit: cover; max-height: 70vh;">
 						</div>
 					</div>
 				</div>
@@ -45,6 +42,7 @@
 					<p>Quickly source and onboard top talent from anywhere.</p>
 
 					<p><i class="fa fa-check text-primary me-3"></i>Payroll & HR</p>
+
 					<p>Handle payroll and HR tasks with ease.</p>
 
 					<a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:home_hrms' %}">Explore Sevendyne HRMS platform</a>
@@ -55,10 +53,11 @@
  </div>
 <!-- Carousel End -->
 
-<!-- HRMS<!-- Jobs End --> -->
+<!-- Carousel End -->
+
 <div id="about" class="container-xxl py-5">
     <div class="container position-relative" style="height: 70vh; overflow: hidden;">
-        <img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="width:100%; height:100%; object-fit: cover;">
+        <img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="width:100vw; height:100%; object-fit: cover;">
         <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
             <div class="container">
                 <div class="row justify-content-start">
@@ -72,6 +71,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- HRMS End -->
 
