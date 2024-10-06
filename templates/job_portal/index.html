@@ -1,7 +1,7 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}Sevendyne: HRMS Solutions, App Development & Tech Training{% endblock %}
-{% block og_description %}At Sevendyne, we specialize in providing innovative Tech Training, App Development, and HRMS Solutions to enhance your team's capabilities and drive business growth. Explore how our tailored services can connect you with top talent and streamline your operations.{% endblock %}
+{% block og_title %}Sevendyne: App Development, HRMS Solutions & Tech Training{% endblock %}
+{% block og_description %}At Sevendyne, we specialize in providing innovative App Development, HRMS Solutions and Tech Training to enhance your team's capabilities and drive business growth. Explore how our tailored services can connect you with top talent and streamline your operations.{% endblock %}
 {% comment %} {% block og_image %}https://example.com/my-custom-image.jpg{% endblock %} {% endcomment %}
 {% block og_url %}https://sevendyne.com/{% endblock %}
 {% block title %}Sevendyne: Innovative Solutions for Enterprise Growth{% endblock %}
@@ -20,67 +20,63 @@
     }
 </style>
 <!-- Carousel Start -->
-<!-- Carousel Start -->
 <div class="container-fluid p-0" style="height:70vh;">
     <div class="owl-carousel header-carousel position-relative">
         <div class="owl-carousel-item position-relative">
-            {% comment %} <video autoplay muted loop id="backgroundVideo" class="img-fluid" style="width: 100%; height: 69.5vh; ">{% endcomment %}
+            {% comment %} <video autoplay muted loop id="backgroundVideo" class="img-fluid" style="width: 100%; height: 69.5vh; ">
+                <source src="{% static 'job_portal/videos/video.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>      {% endcomment %}
             
-            <div class="row g-5 align-items-center">
-				<div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-					<div class="row g-0 about-bg rounded overflow-hidden">
-						<div class="col-12 text-start">
-							<img class="img-fluid w-100" src="{% static 'job_portal/img/dashboard.png' %}" style="object-fit: cover; max-height: 70vh;">
-						</div>
-					</div>
-				</div>
-			    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-					<h2>Introducing Sevendyne HRMS: Your All-in-One Hiring and Management Solution</h2>
-					<p>Experience the power of a Django-powered platform built with Bootstrap and deployed on AWS cloud. Designed to streamline hiring and resource management for businesses worldwide.</p>
+            <img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="height:70vh;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-10 col-lg-8">
+						<h1 class="text-white animated slideInDown mb-4">Transforming Projects with Complete IT Solutions</h1>
+						<h4 class="fs-5 fw-medium text-white mb-4 pb-2">Tailored Services in Technology Development, Staffing & Payroll, and Professional Training</h4>
 
-					<p><i class="fa fa-check text-primary me-3"></i>Streamlined Global Hiring</p>
-					<p>Quickly source and onboard top talent from anywhere.</p>
+						<a href="{% url 'main:portfolios_home' %}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Discover Our Client Projects</a>
 
-					<p><i class="fa fa-check text-primary me-3"></i>Payroll & HR</p>
-
-					<p>Handle payroll and HR tasks with ease.</p>
-
-					<a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:home_hrms' %}" target="_blank">Explore Sevendyne HRMS platform</a>
-				</div>
-			</div>
-        </div>
-     </div>
- </div>
-<!-- Carousel End -->
-
-<!-- Carousel End -->
-<div id="about" class="container-fluid p-0" style="height: 70vh; overflow: hidden; padding: 0; margin: 0;">
-    <div class="row no-gutters h-100">
-        <!-- Content Column -->
-        <div class="col-md-6 d-flex align-items-center" style="background: white;">
-            <div class="container">
-                <div class="row justify-content-start">
-                    <div class="col-10">
-                        <h1 class="text-dark animated slideInDown mb-4">Complete App Development Solutions</h1>
-                        <h4 class="fs-5 fw-medium text-dark mb-4 pb-2">Expertly Crafted Services for Your Unique Needs</h4>
-                        <a href="{% url 'main:portfolios_home' %}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Discover Our Client Projects</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- Image Column -->
-        <div class="col-md-6">
-            <img class="img-fluid h-100" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="object-fit: cover; height: 100%;">
         </div>
     </div>
 </div>
+<!-- Carousel End -->
 
-
-
-
-
+<!-- HRMS<!-- Jobs End --> -->
+<div id="about" class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="row g-0 about-bg rounded overflow-hidden">
+                    <div class="col-12 text-start">
+                        {% comment %} <img class="img-fluid w-100" src="{% static 'assets_home/img/laptop.png' %}"> {% endcomment %}
+                        <img class="img-fluid w-100" src="{% static 'job_portal/img/dashboard.png' %}">
+                    </div>
+                </div>
+            </div>
+		   <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+				<h2 class="mb-4">Simplify Hiring with Seamless Staffing and Payroll Solutions</h2>
+				<p class="mb-4">Whether you're looking to hire a full team or individual experts, we simplify global staffing.</p>
+		
+				<p><i class="fa fa-check text-primary me-3"></i>Streamlined Global Hiring</p>
+				<p>Quickly source and onboard top talent from anywhere.</p>
+				
+				<p><i class="fa fa-check text-primary me-3"></i>Payroll & HR</p>
+				<p>Handle payroll and HR tasks with ease.</p>
+				
+				<a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:home_hrms' %}">Explore Sevendyne HRMS platform</a>
+			</div>
+        </div>
+    </div>
+</div>
 <!-- HRMS End -->
+
 
 <!-- Heading End -->
 <div id="jobs" class="padd-section" style="background-color: #d9e1e5b8;padding-top:5%;padding-bottom:5%">
