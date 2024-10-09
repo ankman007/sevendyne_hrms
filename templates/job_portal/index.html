@@ -1,10 +1,9 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}Sevendyne: HRMS Solutions, App Development & Tech Training{% endblock %}
-{% block og_description %}At Sevendyne, we specialize in providing innovative HRMS Solutions, App Development & Tech Training to enhance your team's capabilities and drive business growth. Explore how our tailored services can connect you with top talent and streamline your operations.{% endblock %}
-{% comment %} {% block og_image %}https://example.com/my-custom-image.jpg{% endblock %} {% endcomment %}
+{% block og_title %}Sevendyne: HRMS Solutions, Payroll Staffings & Tech Skills{% endblock %}
+{% block og_description %}At Sevendyne, we specialize in providing innovative IT Solutions to enhance your team's capabilities and drive business growth. Explore how our tailored services can connect you with top talent and streamline your operations.{% endblock %}
 {% block og_url %}https://sevendyne.com/{% endblock %}
-{% block title %}Sevendyne: Innovative Solutions for Enterprise Growth{% endblock %}
+{% block title %}Sevendyne: Innovative IT Solutions for Enterprise Growth{% endblock %}
 
 
 {% load static %}
@@ -84,7 +83,7 @@
 <div id="index" class="container-fluid bg-primary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">
     <div class="container">
         <div class="row g-2">
-            <h3 style="text-align:center;color:white;">App Development Works</h3>
+            <h3 style="text-align:center;color:white;">Payroll Staffings</h3>
         </div>
     </div>
 </div>
@@ -105,19 +104,18 @@
 
     <div class="container text-center">
         <h2></h2>
-		<p>At Sevendyne, we specialize in delivering innovative app development solutions tailored to your project needs. With a team of experienced developers, we transform your ideas into functional, user-friendly applications. Our portfolio includes successful projects across various industries, showcasing our commitment to quality and client satisfaction.</p>
+        <p>At Sevendyne, we specialize in providing top-notch tech staffing solutions for app development, engineering, and various other sectors. Our experienced team is dedicated to connecting you with skilled professionals who can help drive your projects to success. We pride ourselves on delivering tailored staffing solutions that meet the unique demands of your business.</p>
    
         <!-- Request Quote Button -->
-        <button class="btn btn-primary" id="quote-button" onclick="toggleQuoteForm()">Request a Quote</button>
+        <button class="btn btn-primary" id="quote-button" onclick="toggleQuoteForm()">Request Staffing Services</button>
 
         <!-- Quote Request Form (Initially Hidden) -->
         <div id="quote-form" style="display: none; margin-top: 20px;">
             <div class="section-title text-center">
-        
-                <p class="separator">Connect with us to discuss your app development project</p>
+                <p class="separator">Connect with us to discuss your tech staffing needs</p>
             </div>
             <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-lg-5 col-md-8">
+                <div class="col-lg-6 col-md-10">
                     <div class="form">
                         <form id="submit-form" action="#" class="php-email-form">
                             <div class="form-group">
@@ -127,14 +125,22 @@
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                             </div>
                             <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Project Subject" required>
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Position Needed" required>
                             </div>
                             <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Brief Description of Your Project" required></textarea>
+                                <textarea class="form-control" name="description" rows="5" placeholder="Brief Description of Your Staffing Needs" required></textarea>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="text" class="form-control" name="duration" id="duration" placeholder="Expected Duration of Staffing (e.g., 3 months, 1 year)" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="number" class="form-control" name="num_positions" id="num_positions" placeholder="Number of Positions Required" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="text" class="form-control" name="budget" id="budget" placeholder="Budget for Staffing Solutions (optional)">
                             </div>
                             <div class="my-3">
                                 <div class="error-message"></div>
-                             
                             </div>
                             <div class="text-center">
                                 <button class="btn btn-primary" type="submit">Send Request</button>
@@ -145,7 +151,6 @@
             </div>
         </div>
     </div>
-
 </section>
 
 <!-- End Quote Request Section -->
