@@ -1,6 +1,6 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}Sevendyne: HRMS Solutions, Payroll Staffings & Tech Skills{% endblock %}
+{% block og_title %}Sevendyne: IT Solutions, Digital Innovation & Skills Training{% endblock %}
 {% block og_description %}At Sevendyne, we specialize in providing innovative IT Solutions to enhance your team's capabilities and drive business growth. Explore how our tailored services can connect you with top talent and streamline your operations.{% endblock %}
 {% block og_url %}https://sevendyne.com/{% endblock %}
 {% block title %}Sevendyne: Innovative IT Solutions for Enterprise Growth{% endblock %}
@@ -75,31 +75,127 @@
                     </div>
                 </div>
             </div>
-     
-			  <div class="col-md-6 col-lg-4 mt-3 mb-3" data-aos="zoom-in">
-				<div class="team-block bottom shadow rounded">
-				 <img src="{% static 'job_portal/img/portfolio/portfolio3.jpg' %}" class="img-fluid" alt="C++ Team">
-				  <div class="team-content p-3">
-					<h4 class="mb-2">C++ Team - Automotive Navigation Company, Germany</h4>
-					<p class="text-uppercase fw-bold mt-1">We provided end-to-end HR management services, including recruitment, onboarding, and payroll processing for the Navigation tech company in Germany. Our dedicated C++ team ensured seamless integration into their project workflows, enhancing productivity and project delivery.</p>
-				  </div>
-				</div>
-			  </div>
-
-			  <div class="col-md-6 col-lg-4 mt-3 mb-3" data-aos="zoom-in">
-				<div class="team-block bottom shadow rounded">
-				<img src="{% static 'job_portal/img/portfolio/portfolio8.jpg' %}" class="img-fluid" alt="SolidWorks Team">
-				  <div class="team-content p-3">
-					<h4 class="mb-2">SolidWorks & PLC SCADA Team - Engineering Company, UK</h4>
-					<p class="text-uppercase fw-bold mt-1">Our team delivered comprehensive HR and payroll solutions for a UK-based engineering company. This included recruitment of skilled personnel and management of payroll processes, ensuring compliance and efficiency in their engineering projects, particularly in SolidWorks and PLC SCADA applications.</p>
-				  </div>
-				</div>
-			  </div>
 		</div>
 	</div>
 </section>
 
-<!-- End Team Section -->
+<!-- Clients Section -->
 
+<!-- Clients Section -->
+<section id="clients" class="clients mb-3" style="margin-top:0%">    
+    <div class="container" data-aos="zoom-out">
+        <div class="clients-slider swiper">
+            <div class="swiper-wrapper align-items-center" style="height:40%;">
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/rdp-1.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/tsapi-1.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/np.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/cygnus.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/csr.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/KE_logo.png' %}" class="img-fluid" alt=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <h2></h2>
+		<p>At Sevendyne, we excel in delivering comprehensive app development services tailored to your business needs. Our expert team specializes in building high-quality mobile and web applications, utilizing the latest technologies to create innovative and user-friendly solutions. Whether you need custom software, scalable enterprise apps, or cutting-edge 3D design, we are committed to turning your vision into reality and driving your projects toward success.</p>
+   
+        <!-- Request Quote Button -->
+        <button class="btn btn-primary" id="quote-button" onclick="toggleQuoteForm()">Request Development Quote</button>
+
+		<!-- Quote Request Form (Initially Hidden) -->
+		<div id="quote-form" style="display: none; margin-top: 20px;">
+			<div class="section-title text-center">
+				<p class="separator">Connect with us to discuss your projects</p>
+			</div>
+			<div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+				<div class="col-lg-6 col-md-10">
+					<div class="form">
+						<form id="submit-form" action="#" class="php-email-form">
+							<div class="form-group">
+								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+								<input type="text" name="honeypot" style="display:none;">
+							</div>
+							<div class="form-group mt-3">
+								<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+							</div>
+							<div class="form-group mt-3">
+								<input type="text" class="form-control" name="subject" id="subject" placeholder="Position Needed" required>
+							</div>
+							<div class="form-group mt-3">
+								<textarea class="form-control" name="description" rows="5" placeholder="Brief Description of Your Staffing Needs" required></textarea>
+							</div>
+							<div class="form-group mt-3">
+								<input type="text" class="form-control" name="duration" id="duration" placeholder="Expected Duration of Staffing (e.g., 3 months, 1 year)" required>
+							</div>
+							<div class="form-group mt-3">
+								<input type="number" class="form-control" name="num_positions" id="num_positions" placeholder="Number of Positions Required" required>
+							</div>
+							<div class="form-group mt-3">
+								<input type="text" class="form-control" name="budget" id="budget" placeholder="Budget for Staffing Solutions (optional)">
+							</div>
+							<!-- reCAPTCHA Widget -->				
+							<div class="my-3">
+								<div class="error-message"></div>
+							</div>
+							<div class="text-center">
+								<button class="btn btn-primary" type="submit">Send Request</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    </div>
+</section>
+
+	<!-- End Quote Request Section -->
+	 <script src="{% static 'assets_home/js/script.js' %}"></script>
+			
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+		$("#submit-form").submit((e) => {
+		e.preventDefault();
+		
+		// Get the value of the honeypot field
+		const honeypotValue = $("input[name='honeypot']").val();
+		
+		// Check if the honeypot field is filled
+		if (honeypotValue) {
+			console.warn("Honeypot filled - likely a bot submission.");
+			// Optionally, show a message to the user or take other actions
+			return; // Prevent the form from being submitted
+		}
+		
+		// Proceed with the AJAX request if honeypot is empty
+		$.ajax({
+			url: "https://script.google.com/macros/s/AKfycbyxzRzjygEh1l0AHrTD6uEXKGilEkmYjCeC0YGk1wABLOureKv6sv1aah09itDpLgL6GQ/exec",
+			data: $("#submit-form").serialize(),
+			method: "POST",
+			success: function (response) {
+				// Use SweetAlert for success message
+				Swal.fire({
+					icon: 'success',
+					title: 'Success!',
+					text: 'Your Message is sent to Sevendyne Inc.',
+				}).then(() => {
+					window.location.reload();
+				});
+			},
+			error: function (err) {
+				console.error("An error occurred:", err);
+				// Use SweetAlert for error message
+				Swal.fire({
+					icon: 'error',
+					title: 'Error!',
+					text: 'Something went wrong.',
+				});
+			}
+		});
+	});
+
+		
+	</script>
 
 {% endblock %}

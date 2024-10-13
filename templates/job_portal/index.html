@@ -1,6 +1,6 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}Sevendyne: HRMS Solutions, Payroll Staffings & Tech Skills{% endblock %}
+{% block og_title %}Sevendyne: IT Solutions, Digital Innovation & Skills Training{% endblock %}
 {% block og_description %}At Sevendyne, we specialize in providing innovative IT Solutions to enhance your team's capabilities and drive business growth. Explore how our tailored services can connect you with top talent and streamline your operations.{% endblock %}
 {% block og_url %}https://sevendyne.com/{% endblock %}
 {% block title %}Sevendyne: Innovative IT Solutions for Enterprise Growth{% endblock %}
@@ -21,144 +21,74 @@
 <!-- Carousel Start -->
 <div class="container-fluid p-0" style="height:70vh;">
     <div class="owl-carousel header-carousel position-relative">
+        <!-- HRMS Carousel Item -->
         <div class="owl-carousel-item position-relative">
-            {% comment %} <video autoplay muted loop id="backgroundVideo" class="img-fluid" style="width: 100%; height: 69.5vh; ">
-                <source src="{% static 'job_portal/videos/video.mp4' %}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>      {% endcomment %}
-            
-            <img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="height:70vh;">
+            <img class="img-fluid" src="{% static 'job_portal/img/dashboard.png' %}" alt="" style="height:70vh;">
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
-						<h1 class="text-white animated slideInDown mb-4">Empowering Organizations with Comprehensive IT Solutions</h1> 
-						<h4 class="fs-5 fw-medium text-white mb-4 pb-2">Custom App Development, Payroll Staffing, and Tech Training Services to Accelerate Growth</h4>
-
-						<a href="{% url 'main:portfolios_home' %}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Discover Our Works</a>
-
+                            <h2 class="mb-4 text-white">Effortless Staffing and Payroll with Our In-House HRMS Software</h2>
+                            <p class="mb-4 text-white">Discover a seamless way to manage staffing and payroll with our in-house HRMS solution. Built with Django Python and deployed on AWS, our software is designed to optimize resource management and scale with your business.</p>
+                            <p class="text-white"><i class="fa fa-check text-primary me-3"></i>Streamlined Resource Management</p>
+                            <p class="text-white">Our HRMS software simplifies staffing, onboarding, and managing talent efficiently.</p>
+                            <p class="text-white"><i class="fa fa-check text-primary me-3"></i>Integrated Payroll & HR</p>
+                            <p class="text-white">Handle payroll and HR tasks effortlessly with our secure and scalable platform.</p>
+                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="{% url 'main:home_hrms' %}" target="_blank">Explore Sevendyne HRMS Platform</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- New Solution Carousel Item (Placeholder for future content) -->
+        <!--<div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{% static 'job_portal/img/new_solution.jpg' %}" alt="" style="height:70vh;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-10 col-lg-8">
+                            <h1 class="text-white animated slideInDown mb-4">New Solution Title Here</h1>
+                            <h4 class="fs-5 fw-medium text-white mb-4 pb-2">Description of the new solution to be added here.</h4>
+                            <a href="#" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!-- Additional Solutions Can Be Added Similarly -->
     </div>
 </div>
 <!-- Carousel End -->
 
-<!-- HRMS<!-- Jobs End --> 
+<!-- App Development Support Start -->
 <div id="about" class="container-xxl py-5">
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                 <div class="row g-0 about-bg rounded overflow-hidden">
                     <div class="col-12 text-start">
-                        {% comment %} <img class="img-fluid w-100" src="{% static 'assets_home/img/laptop.png' %}"> {% endcomment %}
-                        <img class="img-fluid w-100" src="{% static 'job_portal/img/dashboard.png' %}">
+                        <img class="img-fluid w-100" src="{% static 'job_portal/img/cover4.jpg' %}">
                     </div>
                 </div>
             </div>
-		  <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-			<h2 class="mb-4">Effortless Staffing and Payroll with Our In-House HRMS Software</h2>
-			<p class="mb-4">Discover a seamless way to manage staffing and payroll with our in-house HRMS solution. Built with Django Python and deployed on AWS, 
-							our software is designed to optimize resource management and scale with your business.</p>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h2 class="mb-4">Comprehensive App Development Support</h2>
+                <p class="mb-4">Empower your business with our expert app development services. We specialize in custom software development, mobile applications, and 3D design, using cutting-edge technology to deliver innovative solutions tailored to your needs.</p>
 
-			<p><i class="fa fa-check text-primary me-3"></i>Streamlined Resource Management</p>
-			<p>Our HRMS software simplifies staffing, onboarding, and managing talent efficiently.</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Custom Software Solutions</p>
+                <p>We develop applications that are tailored to your specific requirements, ensuring seamless functionality and user experience.</p>
 
-			<p><i class="fa fa-check text-primary me-3"></i>Integrated Payroll & HR</p>
-			<p>Handle payroll and HR tasks effortlessly with our secure and scalable platform.</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Mobile and Web Apps</p>
+                <p>Our team excels in creating mobile and web applications that provide intuitive and engaging interfaces for users.</p>
 
-			<a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:home_hrms' %}" target="_blank">Explore Sevendyne HRMS Platform</a>
-		  </div>
-
+                <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:portfolios_home' %}">Explore Client Projects</a>
+            </div>
         </div>
     </div>
 </div>
+<!-- App Development Support End -->
+
 <!-- HRMS End -->
-<!-- Clients Section -->
-
-<!-- Introductory Section -->
-
-<div id="index" class="container-fluid bg-primary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">
-    <div class="container">
-        <div class="row g-2">
-            <h3 style="text-align:center;color:white;">Empower Your Organization with Expert Payroll Staffing</h3>
-        </div>
-    </div>
-</div>
-
-<!-- Clients Section -->
-<section id="clients" class="clients mb-3" style="margin-top:0%">    
-    <div class="container" data-aos="zoom-out">
-        <div class="clients-slider swiper">
-            <div class="swiper-wrapper align-items-center" style="height:40%;">
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/rdp-1.png' %}" class="img-fluid" alt=""></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/tsapi-1.png' %}" class="img-fluid" alt=""></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/np.png' %}" class="img-fluid" alt=""></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/cygnus.png' %}" class="img-fluid" alt=""></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/csr.png' %}" class="img-fluid" alt=""></div>
-                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/KE_logo.png' %}" class="img-fluid" alt=""></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container text-center">
-        <h2></h2>
-        <p>At Sevendyne, we specialize in providing top-notch tech staffing solutions for app development, engineering, and various other sectors. Our experienced team is dedicated to connecting you with skilled professionals who can help drive your projects to success. We pride ourselves on delivering tailored staffing solutions that meet the unique demands of your business.</p>
-   
-        <!-- Request Quote Button -->
-        <button class="btn btn-primary" id="quote-button" onclick="toggleQuoteForm()">Request Staffing Services</button>
-
-        <!-- Quote Request Form (Initially Hidden) -->
-        <div id="quote-form" style="display: none; margin-top: 20px;">
-            <div class="section-title text-center">
-                <p class="separator">Connect with us to discuss your tech staffing needs</p>
-            </div>
-            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="col-lg-6 col-md-10">
-                    <div class="form">
-                        <form id="submit-form" action="#" class="php-email-form">
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Position Needed" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="description" rows="5" placeholder="Brief Description of Your Staffing Needs" required></textarea>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="duration" id="duration" placeholder="Expected Duration of Staffing (e.g., 3 months, 1 year)" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="number" class="form-control" name="num_positions" id="num_positions" placeholder="Number of Positions Required" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="budget" id="budget" placeholder="Budget for Staffing Solutions (optional)">
-                            </div>
-                            <div class="my-3">
-                                <div class="error-message"></div>
-                            </div>
-                            <div class="text-center">
-                                <button class="btn btn-primary" type="submit">Send Request</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- End Quote Request Section -->
-<!-- End Contact Section -->
-
-<!-- End Clients Section -->
 
 <!-- Heading End -->
 <div id="jobs" class="padd-section" style="background-color: #d9e1e5b8;padding-top:5%;padding-bottom:5%">
