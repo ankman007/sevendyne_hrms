@@ -91,16 +91,16 @@
 <!-- HRMS End -->
 
 <!-- Heading End -->
-<div id="jobs" class="padd-section" style="background-color: #d9e1e5b8;padding-top:5%;padding-bottom:5%">
+<!--<div id="jobs" class="padd-section" style="background-color: #d9e1e5b8;padding-top:5%;padding-bottom:5%">
     <div class="container">       
         <h2 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Upskill Your Workforce with Expert Resource Training</h2>
         <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
             <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                <!--<li class="nav-item">
+                <li class="nav-item">
                     <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
                         <h6 class="mt-n1 mb-0">Internship</h6>
                     </a>
-                </li>-->
+                </li>
                 <li class="nav-item">
                     <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
                         <h6 class="mt-n1 mb-0">Full Time</h6>
@@ -150,7 +150,7 @@
 						</p>                    
                         <a href="{% url 'candidate:create_intern' %}" class="btn btn-primary mt-3">Apply for Training Programme</a>
                     {% endif %}                    
-                </div>-->
+                </div>
                 <div id="tab-2" class="tab-pane fade show p-0 activ">  
                     {% if full_time_jobs %}                           
                         {% for job in full_time_jobs %}
@@ -244,5 +244,102 @@
 </div>
 <!-- Jobs End -->
 
+    <div class="container" data-aos="zoom-out">
+        <div class="clients-slider swiper">
+            <div class="swiper-wrapper align-items-center" style="height:40%;">
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/rdp-1.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/tsapi-1.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/np.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/cygnus.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/csr.png' %}" class="img-fluid" alt=""></div>
+                <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/KE_logo.png' %}" class="img-fluid" alt=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <h2></h2>
+		
+        <!-- Request Quote Button -->
+        <button class="btn btn-primary" id="quote-button">Contact Us</button>
+
+		<!-- Quote Request Form (Initially Hidden) -->
+		<div id="quote-form" style="margin-top: 20px;">
+			<div class="section-title text-center">
+				<p class="separator">Connect with us to discuss your project requirements</p>
+			</div>
+			<div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+				<div class="col-lg-6 col-md-10">
+					<div class="form">
+						<form id="submit-form" action="#" class="php-email-form">
+							<div class="form-group">
+								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+								<input type="text" name="honeypot" style="display:none;">
+							</div>
+							<div class="form-group mt-3">
+								<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+							</div>
+							<div class="form-group mt-3">
+								<input type="text" class="form-control" name="subject" id="subject" placeholder="Position Needed" required>
+							</div>
+							<div class="form-group mt-3">
+								<textarea class="form-control" name="description" rows="5" placeholder="Brief Description of Your Staffing Needs" required></textarea>
+							</div>
+							<div class="form-group mt-3">
+								<input type="text" class="form-control" name="duration" id="duration" placeholder="Expected Duration of Staffing (e.g., 3 months, 1 year)" required>
+							</div>
+							<div class="form-group mt-3">
+								<input type="number" class="form-control" name="num_positions" id="num_positions" placeholder="Number of Positions Required" required>
+							</div>
+							<div class="form-group mt-3">
+								<input type="text" class="form-control" name="budget" id="budget" placeholder="Budget for Staffing Solutions (optional)">
+							</div>
+							<!-- reCAPTCHA Widget -->				
+							<div class="my-3">
+								<div class="error-message"></div>
+							</div>
+							<div class="text-center">
+								<button class="btn btn-primary" type="submit">Send Request</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{%static 'assets/js/jquery-3.7.1.min.js'%}"></script>
+
+<script>
+    $("#submit-form").submit((e) => {
+        e.preventDefault();
+        $.ajax({
+            url: "https://script.google.com/macros/s/AKfycbyxzRzjygEh1l0AHrTD6uEXKGilEkmYjCeC0YGk1wABLOureKv6sv1aah09itDpLgL6GQ/exec",
+            data: $("#submit-form").serialize(),
+            method: "POST",
+            success: function (response) {
+                // Use SweetAlert for success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Your Message is sent to Sevendyne Inc.',
+                }).then(() => {
+                    window.location.reload();
+                });
+            },
+            error: function (err) {
+                // Use SweetAlert for error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong.',
+                });
+            }
+        });
+    });
+</script>
 
 {% endblock %}
