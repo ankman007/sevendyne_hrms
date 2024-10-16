@@ -42,73 +42,87 @@
 <!-- Carousel End -->
 
 <!-- Portfolio Projects Section Start -->
+<!-- Portfolio Projects Section Start -->
 <div id="projects" class="container-xxl py-5">
     <div class="container">
         <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row g-0 project-bg rounded overflow-hidden">
-                    <div class="col-12 text-start">
-                        <img class="img-fluid w-100" src="{% static 'job_portal/img/portfolio.jpg' %}">
+            <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                <h2 class="mb-4 text-center">Showcasing Our Portfolio of Technology Projects</h2>
+                
+                <div class="row g-4">
+                    <!-- Project 1 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-item bg-light rounded p-3">
+                            <h4>AI-Powered Job Search Automation</h4>
+                            <p>Automating job searches on Zoho Recruit.</p>
+                            <p><strong>Skills:</strong> Python, OpenAI, Zoho API</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-item bg-light rounded p-3">
+                            <h4>AI-Driven Ecommerce Site Creation</h4>
+                            <p>Automates site creation using SPREE platform.</p>
+                            <p><strong>Skills:</strong> Ruby on Rails, OpenAI, Web Scraping</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-item bg-light rounded p-3">
+                            <h4>Customer Arrival Analysis Dashboard</h4>
+                            <p>Visualizing restaurant customer patterns.</p>
+                            <p><strong>Skills:</strong> Angular, SpringBoot, Echarts</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-item bg-light rounded p-3">
+                            <h4>Unionpay Mobile Payment App</h4>
+                            <p>Android app for seamless payment processing.</p>
+                            <p><strong>Skills:</strong> Android, Java, Mobile Payments</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 5 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-item bg-light rounded p-3">
+                            <h4>RedDotPayment CRM</h4>
+                            <p>Custom CRM for managing payment transactions.</p>
+                            <p><strong>Skills:</strong> CodeIgniter, PHP, Payment Processing</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 6 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-item bg-light rounded p-3">
+                            <h4>Laravel & Vue.js CRUD Forms</h4>
+                            <p>Dynamic CRUD forms with interactive UI.</p>
+                            <p><strong>Skills:</strong> Laravel, Vue.js, REST APIs</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 7 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-item bg-light rounded p-3">
+                            <h4>Code Review Tool for Linux</h4>
+                            <p>Simplified code review with C++ and Qt.</p>
+                            <p><strong>Skills:</strong> C++, Qt, Linux Development</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                <h2 class="mb-4">Showcasing Our Portfolio of Technology Projects</h2>
                 
-                <!-- Project 1 -->
-                <div class="project-item mb-3">
-                    <h4>AI-Powered Job Search Automation</h4>
-                    <p>Automating job searches on Zoho Recruit.</p>
-                    <p><strong>Skills:</strong> Python, OpenAI, Zoho API</p>
+                <div class="text-center mt-4">
+                    <a class="btn btn-primary py-3 px-5" href="{% url 'main:portfolios_home' %}" target="_blank">Explore More Projects</a>
                 </div>
-                
-                <!-- Project 2 -->
-                <div class="project-item mb-3">
-                    <h4>AI-Driven Ecommerce Site Creation</h4>
-                    <p>Automates site creation using SPREE platform.</p>
-                    <p><strong>Skills:</strong> Ruby on Rails, OpenAI, Web Scraping</p>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-item mb-3">
-                    <h4>Customer Arrival Analysis Dashboard</h4>
-                    <p>Visualizing restaurant customer patterns.</p>
-                    <p><strong>Skills:</strong> Angular, SpringBoot, Echarts</p>
-                </div>
-                
-                <!-- Project 4 -->
-                <div class="project-item mb-3">
-                    <h4>Unionpay Mobile Payment App</h4>
-                    <p>Android app for seamless payment processing.</p>
-                    <p><strong>Skills:</strong> Android, Java, Mobile Payments</p>
-                </div>
-                
-                <!-- Project 5 -->
-                <div class="project-item mb-3">
-                    <h4>RedDotPayment CRM</h4>
-                    <p>Custom CRM for managing payment transactions.</p>
-                    <p><strong>Skills:</strong> CodeIgniter, PHP, Payment Processing</p>
-                </div>
-                
-                <!-- Project 6 -->
-                <div class="project-item mb-3">
-                    <h4>Laravel & Vue.js CRUD Forms</h4>
-                    <p>Dynamic CRUD forms with interactive UI.</p>
-                    <p><strong>Skills:</strong> Laravel, Vue.js, REST APIs</p>
-                </div>
-                
-                <!-- Project 7 -->
-                <div class="project-item mb-3">
-                    <h4>Code Review Tool for Linux</h4>
-                    <p>Simplified code review with C++ and Qt.</p>
-                    <p><strong>Skills:</strong> C++, Qt, Linux Development</p>
-                </div>
-                
-                <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'main:portfolios_home' %}" target="_blank">Explore More Projects</a>
             </div>
         </div>
     </div>
 </div>
+<!-- Portfolio Projects Section End -->
+
 <!-- Portfolio Projects Section End -->
 
 <!-- HRMS Section End -->
