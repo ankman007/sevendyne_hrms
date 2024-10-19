@@ -15,6 +15,7 @@ urlpatterns = [
     path('privacy_policy/',views.privacy_policy,name='privacy_policy'),
     path('portfolio-home/',views.portfolios_home,name='portfolios_home'),
     path('home/hrms/',views.home_hrms,name='home_hrms'),
+     path('contact/',views.contact_us,name='contact_us'),
 
     path('get_states/', views.get_states, name='get_states'),
 
