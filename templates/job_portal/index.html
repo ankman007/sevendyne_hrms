@@ -306,6 +306,7 @@
 				<div class="col-lg-6 col-md-10">
 					<div class="form">
 						<form id="submit-form" action="#" class="php-email-form">
+						{% csrf_token %}
 							<div class="form-group">
 							<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
 							<input type="text" name="honeypot" style="display:none;"> <!-- Spam protection -->
@@ -361,9 +362,11 @@
 <script>
     $("#submit-form").submit((e) => {
         e.preventDefault();
+		const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
         $.ajax({
             url: "https://script.google.com/macros/s/AKfycbyxzRzjygEh1l0AHrTD6uEXKGilEkmYjCeC0YGk1wABLOureKv6sv1aah09itDpLgL6GQ/exec",
-            data: $("#submit-form").serialize(),
+            data: $("#submit-form").serialize() + '&csrfmiddlewaretoken=' + csrfToken,
             method: "POST",
             success: function (response) {
                 // Use SweetAlert for success message
