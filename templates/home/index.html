@@ -199,144 +199,94 @@
 		 <!-- Add Start Your Free Demo Button Below -->
 	</div>	
 	</section>
-	
-	<section class="padd-section text-center" style="margin-bottom:3%;margin-top:3%">
 
-		<div class="container text-center">
-			<h2>Contact Us</h2>
-			
-			<!-- Quote Request Form (Initially Hidden) -->
-			<div id="quote-form" style="margin-top: 20px; background-color: #f8f9fa; padding: 30px; border-radius: 10px;">
-				<div class="section-title text-center">
-					<p class="separator">
-						Provide us with some details about your staffing requirements, and our team will get back to you with a free, no-obligation quote.
-					</p>
+	<!-- Footer-->
+	<footer class="footer-second ">
+		<div class="container">
+			<div class="row g-5">
+				<div class="col-lg-3 col-md-6">
+					<h5 class="text-white mb-4">Sevendyne Inc</h5>
+					<a class="btn-link text-white-50" href="#">IT Consultancy Company</a>
 				</div>
-
-				<div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-					<div class="col-lg-6 col-md-10">
-						<div class="form">
-							<form id="submit-form" action="#" class="php-email-form">
-							{% csrf_token %}
-								<div class="form-group">
-								<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-								<input type="text" name="honeypot" style="display:none;"> <!-- Spam protection -->
-								</div>
-								<div class="form-group mt-3">
-									<input type="text" class="form-control" name="company_name" id="company_name" placeholder="Company Name" required>
-								</div>
-								<div class="form-group mt-3">
-									<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-								</div>
-								
-								<div class="form-group mt-3">
-									<textarea class="form-control" name="project_description" rows="5" placeholder="Brief Description of Your IT Project or Product" required></textarea>
-								</div>
-						
-
-								<!-- reCAPTCHA Widget -->				
-								<div class="my-3">
-									<div class="error-message"></div>
-								</div>
-								<div class="text-center">
-									<button class="btn btn-primary" type="submit">Send Request</button>
-								</div>
-							</form>
-							</div>
-						</div>
+				<div class="col-lg-3 col-md-6">
+					<h5 class="text-white mb-4" style="font-size:small">HR SUPPORT</h5>
+					<a class="btn-link text-white-50" style="text-transform: lowercase;" href="mailto:hr@sevendyne.com">hr@sevendyne.com</a>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h5 class="text-white mb-4" style="font-size:small">QUICK LINKS</h5>
+					<p class="mb-2"><i class=""></i><a href="{% url 'main:terms_and_conditions' %}">Terms Of Service</a></p>
+					<p class="mb-2"><i class=""></i><a href="{% url 'main:privacy_policy' %}">Privacy Policy</a></p>
+				</div>
+			</div>
+			<div class="row  mt-3">
+				<div class="col-lg-5">
+					<div class="copy-rights-second">
+						<p>@Copyright 2016-2024 Sevendyne Consultancy Services LLP.<br> All Rights Reserved. </p>
 					</div>
 				</div>
-
+				<div class="col-lg-6">
+					<div class="company-logo-second">
+						<p>Sevendyne Inc                        
+							 {% comment %} <img src="{% static 'assets/img/logo_svd.png' %}" alt="Company-logo"> {% endcomment %}
+						</p>
+					</div>
+				</div>
 			</div>
-		</section>
+		</div>
+	</footer>
+	<!-- Footer-->
 
-        <!-- Footer-->
-        <footer class="footer-second ">
-            <div class="container">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Sevendyne Inc</h5>
-                        <a class="btn-link text-white-50" href="#">IT Consultancy Company</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4" style="font-size:small">HR SUPPORT</h5>
-                        <a class="btn-link text-white-50" style="text-transform: lowercase;" href="mailto:hr@sevendyne.com">hr@sevendyne.com</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4" style="font-size:small">QUICK LINKS</h5>
-                        <p class="mb-2"><i class=""></i><a href="{% url 'main:terms_and_conditions' %}">Terms Of Service</a></p>
-                        <p class="mb-2"><i class=""></i><a href="{% url 'main:privacy_policy' %}">Privacy Policy</a></p>
-                    </div>
-                </div>
-                <div class="row  mt-3">
-                    <div class="col-lg-5">
-                        <div class="copy-rights-second">
-                            <p>@Copyright 2016-2024 Sevendyne Consultancy Services LLP.<br> All Rights Reserved. </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="company-logo-second">
-                            <p>Sevendyne Inc                        
-                                 {% comment %} <img src="{% static 'assets/img/logo_svd.png' %}" alt="Company-logo"> {% endcomment %}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Footer-->
+</section>
 
-	</section>
+	<!-- jQuery -->
+	<script src="{% static 'assets_home/js/jquery-3.7.0.min.js' %}"></script>
+	<script src="{% static 'assets_home/js//swiper/swiper-bundle.min.js' %}"></script>
 
-        <!-- jQuery -->
-        <script src="{% static 'assets_home/js/jquery-3.7.0.min.js' %}"></script>
-        <script src="{% static 'assets_home/js//swiper/swiper-bundle.min.js' %}"></script>
+	<!-- Bootstrap Core JS -->
+	<script src="{% static 'assets_home/js/bootstrap.bundle.min.js' %}"></script>
 
-        <!-- Bootstrap Core JS -->
-        <script src="{% static 'assets_home/js/bootstrap.bundle.min.js' %}"></script>
+	<!-- Wow JS -->
+	<script src="{% static 'assets_home/js/aos.js' %}"></script>
 
-        <!-- Wow JS -->
-        <script src="{% static 'assets_home/js/aos.js' %}"></script>
+	<!-- Owl JS -->
+	<script src="{% static 'assets_home/js/owl.carousel.min.js' %}"></script>
 
-        <!-- Owl JS -->
-        <script src="{% static 'assets_home/js/owl.carousel.min.js' %}"></script>
+	<!-- Smooth Scroll JS -->
+	<script src="{% static 'assets_home/js/smooth-scroll.min.js' %}"></script>
 
-        <!-- Smooth Scroll JS -->
-        <script src="{% static 'assets_home/js/smooth-scroll.min.js' %}"></script>
-
-        <!-- Custom JS -->
-        <script src="{% static 'assets_home/js/script.js' %}"></script>
-        
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            $("#submit-form").submit((e) => {
-                e.preventDefault();
-                $.ajax({
-                    url: "https://script.google.com/macros/s/AKfycbx94Kyn57PdZWaV3euEKfESfYG4QRYcVINTmqYVgDaknZCbOnoMUzMY_SZlwdSwkPDE/exec",
-                    data: $("#submit-form").serialize(),
-                    method: "POST",
-                    success: function (response) {
-                        // Use SweetAlert for success message
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success!',
-                            text: 'Your email subscription request is sent to Sevendyne Inc.',
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    },
-                    error: function (err) {
-                        console.error("An error occurred:", err);
-                        // Use SweetAlert for error message
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error!',
-                            text: 'Something went wrong.',
-                        });
-                    }
-                });
-            });
-            
-        </script>
+	<!-- Custom JS -->
+	<script src="{% static 'assets_home/js/script.js' %}"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+		$("#submit-form").submit((e) => {
+			e.preventDefault();
+			$.ajax({
+				url: "https://script.google.com/macros/s/AKfycbx94Kyn57PdZWaV3euEKfESfYG4QRYcVINTmqYVgDaknZCbOnoMUzMY_SZlwdSwkPDE/exec",
+				data: $("#submit-form").serialize(),
+				method: "POST",
+				success: function (response) {
+					// Use SweetAlert for success message
+					Swal.fire({
+						icon: 'success',
+						title: 'Success!',
+						text: 'Your email subscription request is sent to Sevendyne Inc.',
+					}).then(() => {
+						window.location.reload();
+					});
+				},
+				error: function (err) {
+					console.error("An error occurred:", err);
+					// Use SweetAlert for error message
+					Swal.fire({
+						icon: 'error',
+						title: 'Error!',
+						text: 'Something went wrong.',
+					});
+				}
+			});
+		});
+		
+	</script>
     </body>
 </html>
