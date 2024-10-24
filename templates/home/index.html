@@ -317,14 +317,11 @@
                     method: "POST",
                     success: function (response) {
                         // Use SweetAlert for success message
-						Swal.fire({
-						  title: 'Processing...',
-						  text: 'Please wait while your request is being processed.',
-						  showConfirmButton: false,
-						  allowOutsideClick: false,
-						  didOpen: () => {
-							Swal.showLoading();
-						}).then(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Your email subscription request is sent to Sevendyne Inc.',
+                        }).then(() => {
                             window.location.reload();
                         });
                     },
