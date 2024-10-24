@@ -21,6 +21,21 @@
 <!-- Carousel Start -->
 <div class="container-fluid p-0" style="height:70vh;">
     <div class="owl-carousel header-carousel position-relative">
+        <!-- HRMS Consulting Carousel Item -->
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{% static 'job_portal/img/dashboard.png' %}" alt="" style="height:70vh;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-10 col-lg-8">
+                            <h2 class="mb-4 text-white">HRMS Consulting Solutions</h2>
+                            <p class="mb-4 text-white">Leverage our AWS-powered HRMS to revolutionize your organization's human resource processes. Scalable, efficient, and user-friendly, our solution empowers businesses to make data-driven decisions.</p>
+                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="https://sevendyne.com/hrms/home/" target="_blank">Learn More About HRMS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- App Development Support Carousel Item -->
         <div class="owl-carousel-item position-relative">
             <img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="height:70vh;">
@@ -29,141 +44,50 @@
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
                             <h2 class="mb-4 text-white">Comprehensive App Development Support</h2>
-                            <p class="mb-4 text-white">Empower your organization with our expert app development services. We specialize in custom software development, mobile applications, and websites, using cutting-edge technology to deliver innovative solutions tailored to your needs.</p>
-                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="{% url 'main:about' %}">Explore About Us</a>
+                            <p class="mb-4 text-white">Empower your organization with our expert app development services. We specialize in custom software, mobile applications, and websites using cutting-edge technology to deliver tailored solutions.</p>
+                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="{% url 'main:portfolios_home' %}">Explore About Us</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Additional Solutions Can Be Added Similarly -->
+        <!-- Training Program Carousel Item -->
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{% static 'job_portal/img/cover7.jpg' %}" alt="" style="height:70vh;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-10 col-lg-8">
+                            <h2 class="mb-4 text-white">Upskill with Our Fullstack Training Program</h2>
+                            <p class="mb-4 text-white">Join our Fullstack training program and gain hands-on experience in frontend and backend development, mastering technologies like Node.js, Django, Python, and more.</p>
+                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="{% url 'candidate:create_intern' %}">Apply for Training</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Carousel End -->
 
-<!-- Portfolio Projects Section Start -->
-
-<div id="index" class="container-fluid bg-primary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">
+<!-- About Us Section -->
+<div class="container-fluid py-5">
     <div class="container">
-        <div class="row g-2">
-            <h3 style="text-align:center; color:white;">Featured Client Tech Projects</h3>
-        </div>
-    </div>
-</div>
-
-<div id="projects" class="container-fluid">
-
-    <div class="container" style="padding-top: 1%; padding-bottom: 5%">
-        <div class="row g-5 align-items-center">
-            <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
-                
-                <div class="row g-4">
-                    <!-- Project 1 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="project-item bg-light rounded p-3">
-                            <h4>AI-Powered Job Search Automation</h4>
-                            <p>Automating job searches on Zoho Recruit.</p>
-                            <p><strong>Skills:</strong> Python, OpenAI, Zoho API</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 2 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="project-item bg-light rounded p-3">
-                            <h4>AI-Driven Ecommerce Site Creation</h4>
-                            <p>Automates site creation using SPREE platform.</p>
-                            <p><strong>Skills:</strong> Ruby on Rails, OpenAI, Web Scraping</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 3 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="project-item bg-light rounded p-3">
-                            <h4>Customer Arrival Analysis Dashboard</h4>
-                            <p>Visualizing restaurant customer patterns.</p>
-                            <p><strong>Skills:</strong> Angular, SpringBoot, Echarts</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 4 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="project-item bg-light rounded p-3">
-                            <h4>Unionpay Mobile Payment App</h4>
-                            <p>Android app for seamless payment processing.</p>
-                            <p><strong>Skills:</strong> Android, Java, Mobile Payments</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 5 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="project-item bg-light rounded p-3">
-                            <h4>RedDotPayment CRM</h4>
-                            <p>Custom CRM for managing payment transactions.</p>
-                            <p><strong>Skills:</strong> CodeIgniter, PHP, Payment Processing</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 6 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="project-item bg-light rounded p-3">
-                            <h4>Laravel & Vue.js CRUD Forms</h4>
-                            <p>Dynamic CRUD forms with interactive UI.</p>
-                            <p><strong>Skills:</strong> Laravel, Vue.js, REST APIs</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 7 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="project-item bg-light rounded p-3">
-                            <h4>Code Review Tool for Linux</h4>
-                            <p>Simplified code review with C++ and Qt.</p>
-                            <p><strong>Skills:</strong> C++, Qt, Linux Development</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-4">
-                    <a class="btn btn-primary py-3 px-5" href="{% url 'main:portfolios_home' %}">Explore More Projects</a>
-                </div>
+        <div class="row align-items-center">
+            <!-- Image Column -->
+            <div class="col-lg-6">
+                <img src="{% static 'job_portal/img/consulting.jpg' %}" class="img-fluid" alt="About Us">
+            </div>
+            <!-- Content Column -->
+            <div class="col-lg-6">
+                <h2 class="mb-4">About Us</h2>
+                <p>At SevenDyne, we specialize in delivering innovative tech solutions across three main areas: <strong>HRMS consulting</strong>, <strong>custom app development</strong>, and <strong>Fullstack training</strong>.</p>
+                <p>Our HRMS solution is built on AWS and powered by Django Python, offering a scalable and efficient platform to optimize your human resource management. Additionally, we provide expert app development services and comprehensive Fullstack training to upskill your workforce with the latest technologies.</p>
+                <a href="{% url 'main:about' %}" class="btn btn-primary mt-3">Learn More About Us</a>
             </div>
         </div>
     </div>
 </div>
-<!-- Portfolio Projects Section End -->
-
-<div id="index" class="container-fluid bg-primary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">
-    <div class="container">
-        <div class="row g-2">
-            <h3 style="text-align:center; color:white;">Innovative Tech & Training Solutions</h3>
-        </div>
-    </div>
-</div>
-<!-- HRMS and Training Section in a Row -->
-<div class="container-fluid">
-    <div class="row">
-        <!-- HRMS Section -->
-        <div class="col-md-6" style="background-color: #cfe2f3; padding: 5% 3%;">
-            <h2 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Transform Your HR Management with Our AWS-Powered HRMS Software</h2>
-            <div class="hrms-intro text-center wow fadeInUp" data-wow-delay="0.3s">
-                <h5 style="font-weight:bolder">Deploy Our Cutting-Edge HRMS Solution</h5>
-                <p>Elevate your human resource management with our AWS-powered HRMS software built using Django Python. Designed for scalability and efficiency, our solution provides seamless integration, advanced analytics, and a user-friendly interface. Deploy it in your organization to streamline processes, enhance productivity, and make data-driven decisions.</p>
-                <a href="https://sevendyne.com/hrms/home/" class="btn btn-primary mt-3" target="_blank">Explore Our HRMS Software</a>
-            </div>
-        </div>
-
-        <!-- Training Section -->
-        <div class="col-md-6" style="background-color: #d9e1e5b8; padding: 5% 3%;">
-            <h2 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Upskill Your Workforce with Expert Resource Training</h2>
-            <div class="training-content text-center wow fadeInUp" data-wow-delay="0.3s">
-                <h5 style="font-weight:bolder">Enroll in Our Fullstack Training Program and Propel Your Career Forward!</h5>
-                <p>Our Fullstack training division is dedicated to providing high-quality programs for professionals eager to master both frontend and backend development skills. 
-                With a focus on practical knowledge, we offer comprehensive training in technologies like Node.js, Bootstrap, Django, Python, HTML, CSS, and more, helping you stay ahead in the fast-paced tech industry.</p>                    
-                <a href="{% url 'candidate:create_intern' %}" class="btn btn-primary mt-3">Apply for Training Programme</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div id="index" class="container-fluid bg-primary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">
     <div class="container">
