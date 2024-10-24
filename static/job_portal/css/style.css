@@ -663,3 +663,13 @@
         display: inline-block !important;
     }
 }
+
+ .custom-section {
+        background-color: #f8f9fa; /* Light background for custom section */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    .project-img {
+        height: auto; /* Maintain aspect ratio */
+        width: 100%; /* Responsive image */
+    }
