@@ -1,9 +1,9 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}Sevendyne: Custom App Development, HRMS Consulting and Fullstack Training {% endblock %}
-{% block og_description %}At Sevendyne, we specialize in Custom App development, HRMS consulting and Fullstack training to enhance your team's capabilities and drive business growth. Discover how our tailored solutions can empower your organization.{% endblock %}
+{% block og_title %}Sevendyne: Tech Development, Team Building and Training Skills {% endblock %}
+{% block og_description %}At Sevendyne, we specialize in Tech Development, Team Building and Training Skills to enhance your team's capabilities and drive business growth. Discover how our tailored solutions can empower your organization.{% endblock %}
 {% block og_url %}https://Sevendyne.com/{% endblock %}
-{% block title %}Sevendyne: Empowering Enterprises with Custom App Development, HRMS Consulting, and Fullstack Training{% endblock %}
+{% block title %}Sevendyne: Empowering Enterprises with Tech Development, Team Building, and Training Skills{% endblock %}
 
 
 {% load static %}
@@ -142,33 +142,102 @@
 	</div>
 </section>
 
-<section id="hrms-payroll" class="custom-app-development bg-light" style="margin-bottom:3%;margin-top:3%">
+
+<div id="index" class="container-fluid bg-primary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">
     <div class="container">
-        <h1 class="mb-4">Expertise Areas</h1>
-		<p class="mb-4">At Sevendyne, we employ a streamlined project development method designed to ensure efficiency and quality at every stage. Our approach incorporates thorough planning, agile methodologies, and continuous feedback to meet your specific needs. We offer fixed project costs to provide our clients with clarity and predictability, enabling effective budgeting and decision-making throughout the development process.</p>
-
-        <h2>App Development: Crafting Tomorrow's Digital Experiences</h2>
-        <p class="mb-4">Our app development expertise enables businesses to create innovative and user-friendly applications. We design and develop custom solutions tailored to meet unique business needs, driving digital transformation.</p>
-
-        <h3>Fullstack Web Applications</h3>
-        <p class="mb-4">Our fullstack web development services follow a robust architecture that integrates the latest front-end and back-end technologies. The architecture is designed to ensure scalability, high performance, and a seamless user experience. We leverage modern front-end frameworks like Angular and React for building interactive user interfaces, while the back-end services are powered by Django (Python) or Spring Boot (Java) to handle business logic and data management efficiently. This combination enables us to deliver web applications that are both powerful and user-friendly.</p>
-
-        <h3>Android Mobile Development</h3>
-        <p class="mb-4">For Android mobile app development, we employ a modular architecture that adheres to the MVVM (Model-View-ViewModel) pattern. This approach ensures that the app remains maintainable and scalable while facilitating the separation of concerns between the user interface, business logic, and data access layers. We also utilize Jetpack libraries, including Room for local database management and LiveData for reactive data handling, to create high-performance and reliable Android apps that provide a seamless user experience across devices.</p>
-
-        <h3>C++ Qt Development</h3>
-        <p class="mb-4">When it comes to C++ development, we specialize in using the Qt framework to build cross-platform desktop applications. Our architecture involves leveraging Qt's comprehensive set of libraries for UI, networking, and data handling to create high-quality software. The modular design of our architecture enables smooth integration with other libraries and APIs, making it suitable for developing complex applications such as navigation systems and industrial control software. The use of MVC (Model-View-Controller) patterns ensures a clean separation between data and user interfaces, resulting in maintainable and efficient codebases.</p>
-
-        <h3>Enterprise Solutions</h3>
-        <p class="mb-4">At Sevendyne, we understand that every business has unique challenges. Our tailored enterprise solutions are designed to integrate seamlessly with your existing systems while addressing complex business needs. From automating workflows to enhancing data management, we create custom systems that improve efficiency, reduce operational costs, and drive strategic growth. Our team collaborates closely with you to develop solutions that not only meet your immediate requirements but also scale as your business evolves.</p>
-
-        <h3>Cloud Integration & DevOps</h3>
-        <p class="mb-4">In today's fast-paced digital landscape, businesses need to leverage cloud technology for flexibility and scalability. Our cloud integration services ensure that your applications and data are effortlessly connected and accessible from anywhere. Coupled with our DevOps practices, we promote a culture of collaboration between development and operations teams, enabling faster and more reliable deployments. This integrated approach ensures that your applications can scale efficiently, respond quickly to market changes, and maintain high availability, all while optimizing resource usage and costs.</p>
-
-        <h3>UI/UX Design</h3>
-        <p class="mb-4">The user experience is crucial to the success of any digital product. At Sevendyne, our UI/UX design team focuses on creating engaging and intuitive interfaces that not only capture the user's attention but also enhance their overall experience. We conduct thorough user research and usability testing to ensure that our designs are user-centered and accessible. By prioritizing aesthetics and functionality, we help businesses increase user satisfaction, improve engagement, and ultimately drive conversions. Our design philosophy is centered around creating seamless interactions that resonate with users and foster loyalty.</p> 
+        <div class="row g-2">
+            <h3 style="text-align:center; color:white;">Request Project Services</h3>
+        </div>
     </div>
-</section>
+</div>
 
+	<div class="container text-center">
+		<h2></h2>
+		
+		<!-- Quote Request Form (Initially Hidden) -->
+		<div id="quote-form" style="margin-top: 20px;">
+			<div class="section-title text-center">
+				<p class="separator">
+					Provide us with some details about your IT project or product requirements, and our team will get back to you with a free, no-obligation quote.
+				</p>
+			</div>
+
+			<div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+				<div class="col-lg-6 col-md-10">
+					<div class="form">
+						<form id="submit-form" action="#" class="php-email-form">
+						{% csrf_token %}
+							<div class="form-group">
+							<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+							<input type="text" name="honeypot" style="display:none;"> <!-- Spam protection -->
+							</div>
+							<div class="form-group mt-3">
+								<input type="text" class="form-control" name="company_name" id="company_name" placeholder="Company Name" required>
+							</div>
+							<div class="form-group mt-3">
+								<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+							</div>
+							<div class="form-group mt-3">
+								<select class="form-control" name="project_type" id="project_type" required>
+									<option value="" disabled selected>Project Request Type</option>
+									<option value="app_development">Tech Development</option>
+									<option value="hrms_software">Team Building</option>
+									<option value="cloud_support">Training Skills</option>
+									<option value="other">Other IT</option>
+								</select>
+							</div>
+							<div class="form-group mt-3">
+								<textarea class="form-control" name="project_description" rows="5" placeholder="Brief Description of Your IT Project or Product" required></textarea>
+							</div>
+							
+
+							<!-- reCAPTCHA Widget -->				
+							<div class="my-3">
+								<div class="error-message"></div>
+							</div>
+							<div class="text-center">
+								<button class="btn btn-primary" type="submit">Send Request</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{%static 'assets/js/jquery-3.7.1.min.js'%}"></script>
+
+<script>
+    $("#submit-form").submit((e) => {
+        e.preventDefault();
+		const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        $.ajax({
+            url: "https://script.google.com/macros/s/AKfycbyxzRzjygEh1l0AHrTD6uEXKGilEkmYjCeC0YGk1wABLOureKv6sv1aah09itDpLgL6GQ/exec",
+            data: $("#submit-form").serialize() + '&csrfmiddlewaretoken=' + csrfToken,
+            method: "POST",
+            success: function (response) {
+                // Use SweetAlert for success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Your Message is sent to Sevendyne Inc.',
+                }).then(() => {
+                    window.location.reload();
+                });
+            },
+            error: function (err) {
+                // Use SweetAlert for error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong.',
+                });
+            }
+        });
+    });
+</script>
 	
 {% endblock %}
