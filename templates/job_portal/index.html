@@ -1,9 +1,9 @@
 {% extends "job_portal/base.html" %}
 
 {% block og_title %}SevenDyne: Your Trusted Technology Consultancy for Innovative Solutions{% endblock %}
-{% block og_description %}SevenDyne is a versatile technology consultancy specializing in app development, HR payroll, and professional training. With a focus on innovation, we provide transformative solutions to meet diverse organizational needs, while continuously expanding into emerging tech domains.{% endblock %}
+{% block og_description %}SevenDyne is a versatile technology consultancy specializing in app development, and professional training. With a focus on innovation, we provide transformative solutions to meet diverse organizational needs, while continuously expanding into emerging tech domains.{% endblock %}
 {% block og_url %}https://Sevendyne.com/{% endblock %}
-{% block title %}SevenDyne: Technology Consultancy Delivering App Development, HR Payroll, Training, and Beyond{% endblock %}
+{% block title %}SevenDyne: Technology Consultancy Delivering App Development, Training, and Beyond{% endblock %}
 
 {% load static %}
 
@@ -17,45 +17,28 @@
         display: none !important;
     }
 </style>
+
 <!-- Carousel Start -->
 <div class="container-fluid p-0" style="height:70vh;">
     <div class="owl-carousel header-carousel position-relative">
-        
-        <!-- Tech Consultancy Services Carousel Item -->
+        <!-- Advanced Technologies Carousel Item -->
         <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="" style="height:70vh;">
+            <img class="img-fluid" src="{% static 'job_portal/img/tech_innovation.jpg' %}" alt="Advanced Technologies" style="height:70vh;">
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
-                            <h2 class="mb-4 text-white">Innovative Tech Consultancy Services</h2>
-                            <p class="mb-4 text-white">At SevenDyne, we provide expert technology consultancy across various domains. From app development to system integration, our team offers tailored solutions to drive your business forward.</p>
-                            <p class="mb-4 text-white">Explore how we’ve helped businesses across industries achieve their goals with cutting-edge technology.</p>
-                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="{% url 'main:portfolios_home' %}">Discover Our Client Projects</a>
+                            <h2 class="mb-4 text-white">Advanced Technologies Expertise</h2>
+                            <p class="mb-4 text-white">Harness the power of cutting-edge technologies like C++, Embedded Systems, Android, OpenAI, and Blockchain with SevenDyne.</p>
+                            <p class="mb-4 text-white">We provide tailored solutions to meet modern tech challenges and help businesses stay ahead of the curve.</p>
+                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="{% url 'main:portfolios_home' %}">Explore Our Projects</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- HRMS Staffing Platform Carousel Item -->
-        <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="{% static 'job_portal/img/cover3.jpg' %}" alt="" style="height:70vh;">
-            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-                <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h2 class="mb-4 text-white">HRMS Staffing Platform</h2>
-                            <p class="mb-4 text-white">Our HRMS staffing platform streamlines recruitment and payroll management, helping you manage your workforce efficiently. We offer flexible staffing solutions with comprehensive support and quality assurance.</p>
-                            <p class="mb-4 text-white">Whether you're hiring for short-term projects or long-term roles, our platform ensures that your staffing needs are met with ease.</p>
-                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="https://sevendyne.com/hrms/home/" target="_blank">Visit Our HRMS Staffing Platform</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Training Interns Carousel Item -->
+		
+		 <!-- Training Interns Carousel Item -->
         <div class="owl-carousel-item position-relative">
             <img class="img-fluid" src="{% static 'job_portal/img/cover2.jpg' %}" alt="" style="height:70vh;">
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
@@ -71,27 +54,90 @@
                 </div>
             </div>
         </div>
-
+        
+        <!-- HRMS Carousel Item -->
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{% static 'job_portal/img/hrms.jpg' %}" alt="HRMS Solutions" style="height:70vh;">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
+                <div class="container">
+                    <div class="row justify-content-start">
+                        <div class="col-10 col-lg-8">
+                            <h2 class="mb-4 text-white">Comprehensive HRMS Solutions</h2>
+                            <p class="mb-4 text-white">Streamline your HR processes with SevenDyne’s HRMS platform, offering end-to-end staffing and payroll solutions.</p>
+                            <p class="mb-4 text-white">Empower your workforce management with advanced tools and features tailored for efficiency.</p>
+                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="https://sevendyne.com/hrms/home/" target="_blank">Discover HRMS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 <!-- Carousel End -->
 
 <!-- About Us Section -->
 <div class="container-fluid py-5">
     <div class="container">
         <div class="row align-items-center">
-            <!-- Image Column -->
             <div class="col-lg-6">
-                <img src="{% static 'job_portal/img/consulting.jpg' %}" class="img-fluid" alt="About Us">
+                <img src="{% static 'job_portal/img/about_advanced.jpg' %}" class="img-fluid" alt="About SevenDyne">
             </div>
-            <!-- Content Column -->
             <div class="col-lg-6">
-				<h2 class="mb-4">About Us</h2>
-				<p><strong>Technology Consultancy</strong>, <strong>App Development</strong>, <strong>HR Payroll Solutions</strong>, and <strong>Training Programs</strong>.</p>
-				<p>At SevenDyne, we are a forward-thinking technology consultancy specializing in providing innovative solutions across various domains. From developing high-quality applications and offering efficient HR payroll management to delivering professional training programs, we empower organizations and individuals with the expertise they need to thrive. Our team works with you to address your unique technology challenges and supports your growth with tailored, scalable solutions.</p>
-				<a href="{% url 'main:about' %}" class="btn btn-primary mt-3">Learn More About Us</a>
-			</div>
+                <h2 class="mb-4">About SevenDyne</h2>
+                <p><strong>Experts in Advanced Technologies</strong>: C++, Embedded Systems, OpenAI, Blockchain, Android, and Full-stack Web Development.</p>
+                <p>At SevenDyne, we specialize in developing innovative tech solutions tailored to your unique needs. Whether you're seeking expertise in advanced technologies or efficient HRMS solutions, we’ve got you covered.</p>
+                <a href="{% url 'main:about' %}" class="btn btn-primary mt-3">Learn More About Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HRMS Section -->
+<div class="container-fluid py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center text-center">
+            <div class="col-12">
+                <h2 class="mb-4">HRMS: Revolutionizing Workforce Management</h2>
+                <p>Streamline your workforce with SevenDyne’s advanced HRMS platform for staffing, payroll, and HR management.</p>
+                <div class="owl-carousel">
+                    <div class="item">
+                        <img src="{% static 'job_portal/img/hrms_feature1.jpg' %}" class="img-fluid" alt="Feature 1">
+                        <h4>Smart Payroll Management</h4>
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'job_portal/img/hrms_feature2.jpg' %}" class="img-fluid" alt="Feature 2">
+                        <h4>Comprehensive Staffing</h4>
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'job_portal/img/hrms_feature3.jpg' %}" class="img-fluid" alt="Feature 3">
+                        <h4>Customizable HR Solutions</h4>
+                    </div>
+                </div>
+                <a href="https://sevendyne.com/hrms/home/" class="btn btn-primary mt-4" target="_blank">Learn More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section -->
+<div class="container-fluid py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="row align-items-center text-center">
+            <div class="col-12 mb-4">
+                <h2 class="mb-4">Our Core Services</h2>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4>Advanced App Development</h4>
+                <p>Custom app solutions with expertise in Android, Blockchain, and OpenAI integration.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4>HRMS Solutions</h4>
+                <p>Streamlined staffing and payroll tools for modern workforce needs.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4>Tech Training Programs</h4>
+                <p>Upskill with professional training in advanced technologies like AI and Blockchain.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -114,45 +160,6 @@
                         <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/csr.png' %}" class="img-fluid" alt="Client CSR"></div>
                         <div class="swiper-slide"><img src="{% static 'job_portal/img/clients/KE_logo.png' %}" class="img-fluid" alt="Client KE"></div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Our Services Section -->
-<div class="container-fluid py-5" style="background-color: #f8f9fa;">
-    <div class="container">
-        <div class="row align-items-center text-center">
-            <div class="col-12 mb-4">
-                <h2 class="mb-4">Engage with SevenDyne’s Services</h2>
-                <p>We offer a wide range of services to meet the unique needs of businesses across industries. Explore how our expertise can support your growth and innovation.</p>
-            </div>
-            
-            <!-- Service 1: Tech Consultancy -->
-            <div class="col-md-4 mb-4">
-                <div class="service-box p-4" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                    <h4 class="mb-3" style="color: #007bff;">App Development</h4>
-                    <p>Our team provides strategic tech consultancy, helping businesses navigate their technology challenges and integrate the best solutions for growth and success.</p>
-                    <a href="{% url 'main:portfolios_home' %}" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-
-            <!-- Service 2: HRMS Staffing Platform -->
-            <div class="col-md-4 mb-4">
-                <div class="service-box p-4" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                    <h4 class="mb-3" style="color: #007bff;">HR Management</h4>
-                    <p>Streamline your staffing and payroll management with our advanced HRMS platform, providing you with efficient, scalable solutions for workforce management.</p>
-                    <a href="https://sevendyne.com/hrms/home/" class="btn btn-primary" target="_blank">Learn More</a>
-                </div>
-            </div>
-
-            <!-- Service 3: Training Programs -->
-            <div class="col-md-4 mb-4">
-                <div class="service-box p-4" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                    <h4 class="mb-3" style="color: #007bff;">Talent Empowerment</h4>
-                    <p>Our training programs for interns and professionals equip them with essential skills in app development, DevOps, and more to launch successful careers in tech.</p>
-                    <a href="{% url 'candidate:create_intern' %}" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
