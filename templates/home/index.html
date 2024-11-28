@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>FlexiDyne: Remote Staffing HRMS Platform</title>
+    <title>Sevendyne Jobs: Remote Staffing HRMS Platform</title>
 	<meta name="keywords" content="Talent Management and HRMS Germany, Recruitment and HR Software, Staffing and HR Solutions, Talent Management and Workforce Administration, HRMS and Recruitment Services" />
 	<meta name="description" content="At SevenDyne, we connect businesses with top talent and offer free HRMS software to streamline HR operations, reduce costs, and support business growth." />
 	<meta property="og:title" content="{% block og_title %}SevenDyne: Unlock Top Talent with Leading HRMS & Talent Management Solutions{% endblock %}" />
@@ -75,7 +75,7 @@
 						<div class="site-brand">
 							<a href="{% url 'main:job_portal' %}" class="site-branding-text d-flex align-items-center">
 								<img src="{% static 'assets/img/01.png' %}" alt="Sevendyne HRMS Login" style="width: 51%; height: auto;"/>
-								<span class="site-title ms-3" style="font-size: 24px; color: #4CAF50; font-weight: bold;">FlexiDyne</span>
+								<span class="site-title ms-3" style="font-size: 24px; color: #4CAF50; font-weight: bold;">Sevendyne Jobs</span>
 							</a>
 						</div>
 
@@ -107,8 +107,8 @@
 							<p>Build Your Global Team with Our Expert Staffing Services and HRMS Solution.</p>
 							<h2>Effortless Resource Management for International Clients</h2>
 							<!-- Updated Button with Anchor Link -->
-							<a href="#plan-section" class="btn btn-primary mt-3">Check HRMS features</a>
-							<a href="{% url 'user:signup' %}" class="btn btn-primary mt-3">Signup Now</a>
+							<a href="{% url 'user:signup' %}" class="btn btn-primary mt-3">Clients - Hire Talents</a>
+							<a href="{% url 'candidate:create_candidate' %}" class="btn btn-primary mt-3">Candidates - Apply Jobs</a>
 							
 						</div>
 					</div>
@@ -196,8 +196,9 @@
 	<div class="d-flex justify-content-center" style="background-color: #4CAF50; padding: 40px; margin-top: 40px; text-align: center; color: white;">
     <div id="plan-section" class="product-options-section mt-5 text-center">
         <h3 style="color: #FFD700; font-weight: bold; font-size: 28px;">Signup</h3>
-        <p style="color: #FFF8DC; font-size: 18px;">Build your HRMS platform to successfully manage your team</p>
-        <a href="{% url 'user:signup' %}" class="btn btn-primary mt-3">Signup Now</a>
+        <p style="color: #FFF8DC; font-size: 18px;">Connect with Top Talent or Find Your Next Opportunity</p>
+        <a href="{% url 'user:signup' %}" class="btn btn-primary mt-3">Clients - Hire Talents</a>
+		<a href="{% url 'candidate:create_candidate' %}" class="btn btn-primary mt-3">Candidates - Apply Jobs</a>			
 		</div>
 	</div>
 
