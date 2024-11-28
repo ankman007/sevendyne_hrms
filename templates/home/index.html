@@ -4,13 +4,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sevendyne: Remote Staffing & HRMS Solutions</title>
-    <meta name="keywords" content="Talent Management und HRMS Deutschland, Personalbeschaffung und HR-Software, Rekrutierung und HR-Lösungen, Talent Management und Personalverwaltung, HRMS und Rekrutierungsservices" name="keywords">
-    <meta name="description" content="At Sevendyne, we connect businesses with top talent and offer free HRMS software to streamline HR operations, reduce costs, and support business growth." name="description">
-    <meta property="og:title" content="{% block og_title %}Sevendyne: Unlock Top Talent with Leading HRMS & Talent Management Solutions{% endblock %}" />
-    <meta property="og:description" content="{% block og_description %}Sevendyne connects businesses with top talent and offers free HRMS software to streamline HR processes, reduce costs, and drive growth. Simplify your HR operations and empower your business with our innovative solutions.{% endblock %}" />
-    <meta property="og:url" content="{% block og_url %}https://sevendyne.com{% endblock %}" />
-    <meta property="og:type" content="website" />
+    <title>FlexiDyne: Sevendyne HRMS Solution</title>
+	<meta name="keywords" content="Talent Management and HRMS Germany, Recruitment and HR Software, Staffing and HR Solutions, Talent Management and Workforce Administration, HRMS and Recruitment Services" />
+	<meta name="description" content="At SevenDyne, we connect businesses with top talent and offer free HRMS software to streamline HR operations, reduce costs, and support business growth." />
+	<meta property="og:title" content="{% block og_title %}SevenDyne: Unlock Top Talent with Leading HRMS & Talent Management Solutions{% endblock %}" />
+	<meta property="og:description" content="{% block og_description %}SevenDyne connects businesses with top talent and offers free HRMS software to streamline HR processes, reduce costs, and drive growth. Simplify your HR operations and empower your business with our innovative solutions.{% endblock %}" />
+	<meta property="og:url" content="{% block og_url %}https://sevendyne.com{% endblock %}" />
+	<meta property="og:type" content="website" />
+
 
     <!-- Favicon -->
     <link href="{% static 'assets/img/logo/logo_svd.png' %}" rel="icon">
@@ -74,7 +75,7 @@
 						<div class="site-brand">
 							<a href="{% url 'main:job_portal' %}" class="site-branding-text d-flex align-items-center">
 								<img src="{% static 'assets/img/01.png' %}" alt="Sevendyne HRMS Login" style="width: 51%; height: auto;"/>
-								<span class="site-title ms-3" style="font-size: 24px; color: #4CAF50; font-weight: bold;">Sevendyne HRMS Solution</span>
+								<span class="site-title ms-3" style="font-size: 24px; color: #4CAF50; font-weight: bold;">FlexiDyne: Remote Staffing HRMS Solution</span>
 							</a>
 						</div>
 
@@ -125,34 +126,25 @@
 	</div>
 	<!-- / Banner-->
 	
-	<!-- New Section at the End of the Page -->
-	<div class="signup-section d-flex justify-content-center" style="background-color: #4CAF50; padding: 40px; margin-top: 40px; text-align: center; color: white;">
-    <div id="plan-section" class="product-options-section mt-5 text-center">
-        <h3 style="color: #FFD700; font-weight: bold; font-size: 28px;">Choose Your Plan</h3>
-        <p style="color: #FFF8DC; font-size: 18px;">Select the option that best suits your business needs</p>
-        <div class="row mt-4 d-flex justify-content-center">
-            <!-- Option 1: Yearly Subscription -->
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <div class="product-option p-4" style="background-color: white; color: #4CAF50; border-radius: 10px;">
-                    <h4 style="font-size: 22px; font-weight: bold;">Yearly Subscription</h4>
-                    <p style="font-size: 16px;">Enjoy full access to our HRMS solution with a yearly subscription, offering the best value for continuous support.</p>
-                     </div>
-            </div>
-            <!-- Option 2: Monthly HR Support -->
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <div class="product-option p-4" style="background-color: white; color: #4CAF50; border-radius: 10px;">
-                    <h4 style="font-size: 22px; font-weight: bold;">Monthly HR Support</h4>
-                    <p style="font-size: 16px;">Get flexible monthly HR support tailored to your staffing needs with easy, month-by-month commitment.</p>
-                </div>
-            </div>
-            <!-- Option 3: Full Product Deployment -->
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-                <div class="product-option p-4" style="background-color: white; color: #4CAF50; border-radius: 10px;">
-                    <h4 style="font-size: 22px; font-weight: bold;">Full Product Deployment</h4>
-                    <p style="font-size: 16px;">Experience end-to-end deployment of our HRMS solution, fully integrated into your organization's workflow.</p>                </div>
-            </div>
-        </div>
-    </div>
+	<!-- Our Clients Section -->
+	<div class="container-fluid py-5 bg-light">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-12 text-center mb-4">
+					<h2 class="mb-4">Our Clients</h2>
+					<p>We’ve partnered with clients worldwide to deliver top-notch staffing solutions using our HRMS platform, helping them build high-performing teams and enhance their technical capabilities.</p>
+				</div>
+				<div class="col-12">
+					<div class="clients-slider swiper" data-aos="zoom-out">
+						<div class="swiper-wrapper align-items-center" style="height:40%;">
+							<div class="swiper-slide"><img src="{% static 'job_portal/img/clients/np.png' %}" class="img-fluid" alt="Client J&A"></div>
+							<div class="swiper-slide"><img src="{% static 'job_portal/img/clients/csr.png' %}" class="img-fluid" alt="Client CSR"></div>
+							<div class="swiper-slide"><img src="{% static 'job_portal/img/clients/KE_logo.png' %}" class="img-fluid" alt="Client KE"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Features slider-->
