@@ -104,8 +104,8 @@
 				<div class="homepage-section d-flex justify-content-center">
 					<div class="col-lg-5 col-sm-5 col-12">
 						<div class="process-content">
-							<p>Workspace Management Platform</p>
-							<h2>Connect with Top Talent or Find Your Next Opportunity</h2>
+							<p>Connect with Top Talent or Find Your Next Opportunity</p>
+							<h2>Workspace Management Platform</h2>
 							<!-- Updated Button with Anchor Link -->
 							<div class="d-flex flex-column flex-md-row justify-content-center gap-3">
 								<a href="{% url 'user:signup' %}" class="btn btn-primary btn-lg px-3 py-3">Clients - Hire Talents</a>
@@ -136,13 +136,16 @@
 					<h2 class="mb-4">Our Clients</h2>
 					<p>We’ve partnered with clients worldwide to deliver top-notch staffing solutions</p>
 				</div>
+
 				<div class="col-12">
-					<div class="clients-slider swiper" data-aos="zoom-out">
-						<div class="swiper-wrapper align-items-center" style="height:40%;">
-							<div class="swiper-slide"><img src="{% static 'job_portal/img/clients/csr.png' %}" class="img-fluid" alt="Client CSR"></div>
-							<div class="swiper-slide"><img src="{% static 'job_portal/img/clients/np.png' %}" class="img-fluid" alt="Client KE"></div>
-						</div>
-					</div>
+					<ul class="list-unstyled text-center">
+						<li><strong>J&A UK</strong> - Staffing Solidwork and PLC Engineers</li>
+						<li><strong>Kliebert Engineering, Germany</strong> - Staffing C++ Engineers</li>
+						<li><strong>Reddotpayment, Singapore</strong> - Staffing Fullstack PHP Professionals</li>
+						<li><strong>CSR, Germany</strong> - Staffing Fullstack Angular & Ruby on Rails Engineers</li>
+						<li><strong>Cygnus, UK</strong> - Staffing C++ Engineers</li>
+						<li>and more...</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -150,14 +153,14 @@
 
 	<!-- Features slider-->
 	<div class="build-feature mb-5">
-		<div class="pricing-top-left-vector"><img src="{% static 'assets_home/img/vector/pricing-left-vector.png' %}" alt="img"></div>
-		<div class="pricing-top-right-vector"><img src="{% static 'assets_home/img/vector/dotted-vector.png' %}" alt="img"></div>
-		<div class="pricing-top-left-bottom-vector"><img src="{% static 'assets_home/img/vector/pricing-slider-bottom.png' %}" alt="img"></div>
+    <div class="pricing-top-left-vector"><img src="{% static 'assets_home/img/vector/pricing-left-vector.png' %}" alt="img"></div>
+    <div class="pricing-top-right-vector"><img src="{% static 'assets_home/img/vector/dotted-vector.png' %}" alt="img"></div>
+    <div class="pricing-top-left-bottom-vector"><img src="{% static 'assets_home/img/vector/pricing-slider-bottom.png' %}" alt="img"></div>
 		<div class="container">
 			<div class="row" data-aos="fade-up" data-aos-duration="2000">
 				<div class="feature-content-heading">
-					<h2>Discover Our Staffing Features</h2>
-					<p>Ready to revolutionize your HR processes? Try our all-in-one HRMS platform to simplify employee management and automate your workflows, enhancing efficiency and empowering your team.</p>
+					<h2>Discover Our Remote Staffing Features</h2>
+					<p>Looking for seamless remote staffing solutions? With SevenDyne, you can find vetted candidates, easily onboard them, and manage all processes through our HRMS platform. Streamline your hiring and workforce management today.</p>
 				</div>
 			</div>
 			<div class="feature-sections">
@@ -165,27 +168,27 @@
 					<div class="col-lg-4 col-md-4 d-flex">
 						<div class="management card flex-fill">
 							<div class="card-body">
-								<img src="{% static 'assets_home/img/handshake.png' %}" alt="employee-management">
-								<h4>Employee Management</h4>
-								<p>Effortlessly manage employee data and streamline administration.</p>
+								<img src="{% static 'assets_home/img/handshake.png' %}" alt="find-vetted-candidates">
+								<h4>Find Vetted Candidates</h4>
+								<p>Access a pool of pre-screened candidates ready to join your team.</p>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 d-flex">
 						<div class="management card flex-fill">
 							<div class="card-body">
-								<img src="{% static 'assets_home/img/client.png' %}" alt="candidate-hiring-management">
-								<h4>Candidate Hiring Management</h4>
-								<p>Streamline recruitment from job postings to onboarding.</p>
+								<img src="{% static 'assets_home/img/client.png' %}" alt="easy-onboarding">
+								<h4>Easy Onboarding</h4>
+								<p>Onboard your new hires smoothly with our intuitive platform.</p>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 d-flex">
 						<div class="management card flex-fill">
 							<div class="card-body">
-								<img src="{% static 'assets_home/img/management.png' %}" alt="jobs-management">
-								<h4>Jobs Management</h4>
-								<p>Post job openings and manage applications seamlessly.</p>
+								<img src="{% static 'assets_home/img/management.png' %}" alt="hrms-management">
+								<h4>Manage via HRMS Platform</h4>
+								<p>Streamline your remote team management with our integrated HRMS solution.</p>
 							</div>
 						</div>
 					</div>
@@ -193,6 +196,7 @@
 			</div>
 		</div>
 	</div>
+
 
 	<div class="d-flex justify-content-center" style="background-color: #4CAF50; padding: 40px; margin-top: 40px; text-align: center; color: white;">
     <div id="plan-section" class="product-options-section mt-5 text-center">
