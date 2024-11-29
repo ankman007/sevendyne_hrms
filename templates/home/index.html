@@ -129,27 +129,80 @@
 	<!-- / Banner-->
 	
 	<!-- Our Clients Section -->
-	<div class="container-fluid py-5 bg-light">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-12 text-center mb-4">
-					<h2 class="mb-4">Our Clients</h2>
-					<p>We’ve partnered with clients worldwide to deliver top-notch staffing solutions</p>
-				</div>
+	<div class="container-fluid py-5 bg-light"> <!-- Light background -->
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 text-center">
+                <h2 class="mb-4">Our Clients</h2>
+                <p>We’ve partnered with clients worldwide to deliver top-notch staffing solutions.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-3 mb-4">
+                <div class="client-box p-4 border rounded shadow-sm">
+                    <h4>J&A UK</h4>
+                    <p>Staffing Solidwork and PLC Engineers</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="client-box p-4 border rounded shadow-sm">
+                    <h4>Kliebert Engineering, Germany</h4>
+                    <p>Staffing C++ Engineers</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="client-box p-4 border rounded shadow-sm">
+                    <h4>Reddotpayment, Singapore</h4>
+                    <p>Staffing Fullstack PHP Professionals</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="client-box p-4 border rounded shadow-sm">
+                    <h4>CSR, Germany</h4>
+                    <p>Staffing Fullstack Angular & Ruby on Rails Engineers</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="client-box p-4 border rounded shadow-sm">
+                    <h4>Cygnus, UK</h4>
+                    <p>Staffing C++ Engineers</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="client-box p-4 border rounded shadow-sm">
+                    <h4>And More...</h4>
+                    <p>Delivering excellence globally.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-				<div class="col-12">
-					<ul class="list-unstyled text-center">
-						<li><strong>J&A UK</strong> - Staffing Solidwork and PLC Engineers</li>
-						<li><strong>Kliebert Engineering, Germany</strong> - Staffing C++ Engineers</li>
-						<li><strong>Reddotpayment, Singapore</strong> - Staffing Fullstack PHP Professionals</li>
-						<li><strong>CSR, Germany</strong> - Staffing Fullstack Angular & Ruby on Rails Engineers</li>
-						<li><strong>Cygnus, UK</strong> - Staffing C++ Engineers</li>
-						<li>and more...</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+<style>
+    .client-box {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        transition: all 0.3s ease;
+        height: 100%; /* Uniform height for all boxes */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Ensures content is evenly distributed */
+    }
+    .client-box:hover {
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    /* Ensures uniform alignment of boxes */
+    .row > .col-md-3 {
+        display: flex;
+        justify-content: center;
+    }
+    /* Center text inside boxes */
+    .client-box h4, .client-box p {
+        text-align: center;
+    }
+</style>
+
 
 	<!-- Features slider-->
 	<div class="build-feature mb-5">
