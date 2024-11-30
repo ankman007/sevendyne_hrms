@@ -128,9 +128,13 @@
 			</section>
 
 		<!-- Main Wrapper -->
-        <div class="main-wrapper">
-			<div class="account-content">
-				<div class="container">
+		<section class="py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="card shadow-lg" style="border-radius: 12px;">
+						<div class="card-body p-5">
+
 					<!-- hidden div for the popup message -->
 					<div id="signupMessage" class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert">
 						{% if message %}
@@ -186,11 +190,46 @@
 								</div>
 							</form>
 							<!-- /Account Form -->
-						</div>
-					</div>
-				</div>
-			</div>
+						
+							<style>
+								.input-block {
+									margin-bottom: 20px;
+								}
+							
+								.form-control {
+									border: 1px solid #ccc;
+									padding: 10px;
+									border-radius: 5px;
+									width: 100%;
+								}
+							
+								.input-group {
+									position: relative;
+								}
+							
+								#password-icon {
+									position: absolute;
+									top: 10px;
+									right: 10px;
+									cursor: pointer;
+								}
+							
+								.account-footer {
+									margin-top: 20px;
+								}
+							
+								.btn {
+									font-size: 16px;
+									font-weight: bold;
+								}
+							</style>
+							
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    	</section>
 		<!-- /Main Wrapper -->
 
 		 <!-- FAQ Section -->
