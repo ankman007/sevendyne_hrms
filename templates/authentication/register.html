@@ -77,8 +77,6 @@
 								<span class="site-title ms-3" style="font-size: 24px; color: #4CAF50; font-weight: bold;">Sevendyne Jobs</span>
 							</a>
 						</div>
-
-
                         </div>
                     </div>
                     <div class="home-buy-button">
@@ -93,7 +91,7 @@
     <!-- / Header -->
 
     <!-- Hero Section -->
-    <section class="gradient-bg text-center py-5">
+    <section class="gradient-bg text-center py-5" style="background: #3a86ff; color: white;">
         <div class="container">
             <h1 class="display-4 mb-4">Streamline HR Operations with Sevendyne</h1>
             <p class="lead mb-5">Connect with top talent and optimize your HR processes with our innovative HRMS solution</p>
@@ -101,25 +99,25 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-5">
+    <section class="py-5" style="background: #f4f4f9;">
         <div class="container">
-            <h2 class="text-center mb-5">Why Choose Sevendyne?</h2>
+            <h2 class="text-center mb-5" style="color: #2b2b2b;">Why Choose Sevendyne?</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="feature-card">
-                        <h3>Top Talent Acquisition</h3>
+                    <div class="feature-card p-4" style="background: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+                        <h3 style="color: #0c9d58;">Top Talent Acquisition</h3>
                         <p>Efficiently connect with and recruit the best professionals for your business.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="feature-card">
-                        <h3>Free HRMS Software</h3>
+                    <div class="feature-card p-4" style="background: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+                        <h3 style="color: #0c9d58;">Free HRMS Software</h3>
                         <p>Reduce costs and streamline HR operations with our comprehensive HRMS platform.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="feature-card">
-                        <h3>Business Growth Support</h3>
+                    <div class="feature-card p-4" style="background: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+                        <h3 style="color: #0c9d58;">Business Growth Support</h3>
                         <p>Empower your organization with innovative HR solutions designed to drive success.</p>
                     </div>
                 </div>
@@ -128,17 +126,17 @@
     </section>
 
     <!-- Signup Form Section -->
-    <section class="py-5">
+    <section class="py-5" style="background: #f1f1f1;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
-                    <div class="card shadow-lg">
+                    <div class="card shadow-lg" style="border-radius: 12px;">
                         <div class="card-body p-5">
                             <div class="account-logo text-center mb-4">
                                 <img src="assets/img/01.png" alt="Sevendyne" style="width:71%">
                             </div>
-                            <h3 class="account-title text-center">Sign Up</h3>
-                            <p class="account-subtitle text-center mb-4">Access to HRMS Dashboard</p>
+                            <h3 class="account-title text-center" style="color: #3164b8;">Sign Up</h3>
+                            <p class="account-subtitle text-center mb-4" style="color: #777;">Access to Sevendyne Staffing Platform</p>
                             
                             <form action="" method="post">
                                 {% csrf_token %}
@@ -182,35 +180,109 @@
     <!-- FAQ Section -->
     <section class="bg-light py-5">
         <div class="container">
-            <h2 class="text-center mb-5">Frequently Asked Questions</h2>
-            <div class="accordion" id="faqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                            What is Sevendyne HRMS?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Sevendyne is a comprehensive HRMS solution that helps businesses connect with top talent and streamline HR operations through innovative software and services.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                            Is the HRMS software really free?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Yes, Sevendyne offers a free HRMS software to help businesses reduce costs and improve HR efficiency. Check our pricing page for more details on features and plans.
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h2 class="text-center mb-5" style="color: #2b2b2b;">Frequently Asked Questions</h2>
+			<div class="accordion" id="faqAccordion">
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" style="background: #f7f7f7;">
+							What is Sevendyne HRMS?
+						</button>
+					</h2>
+					<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+						<div class="accordion-body">
+							Sevendyne is a comprehensive HRMS solution that helps businesses connect with top talent and streamline HR operations through innovative software and services.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" style="background: #f7f7f7;">
+							Is the HRMS software really free?
+						</button>
+					</h2>
+					<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+						<div class="accordion-body">
+							Yes! Sevendyne's HRMS software is completely free to use, helping businesses save costs while efficiently managing their HR functions.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingThree">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" style="background: #f7f7f7;">
+							How much do you charge for your HR services?
+						</button>
+					</h2>
+					<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+						<div class="accordion-body">
+							We charge a monthly fee of 10% of the staff's salary for our HR services. This fee covers all HR-related functions such as payroll management, compliance, and administrative support. The HRMS software is free to use.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingFour">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" style="background: #f7f7f7;">
+							Do you provide training for new employees?
+						</button>
+					</h2>
+					<div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+						<div class="accordion-body">
+							Yes, we provide comprehensive training programs for new employees to ensure they are well-prepared and meet your business's expectations.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingFive">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" style="background: #f7f7f7;">
+							How can I recruit employees through Sevendyne?
+						</button>
+					</h2>
+					<div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+						<div class="accordion-body">
+							You can post job openings through Sevendyne’s platform. We will help you find the best candidates and manage the recruitment process.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingSix">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" style="background: #f7f7f7;">
+							Is Sevendyne HRMS suitable for small businesses?
+						</button>
+					</h2>
+					<div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+						<div class="accordion-body">
+							Absolutely! Sevendyne HRMS is designed to be scalable, making it an ideal solution for small to medium-sized businesses looking to streamline their HR processes without the overhead of expensive software.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingSeven">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" style="background: #f7f7f7;">
+							What types of HR services do you offer?
+						</button>
+					</h2>
+					<div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+						<div class="accordion-body">
+							We offer a full range of HR services including recruitment, payroll processing, compliance management, employee benefits administration, and general HR support.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingEight">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" style="background: #f7f7f7;">
+							Can I customize the HRMS system for my business needs?
+						</button>
+					</h2>
+					<div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+						<div class="accordion-body">
+							Yes, Sevendyne HRMS is highly customizable. We offer a range of features and configurations that can be tailored to meet the unique needs of your business.
+						</div>
+					</div>
+				</div>
+			</div>
+			
         </div>
     </section>
+
 
     <!-- Testimonials Section -->
     <!-- <section class="py-5">
