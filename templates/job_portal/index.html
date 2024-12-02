@@ -97,27 +97,97 @@
 
 <!-- Improve Your Skills Section -->
 <div class="container py-5 text-center">
-    <h2 class="text-dark fw-bold mb-4">Master Software Development with Our Expert-Led Courses</h2>
-   
-    <div class="d-flex justify-content-center gap-4">
+    <h2 class="text-dark fw-bold mb-5">Master Software Development with Our Expert-Led Courses</h2>
+
+    <div class="row justify-content-center gap-4">
         <!-- Flexbox Cards for each course -->
-        <div class="course-card p-4 bg-light shadow rounded text-center flex-fill" style="max-width: 250px;">
-            <h4 class="fw-bold">Full-Stack Development</h4>
-            <p class="text-muted">Learn to build dynamic web apps with technologies like Python, Angular, and more.</p>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="course-card p-4 bg-light shadow-lg rounded text-center" style="border: 1px solid #ddd; transition: transform 0.3s ease-in-out;">
+                <h4 class="fw-bold text-primary mb-3">Full-Stack Development</h4>
+                <p class="text-muted mb-4">Learn to build dynamic web apps with technologies like Python, Angular, and more.</p>
+                <a href="#" class="btn btn-outline-primary">Learn More</a>
+            </div>
         </div>
-        <div class="course-card p-4 bg-light shadow rounded text-center flex-fill" style="max-width: 250px;">
-            <h4 class="fw-bold">DevOps Engineering</h4>
-            <p class="text-muted">Set up CI/CD pipelines and manage containerized applications using Docker.</p>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="course-card p-4 bg-light shadow-lg rounded text-center" style="border: 1px solid #ddd; transition: transform 0.3s ease-in-out;">
+                <h4 class="fw-bold text-primary mb-3">DevOps Engineering</h4>
+                <p class="text-muted mb-4">Set up CI/CD pipelines and manage containerized applications using Docker.</p>
+                <a href="#" class="btn btn-outline-primary">Learn More</a>
+            </div>
         </div>
-        <div class="course-card p-4 bg-light shadow rounded text-center flex-fill" style="max-width: 250px;">
-            <h4 class="fw-bold">C++ Development</h4>
-            <p class="text-muted">Master advanced C++ concepts like memory management and object-oriented programming.</p>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="course-card p-4 bg-light shadow-lg rounded text-center" style="border: 1px solid #ddd; transition: transform 0.3s ease-in-out;">
+                <h4 class="fw-bold text-primary mb-3">C++ Development</h4>
+                <p class="text-muted mb-4">Master advanced C++ concepts like memory management and object-oriented programming.</p>
+                <a href="#" class="btn btn-outline-primary">Learn More</a>
+            </div>
         </div>
     </div>
 
-    <a href="{% url 'candidate:create_intern' %}" class="btn btn-primary mt-4">Start Learning Today</a>
+    <a href="{% url 'candidate:create_intern' %}" class="btn btn-primary mt-4 px-5 py-2">Start Learning Today</a>
+</div>
 
- </div>
+<style>
+    /* Styling improvements */
+    .course-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease;
+    }
+
+    .course-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-card h4 {
+        color: #2c3e50;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .course-card p {
+        font-size: 1rem;
+        color: #7f8c8d;
+    }
+
+    .course-card a.btn {
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-transform: uppercase;
+    }
+
+    .course-card a.btn-outline-primary {
+        border: 2px solid #3498db;
+        color: #3498db;
+    }
+
+    .course-card a.btn-outline-primary:hover {
+        background-color: #3498db;
+        color: white;
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+
+    .row {
+        margin-top: 40px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #50a5d5 0%, #3164b8 100%);
+        border: none;
+        font-weight: bold;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(45deg, #3164b8 0%, #50a5d5 100%);
+    }
+</style>
 
 
 <!-- Features Section -->
