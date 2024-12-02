@@ -1,271 +1,145 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}SevenDyne: Your Trusted Technology Consultancy for Innovative Solutions{% endblock %}
-{% block og_description %}SevenDyne is a versatile technology consultancy specializing in app development, and professional training. With a focus on innovation, we provide transformative solutions to meet diverse organizational needs, while continuously expanding into emerging tech domains.{% endblock %}
-{% block og_url %}https://Sevendyne.com/{% endblock %}
-{% block title %}SevenDyne: Technology Consultancy Delivering App Development, Training, and Beyond{% endblock %}
+{% block og_title %}SevenDyne: Remote Staffing platform{% endblock %}
+{% block og_description %}Connect with top talent and find your next opportunity through Sevendyne's innovative staffing and HRMS platform.{% endblock %}
+{% block og_url %}https://sevendyne.com{% endblock %}
+{% block title %}SevenDyne Jobs: Remote Staffing and HRMS{% endblock %}
 
 {% load static %}
 
 {% block content %}
-
-
-<!-- Page Content -->
-<style>
-    /* Hide video controls */
-    video::-webkit-media-controls {
-        display: none !important;
-    }
-</style>
-
-<!-- Carousel Start -->
-<div class="container-fluid p-0" style="height:70vh;">
-    <div class="owl-carousel header-carousel position-relative">
-        <!-- Advanced Technologies Carousel Item -->
-        <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="{% static 'job_portal/img/cover4.jpg' %}" alt="Advanced Technologies" style="height:70vh;">
-            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-                <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h2 class="mb-4 text-white">Advanced Technologies Expertise</h2>
-                            <p class="mb-4 text-white">Harness the power of cutting-edge technologies like C++, Embedded Systems, Android, OpenAI, and Blockchain with SevenDyne.</p>
-                            <p class="mb-4 text-white">We provide tailored solutions to meet modern tech challenges and help businesses stay ahead of the curve.</p>
-                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="{% url 'main:portfolios_home' %}">Explore Our Client Projects</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-		
-		 <!-- Training Interns Carousel Item -->
-        <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="{% static 'job_portal/img/cover6.jpg' %}" alt="" style="height:70vh;">
-            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(43, 57, 64, .5);">
-                <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h2 class="mb-4 text-white">Training Interns for Future Tech Careers</h2>
-                            <p class="mb-4 text-white">Our training programs for interns equip young professionals with hands-on experience in technologies like Node.js, Python, Django, and more. Join our internship programs to kick-start your career in tech.</p>
-                            <p class="mb-4 text-white">Gain industry-relevant skills and experience while working on real-world projects in a supportive learning environment.</p>
-                            <a class="btn btn-primary py-3 px-5 mt-3 animated slideInRight" href="{% url 'candidate:create_intern' %}">Join Our Training Programs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Carousel End -->
-
-<!-- About Us Section -->
-<div class="container-fluid py-5" style="background-color: #ffffff;"> <!-- White background -->
+<!-- Banner -->
+<div class="main-banner-section py-5 text-white" style="background-color: #007bff;" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6">
-                <img src="{% static 'job_portal/img/consulting.jpg' %}" class="img-fluid rounded" alt="About SevenDyne">
+            <!-- Left Side: Text Content -->
+            <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+                <h1 class="fw-bold">Connect with Top Talent or Find Your Next Opportunity</h1>
+                <p class="mt-3">Discover tailored staffing solutions for your business or explore diverse job opportunities — from remote work and hybrid roles to onsite positions, across all career levels. Your career and hiring needs, simplified.</p>
+                <div class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start gap-3 mt-4">
+                    <a href="{% url 'user:signup' %}" class="btn btn-light btn-lg px-3 py-3 text-primary fw-bold">Hire Talents</a>
+                    <a href="{% url 'candidate:candidate_application' %}" class="btn btn-warning btn-lg px-3 py-3 text-dark fw-bold">Apply for Jobs</a>
+                </div>
             </div>
-            <div class="col-lg-6">
-                <h2 class="mb-4">About SevenDyne</h2>
-                <p><strong>Experts in Advanced Technologies</strong>: C++, Embedded Systems, OpenAI, Blockchain, Android, and Full-stack Web Development.</p>
-                <p>At SevenDyne, we specialize in developing innovative tech solutions tailored to your unique needs. Whether you're seeking expertise in advanced technologies or efficient HRMS solutions, we’ve got you covered.</p>
-                <a href="{% url 'main:about' %}" class="btn btn-primary mt-3">Learn More About Us</a>
+            <!-- Right Side: Image -->
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="{% static 'job_portal/img/hrmscover3.jpeg' %}" alt="HRMS Cover" class="img-fluid rounded">
             </div>
         </div>
     </div>
 </div>
 
-
-<!-- Our Skills -->
-<div class="container-fluid py-5" style="background-color: #fffff0;"> <!-- White background -->
-    <div class="container"> 
+<!-- Our Clients Section -->
+<div class="container-fluid py-5" style="background-color: #eef2f7;">
+    <style>
+        .client-box {
+            background: linear-gradient(135deg, #007bff, #4dabf7);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .client-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .client-box:nth-child(2) { background: linear-gradient(135deg, #6c757d, #adb5bd); }
+        .client-box:nth-child(3) { background: linear-gradient(135deg, #ffc107, #ffdd57); color: #000; }
+        .client-box:nth-child(4) { background: linear-gradient(135deg, #28a745, #85e489); }
+        .client-box:nth-child(5) { background: linear-gradient(135deg, #dc3545, #f76878); }
+        .client-box:nth-child(6) { background: linear-gradient(135deg, #6f42c1, #b077e6); }
+    </style>
+    <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-12 text-center">
-                <h3>Our Core Technical Expertise</h3>
-                <p>We specialize in a wide range of cutting-edge technologies, providing innovative solutions for our clients. Our core skill set includes:</p>
-                <div class="row justify-content-center">
-                    <div class="col-md-3 mb-4">
-                        <div class="skill-box p-4 border rounded shadow-sm">
-                            <h4>AI & Machine Learning</h4>
-                            <p>Developing AI-driven tools and automation for more efficient decision-making and processes.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="skill-box p-4 border rounded shadow-sm">
-                            <h4>Blockchain</h4>
-                            <p>Building secure, transparent blockchain solutions for decentralized needs.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="skill-box p-4 border rounded shadow-sm">
-                            <h4>Ruby on Rails</h4>
-                            <p>Expert development in Ruby on Rails for scalable and high-performance web applications.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="skill-box p-4 border rounded shadow-sm">
-                            <h4>Full-Stack Development</h4>
-                            <p>End-to-end web development using Angular, React, Node.js, and other technologies.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="skill-box p-4 border rounded shadow-sm">
-                            <h4>C++ & Embedded Systems</h4>
-                            <p>Building high-performance applications using C++ for embedded systems and complex projects.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="skill-box p-4 border rounded shadow-sm">
-                            <h4>Cloud Services</h4>
-                            <p>Designing scalable, cloud-based architectures using AWS, Azure, and other platforms.</p>
-                        </div>
-                    </div>
+                <h2 class="mb-4 text-dark">Our Clients</h2>
+                <p class="text-secondary">We've partnered with clients worldwide to deliver top-notch staffing solutions.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- Client Boxes -->
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">J&A UK</h4>
+                    <p class="text-center">Staffing Solidwork and PLC Engineers</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">Kliebert Engineering, Germany</h4>
+                    <p class="text-center">Staffing C++ Engineers</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">Reddotpayment, Singapore</h4>
+                    <p class="text-center">Staffing Fullstack PHP Professionals</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">CSR, Germany</h4>
+                    <p class="text-center">Staffing Fullstack Angular & Ruby on Rails Engineers</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">Cygnus, UK</h4>
+                    <p class="text-center">Staffing C++ Engineers</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">And More...</h4>
+                    <p class="text-center">Delivering excellence globally.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<style>
-    .skill-box {
-        background-color: #ffffff;
-        border: 1px solid #ddd;
-        transition: all 0.3s ease;
-        height: 100%; /* Makes all boxes the same height */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Ensures content stays equally spaced */
-    }
-    .skill-box:hover {
-        background-color: #f8f9fa;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    /* Ensures all skill boxes have the same height */
-    .row > .col-md-3 {
-        display: flex;
-        justify-content: center;
-    }
-    /* Keeps text centered in each box */
-    .skill-box h4, .skill-box p {
-        text-align: center;
-    }
-</style>
-
-
-<!-- Our Solutions -->
-<div class="container-fluid py-5" style="background-color: #f8f9fa;"> <!-- Light grey background -->
+<!-- Features Section -->
+<div class="build-feature py-5" style="background-color: #e3f2fd;">
     <div class="container">
-        <h1 class="text-center mb-5">Our Solutions</h1>
-        <div class="row align-items-center">
-          
-            <!-- Content on the Right -->
-            <div class="col-lg-6">
-                <div class="p-4 bg-white shadow rounded">
-                    <h2 class="mb-4">Sevendyne Jobs - Remote Staffing & HRMS Management</h2>
-                    <p class="mb-4">
-                        Sevendyne Jobs specializes in providing expert remote staffing services combined with efficient HRMS management solutions. 
-                        Whether you need skilled professionals for your projects or support with payroll and HR operations, 
-                        we ensure seamless integration with your team and processes. 
-                        Empower your business with flexible staffing solutions and streamlined HR management.
-                    </p>
-                    <a href="https://sevendyne.com/hrms/home/" class="btn btn-primary" target="_blank">Learn More</a>
+        <div class="row text-center">
+            <div class="col-12">
+                <h2 class="text-primary fw-bold">Discover Our Remote Staffing Features</h2>
+                <p class="text-muted">Find vetted candidates, onboard easily, and manage teams through our advanced HRMS platform.</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box p-4 text-center bg-white shadow rounded">
+                    <img src="{% static 'assets_home/img/handshake.png' %}" alt="find-vetted-candidates" class="mb-3" style="width: 50px;">
+                    <h4 class="text-primary">Find Vetted Candidates</h4>
+                    <p class="text-muted">Access a pool of pre-screened candidates ready to join your team.</p>
                 </div>
             </div>
-			
-			 <div class="col-lg-6">
-				<div class="p-4 bg-white shadow rounded">
-					<h2 class="mb-4">AI-Powered Project Analysis Tool</h2>
-					<p class="mb-4">
-						SevenDyne is developing an innovative AI-powered project analysis tool designed to help programmers and development teams perform tasks efficiently. 
-						By leveraging advanced AI algorithms, this tool aims to optimize workflows, provide actionable insights, and reduce development time. 
-						Stay ahead of the curve with cutting-edge solutions tailored to the evolving needs of the software industry.
-					</p>
-					<p class="text-muted"><em>Stay tuned for updates on this exciting project!</em></p>
-				</div>
-			</div>
-
-        </div>
-    </div>
-</div>
-
-
-<!-- Contact Us Section -->
-<div id="index" class="container-fluid bg-secondary mb-1 wow fadeIn" data-wow-delay="0.1s" style="padding: 15px;">>
-    <div class="container">
-        <div class="row g-2">
-            <h3 style="text-align:center; color:white;">Contact Us</h3>
-            <p style="text-align:center; color:white;">Have a question or need assistance? Reach out to us!</p>
-        </div>
-    </div>
-</div>
-
-<!-- Contact Us Form -->
-<div class="container text-center">
-    <div id="contact-form" style="margin-top: 20px;">
-
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-6 col-md-8">
-                <div class="form" style="background-color: #f8f9fa; border-radius: 10px; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                    <form id="contact-submit-form" action="#" class="php-email-form">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="contact-name" class="form-label">Your Name</label>
-                            <input type="text" name="name" class="form-control" id="contact-name" placeholder="Full Name" required>
-                        </div>
-
-                        <div class="form-group mt-3">
-                            <label for="contact-email" class="form-label">Your Email</label>
-                            <input type="email" class="form-control" name="email" id="contact-email" placeholder="Email Address" required>
-                        </div>
-
-                        <div class="form-group mt-3">
-                            <label for="contact-message" class="form-label">Message</label>
-                            <textarea class="form-control" name="message" rows="4" id="contact-message" placeholder="Let us know how we can assist you" required></textarea>
-                        </div>
-
-                        <div class="my-3 text-center">
-                            <button type="submit" class="btn btn-primary">Send Message</button>
-                        </div>
-                    </form>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box p-4 text-center bg-white shadow rounded">
+                    <img src="{% static 'assets_home/img/client.png' %}" alt="easy-onboarding" class="mb-3" style="width: 50px;">
+                    <h4 class="text-primary">Easy Onboarding</h4>
+                    <p class="text-muted">Onboard your new hires smoothly with our intuitive platform.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box p-4 text-center bg-white shadow rounded">
+                    <img src="{% static 'assets_home/img/management.png' %}" alt="hrms-management" class="mb-3" style="width: 50px;">
+                    <h4 class="text-primary">Manage via HRMS Platform</h4>
+                    <p class="text-muted">Streamline your remote team management with our integrated HRMS solution.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{%static 'assets/js/jquery-3.7.1.min.js'%}"></script>
-
-<script>
-    $("#contact-submit-form").submit((e) => {
-        e.preventDefault();
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-        $.ajax({
-            url: "https://script.google.com/macros/s/AKfycbyxzRzjygEh1l0AHrTD6uEXKGilEkmYjCeC0YGk1wABLOureKv6sv1aah09itDpLgL6GQ/exec",
-            data: $("#contact-submit-form").serialize() + '&csrfmiddlewaretoken=' + csrfToken,
-            method: "POST",
-            success: function (response) {
-                // Use SweetAlert for success message
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: 'Your message has been sent to Sevendyne Inc. We will get in touch with you shortly.',
-                }).then(() => {
-                    window.location.reload();
-                });
-            },
-            error: function (err) {
-                // Use SweetAlert for error message
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: 'Something went wrong. Please try again.',
-                });
-            }
-        });
-    });
-</script>
-
-
+<!-- Signup Section -->
+<div class="d-flex justify-content-center" style="background-color: #ff5722; padding: 40px; margin-top: 40px; text-align: center; color: white;">
+    <div id="plan-section" class="product-options-section mt-5 text-center">
+        <h3 style="font-size: 28px; font-weight: bold;">Get Started with SevenDyne</h3>
+        <p style="font-size: 18px;">Take the next step toward smarter staffing or career advancement today!</p>
+        <div class="mt-4">
+            <a href="{% url 'user:signup' %}" class="btn btn-light btn-lg px-5 py-2 text-primary fw-bold me-3">Hire Talents</a>
+            <a href="{% url 'candidate:candidate_application' %}" class="btn btn-warning btn-lg px-5 py-2 fw-bold text-dark">Apply for Jobs</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
