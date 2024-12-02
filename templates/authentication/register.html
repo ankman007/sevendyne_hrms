@@ -9,121 +9,112 @@
 
 {% block content %}
 		
-<!-- Hero and Signup Section in a Row -->
-<section class="py-5 pt-5">
-    <div class="container">
-        <div class="row">
-            <!-- Left Column: Hero Section -->
-            <div class="col-md-6 d-flex align-items-center">
-                <div class="gradient-bg text-center py-5" style="background: #3a86ff; color: white; width: 100%;">
-                    <h1 class="display-4 mb-3">Streamline HR Operations with Sevendyne</h1>
-                    <p class="lead mb-4">Connect with top talent and optimize your HR processes with our innovative HRMS solution</p>
-                </div>
-            </div>
+	<!-- Hero and Signup Section in a Row -->
+	<section class="py-5 pt-5">
+		<div class="container">
+			<div class="row">
+				<!-- Left Column: Hero Section -->
+				<div class="col-md-6 d-flex align-items-center">
+					<div class="gradient-bg text-center py-5 d-flex flex-column justify-content-center" style="background: #3a86ff; color: white; width: 100%; height: 100%;">
+						<h1 class="display-4 mb-3">Streamline HR Operations with Sevendyne</h1>
+						<p class="lead mb-4">Connect with top talent and optimize your HR processes with our innovative HRMS solution</p>
+					</div>
+				</div>
 
-            <!-- Right Column: Signup Form -->
-            <div class="col-md-6">
-                <div class="card shadow-lg" style="border-radius: 12px;">
-                    <div class="card-body p-5">
+				<!-- Right Column: Signup Form -->
+				<div class="col-md-6 d-flex align-items-center">
+					<div class="card shadow-lg" style="border-radius: 12px; width: 100%;">
+						<div class="card-body p-5">
 
-                        <!-- Hidden div for the popup message -->
-                        <div id="signupMessage" class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert">
-                            {% if message %}
-                                {{ message }}
-                            {% endif %}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="account-box">
-                            <div class="account-wrapper">
-                                <!-- Account Logo -->
-                                <div class="account-logo">
-                                    <a href="#"><img src="{% static 'assets/img/01.png' %}" alt="Sevendyne" style="width:71%"></a>
-                                </div>
-                                <!-- /Account Logo -->
-                                <h3 class="account-title">Sign Up</h3>
-                                <p class="account-subtitle">Access to hrms dashboard</p>                             
-                                <!-- Account Form -->
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    <div class="input-block mb-4">
-                                        <label for="email" class="col-form-label">Email<span class="mandatory">*</span></label>
-                                        <input class="form-control" type="email" id="email" name="email" required>
-                                    </div>
-                                    <div class="input-block mb-4">
-                                        <label for="username" class="col-form-label">Username<span class="mandatory">*</span></label>
-                                        <input class="form-control" type="text" id="username" name="username" required>
-                                    </div>
-                                    {% for message in messages %}
-                                        <p style="color:#e40b0b">{{message}}</p>
-                                    {% endfor %}
-                                    <div class="input-block mb-4">
-                                        <label for="password" class="col-form-label">Password<span class="mandatory">*</span></label>
-                                        <div class="input-group">
-                                            <input class="form-control" type="password" id="password" name="password" required>
-                                            <span id="password-icon" class="position-relative input-group-text fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"></span>
-                                        </div>
-                                    </div>
-                                    <div class="input-block mb-4">
-                                        <label for="first_name" class="col-form-label">First Name<span class="mandatory">*</span></label>
-                                        <input class="form-control" type="text" id="first_name" name="first_name" required>
-                                    </div>
-                                    <div class="input-block mb-4">
-                                        <label for="last_name" class="col-form-label">Last Name<span class="mandatory">*</span></label>
-                                        <input class="form-control" type="text" id="last_name" name="last_name" required>
-                                    </div>
-                                    <div class="input-block mb-4 text-center">
-                                        <button class="btn btn-primary account-btn" type="submit" value="Register" style="background: linear-gradient(275.55deg, #50a5d5 0%, #3164b8 100%)">Sign Up</button>
-                                    </div>
-                                    <div class="account-footer">
-                                        <p>Already have an account? <a href="{% url 'user:user_login' %}">Login</a></p>
-                                    </div>
-                                </form>
-                                <!-- /Account Form -->
-                            
-                                <style>
-                                    .input-block {
-                                        margin-bottom: 20px;
-                                    }
+							<!-- Hidden div for the popup message -->
+							<div id="signupMessage" class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert">
+								{% if message %}
+									{{ message }}
+								{% endif %}
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="account-box">
+								<div class="account-wrapper">
+									<!-- Account Logo -->
+									<div class="account-logo">
+										<a href="#"><img src="{% static 'assets/img/01.png' %}" alt="Sevendyne" style="width:71%"></a>
+									</div>
+									<!-- /Account Logo -->
+									<h3 class="account-title">Sign Up</h3>
+									<p class="account-subtitle">Access to hrms dashboard</p>                             
+									<!-- Account Form -->
+									<form action="" method="post">
+										{% csrf_token %}
+										<div class="input-block mb-4">
+											<label for="email" class="col-form-label">Email<span class="mandatory">*</span></label>
+											<input class="form-control" type="email" id="email" name="email" required>
+										</div>
+										<div class="input-block mb-4">
+											<label for="username" class="col-form-label">Username<span class="mandatory">*</span></label>
+											<input class="form-control" type="text" id="username" name="username" required>
+										</div>
+										{% for message in messages %}
+											<p style="color:#e40b0b">{{message}}</p>
+										{% endfor %}
+										<div class="input-block mb-4">
+											<label for="password" class="col-form-label">Password<span class="mandatory">*</span></label>
+											<div class="input-group">
+												<input class="form-control" type="password" id="password" name="password" required>
+												<span id="password-icon" class="position-relative input-group-text fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"></span>
+											</div>
+										</div>
+										<div class="input-block mb-4">
+											<label for="first_name" class="col-form-label">First Name<span class="mandatory">*</span></label>
+											<input class="form-control" type="text" id="first_name" name="first_name" required>
+										</div>
+										<div class="input-block mb-4">
+											<label for="last_name" class="col-form-label">Last Name<span class="mandatory">*</span></label>
+											<input class="form-control" type="text" id="last_name" name="last_name" required>
+										</div>
+										<div class="input-block mb-4 text-center">
+											<button class="btn btn-primary account-btn" type="submit" value="Register" style="background: linear-gradient(275.55deg, #50a5d5 0%, #3164b8 100%)">Sign Up</button>
+										</div>
+										<div class="account-footer">
+											<p>Already have an account? <a href="{% url 'user:user_login' %}">Login</a></p>
+										</div>
+									</form>
+									<!-- /Account Form -->
+								 </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-                                    .form-control {
-                                        border: 1px solid #ccc;
-                                        padding: 10px;
-                                        border-radius: 5px;
-                                        width: 100%;
-                                        background-color: #f9f9f9; /* Background color for input boxes */
-                                    }
+	<style>
+		/* Ensure both columns take full height of the row */
+		.row {
+			display: flex;
+			flex-wrap: nowrap;
+		}
 
-                                    .input-group {
-                                        position: relative;
-                                    }
+		.col-md-6 {
+			display: flex;
+			align-items: stretch;
+		}
 
-                                    #password-icon {
-                                        position: absolute;
-                                        top: 10px;
-                                        right: 10px;
-                                        cursor: pointer;
-                                    }
+		.gradient-bg {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
 
-                                    .account-footer {
-                                        margin-top: 20px;
-                                    }
+		.card {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+	</style>
 
-                                    .btn {
-                                        font-size: 16px;
-                                        font-weight: bold;
-                                    }
-                                </style>
-                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 
 <!-- /Main Wrapper -->
