@@ -40,18 +40,14 @@ urlpatterns = [
     re_path(r'^delete-email-setting/(?P<pk>.*)/$', views.delete_email_setting, name='delete_email_setting'),    
     re_path(r'^email-setting/(?P<pk>.*)/$', views.email_setting, name='email_setting'),
 
-    # training
     path('corporate_training/',views.corporate_training,name='corporate_training'),
     path('mean_stack_training/',views.mean_stack_training,name='mean_stack_training'),
     path('testing_training/',views.testing_training,name='testing_training'),
 
-    # remote staffing
     path('remote_staffing/',views.remote_staffing,name='remote_staffing'),
     
-    # hrms product
     path('hrms/',views.hrms,name='hrms'),
-    
-    #  turnkey solutions
+
     path('devops/',views.devops,name='devops'),
     path('webapps/',views.webapps,name='webapps'),
     path('embeddedapps/',views.embeddedapps,name='embeddedapps'),

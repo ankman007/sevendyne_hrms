@@ -63,9 +63,6 @@ def about(request):
 def terms_and_conditions(request):
     return render(request, 'job_portal/terms_and_conditions.html')
 
-def corporate_training(request):
-    return render(request, 'job_portal/corporate_training.html')
-
 # products
 def hrms(request):
     return render(request, 'job_portal/hrms.html')
