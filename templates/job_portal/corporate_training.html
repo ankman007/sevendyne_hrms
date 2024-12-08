@@ -1,0 +1,122 @@
+{% extends "job_portal/base.html" %}
+
+{% block og_title %}SevenDyne: Your Trusted Technology Consultancy for Innovative Solutions{% endblock %}
+{% block og_description %}SevenDyne is a versatile technology consultancy specializing in app development and professional training. With a focus on innovation, we provide transformative solutions to meet diverse organizational needs, while continuously expanding into emerging tech domains.{% endblock %}
+{% block og_url %}https://Sevendyne.com/{% endblock %}
+{% block title %}SevenDyne: Technology Consultancy Delivering App Development, Training, and Beyond{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+  <div class="container my-5 pt-5 pb-4">
+    <h1 class="display-3 text-white mb-3 animated slideInDown">Training Programs</h1>
+  </div>
+</div>
+
+<!-- Courses Section -->
+<section id="courses" class="custom-app-development bg-light py-5" style="margin-bottom: 2%; margin-top: 2%;">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2 class="text-primary">Master Software Development with Our Expert-Led Courses</h2>
+      <p class="lead text-muted">Start your journey to becoming a software development expert with our top-rated courses designed by industry professionals.</p>
+    </div>
+
+    <div class="row">
+		<div class="col-md-6 col-lg-3 mt-3 mb-3">
+			<div class="course-block shadow-lg rounded d-flex flex-column border p-4 bg-light" style="min-height: 350px;">
+				<h4 class="text-center mb-3 text-primary">Full-Stack Development</h4>
+				<p class="text-muted text-center">Master Full-Stack technologies including Python, Ruby on Rails, Angular, and more. Build dynamic web applications and APIs with industry-best practices.</p>
+				<a href="{% static 'courses/Webapp-Sevendyne_Programs.pdf' %}" target="_blank" class="btn btn-primary mt-auto">Download Full-Stack Catalog</a>
+			</div>
+		</div>
+
+		<!-- DevOps Engineering -->
+		<div class="col-md-6 col-lg-3 mt-3 mb-3">
+			<div class="course-block shadow-lg rounded d-flex flex-column border p-4 bg-light" style="min-height: 350px;">
+				<h4 class="text-center mb-3 text-primary">DevOps Engineering</h4>
+				<p class="text-muted text-center">Learn to set up CI/CD pipelines, manage containerized applications using Docker, and automate workflows to streamline development operations.</p>
+				<a href="{% static 'courses/Devops-Sevendyne_Programs.pdf' %}" target="_blank" class="btn btn-primary mt-auto">Download DevOps Catalog</a>
+			</div>
+		</div>
+
+		<!-- C++ Development -->
+		<div class="col-md-6 col-lg-3 mt-3 mb-3">
+			<div class="course-block shadow-lg rounded d-flex flex-column border p-4 bg-light" style="min-height: 350px;">
+				<h4 class="text-center mb-3 text-primary">C++ Development</h4>
+				<p class="text-muted text-center">Master the intricacies of C++ programming, including advanced features like memory management, object-oriented programming, and more.</p>
+				<a href="{% static 'courses/Cpp-Sevendyne_Programs.pdf' %}" target="_blank" class="btn btn-primary mt-auto">Download C++ Catalog</a>
+			</div>
+		</div>
+
+		<!-- Java Development -->
+		<div class="col-md-6 col-lg-3 mt-3 mb-3">
+			<div class="course-block shadow-lg rounded d-flex flex-column border p-4 bg-light" style="min-height: 350px;">
+				<h4 class="text-center mb-3 text-primary">Java Development</h4>
+				<p class="text-muted text-center">Master Java development from basics to core concepts, including object-oriented programming, and explore Android development with Kotlin for building mobile applications.</p>
+				<a href="{% static 'courses/Java-Sevendyne_Programs.pdf' %}" target="_blank" class="btn btn-primary mt-auto">Download Java Catalog</a>
+			</div>
+		</div>
+   
+    </div>
+  </div>
+</section>
+
+<!-- Success Stories Section -->
+<section id="success-stories" class="py-5" style="background: linear-gradient(to bottom right, #eaf4fc, #ffffff);">
+  <div class="container">
+    <div class="shadow-lg p-5 border rounded bg-white">
+      <div class="section-title text-center mb-4">
+        <h3 class="text-primary font-weight-bold">Success Stories</h3>
+      </div>
+      <p class="text-muted text-center">
+        The professionals trained at Sevendyne have gone on to work with some of the most exciting startups and companies, contributing to cutting-edge projects in tech, development, and innovation. Explore their journeys and the impactful projects they've delivered with the skills gained from our expert-led training programs.
+      </p>
+      <p class="text-muted text-center">
+        We take pride in seeing our graduates thrive in various roles, from full-stack developers to DevOps engineers, building solutions that drive success across industries.
+      </p>
+      <div class="text-center mt-4">
+        <a href="{% url 'main:portfolios_home' %}" class="btn btn-primary btn-lg">View Our Client Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Course Fees and Structure Section -->
+<section id="course-fees" class="py-5" style="background: #f8f9fa;">
+  <div class="container">
+    <div class="shadow-lg p-5 border rounded bg-white">
+      <div class="section-title text-center mb-4">
+        <h3 class="text-primary font-weight-bold">Course Fees and Structure</h3>
+      </div>
+      <p class="lead text-muted text-center">Everything you need to know about our course fees and flexible payment options.</p>
+      <div class="text-center mt-4">
+        <p class="font-weight-bold" style="color: #28a745;">₹30,000 for the full 6-month program</p>
+      </div>
+      <ul class="list-unstyled">
+        <li><span class="font-weight-bold text-primary">Duration:</span> Each course is designed to be completed in <strong>6 months</strong>, with a blend of theory and practical lessons.</li>
+        <li><span class="font-weight-bold text-primary">Phase 1:</span> The first <strong>4 months</strong> focus on continuous theory-based learning combined with practical exercises.</li>
+        <li><span class="font-weight-bold text-primary">Phase 2:</span> The final <strong>2 months</strong> are dedicated to <strong>job training</strong> to help you secure a job, working on real-world projects.</li>
+      </ul>
+      <div class="payment-options mt-4">
+        <h5 class="text-primary font-weight-bold">Payment Options:</h5>
+        <ul class="list-unstyled">
+          <li><span class="font-weight-bold" style="color: black;">1. Avail a <strong style="color: #ff6347;">10% discount</strong> on full payment (Pay ₹27,000 upfront).</span></li>
+          <li><span class="font-weight-bold" style="color: black;">2. Pay in easy installments of ₹5,000/month.</span></li>
+        </ul>
+      </div>
+      <div class="text-center mt-4">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe36Ac9tfVFCsMxIToY8ZpxX_V-abMtmuzX8JPh7tOcO84sPg/viewform?usp=pp_url" target="_blank" class="btn btn-success btn-lg">Book Here</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+{% endblock %}

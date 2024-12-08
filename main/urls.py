@@ -38,6 +38,8 @@ urlpatterns = [
     path("email-settings/", views.email_settings, name="email_settings"),
     re_path(r'^email-setting/edit/(?P<pk>.*)/$', views.edit_email_setting, name='edit_email_setting'),
     re_path(r'^delete-email-setting/(?P<pk>.*)/$', views.delete_email_setting, name='delete_email_setting'),    
-    re_path(r'^email-setting/(?P<pk>.*)/$', views.email_setting, name='email_setting')
+    re_path(r'^email-setting/(?P<pk>.*)/$', views.email_setting, name='email_setting'),
+
+    path('corporate_training/',views.corporate_training,name='corporate_training'),
 ]
 
