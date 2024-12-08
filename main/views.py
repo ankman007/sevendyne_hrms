@@ -69,6 +69,12 @@ def corporate_training(request):
 def mean_stack_training(request):
     return render(request, 'job_portal/mean_stack_training.html')
 
+def testing_training(request):
+    return render(request, 'job_portal/testing_training.html')
+
+def remote_staffing(request):
+    return render(request, 'job_portal/remote_staffing.html')
+
 def privacy_policy(request):
     return render(request, 'job_portal/privacy_policy.html')
 
