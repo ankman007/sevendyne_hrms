@@ -10,134 +10,107 @@
 {% block content %}
 
 <!-- Hero and Signup Section -->
-<section class="py-5 pt-5">
-    <div class="container">
-        <div class="row">
-            <!-- Left Column: Hero Section -->
-            <div class="col-md-6 d-flex align-items-center">
-                <div class="gradient-bg text-center py-5 d-flex flex-column justify-content-center" style="background: #3a86ff; color: white; width: 100%; height: 100%;">
-                    <h1 class="display-4 mb-3">Comprehensive HR Solutions in Kochi</h1>
-                    <p class="lead mb-4">Seamless staffing, payroll, and HR services to drive business success in Kochi and beyond.</p>
-                </div>
-            </div>
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+	<div class="container my-5 pt-5 pb-4">
+	  <h1 class="display-3 text-white mb-3 animated slideInDown">Comprehensive HR Solutions</h1>
+	  <p class="text-white">Seamless staffing, payroll, and HR services to drive business success in Kochi and beyond.</p>
+	</div>
+  </div>
+  
+  <section class="py-5" style="background: #f8f9fa;">
+	<div class="container">
+	  <div class="row">
+		<!-- Signup Form -->
+		<div class="col-md-6 d-flex align-items-center">
+		  <div class="card shadow-lg rounded p-5 bg-white">
+			<h3 class="text-center text-primary">Get Started with Sevendyne</h3>
+			<p class="text-muted text-center mb-4">Access the best HR services in Kochi</p>
+			<form id="submit-form" action="#" class="php-email-form">
+			  {% csrf_token %}
+			  <div class="row">
+				<!-- Left Column -->
+				<div class="col-md-6">
+				  <div class="form-group">
+					<label for="name" class="form-label">Your Name</label>
+					<input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
+				  </div>
+				  <div class="form-group mt-3">
+					<label for="email" class="form-label">Your Email</label>
+					<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+				  </div>
+				  <div class="form-group mt-3">
+					<label for="company_name" class="form-label">Company Name</label>
+					<input type="text" class="form-control" id="company_name" name="company_name" placeholder="Your Company Name" required>
+				  </div>
+				  <div class="form-group mt-3">
+					<label for="project_name" class="form-label">Project Name</label>
+					<input type="text" class="form-control" id="project_name" name="project_name" placeholder="Project Name" required>
+				  </div>
+				</div>
+				<!-- Right Column -->
+				<div class="col-md-6">
+				  <div class="form-group mt-3">
+					<label for="project_description" class="form-label">Project Description</label>
+					<textarea class="form-control" id="project_description" name="project_description" rows="4" placeholder="Brief description of your project" required></textarea>
+				  </div>
+				  <div class="form-group mt-3">
+					<label for="num_resources" class="form-label">Number of Resources Needed</label>
+					<input type="number" class="form-control" id="num_resources" name="num_resources" min="1" placeholder="e.g., 5" required>
+				  </div>
+				  <div class="form-group mt-3">
+					<label for="preferred_location" class="form-label">Preferred Location</label>
+					<input type="text" class="form-control" id="preferred_location" name="preferred_location" placeholder="City, Country">
+				  </div>
+				</div>
+			  </div>
+			  <div class="text-center mt-4">
+				<button type="submit" class="btn btn-primary">Request HR Support</button>
+			  </div>
+			</form>
+		  </div>
+		</div>
+  
+		<!-- Hero Details -->
+		<div class="col-md-6 d-flex align-items-center">
+		  <div class="text-center p-5" style="background: #3a86ff; border-radius: 12px; color: white;">
+			<h2 class="display-5">Why Choose Us?</h2>
+			<p class="lead">We help businesses thrive with efficient and personalized HR services tailored to your needs.</p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+  
 
-            <!-- Right Column: Signup Form -->
-            <div class="col-md-6 d-flex align-items-center">
-                <div class="card shadow-lg" style="border-radius: 12px; width: 100%;">
-                    <div class="card-body p-5">
-                        <div class="account-box">
-                            <div class="account-wrapper">
-                                <!-- Account Logo -->
-                                <div class="account-logo">
-                                    <a href="#"><img src="{% static 'assets/img/01.png' %}" alt="Sevendyne" style="width:71%"></a>
-                                </div>
-                                <h3 class="account-title">Get Started with Sevendyne</h3>
-                                <p class="account-subtitle">Access the best HR services in Kochi</p>
-                                <!-- Account Form -->
-                                <form id="submit-form" action="#" class="php-email-form">
-									{% csrf_token %}
-									<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-												<label for="name" class="form-label">Your Name</label>
-												<input type="text" name="name" class="form-control" id="name" placeholder="Full Name" required>
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="company_name" class="form-label">Company Name</label>
-												<input type="text" class="form-control" name="company_name" id="company_name" placeholder="Your Company Name" required>
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="email" class="form-label">Your Email</label>
-												<input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required>
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="project_name" class="form-label">Project Name</label>
-												<input type="text" class="form-control" name="project_name" id="project_name" placeholder="Project Name" required>
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="project_description" class="form-label">Project Description</label>
-												<textarea class="form-control" name="project_description" rows="4" id="project_description" placeholder="Brief description of your project" required></textarea>
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="num_resources" class="form-label">Number of Resources Needed</label>
-												<input type="number" class="form-control" name="num_resources" id="num_resources" placeholder="e.g., 5" min="1" required>
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="duration" class="form-label">Project Duration (in months)</label>
-												<input type="number" class="form-control" name="duration" id="duration" placeholder="e.g., 12" min="1" required>
-											</div>
-			
-										</div>
-			
-										<div class="col-md-6">
-											<div class="form-group mt-3">
-												<label for="start_date" class="form-label">Project Start Date</label>
-												<input type="date" class="form-control" name="start_date" id="start_date" required>
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="preferred_location" class="form-label">Preferred Location</label>
-												<input type="text" class="form-control" name="preferred_location" id="preferred_location" placeholder="City, Country">
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="budget" class="form-label">Project Budget (Optional)</label>
-												<input type="text" class="form-control" name="budget" id="budget" placeholder="Estimated Project Budget">
-											</div>
-			
-											<div class="form-group mt-3">
-												<label for="additional_requirements" class="form-label">Additional Requirements (Optional)</label>
-												<input type="text" class="form-control" name="additional_requirements" id="additional_requirements" placeholder="e.g., Technology stack preferences">
-											</div>
-										</div>
-									</div>
-			
-									<div class="my-3 text-center">
-										<button type="submit" class="btn btn-primary">Request HR Support</button>
-									</div>
-								</form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Features Section -->
-<section class="py-5" style="background: #f4f4f9;">
-    <div class="container">
-        <h2 class="text-center mb-5" style="color: #2b2b2b;">Our HR Services</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="feature-card p-4" style="background: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-                    <h3 style="color: #0c9d58;">Remote Staffing</h3>
-                    <p>Find top talent and build your team with our seamless remote staffing services.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-card p-4" style="background: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-                    <h3 style="color: #0c9d58;">Payroll Management</h3>
-                    <p>Effortlessly manage salaries, deductions, and benefits with our advanced payroll services.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-card p-4" style="background: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-                    <h3 style="color: #0c9d58;">HR Outsourcing</h3>
-                    <p>Outsource your HR functions to us and focus on what matters most—growing your business.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+  <section class="py-5" style="background: #f8f9fa;">
+	<div class="container">
+	  <div class="section-title text-center mb-5">
+		<h2 class="text-primary">Our HR Services</h2>
+		<p class="lead text-muted">Delivering excellence in staffing, payroll management, and HR outsourcing.</p>
+	  </div>
+	  <div class="row">
+		<div class="col-md-4">
+		  <div class="service-card shadow-lg rounded p-4 bg-white text-center">
+			<h3 class="text-primary">Remote Staffing</h3>
+			<p class="text-muted">Find top talent and build your team with seamless remote staffing solutions.</p>
+		  </div>
+		</div>
+		<div class="col-md-4">
+		  <div class="service-card shadow-lg rounded p-4 bg-white text-center">
+			<h3 class="text-primary">Payroll Management</h3>
+			<p class="text-muted">Effortlessly manage salaries, benefits, and deductions with ease.</p>
+		  </div>
+		</div>
+		<div class="col-md-4">
+		  <div class="service-card shadow-lg rounded p-4 bg-white text-center">
+			<h3 class="text-primary">HR Outsourcing</h3>
+			<p class="text-muted">Streamline your HR operations and focus on growing your business.</p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+  
 <!-- FAQ Section -->
 <section class="bg-light py-5">
     <div class="container">
