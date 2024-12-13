@@ -102,17 +102,11 @@
             </div>
             <div class="row text-center mt-4">
                 <div class="col-12">
-                    <p class="text-muted">
-                        Learn more about our journey, mission, and the industries we serve. Discover how we can support your business and professional goals. 
-                    </p>
-                    <a href="{% static 'about' %}" class="btn btn-gradient px-4 py-2 mt-2">About Us</a>
+                    <div class="flex-button">
+                        <a href="{% url 'main:about' %}" class="about-us-link">About Us</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-
-        <div class="flex-button">
-            <a href="{% url 'main:about' %}" class="about-us-link">About Us</a>
         </div>
     </div>
 </div>
