@@ -48,12 +48,12 @@ def custom_500(request):
     return render(request, "error/error-500.html", status=500)
 
 
-def hrms(request):
+def home_hrms(request):
     portfolios = Portfolio.objects.filter(is_deleted=False)
     context ={
         "portfolios":portfolios
     }
-    return render(request, "products/index.html", context=context)
+    return render(request, "home/index.html", context=context)
 
 
 def about(request):
