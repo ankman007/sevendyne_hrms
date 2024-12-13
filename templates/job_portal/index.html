@@ -31,63 +31,174 @@
 </div>
 
 <!-- Why Choose SevenDyne Section -->
-<div class="container py-5">
+<div class="container py-5" style="background-color: #f9f9f9;">
+    <style>
+        .why-choose-header {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .why-choose-text {
+            color: #6c757d;
+        }
+
+        .about-us-link {
+            display: inline-block;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #007bff, #4dabf7);
+            color: #fff;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .about-us-link:hover {
+            background: linear-gradient(135deg, #0056b3, #3b91d6);
+            text-decoration: none;
+        }
+
+        .why-choose-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .why-choose-content p {
+            max-width: 700px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .flex-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
     <div class="row text-center">
         <div class="col-12">
-            <h2 class="text-primary fw-bold mb-4">Why Choose SevenDyne?</h2>
-            <p class="text-muted">We bridge gaps in workforce management and skill development with holistic solutions tailored for businesses and professionals in Kochi.</p>
+            <h2 class="why-choose-header mb-4">Why Choose SevenDyne?</h2>
+            <p class="why-choose-text">
+                We bridge gaps in workforce management and skill development with holistic solutions tailored for businesses and professionals in Kochi.
+            </p>
         </div>
     </div>
-    <div class="row text-center mt-4">
-        <div class="col-12">
-            <p class="text-muted">
-                Learn more about our mission, vision, and the range of services we provide to empower businesses and individuals. 
-                <a href="{% static 'about' %}" class="fw-bold text-primary">About Us</a>
+    <div class="row mt-4">
+        <div class="col-12 why-choose-content">
+            <p class="why-choose-text">
+                Learn more about our mission, vision, and the range of services we provide to empower businesses and individuals.
             </p>
+            <div class="flex-button">
+                <a href="{% static 'about' %}" class="about-us-link">About Us</a>
+            </div>
         </div>
     </div>
 </div>
 
 
-<!-- Our Clients Section -->
 <div class="container-fluid py-5" style="background-color: #eef2f7;">
+    <style>
+        .client-box {
+            background: linear-gradient(135deg, #007bff, #4dabf7);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .client-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .client-box:nth-child(2) {
+            background: linear-gradient(135deg, #6c757d, #adb5bd);
+        }
+        .client-box:nth-child(3) {
+            background: linear-gradient(135deg, #ffc107, #ffdd57);
+            color: #000;
+        }
+        .client-box:nth-child(4) {
+            background: linear-gradient(135deg, #28a745, #85e489);
+        }
+        .client-box:nth-child(5) {
+            background: linear-gradient(135deg, #dc3545, #f76878);
+        }
+        .client-box:nth-child(6) {
+            background: linear-gradient(135deg, #6f42c1, #b077e6);
+        }
+    </style>
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-12 text-center">
-                <h2 class="mb-4 text-dark">Our Esteemed Clients Across IT Services</h2>
+                <h2 class="mb-4 text-dark">Our Esteemed Clients</h2>
                 <p class="text-secondary">
-                    We take pride in collaborating with global companies, offering a diverse range of IT services including remote staffing, turnkey solutions, corporate training, and software project development.
+                    We’ve partnered with clients worldwide to deliver top-notch HR, project development, and corporate training solutions.
                 </p>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="client-box p-4 text-center bg-white shadow rounded">
-                    <h3 class="text-primary mb-3">HR Payroll Clients</h3>
-                    <p class="text-muted">
-                        <strong>J&A UK</strong>, <strong>Kliebert Engineering, Germany</strong>, and <strong>OVT Germany</strong> have entrusted us to hire and manage their staff on a payroll basis, ensuring seamless workforce management.
-                    </p>
+            <!-- HR Payroll Clients -->
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">J&A UK</h4>
+                    <p class="text-center">Staffing Solidworks and PLC Engineers</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="client-box p-4 text-center bg-white shadow rounded">
-                    <h3 class="text-primary mb-3">Project Clients</h3>
-                    <p class="text-muted">
-                        We delivered software development and management solutions for <strong>Reddotpayment, Singapore</strong>, <strong>CSR, Germany</strong>, and <strong>Cygnus, UK</strong>, using technologies like CodeIgniter, PHP, Angular, Python, Ruby on Rails, C++, Qt, and more.
-                    </p>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">Kliebert Engineering, Germany</h4>
+                    <p class="text-center">Staffing C++ Engineers</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="client-box p-4 text-center bg-white shadow rounded">
-                    <h3 class="text-primary mb-3">Corporate Training Clients</h3>
-                    <p class="text-muted">
-                        We provided in-depth training programs for <strong>Niagaprestasi, Malaysia</strong>, covering Java, .NET, and database systems. Additionally, we trained companies like <strong>Collabera</strong> with intensive 8-hour full-day sessions over 3 months.
-                    </p>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">OVT Germany</h4>
+                    <p class="text-center">Staffing Engineers for Custom Solutions</p>
+                </div>
+            </div>
+
+            <!-- Project Clients -->
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">Reddotpayment, Singapore</h4>
+                    <p class="text-center">Developed Fullstack PHP Applications</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">CSR, Germany</h4>
+                    <p class="text-center">Developed Angular and Ruby on Rails Solutions</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">Cygnus, UK</h4>
+                    <p class="text-center">Developed Embedded C++ Applications</p>
+                </div>
+            </div>
+
+            <!-- Corporate Training Clients -->
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">Niagaprestasi, Malaysia</h4>
+                    <p class="text-center">Trained Teams in Java, .NET, and Databases</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">Collabera</h4>
+                    <p class="text-center">Conducted 8-hour Daily Sessions for 3 Months</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
+                    <h4 class="text-center fw-bold">And More...</h4>
+                    <p class="text-center">Delivering excellence globally.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- HR Services Section -->
@@ -99,30 +210,40 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="service-box p-4 text-center bg-white shadow rounded">
-                <h3 class="text-primary mb-3">Remote Staffing</h3>
-                <p class="text-muted">Expand your team with global talent. We handle sourcing, vetting, and onboarding professional candidates.</p>
+        <!-- Service Box Start -->
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="service-box p-4 text-center bg-white shadow rounded d-flex flex-column justify-content-between">
+                <div>
+                    <h3 class="text-primary mb-3">Remote Staffing</h3>
+                    <p class="text-muted">Expand your team with global talent. We handle sourcing, vetting, and onboarding professional candidates.</p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="service-box p-4 text-center bg-white shadow rounded">
-                <h3 class="text-primary mb-3">Payroll Management</h3>
-                <p class="text-muted">Ensure timely and accurate payroll processes with our reliable and compliant solutions.</p>
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="service-box p-4 text-center bg-white shadow rounded d-flex flex-column justify-content-between">
+                <div>
+                    <h3 class="text-primary mb-3">Payroll Management</h3>
+                    <p class="text-muted">Ensure timely and accurate payroll processes with our reliable and compliant solutions.</p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="service-box p-4 text-center bg-white shadow rounded">
-                <h3 class="text-primary mb-3">HR Outsourcing</h3>
-                <p class="text-muted">Optimize HR functions with expert consultancy and comprehensive outsourcing services.</p>
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="service-box p-4 text-center bg-white shadow rounded d-flex flex-column justify-content-between">
+                <div>
+                    <h3 class="text-primary mb-3">HR Outsourcing</h3>
+                    <p class="text-muted">Optimize HR functions with expert consultancy and comprehensive outsourcing services.</p>
+                </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="service-box p-4 text-center bg-white shadow rounded">
-                <h3 class="text-primary mb-3">Talent Acquisition</h3>
-                <p class="text-muted">Secure top-tier talent through our data-driven recruitment strategies and comprehensive hiring process.</p>
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="service-box p-4 text-center bg-white shadow rounded d-flex flex-column justify-content-between">
+                <div>
+                    <h3 class="text-primary mb-3">Talent Acquisition</h3>
+                    <p class="text-muted">Secure top-tier talent through our data-driven recruitment strategies and comprehensive hiring process.</p>
+                </div>
             </div>
         </div>
+        <!-- Service Box End -->
     </div>
     <div class="text-center mt-4">
         <a href="/remote_staffing" class="btn btn-primary btn-lg px-5">Learn More About Our Services</a>
@@ -143,21 +264,21 @@
             <div class="course-card p-4 bg-white shadow-lg rounded text-center">
                 <h3 class="fw-bold text-primary mb-3">Corporate Training</h3>
                 <p class="text-muted mb-4">Empower your workforce with tailored IT training designed to meet the specific needs of your organization.</p>
-                <a href="/corporate_training" class="btn btn-outline-primary">Explore Training</a>
+                <a href="/corporate_training" class="btn btn-outline-primary">Explore More</a>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="course-card p-4 bg-white shadow-lg rounded text-center">
                 <h3 class="fw-bold text-primary mb-3">MEAN Stack Training</h3>
                 <p class="text-muted mb-4">Gain expertise in MongoDB, Express.js, Angular, and Node.js to build full-stack web applications.</p>
-                <a href="/mean_stack_training" class="btn btn-outline-primary">Explore Training</a>
+                <a href="/mean_stack_training" class="btn btn-outline-primary">Explore More</a>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="course-card p-4 bg-white shadow-lg rounded text-center">
                 <h3 class="fw-bold text-primary mb-3">Testing Training</h3>
                 <p class="text-muted mb-4">Master software testing techniques, including manual testing, Selenium automation, and advanced testing tools.</p>
-                <a href="/testing_training" class="btn btn-outline-primary">Explore Training</a>
+                <a href="/testing_training" class="btn btn-outline-primary">Explore More</a>
             </div>
         </div>
     </div>    
