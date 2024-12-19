@@ -27,20 +27,22 @@
 
 
 <!-- Why Choose SevenDyne Section -->
-<div class="container py-5" >
+<div class="container py-3">
     <style>
         .why-choose-header {
             color: #007bff;
             font-weight: bold;
+            margin-bottom: 20px; /* Adjusted for balanced spacing */
         }
 
         .why-choose-text {
             color: #6c757d;
+            margin-bottom: 30px; /* Reduced to bring the next section closer */
         }
 
         .about-us-link {
             display: inline-block;
-            padding: 12px 20px;
+            padding: 10px 18px; /* Slightly reduced padding */
             background: linear-gradient(135deg, #007bff, #4dabf7);
             color: #fff;
             border-radius: 30px;
@@ -57,55 +59,64 @@
         .flex-button {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 15px; /* Reduced margin for better positioning */
+        }
+
+        .service-box {
+            padding: 20px; /* Balanced padding for consistent spacing */
+            background-color: #f8f9fa; /* Lightened background for clarity */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* Slightly rounded corners */
+            transition: transform 0.3s ease;
+        }
+
+        .service-box:hover {
+            transform: scale(1.05); /* Added hover effect for interactivity */
         }
     </style>
     <div class="row text-center">
-        <div class="container py-5">
-            <div class="row text-center">
-                <div class="col-12">
-                    <h2 class="why-choose-header mb-4">Why Choose SevenDyne?</h2>
-                    <p class="why-choose-text">
-                        SevenDyne has been a trusted partner in remote staffing and professional training since 2016. From our beginnings as a freelance agency in 2012, we have evolved into a full-service consultancy, empowering businesses and professionals globally.
-                    </p>
-                </div>
+        <div class="col-12">
+            <h2 class="why-choose-header">Why Choose SevenDyne?</h2>
+            <p class="why-choose-text">
+                SevenDyne has been a trusted partner in remote staffing and professional training since 2016. From our beginnings as a freelance agency in 2012, we have evolved into a full-service consultancy, empowering businesses and professionals globally.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-3">
+            <div class="service-box text-center">
+                <h4 class="text-primary fw-bold">Comprehensive Solutions</h4>
+                <p>
+                    We bridge the gap between businesses and talent with remote staffing, professional training, and innovative app development services.
+                </p>
             </div>
-            <div class="row mt-4">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-box p-4 text-center bg-light shadow rounded">
-                        <h4 class="text-primary fw-bold">Comprehensive Solutions</h4>
-                        <p>
-                            We bridge the gap between businesses and talent with remote staffing, professional training, and innovative app development services.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-box p-4 text-center bg-light shadow rounded">
-                        <h4 class="text-primary fw-bold">Global Reach</h4>
-                        <p>
-                            Serving clients across industries and locations, including the UK, Germany, Malaysia, and the US, we bring diverse expertise to every project.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-box p-4 text-center bg-light shadow rounded">
-                        <h4 class="text-primary fw-bold">Expertise You Can Trust</h4>
-                        <p>
-                            Our expertise spans technical staffing, full-stack training, HR payroll, C++ development, cloud solutions, and DevOps engineering.
-                        </p>
-                    </div>
-                </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-3">
+            <div class="service-box text-center">
+                <h4 class="text-primary fw-bold">Global Reach</h4>
+                <p>
+                    Serving clients across industries and locations, including the UK, Germany, Malaysia, and the US, we bring diverse expertise to every project.
+                </p>
             </div>
-            <div class="row text-center mt-4">
-                <div class="col-12">
-                    <div class="flex-button">
-                        <a href="{% url 'main:about' %}" class="about-us-link">Explore More About Us</a>
-                    </div>
-                </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-3">
+            <div class="service-box text-center">
+                <h4 class="text-primary fw-bold">Expertise You Can Trust</h4>
+                <p>
+                    Our expertise spans technical staffing, full-stack training, HR payroll, C++ development, cloud solutions, and DevOps engineering.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center mt-3">
+        <div class="col-12">
+            <div class="flex-button">
+                <a href="{% url 'main:about' %}" class="about-us-link">Explore More About Us</a>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- HR Services Section -->
 <div class="container py-5">
