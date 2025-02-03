@@ -1,0 +1,263 @@
+{% extends "job_portal/base.html" %}
+
+{% block og_title %}Turnkey Project Support & Team Building for Clients | Sevendyne{% endblock %}
+{% block og_description %}Sevendyne provides end-to-end turnkey project support and team-building services. We collaborate with clients to deliver custom solutions and build high-performing teams for successful project execution.{% endblock %}
+{% block og_url %}https://sevendyne.com{% endblock %}
+{% block title %}Turnkey Project Support & Team Building | Sevendyne{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Hero and Signup Section -->
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+	<div class="container my-5 pt-5 pb-4">
+	  <h1 class="display-3 text-white mb-3 animated slideInDown">Comprehensive Turnkey Project Support</h1>
+	  <p class="text-white">End-to-end solutions for successful project delivery across all industries.</p>
+	</div>
+</div>
+
+<section class="py-5" style="background: #f8f9fa;">
+  <div class="container">
+    <!-- Section Title -->
+    <div class="section-title text-center mb-5">
+      <h2 class="text-primary">Our Turnkey Project Support</h2>
+      <p class="lead text-muted">Complete project development, management, and delivery solutions from start to finish.</p>
+    </div>
+    
+    <!-- Turnkey Project Services -->
+    <div class="row mb-5">
+      <div class="col-md-4">
+        <div class="service-card shadow-lg rounded p-4 bg-white text-center">
+          <h3 class="text-primary">Project Planning & Strategy</h3>
+          <p class="text-muted">In-depth project planning, risk assessment, and resource allocation for smooth project execution.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card shadow-lg rounded p-4 bg-white text-center">
+          <h3 class="text-primary">Project Development</h3>
+          <p class="text-muted">Custom development solutions using the latest technologies for flawless project delivery.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card shadow-lg rounded p-4 bg-white text-center">
+          <h3 class="text-primary">Project Management & Execution</h3>
+          <p class="text-muted">Seamless project management to ensure on-time, within-budget, and high-quality delivery.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Key Benefits -->
+    <div class="card shadow-lg rounded p-4 mb-5 bg-white">
+      <h3 class="text-primary text-center mb-3">Key Benefits</h3>
+      <ul class="list-unstyled text-muted">
+        <li><strong>End-to-End Solutions:</strong> Manage the entire project lifecycle from conceptualization to delivery.</li>
+        <li><strong>Experienced Project Team:</strong> Benefit from our skilled developers, analysts, and project managers.</li>
+        <li><strong>Timely and Cost-Effective:</strong> Ensure project success with efficient planning, execution, and monitoring.</li>
+        <li><strong>Tailored to Your Needs:</strong> Projects are customized to match your unique business goals and requirements.</li>
+      </ul>
+    </div>
+    
+    <!-- Why Choose Sevendyne -->
+    <div class="card shadow-lg rounded p-4 mb-5 bg-white">
+      <h3 class="text-primary text-center mb-3">Why Choose Sevendyne?</h3>
+      <ul class="list-unstyled text-muted">
+        <li><strong>Proven Track Record:</strong> A history of successful turnkey projects delivered to clients across various industries.</li>
+        <li><strong>Expert Project Management:</strong> Our dedicated team ensures smooth execution and optimal resource allocation.</li>
+        <li><strong>Comprehensive Solutions:</strong> From ideation to post-launch support, we cover all aspects of project delivery.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contactForm" class="py-5" style="background: #f8f9fa;">
+	<div class="container">
+	  <div class="card shadow-lg rounded p-5 bg-white">
+		<h3 class="text-center text-primary">Get Started with Sevendyne</h3>
+		<p class="text-muted text-center mb-4">Let us support your next turnkey project.</p>
+		<form id="submit-form" action="#" class="php-email-form">
+		  {% csrf_token %}
+		  <div class="row">
+			<!-- Left Column -->
+			<div class="col-md-6">
+			  <div class="form-group">
+				<label for="name" class="form-label">Your Name</label>
+				<input type="text" class="form-control" id="name" name="name" placeholder="Full Name" required>
+			  </div>
+			  <div class="form-group mt-3">
+				<label for="email" class="form-label">Your Email</label>
+				<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+			  </div>
+			  <div class="form-group mt-3">
+				<label for="company_name" class="form-label">Company Name</label>
+				<input type="text" class="form-control" id="company_name" name="company_name" placeholder="Your Company Name" required>
+			  </div>
+			  <div class="form-group mt-3">
+				<label for="project_name" class="form-label">Project Name</label>
+				<input type="text" class="form-control" id="project_name" name="project_name" placeholder="Project Name" required>
+			  </div>
+			</div>
+			<!-- Right Column -->
+			<div class="col-md-6">
+			  <div class="form-group mt-3">
+				<label for="project_description" class="form-label">Project Description</label>
+				<textarea class="form-control" id="project_description" name="project_description" rows="4" placeholder="Brief description of your project" required></textarea>
+			  </div>
+			  <div class="form-group mt-3">
+				<label for="num_resources" class="form-label">Number of Resources Needed</label>
+				<input type="number" class="form-control" id="num_resources" name="num_resources" min="1" placeholder="e.g., 5" required>
+			  </div>
+			  <div class="form-group mt-3">
+				<label for="preferred_location" class="form-label">Preferred Location</label>
+				<input type="text" class="form-control" id="preferred_location" name="preferred_location" placeholder="City, Country">
+			  </div>
+			</div>
+		  </div>
+		  <div class="text-center mt-4">
+			<button type="submit" class="btn btn-primary">Request Turnkey Support</button>
+		  </div>
+		</form>
+	  </div>
+	</div>
+</section>  
+
+<section class="py-5" style="background: #f8f9fa;">
+  <div class="container">
+    <!-- Additional Services -->
+    <div class="card shadow-lg rounded p-4 mb-5 bg-white">
+      <h3 class="text-primary text-center mb-3">Additional Services</h3>
+      <ul class="list-unstyled text-muted">
+        <li>Project Risk Management: Identify, assess, and mitigate potential risks during the project lifecycle.</li>
+        <li>Post-Project Support: Ensure long-term success with maintenance, monitoring, and optimization services.</li>
+        <li>Business Process Optimization: Enhance operational efficiency across teams and departments.</li>
+      </ul>
+    </div>
+  
+    <!-- Client Results -->
+    <div class="card shadow-lg rounded p-4 mb-5 bg-white">
+      <h3 class="text-primary text-center mb-3">Client Results</h3>
+      <p class="text-muted">
+        <strong>Case Study Snippet:</strong> We successfully delivered turnkey projects for clients in the tech, healthcare, and retail sectors, improving efficiency and meeting project deadlines.
+      </p>
+    </div>  
+  
+    <!-- How It Works -->
+    <div class="card shadow-lg rounded p-4 mb-5 bg-white">
+      <h3 class="text-primary text-center mb-3">How It Works</h3>
+      <ol class="list-unstyled text-muted">
+        <li><strong>Consultation & Assessment:</strong> We understand your project goals and requirements.</li>
+        <li><strong>Planning & Strategy:</strong> Our team crafts a detailed roadmap for seamless execution.</li>
+        <li><strong>Execution & Monitoring:</strong> We oversee the project's development, ensuring on-time delivery.</li>
+        <li><strong>Post-Completion Support:</strong> We continue to support and improve the project long after completion.</li>
+      </ol>
+    </div>
+    
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5" style="color: #2b2b2b;">FAQs</h2>
+        <div class="accordion" id="faqAccordion">
+            <!-- FAQ 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" style="background: #f7f7f7;">
+                        What is a turnkey project?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        A turnkey project is a complete solution, where we handle every aspect of the project from start to finish, including planning, development, and post-launch support.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" style="background: #f7f7f7;">
+                        How long does a turnkey project take to complete?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        The timeline depends on the scope and complexity of the project, but we focus on timely delivery and transparency throughout the process.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" style="background: #f7f7f7;">
+                        Can I make changes during the project?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we encourage client involvement, and we can make adjustments as needed within the scope of the project.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/js/app.js' %}"></script>
+<script>
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password");
+        var passwordIcon = document.getElementById("password-icon");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            passwordIcon.classList.remove("fa-eye-slash");
+            passwordIcon.classList.add("fa-eye");
+        } else {
+            passwordField.type = "password";
+            passwordIcon.classList.remove("fa-eye");
+            passwordIcon.classList.add("fa-eye-slash");
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{%static 'assets/js/jquery-3.7.1.min.js'%}"></script>
+
+<script>
+    $("#submit-form").submit((e) => {
+        e.preventDefault();
+		const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        $.ajax({
+            url: "https://script.google.com/macros/s/AKfycbyxzRzjygEh1l0AHrTD6uEXKGilEkmYjCeC0YGk1wABLOureKv6sv1aah09itDpLgL6GQ/exec",
+            data: $("#submit-form").serialize() + '&csrfmiddlewaretoken=' + csrfToken,
+            method: "POST",
+            success: function (response) {
+                // Use SweetAlert for success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Your Message is sent to Sevendyne Inc.',
+                }).then(() => {
+                    window.location.reload();
+                });
+            },
+            error: function (err) {
+                // Use SweetAlert for error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong.',
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

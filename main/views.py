@@ -72,8 +72,8 @@ def mean_stack_training(request):
 def testing_training(request):
     return render(request, 'job_portal/testing_training.html')
 
-def hr_payroll(request):
-    return render(request, 'job_portal/hr_payroll.html')
+def turnkey_projects(request):
+    return render(request, 'job_portal/turnkey_projects.html')
 
 def hrms(request):
     return render(request, 'job_portal/hrms.html')

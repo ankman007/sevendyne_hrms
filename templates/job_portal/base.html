@@ -122,8 +122,8 @@
             
                     <a href="{% url 'main:about' %}" class="nav-item nav-link">About Us</a>
             
-                    <!-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Turnkey IT Projects</a>
+                    <div class="nav-item dropdown">
+                        <a href="{% url 'main:turnkey_projects' %}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Turnkey Projects</a>
                         <div class="dropdown-menu">
                             <a href="{% url 'main:mobileapps' %}" class="dropdown-item">Mobile Apps</a>
                             <a href="{% url 'main:webapps' %}" class="dropdown-item">Web Apps</a>
@@ -131,10 +131,10 @@
                             <a href="{% url 'main:devops' %}" class="dropdown-item">DevOps Cloud</a>
                             <a href="{% url 'main:testing' %}" class="dropdown-item">Software Testing</a>
                         </div>
-                    </div> -->
+                    </div>
 
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Professional Courses</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Training Programs</a>
                         <div class="dropdown-menu">
                             <a href="{% url 'main:corporate_training' %}" class="dropdown-item">Corporate Training</a>
                             <a href="{% url 'main:mean_stack_training' %}" class="dropdown-item">Mean Stack Training</a>
@@ -142,7 +142,12 @@
                         </div>
                     </div>
 
-                    <a href="{% url 'main:home_hrms' %}" target="_blank" class="nav-item nav-link">Staffing Solutions</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Technology Products</a>
+                        <div class="dropdown-menu">
+                            <a href="{% url 'main:home_hrms' %}" target="_blank" class="nav-item nav-link">ERP HRMS Solutions</a>
+                        </div>
+                    </div>                  
             
                 </div>
             </div>
