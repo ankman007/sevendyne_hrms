@@ -183,12 +183,10 @@
 </div>
 <hr>
 
-<!-- Embedded HR Payroll Consultation Form Section -->
 <section id="consultation-form-section" class="container my-5 p-4 border rounded shadow-sm bg-light" style="max-width: 600px;">
   <h2 class="mb-3 text-primary">Hire a Technology Team</h2>
 
-  <form id="submit-form" action="#" class="php-email-form">
-
+  <form id="submit-form" action="https://script.google.com/macros/s/AKfycby9Ig9dBC486sZeDtf_agBI5UIODzEJ_Rrw1Hvu-t4SYEuiwTTRwPZbWMmU8zImkoGR/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
     <div class="form-group mt-3">
       <label for="name" class="form-label">Your Name</label>
       <input type="text" name="name" class="form-control" id="name" placeholder="Full Name" required>
@@ -203,11 +201,10 @@
       <label for="interested_in" class="form-label">Technology Team Required</label>
       <select class="form-control" name="interested_in" id="interested_in" required>
         <option value="">Select a team</option>
-       
         <option value="app">App Developers</option>
         <option value="dm">Digital Marketors</option>
-       <option value="qa">QA Test Engineers</option>
-           <option value="more">More...</option>
+        <option value="qa">QA Test Engineers</option>
+        <option value="more">More...</option>
       </select>
     </div>
 
@@ -224,7 +221,15 @@
       <small class="text-muted">* HR Fee: 15% of monthly salary or ₹15,000 minimum</small>
     </div>
   </form>
+
+  <!-- Hidden iframe to prevent page reload -->
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Your query has been successfully submitted!'); document.getElementById('submit-form').reset(); submitted=false; }"></iframe>
 </section>
+
+<script>
+  var submitted = false;
+</script>
+
 
 
 
@@ -232,36 +237,6 @@
 <script src="{%static 'assets/js/jquery-3.7.1.min.js'%}"></script>
 
 <!-- Script for form submission -->
-<script>
-    $(document).ready(function() {
-        $("#submit-form").submit(function(e) {
-            e.preventDefault();
-            // const csrfToken = $('[name=csrfmiddlewaretoken]').val();
-
-           $.ajax({
-              url: "https://script.google.com/macros/s/AKfycby9Ig9dBC486sZeDtf_agBI5UIODzEJ_Rrw1Hvu-t4SYEuiwTTRwPZbWMmU8zImkoGR/exec",
-              method: 'POST',
-              data: $("#submit-form").serialize(),
-              dataType: 'json',
-              success: function(response) {
-                Swal.fire({
-                  icon: 'success',
-                  title: 'Success',
-                  text: 'Your query has been successfully submitted!'
-                });
-                $("#submit-form")[0].reset();
-              },
-              error: function() {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Error',
-                  text: 'An error occurred while submitting the form. Please try again later.'
-                });
-              }
-            });
-        });
-    });
-</script>
 
 <script>
   document.getElementById('consultationBtn').addEventListener('click', function() {
