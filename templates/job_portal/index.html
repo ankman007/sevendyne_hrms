@@ -174,19 +174,21 @@
             </div>
         </div>
         <div class="text-center mt-4">
-            <a href="#consultationModal" class="btn btn-primary btn-lg px-4 py-3 fw-bold shadow-lg" data-bs-toggle="modal">
-                        <i class="bi bi-chat" style="font-size: 1.2em;"></i> Get Free Consultation & Consulting
-             </a>
+           <button id="consultationBtn" type="button" class="btn btn-primary">
+                  Get Free Consultation
+          </button>
         </div>
     </div>
 </div>
 <hr>
 
-<!-- Embedded Consultation Form Section -->
-<section id="consultation-form-section" class="container my-5 p-4 border rounded" style="max-width: 700px;">
-  <h2 class="mb-4 text-primary">Get Free Consultation</h2>
+<!-- Embedded HR Payroll Consultation Form Section -->
+<section id="consultation-form-section" class="container my-5 p-4 border rounded shadow-sm bg-light" style="max-width: 600px;">
+  <h2 class="mb-3 text-primary">Hire a Technology Team</h2>
+
   <form id="submit-form" action="#" class="php-email-form">
     {% csrf_token %}
+
     <div class="form-group mt-3">
       <label for="name" class="form-label">Your Name</label>
       <input type="text" name="name" class="form-control" id="name" placeholder="Full Name" required>
@@ -198,25 +200,35 @@
     </div>
 
     <div class="form-group mt-3">
-      <label for="interested_in" class="form-label">Interested In</label>
+      <label for="interested_in" class="form-label">Technology Team Required</label>
       <select class="form-control" name="interested_in" id="interested_in" required>
-        <option value="">Select an option</option>
-        <option value="Turneky">HRMS Payroll</option>
-        <option value="Training">Training Candidates</option>
-        <option value="Technologies">Project Supports</option>
+        <option value="">Select a team</option>
+        <option value="CppTeam">C++ Team</option>
+        <option value="JavaTeam">Java Team</option>
+        <option value="NodejsTeam">Node.js Team</option>
+        <option value="PhpTeam">PHP Team</option>
+        <option value="PythonTeam">Python Team</option>
+        <option value="RubyRailsTeam">Ruby on Rails Team</option>
+        <option value="BootstrapTeam">Frontend/UI Team</option>
+        <option value="Other">Other (please describe)</option>
       </select>
     </div>
 
     <div class="form-group mt-3">
-      <label for="additional_info" class="form-label">Additional Information</label>
-      <textarea class="form-control" name="additional_info" rows="4" id="additional_info" placeholder="Briefly describe your needs or inquiries" required></textarea>
+      <label for="additional_info" class="form-label">Job Description / Requirements</label>
+      <textarea class="form-control" name="additional_info" rows="4" id="additional_info" placeholder="Describe roles, required experience, number of hires, or other specific needs" required></textarea>
     </div>
 
     <div class="text-center mt-4">
-      <button type="submit" class="btn btn-primary btn-lg px-5">Submit Consultation Request</button>
+      <button type="submit" class="btn btn-primary btn-lg px-4">Submit Hiring Request</button>
+    </div>
+
+    <div class="text-start mt-2">
+      <small class="text-muted">* HR Fee: 15% of monthly salary or ₹15,000 minimum</small>
     </div>
   </form>
 </section>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
