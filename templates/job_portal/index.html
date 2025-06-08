@@ -238,25 +238,26 @@
             e.preventDefault();
             // const csrfToken = $('[name=csrfmiddlewaretoken]').val();
 
-            $.ajax({
-                url: "https://script.google.com/macros/s/AKfycby9Ig9dBC486sZeDtf_agBI5UIODzEJ_Rrw1Hvu-t4SYEuiwTTRwPZbWMmU8zImkoGR/exec",
-                data: $(this).serialize(),
-                method: 'POST',
-                success: function (response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Your query have been successfully submitted!'
-                    });
-                    $("#submit-form")[0].reset();
-                },
-                error: function (error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'An error occurred while submitting the form. Please try again later.'
-                    });
-                }
+           $.ajax({
+              url: "https://script.google.com/macros/s/AKfycby9Ig9dBC486sZeDtf_agBI5UIODzEJ_Rrw1Hvu-t4SYEuiwTTRwPZbWMmU8zImkoGR/exec",
+              method: 'POST',
+              data: $("#submit-form").serialize(),
+              dataType: 'json',
+              success: function(response) {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Success',
+                  text: 'Your query has been successfully submitted!'
+                });
+                $("#submit-form")[0].reset();
+              },
+              error: function() {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Error',
+                  text: 'An error occurred while submitting the form. Please try again later.'
+                });
+              }
             });
         });
     });
