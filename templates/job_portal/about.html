@@ -1,96 +1,106 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}SevenDyne: Your Trusted Technology Consultancy for Innovative Solutions{% endblock %}
-{% block og_description %}SevenDyne is a versatile technology consultancy specializing in app development and professional training. With a focus on innovation, we provide transformative solutions to meet diverse organizational needs, while continuously expanding into emerging tech domains.{% endblock %}
-{% block og_url %}https://Sevendyne.com/{% endblock %}
-{% block title %}SevenDyne: Technology Consultancy Delivering App Development, Training, and Beyond{% endblock %}
+{% block og_title %}About Sevendyne — App Development Engineering Firm{% endblock %}
+{% block og_description %}Sevendyne is an app development engineering firm building enterprise software, HRMS platforms, and custom solutions for clients worldwide since 2016.{% endblock %}
+{% block og_url %}https://sevendyne.com/about{% endblock %}
+{% block title %}About Sevendyne — App Development Engineering Firm{% endblock %}
 
 {% load static %}
 
 {% block content %}
 
-<!-- Header End -->
 <div class="container-xxl py-5 bg-dark page-header mb-5">
     <div class="container my-5 pt-5 pb-4">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">About Sevendyne</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb text-uppercase">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'main:job_portal' %}" class="text-white-50">Home</a></li>
                 <li class="breadcrumb-item text-white active" aria-current="page">About</li>
             </ol>
         </nav>
     </div>
 </div>
-<!-- Header End -->
 
-<!-- About Us Section -->
 <div id="about" class="container-xxl py-5 bg-light">
     <div class="container">
-        <!-- Introduction Section -->
-        <div class="row g-5 align-items-center">
+        <div class="row g-5 align-items-center mb-4">
             <div class="col-lg-12 text-center">
-                <h1 class="mb-4">SevenDyne: Your Trusted Tech Staffing Partner</h1>
-                <p class="mb-4">Since 2016, SevenDyne has been delivering end-to-end client support while connecting businesses with top talent. Our training programs empower professionals with the skills they need to succeed, and we help companies build high-performing teams for diverse roles. From project execution to staffing solutions, we continue to expand our global reach, serving clients in the UK, Germany, Malaysia, the US, and beyond.</p>
+                <h1 class="mb-4 text-primary">An App Development Engineering Firm</h1>
+                <p class="lead text-muted mb-4">
+                    <strong>Sevendyne</strong> is an app development engineering firm headquartered in Kerala, India.
+                    Since 2016, our team designs, builds, and ships production software — mobile apps, web platforms,
+                    embedded systems, and enterprise tools — for clients across the UK, Germany, Malaysia, Singapore, the US, and India.
+                </p>
+                <p class="mb-4">
+                    This repository hosts our open-source <strong>Enterprise HRMS</strong>, built over one year by a
+                    small engineering team of three in our local office. It is one of several products we develop in-house
+                    while delivering custom engineering work for global clients.
+                </p>
+                <a href="https://sevendyne.com" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                    Visit sevendyne.com for more details <i class="fa fa-external-link-alt ms-2"></i>
+                </a>
             </div>
         </div>
 
-        <!-- Our History Section -->
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-12">
-                <div class="p-4 bg-white shadow rounded">
-                    <h3 class="mb-3 text-primary">Our Journey</h3>
-                    <p>
-                        <strong>2016:</strong> SevenDyne started as a tech talent-building initiative, assembling dedicated development teams for freelance clients. Over the years, we expanded our expertise, becoming a full-service provider of remote staffing and professional training. <br><br>
-                        
-                        Since our inception, we have successfully catered to more than 10 clients across the UK, Germany, the US, Malaysia, and India. Our focus is on sourcing high-quality professionals for technology-driven businesses while also nurturing future talent through structured training programs. We take pride in developing skilled interns, equipping them with industry-ready expertise, and assigning them to client projects, ensuring a seamless blend of capability and innovation.
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <div class="p-4 bg-white shadow rounded h-100">
+                    <h3 class="mb-3 text-primary">What We Build</h3>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><i class="fas fa-mobile-alt text-primary me-2"></i> Mobile &amp; web applications</li>
+                        <li class="mb-2"><i class="fas fa-server text-primary me-2"></i> Enterprise HRMS &amp; business platforms</li>
+                        <li class="mb-2"><i class="fas fa-microchip text-primary me-2"></i> Embedded &amp; IoT software</li>
+                        <li class="mb-2"><i class="fas fa-cloud text-primary me-2"></i> Cloud, DevOps &amp; integration services</li>
+                        <li><i class="fas fa-vial text-primary me-2"></i> QA, testing &amp; delivery engineering</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-4 bg-white shadow rounded h-100">
+                    <h3 class="mb-3 text-primary">Our Story</h3>
+                    <p class="mb-0">
+                        Sevendyne began in 2016 as a focused engineering practice — assembling dedicated development
+                        teams and shipping real products, not slide decks. Today we combine client delivery with
+                        open-source contributions like this HRMS, inviting collaborators to fork, run, and improve our work.
+                        For company background, services, client work, and contact information, refer to our main website.
                     </p>
                 </div>
             </div>
         </div>
-        
-       
-        <!-- Our Expertise Section -->
-		<div class="row g-5">
-			<div class="col-lg-12">
-				<div class="p-4 bg-white shadow rounded">
-					<h3 class="mb-3 text-primary">Our Expertise</h3>
-					<ul class="list-unstyled">
-						<li><i class="fas fa-check-circle text-success me-2"></i> Remote Staffing Solutions (Technical & Non-Technical Roles)</li>
-						<li><i class="fas fa-check-circle text-success me-2"></i> Professional Training Programs (Full-stack Development, Cloud Technologies, C++)</li>
-					</ul>
-				</div>
-			</div>
-		</div>
 
-        <!-- Industry Experience Section -->
-        <div class="row g-5">
+        <div class="row g-4 mb-4">
             <div class="col-lg-12">
                 <div class="p-4 bg-white shadow rounded">
-                    <h3 class="mb-3 text-primary">Industry Experience</h3>
-                    <ul class="list-unstyled">
-                        <li><i class="fas fa-industry text-primary me-2"></i> Engineering & Manufacturing</li>
-                        <li><i class="fas fa-cart-plus text-primary me-2"></i> E-commerce & Digital Retail</li>
-                        <li><i class="fas fa-chart-pie text-primary me-2"></i> Data Analytics & Business Intelligence</li>
-                        <li><i class="fas fa-code text-primary me-2"></i> Software Development & Integration</li>
-                        <li><i class="fas fa-home text-primary me-2"></i> Property Management Solutions</li>
-                        <li><i class="fas fa-cloud text-primary me-2"></i> Cloud Services & Infrastructure</li>
-                    </ul>
+                    <h3 class="mb-3 text-primary">Learn More</h3>
+                    <p>
+                        The <a href="https://sevendyne.com" target="_blank" rel="noopener">sevendyne.com</a> website
+                        is the best place to explore our full portfolio — client projects, training programs,
+                        staffing capabilities, and how to engage our engineering team.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="https://sevendyne.com" target="_blank" rel="noopener" class="btn btn-outline-primary">
+                            sevendyne.com
+                        </a>
+                        <a href="{% url 'main:client_works' %}" class="btn btn-outline-secondary">Client Works</a>
+                        <a href="{% url 'user:user_login' %}" class="btn btn-primary">Login to HRMS</a>
+                        <a href="https://github.com/sevendyne/sevendyne_hrms" target="_blank" rel="noopener" class="btn btn-outline-dark">
+                            HRMS on GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Our Commitment Section -->
-        <div class="row g-5">
+        <div class="row g-4">
             <div class="col-lg-12">
                 <div class="p-4 bg-white shadow rounded">
-                    <h3 class="mb-3 text-primary">Our Commitment</h3>
-                    <ul class="list-unstyled">
-                        <li><i class="fas fa-lightbulb text-warning me-2"></i> Driving innovation and empowering businesses with custom solutions and staffing.</li>
-                        <li><i class="fas fa-hands-helping text-warning me-2"></i> Partnering with clients to navigate the changing tech landscape with remote talent.</li>
-                        <li><i class="fas fa-users text-warning me-2"></i> Providing high-quality staffing, project management, and training services.</li>
-                        <li><i class="fas fa-globe text-warning me-2"></i> Expanding our global reach to serve diverse industries and markets with remote teams and turnkey project solutions.</li>
-                    </ul>
+                    <h3 class="mb-3 text-primary">Office</h3>
+                    <p class="mb-0 text-muted">
+                        Sevendyne Consultancy Services LLP<br>
+                        Mayur Business Center, Chittoor Rd, Pullepady Junction,<br>
+                        Shenoys, Ernakulam, Kerala 682035, India<br>
+                        <a href="mailto:hr@sevendyne.com">hr@sevendyne.com</a>
+                    </p>
                 </div>
             </div>
         </div>
