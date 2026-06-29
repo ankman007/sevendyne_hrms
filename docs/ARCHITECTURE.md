@@ -1,9 +1,13 @@
-# Sevendyne HRMS Documentation
+# Sevendyne HRMS — Architecture
+
+Built over **one year** by a **team of three** in our **local office**. Open for collaborators; more Sevendyne projects coming soon.
 
 ## Quick Links
 
 - [README](../README.md) — Getting started with Docker
 - [CONTRIBUTING](../CONTRIBUTING.md) — Candidate evaluation workflow
+- [DOCKER.md](DOCKER.md) — Plug-and-play container setup
+- [DIRECTORY_STRUCTURE.md](DIRECTORY_STRUCTURE.md) — Repository layout
 
 ## Architecture
 
