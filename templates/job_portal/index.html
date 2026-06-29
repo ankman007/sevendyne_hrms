@@ -1,248 +1,215 @@
 {% extends "job_portal/base.html" %}
 
-{% block og_title %}SevenDyne: Experienced Tech Company | Building Global IT Teams{% endblock %}
-{% block og_description %}Sevendyne is a tech company with expertise across various IT skills. We build and manage specialized teams to deliver high-quality solutions for clients worldwide.{% endblock %}
-{% block og_url %}https://sevendyne.com{% endblock %}
-{% block title %}SevenDyne: IT Solutions & Team Building | Trusted by Global Clients{% endblock %}
+{% block og_title %}Sevendyne Enterprise HRMS — Open Source Human Resource Management{% endblock %}
+{% block og_description %}Enterprise-grade HRMS built with Django. Docker-ready architecture for attendance, payroll, leave tracking, and recruitment. Fork, run locally, and contribute.{% endblock %}
+{% block og_url %}https://github.com/sevendyne/sevendyne_hrms{% endblock %}
+{% block title %}Sevendyne Enterprise HRMS — Open Source HR Platform{% endblock %}
 
 {% load static %}
 
 {% block content %}
-<!-- Hero Section -->
-<div class="main-banner-section py-5 text-white" style="background-image: url('/static/job_portal/img/technology-785742_1280.jpg'); background-size: cover; background-position: center;">
-    <div class="container">
+<style>
+    .hrms-hero {
+        background: linear-gradient(135deg, rgba(13, 44, 99, 0.92), rgba(49, 100, 184, 0.88)),
+            url('/static/job_portal/img/technology-785742_1280.jpg') center/cover no-repeat;
+    }
+    .arch-card {
+        border-left: 4px solid #3164b8;
+        transition: transform 0.2s ease;
+    }
+    .arch-card:hover {
+        transform: translateY(-4px);
+    }
+    .login-card {
+        background: linear-gradient(135deg, #001f3f, #004080);
+        color: #fff;
+    }
+    .login-card code {
+        background: rgba(255,255,255,0.15);
+        color: #fff;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+    .tree-block {
+        background: #0d1117;
+        color: #c9d1d9;
+        border-radius: 8px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        overflow-x: auto;
+    }
+</style>
+
+<!-- Hero -->
+<div class="hrms-hero py-5 text-white">
+    <div class="container py-4">
         <div class="row align-items-center">
-            <div class="col-lg-12 text-center text-lg-start mb-4 mb-lg-0">
-                <h1 class="fw-bold">Sevendyne: Your Partner in Building Expert IT Teams</h1>
-                <p class="mt-3">We specialize in assembling skilled teams across diverse IT technologies to deliver tailored solutions for clients globally.</p>
-                <div class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start gap-3 mt-4">
-                 <button id="consultationBtn" type="button" class="btn btn-primary">
-                  Get Free Consultation
-                </button>
-
-
+            <div class="col-lg-8 mx-auto text-center">
+                <span class="badge bg-light text-primary mb-3">Open Source · Docker Ready</span>
+                <h1 class="fw-bold display-5">Sevendyne Enterprise HRMS</h1>
+                <p class="lead mt-3">
+                    A production-grade Human Resource Management System built with <strong>Python &amp; Django</strong>
+                    over one year by a <strong>team of three engineers</strong> in our local office.
+                    Fork it, run it in one minute, and contribute.
+                </p>
+                <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                    <a href="{% url 'user:user_login' %}" class="btn btn-light btn-lg text-primary fw-semibold">
+                        Login to HRMS <i class="fa fa-arrow-right ms-2"></i>
+                    </a>
+                    <a href="https://github.com/sevendyne/sevendyne_hrms" target="_blank" rel="noopener" class="btn btn-outline-light btn-lg">
+                        View on GitHub
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Why Choose SevenDyne Section -->
-<div class="container py-3">
-    <div class="row text-center">
-        <div class="col-12">
-            <h2 class="text-primary">Why Choose SevenDyne?</h2>
-            <p class="text-muted">
-                SevenDyne has been a trusted partner in team development and related services since 2016.
-            </p>
+<!-- Modules -->
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="text-primary">HRMS Modules</h2>
+        <p class="text-muted">Clean domain separation — each module maps to a Django app under <code>apps/</code></p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="arch-card bg-white shadow rounded p-4 h-100">
+                <h5 class="text-primary"><i class="fa fa-lock me-2"></i>Authentication</h5>
+                <p class="text-muted small mb-0">Role-based login for admins, HRMS clients, and employees. <code>apps/user</code></p>
+            </div>
         </div>
-
-        <div class="row mt-3">
-            
-            <div class="col-lg-3 col-md-6 mb-4 d-flex">
-                <div class="service-box p-4 text-center bg-white shadow rounded d-flex flex-column justify-content-between">
-                    <div>
-                        <h3 class="text-primary mb-3">Custom ERP Solutions</h3>
-                        <p class="text-muted">Tailored ERP solutions to meet your unique business needs, leveraging cutting-edge technologies for optimal performance.</p>
-                    </div>
-                </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="arch-card bg-white shadow rounded p-4 h-100">
+                <h5 class="text-primary"><i class="fa fa-clock me-2"></i>Attendance</h5>
+                <p class="text-muted small mb-0">Check-in, check-out, and attendance registers. <code>apps/employee</code></p>
             </div>
-
-            <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                <div class="service-box p-4 text-center bg-white shadow rounded d-flex flex-column justify-content-between">
-                    <div>
-                        <h3 class="text-primary mb-3">Team Building & Management</h3>
-                        <p class="text-muted">
-                            We help you build high-performing teams with the right talent, ensuring seamless collaboration and efficiency across projects.
-                        </p>
-                    </div>
-                </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="arch-card bg-white shadow rounded p-4 h-100">
+                <h5 class="text-primary"><i class="fa fa-money-bill me-2"></i>Payroll</h5>
+                <p class="text-muted small mb-0">Salary slips and fixed-point payroll calculation. <code>apps/payroll</code></p>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4 d-flex">
-                <div class="service-box p-4 text-center bg-white shadow rounded d-flex flex-column justify-content-between">
-                    <div>
-                        <h3 class="text-primary mb-3">Professional IT Training</h3>
-                        <p class="text-muted">
-                            Upskill your team with our tailored training programs, from full-stack development to advanced project management techniques.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>        
-
-        <div class="row text-center mt-3">
-            <div class="col-12">
-                <div class="flex-button">
-                    <a href="{% url 'main:about' %}" class="btn btn-primary btn-lg px-5">Explore More About Us</a>
-                </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="arch-card bg-white shadow rounded p-4 h-100">
+                <h5 class="text-primary"><i class="fa fa-calendar me-2"></i>Leave Tracker</h5>
+                <p class="text-muted small mb-0">Leave types, requests, and approval workflows. <code>apps/employee</code></p>
             </div>
         </div>
     </div>
-</div>
-<hr>
-
-<div class="container-fluid py-5">
-    <style>
-        .client-box {
-            background: linear-gradient(135deg, #001f3f, #004080); /* Dark blue gradient */
-            color: #fff; /* White text */
-            transition: all 0.3s ease;
-            border: 1px solid #004080;
-        }
-        .client-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-        .client-box h4 {
-            color: #ffffff;
-        }
-        .client-box p {
-            color: #d9d9d9; /* Slightly lighter text */
-        }
-    </style>
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-12 text-center">
-                <h2 class="mb-4 text-primary">Our Esteemed Clients</h2>
-                <p class="text-muted">
-                    We have partnered with clients worldwide to deliver top-notch professionals for various tech projects.
+    <div class="row g-4 mt-1">
+        <div class="col-md-4">
+            <div class="arch-card bg-white shadow rounded p-4 h-100">
+                <h6 class="text-primary">Also included</h6>
+                <ul class="text-muted small mb-0">
+                    <li>Recruitment &amp; job portal</li>
+                    <li>Candidate management</li>
+                    <li>Client &amp; asset tracking</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="arch-card bg-white shadow rounded p-4 h-100">
+                <h6 class="text-primary">Tech stack</h6>
+                <p class="text-muted small mb-0">
+                    Django 5 · PostgreSQL 15 · Redis · Celery · Docker Compose · pytest · GitHub Actions CI
                 </p>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <!-- HR Payroll Clients -->
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">J&A UK</h4>
-                    <p class="text-center">Staffing Solidworks and PLC Engineers</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">Kliebert Engineering, Germany</h4>
-                    <p class="text-center">Staffing C++ Engineers</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">OVT Germany</h4>
-                    <p class="text-center">Staffing Engineers for Custom Solutions</p>
-                </div>
-            </div>
+    </div>
+</div>
 
-            <!-- Project Clients -->
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">Reddotpayment, Singapore</h4>
-                    <p class="text-center">Staffing Fullstack PHP Developers</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">CSR, Germany</h4>
-                    <p class="text-center">Staffing Angular and Ruby on Rails Developers</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">Cygnus, UK</h4>
-                    <p class="text-center">Staffing C++ Developers</p>
-                </div>
-            </div>
+<hr class="my-0">
 
-            <!-- Corporate Training Clients -->
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">Niagaprestasi, Malaysia</h4>
-                    <p class="text-center">Trained Teams in Java, .NET, and Databases</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">Collabera</h4>
-                    <p class="text-center">Conducted Fullday Training Sessions on Java, .Net, DB tools etc for 1-3 Months</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="client-box p-4 rounded shadow h-100 d-flex flex-column justify-content-between">
-                    <h4 class="text-center fw-bold">And More...</h4>
-                    <p class="text-center">Delivering excellence globally.</p>
-                </div>
-            </div>
+<!-- Architecture -->
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2 class="text-primary mb-3">Repository Architecture</h2>
+            <p class="text-muted">
+                Plug-and-play structure — any company or collaborator can spin up the full stack with
+                <code>docker compose up --build</code>.
+            </p>
+            <pre class="tree-block p-4 mb-0"><code>sevendyne_hrms/
+├── config/settings/     # base, local, production
+├── apps/
+│   ├── authentication/  → user
+│   ├── attendance/      → employee
+│   ├── payroll/
+│   └── leave_tracker/   → employee
+├── compose/local/       # Dockerfile + entrypoint
+├── requirements/        # base, local, production
+└── docker-compose.yml   # App + PostgreSQL + Redis</code></pre>
         </div>
-     
-
-         <div class="row text-center mt-3">
-            <div class="col-12">
-                <div class="flex-button">
-                    <a href="{% url 'main:client_works' %}" class="btn btn-primary btn-lg px-5">Explore Client Works</a>
-                </div>
-            </div>
+        <div class="col-lg-6">
+            <h2 class="text-primary mb-3">Quick Start</h2>
+            <pre class="tree-block p-4"><code>git clone https://github.com/sevendyne/sevendyne_hrms.git
+cd sevendyne_hrms
+docker compose up --build
+# → http://localhost:8000</code></pre>
+            <p class="text-muted small mt-3">
+                Migrations and demo users are seeded automatically on first boot.
+                More Sevendyne open-source projects are coming soon — we welcome collaborators.
+            </p>
+            <a href="https://github.com/sevendyne/sevendyne_hrms/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn btn-outline-primary">
+                Contributing Guide
+            </a>
         </div>
     </div>
 </div>
-<hr>
 
-<section id="consultation-form-section" class="container my-5 p-4 border rounded shadow-sm bg-light" style="max-width: 600px;">
-  <h2 class="mb-3 text-primary">Hire a Technology Team</h2>
+<hr class="my-0">
 
-  <form id="submit-form" action="https://script.google.com/macros/s/AKfycby9Ig9dBC486sZeDtf_agBI5UIODzEJ_Rrw1Hvu-t4SYEuiwTTRwPZbWMmU8zImkoGR/exec" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-    <div class="form-group mt-3">
-      <label for="name" class="form-label">Your Name</label>
-      <input type="text" name="name" class="form-control" id="name" placeholder="Full Name" required>
+<!-- Demo Login -->
+<div class="container py-5" id="demo-login">
+    <div class="text-center mb-4">
+        <h2 class="text-primary">Demo Login Credentials</h2>
+        <p class="text-muted">Use these accounts to explore the HRMS dashboards locally</p>
     </div>
-
-    <div class="form-group mt-3">
-      <label for="email" class="form-label">Your Email</label>
-      <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required>
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+            <div class="login-card rounded shadow p-4 h-100 text-center">
+                <h5 class="mb-3"><i class="fa fa-user-shield me-2"></i>Admin</h5>
+                <p class="mb-1">Username: <code>admin</code></p>
+                <p class="mb-3">Password: <code>admin</code></p>
+                <a href="{% url 'user:user_login' %}" class="btn btn-light btn-sm">Login as Admin</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="login-card rounded shadow p-4 h-100 text-center">
+                <h5 class="mb-3"><i class="fa fa-building me-2"></i>HRMS Client</h5>
+                <p class="mb-1">Username: <code>hrmsclient1</code></p>
+                <p class="mb-3">Password: <code>password@123</code></p>
+                <a href="{% url 'user:user_login' %}" class="btn btn-light btn-sm">Login as Client</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="login-card rounded shadow p-4 h-100 text-center">
+                <h5 class="mb-3"><i class="fa fa-id-badge me-2"></i>Employee</h5>
+                <p class="mb-1">Username: <code>employee1</code></p>
+                <p class="mb-3">Password: <code>password@123</code></p>
+                <a href="{% url 'user:user_login' %}" class="btn btn-light btn-sm">Login as Employee</a>
+            </div>
+        </div>
     </div>
+    <p class="text-center text-muted small mt-4">
+        Login URL: <a href="{% url 'user:user_login' %}">{% url 'user:user_login' %}</a>
+        &nbsp;·&nbsp; Register: <a href="{% url 'user:signup' %}">{% url 'user:signup' %}</a>
+    </p>
+</div>
 
-    <div class="form-group mt-3">
-      <label for="interested_in" class="form-label">Technology Team Required</label>
-      <select class="form-control" name="interested_in" id="interested_in" required>
-        <option value="">Select a team</option>
-        <option value="app">App Developers</option>
-        <option value="dm">Digital Marketors</option>
-        <option value="qa">QA Test Engineers</option>
-        <option value="more">More...</option>
-      </select>
-    </div>
+<hr class="my-0">
 
-    <div class="form-group mt-3">
-      <label for="additional_info" class="form-label">Job Description / Requirements</label>
-      <textarea class="form-control" name="additional_info" rows="4" id="additional_info" placeholder="Describe roles, required experience, number of hires, or other specific needs" required></textarea>
-    </div>
-
-    <div class="text-center mt-4">
-      <button type="submit" class="btn btn-primary btn-lg px-4">Submit Hiring Request</button>
-    </div>
-
-    <div class="text-start mt-2">
-      <small class="text-muted">* HR Fee: 15% of monthly salary or ₹15,000 minimum</small>
-    </div>
-  </form>
-
-  <!-- Hidden iframe to prevent page reload -->
-  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Your query has been successfully submitted!'); document.getElementById('submit-form').reset(); submitted=false; }"></iframe>
-</section>
-
-<script>
-  var submitted = false;
-</script>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{%static 'assets/js/jquery-3.7.1.min.js'%}"></script>
-
-<!-- Script for form submission -->
-
-<script>
-  document.getElementById('consultationBtn').addEventListener('click', function() {
-    document.getElementById('consultation-form-section').scrollIntoView({ behavior: 'smooth' });
-  });
-</script>
-
-
+<!-- Collaborate -->
+<div class="container py-5 text-center">
+    <h2 class="text-primary mb-3">Built to Collaborate</h2>
+    <p class="text-muted col-lg-8 mx-auto">
+        We open-sourced this HRMS so developers can show their skills through real PRs — not just interviews.
+        Pick a <code>good-first-issue</code>, write tests, and submit a pull request.
+    </p>
+    <a href="https://github.com/sevendyne/sevendyne_hrms/issues" target="_blank" rel="noopener" class="btn btn-primary btn-lg mt-2">
+        Find Issues on GitHub
+    </a>
+</div>
 {% endblock %}
