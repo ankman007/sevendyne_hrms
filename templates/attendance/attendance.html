@@ -10,16 +10,23 @@
 
 	<!-- Page Header -->
 	<div class="page-header">
-		<div class="row">
-			<div class="col-sm-10">
-				<h3 class="page-title">Attendance</h3>
+		<div class="row align-items-center">
+			<div class="col-sm-8">
+				<h3 class="page-title">
+					<i class="fas fa-clipboard-list me-2"></i>Attendance
+				</h3>
 				<ul class="breadcrumb">
 					<li class="breadcrumb-item"><a href="{% url 'main:hrms_dashboard' %}">Dashboard</a></li>
 					<li class="breadcrumb-item active">Attendance</li>
 				</ul>				
 			</div>
-			<div class="col-sm-2">
-				<a href="{% url 'employee:create_attendance_register' %}" class="btn btn-primary"> Take Attendance </a> 
+			<div class="col-sm-4 text-end">
+					<a href="{% url 'employee:create_attendance_register' %}" class="btn btn-primary">
+						<i class="fas fa-plus-circle me-1"></i> Take Attendance
+					</a>
+					<a href="{% url 'employee:export_attendance_register_csv' %}?employee_name={{ request.GET.employee_name }}" class="btn btn-success">
+						<i class="fas fa-file-export me-1"></i> Export CSV
+					</a>
 			</div>			
 		</div>
 	</div>

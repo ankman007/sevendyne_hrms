@@ -1,3 +1,4 @@
+import csv
 import json
 import calendar
 import datetime
@@ -1371,6 +1372,49 @@ def attendance_register(request):
         "is_attendance_register" : True
     }
     return render(request, 'attendance/attendance.html', context=context)
+
+
+@login_required
+@user_passes_test(has_hrms_permission, redirect_field_name=None)
+@company_required
+def export_attendance_register_csv(request):
+    company = get_current_company(request)
+
+    attendance = AttendanceRegister.objects.filter(
+        company=company,
+        is_deleted=False,
+    ).select_related("employee")
+
+    employee_name = request.GET.get("employee_name")
+    if employee_name:
+        attendance = attendance.filter(
+            Q(employee__firstname__icontains=employee_name)
+            | Q(employee__lastname__icontains=employee_name)
+        )
+
+    today = datetime.date.today()
+    attendance = attendance.filter(
+        date__month=today.month,
+        date__year=today.year,
+    ).order_by("employee__firstname", "date")
+
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = (
+        'attachment; filename="attendance_register.csv"'
+    )
+
+    writer = csv.writer(response)
+    writer.writerow(["Employee", "Date", "Status"])
+
+    for record in attendance:
+        writer.writerow([
+            record.employee.get_full_name,
+            record.date.isoformat(),
+            record.get_status_display(),
+        ])
+
+    return response
+
 
 @login_required
 @user_passes_test(has_hrms_permission, redirect_field_name=None)
