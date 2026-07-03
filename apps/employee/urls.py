@@ -40,6 +40,7 @@ urlpatterns = [
     path('attendance-register/', views.attendance_register, name='attendance_register'), 
     re_path(r'^attendance-register/edit/(?P<pk>.*)/$', views.edit_attendance_register, name='edit_attendance_register'),    
     re_path(r'^delete-attendance-register/(?P<pk>.*)/$', views.delete_attendance_register, name='delete_attendance_register'),
+    path("attendance-register/export/", views.export_attendance_register_csv, name="export_attendance_register_csv",), 
     
     path('holiday/create/', views.create_holiday, name='create_holiday'),
     path("holidays/", views.holidays, name='holidays'),
